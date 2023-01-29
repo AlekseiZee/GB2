@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1292.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar prefHeight="44.0" prefWidth="1300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Файл">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Новый" />
+                  <MenuItem mnemonicParsing="false" text="Открыть" />
+                  <MenuItem mnemonicParsing="false" text="Сохранить" />
+                  <MenuItem mnemonicParsing="false" text="Сохранить как" />
+                  <MenuItem mnemonicParsing="false" text="Удалить из проекта" />
+                  <MenuItem mnemonicParsing="false" text="Свойства" />
+                  <MenuItem mnemonicParsing="false" text="Выход" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Вид">
+            <items>
+                  <Menu mnemonicParsing="false" text="Входные данные">
+                     <items>
+                        <CheckMenuItem mnemonicParsing="false" text="Градусы" />
+                        <CheckMenuItem mnemonicParsing="false" text="Радианы" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Схема вертикальности">
+                     <items>
+                        <CheckMenuItem mnemonicParsing="false" text="Диаграммы в плане" />
+                        <CheckMenuItem mnemonicParsing="false" text="Входные данные" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Схема верт. в плане">
+                     <items>
+                        <CheckMenuItem mnemonicParsing="false" text="Входные данные" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Прям. по поясам">
+                     <items>
+                        <CheckMenuItem mnemonicParsing="false" text="Протокол прямолинейности" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Протокол прям-ти">
+                    <items>
+                        <CheckMenuItem mnemonicParsing="false" text="Диаграммы прям." />
+                        <CheckMenuItem mnemonicParsing="false" text="Протокол верт." />
+                        <CheckMenuItem mnemonicParsing="false" text="Диаграммы верт." />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Журнал уг. изм">
+                    <items>
+                        <RadioMenuItem mnemonicParsing="false" text="Градусы" />
+                        <RadioMenuItem mnemonicParsing="false" text="Радианы" />
+                        <RadioMenuItem mnemonicParsing="false" text="Минуты" />
+                    </items>
+                  </Menu>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Настройки" />
+            <Menu mnemonicParsing="false" text="Описание">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <Label layoutX="1211.0" prefHeight="19.0" prefWidth="89.0" text="GeoBuilder" textFill="#f8f8f8" AnchorPane.rightAnchor="0.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="1203.0" layoutY="22.0" prefHeight="18.0" prefWidth="89.0" text="2022 2.0" textFill="WHITE" AnchorPane.rightAnchor="0.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <SplitPane dividerPositions="0.13486842105263158" layoutY="73.0" prefHeight="678.0" prefWidth="1290.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="72.0">
+        <items>
+          <AnchorPane prefHeight="676.0" prefWidth="102.0">
+               <children>
+                  <AnchorPane prefHeight="676.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TreeView prefHeight="676.0" prefWidth="170.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+          <AnchorPane>
+               <children>
+                  <TabPane layoutY="-2.0" prefHeight="743.0" prefWidth="1103.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-2.0">
+                    <tabs>
+                      <Tab text="Входные данные">
+                        <content>
+                          <AnchorPane>
+                                 <children>
+                                    <ScrollPane prefHeight="688.0" prefWidth="930.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                      <content>
+                                        <AnchorPane prefHeight="634.0" prefWidth="644.0">
+                                             <children>
+                                                <TableView layoutX="14.0" layoutY="14.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="619.0" prefWidth="630.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                                                   <columns>
+                                                      <TableColumn prefWidth="28.0" text="П. п" />
+                                                      <TableColumn prefWidth="227.0" text="Стоянка А">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0">
+                                                               <columns>
+                                                                  <TableColumn prefWidth="75.0">
+                                                                     <graphic>
+                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="73.0" promptText="Гор. " />
+                                                                     </graphic>
+                                                                  </TableColumn>
+                                                                  <TableColumn prefWidth="75.0">
+                                                                     <graphic>
+                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="71.0" promptText="Верт." />
+                                                                     </graphic>
+                                                                  </TableColumn>
+                                                               </columns>
+                                                               <graphic>
+                                                                  <TextField alignment="CENTER" promptText="Расстояние, м" />
+                                                               </graphic>
+                                                            </TableColumn>
+                                                         </columns>
+                                                      </TableColumn>
+                                                      <TableColumn prefWidth="158.0" text="Стоянка В">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0">
+                                                               <columns>
+                                                                  <TableColumn prefWidth="75.0" text="Лево">
+                                                                     <graphic>
+                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="72.0" promptText="Гор." />
+                                                                     </graphic>
+                                                                  </TableColumn>
+                                                                  <TableColumn prefWidth="75.0" text="Право">
+                                                                     <graphic>
+                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="72.0" promptText="Верт." />
+                                                                     </graphic>
+                                                                  </TableColumn>
+                                                               </columns>
+                                                               <graphic>
+                                                                  <TextField alignment="CENTER" promptText="Расстояние, м" />
+                                                               </graphic>
+                                                            </TableColumn>
+                                                         </columns>
+                                                      </TableColumn>
+                                                      <TableColumn prefWidth="158.0" text="Стоянка С">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0">
+                                                               <columns>
+                                                                  <TableColumn prefWidth="75.0" text="Лево">
+                                                                     <graphic>
+                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="76.0" promptText="Гор." />
+                                                                     </graphic></TableColumn>
+                                                                  <TableColumn prefWidth="75.0" text="Право">
+                                                                     <graphic>
+                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="72.0" promptText="Верт." />
+                                                                     </graphic></TableColumn>
+                                                               </columns>
+                                                               <graphic>
+                                                                  <TextField alignment="CENTER" promptText="Расстояние, м" />
+                                                               </graphic>
+                                                            </TableColumn>
+                                                         </columns>
+                                                      </TableColumn>
+                                                      <TableColumn minWidth="0.0" prefWidth="214.0" text="Стоянка D">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0">
+                                                               <columns>
+                                                                  <TableColumn prefWidth="75.0" text="Лево">
+                                                                     <graphic>
+                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="73.0" promptText="Гор." />
+                                                                     </graphic></TableColumn>
+                                                                  <TableColumn prefWidth="75.0" text="Право">
+                                                                     <graphic>
+                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="71.0" promptText="Верт." />
+                                                                     </graphic></TableColumn>
+                                                               </columns>
+                                                               <graphic>
+                                                                  <TextField alignment="CENTER" promptText="Расстояние, м" />
+                                                               </graphic>
+                                                            </TableColumn>
+                                                         </columns>
+                                                      </TableColumn>
+                                                   </columns>
+                                                </TableView>
+                                             </children></AnchorPane>
+                                      </content>
+                                    </ScrollPane>
+                                    <AnchorPane layoutX="662.0" layoutY="19.0" prefHeight="372.0" prefWidth="170.0">
+                                       <children>
+                                          <TextField alignment="CENTER" layoutX="2.0" layoutY="78.0" prefHeight="23.0" prefWidth="76.0" promptText="Гор." />
+                                          <TextField alignment="CENTER" layoutX="92.0" layoutY="78.0" prefHeight="23.0" prefWidth="76.0" promptText="Верт." />
+                                          <Button layoutX="4.0" layoutY="113.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="164.0" text="Добавить" />
+                                          <Button layoutX="4.0" layoutY="173.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="164.0" text="Удалить" />
+                                          <Button layoutX="5.0" layoutY="204.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="164.0" text="Удалить все" />
+                                          <Button layoutX="5.0" layoutY="285.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="164.0" text="Применить" />
+                                          <Button layoutX="4.0" layoutY="251.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="164.0" text="Общие характеристики" />
+                                          <RadioButton layoutX="2.0" layoutY="6.0" mnemonicParsing="false" text="Стоянка А" />
+                                          <RadioButton layoutX="3.0" layoutY="28.0" mnemonicParsing="false" text="Стоянка B" />
+                                          <RadioButton layoutX="93.0" layoutY="6.0" mnemonicParsing="false" text="Стоянка C" />
+                                          <RadioButton layoutX="93.0" layoutY="28.0" mnemonicParsing="false" text="Стоянка D" />
+                                          <Button layoutX="4.0" layoutY="143.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="164.0" text="Изменить" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Схема верт.">
+                        <content>
+                          <AnchorPane prefHeight="615.0" prefWidth="976.0">
+                                 <children>
+                                    <ScrollPane prefHeight="677.0" prefWidth="1006.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                       <content>
+                                          <AnchorPane prefHeight="667.0" prefWidth="964.0">
+                                             <children>
+                                                <LineChart fx:id="chartX" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="303.0" title="Ось X">
+                                                   <xAxis>
+                                                      <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
+                                                   </xAxis>
+                                                   <yAxis>
+                                                      <NumberAxis label="Высота" side="LEFT" />
+                                                   </yAxis>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <ColorAdjust />
+                                                   </effect>
+                                                </LineChart>
+                                                <LineChart fx:id="chartY" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutX="303.0" layoutY="4.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="303.0" title="Ось Y">
+                                                   <xAxis>
+                                                      <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
+                                                   </xAxis>
+                                                   <yAxis>
+                                                      <NumberAxis label="Высота" side="LEFT" />
+                                                   </yAxis>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <ColorAdjust />
+                                                   </effect>
+                                                </LineChart>
+                                                <TableView layoutX="622.0" layoutY="14.0" prefHeight="518.0" prefWidth="452.0">
+                                                   <columns>
+                                                      <TableColumn prefWidth="75.0" text="Высота, м" />
+                                                      <TableColumn maxWidth="-1.0" minWidth="-1.0" prefWidth="-1.0" text="Смещение оси ствола опоры&#10;             от вертикали, мм">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0" text="&quot;Х&quot;" />
+                                                            <TableColumn prefWidth="75.0" text="&quot;Y&quot;" />
+                                                            <TableColumn prefWidth="75.0" text="Вычис-ое" />
+                                                         </columns>
+                                                      </TableColumn>
+                                                      <TableColumn prefWidth="75.0" text="Допуск, мм" />
+                                                      <TableColumn prefWidth="75.0" text="Угол разво-&#10;  рота, град" />
+                                                   </columns>
+                                                </TableView>
+                                             </children></AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                        <Tab text="Схема верт. в пане">
+                           <content>
+                              <AnchorPane>
+                                 <children>
+                                    <ScrollPane prefHeight="677.0" prefWidth="930.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                       <content>
+                                          <AnchorPane prefHeight="674.0" prefWidth="1091.0">
+                                             <children>
+                                                <LineChart fx:id="chartDeviationInPlan" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutX="14.0" layoutY="14.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0" prefWidth="358.0" title="Отклонение в плане, мм">
+                                                   <xAxis>
+                                                      <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
+                                                   </xAxis>
+                                                   <yAxis>
+                                                      <NumberAxis label="Высота" side="LEFT" />
+                                                   </yAxis>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <ColorAdjust />
+                                                   </effect>
+                                                </LineChart>
+                                                <LineChart fx:id="chartVerticalDeviation" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutX="372.0" layoutY="14.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="247.0" title="Отклонение вертикали, мм">
+                                                   <xAxis>
+                                                      <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
+                                                   </xAxis>
+                                                   <yAxis>
+                                                      <NumberAxis label="Высота" side="LEFT" />
+                                                   </yAxis>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <ColorAdjust />
+                                                   </effect>
+                                                </LineChart>
+                                                <TableView layoutX="650.0" layoutY="22.0" prefHeight="518.0" prefWidth="377.0">
+                                                   <columns>
+                                                      <TableColumn prefWidth="75.0" text="Высота, м" />
+                                                      <TableColumn maxWidth="-1.0" minWidth="-1.0" prefWidth="-1.0" text="Смещение оси ствола опоры&#10;             от вертикали, мм">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0" text="&quot;Х&quot;" />
+                                                            <TableColumn prefWidth="75.0" text="&quot;Y&quot;" />
+                                                            <TableColumn prefWidth="75.0" text="Вычис-ое" />
+                                                         </columns>
+                                                      </TableColumn>
+                                                      <TableColumn prefWidth="75.0" text="Допуск, мм" />
+                                                   </columns>
+                                                </TableView>
+                                             </children></AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab text="Прям-ть по поясам">
+                           <content>
+                              <AnchorPane>
+                                 <children>
+                                    <ScrollPane prefHeight="677.0" prefWidth="930.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                       <content>
+                                          <AnchorPane prefHeight="673.0" prefWidth="1087.0">
+                                             <children>
+                                                <LineChart fx:id="chartBeltA" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutX="14.0" layoutY="14.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="278.0" title="Пояс &quot;А&quot;, мм">
+                                                   <xAxis>
+                                                      <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
+                                                   </xAxis>
+                                                   <yAxis>
+                                                      <NumberAxis label="Высота" side="LEFT" />
+                                                   </yAxis>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <ColorAdjust />
+                                                   </effect>
+                                                </LineChart>
+                                                <LineChart fx:id="chartBeltB" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutX="292.0" layoutY="14.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="278.0" title="Пояс &quot;B&quot;, мм">
+                                                   <xAxis>
+                                                      <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
+                                                   </xAxis>
+                                                   <yAxis>
+                                                      <NumberAxis label="Высота" side="LEFT" />
+                                                   </yAxis>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <ColorAdjust />
+                                                   </effect>
+                                                </LineChart>
+                                                <LineChart fx:id="chartBeltC" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutX="570.0" layoutY="14.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="278.0" title="Пояс &quot;C&quot;, мм">
+                                                   <xAxis>
+                                                      <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
+                                                   </xAxis>
+                                                   <yAxis>
+                                                      <NumberAxis label="Высота" side="LEFT" />
+                                                   </yAxis>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <ColorAdjust />
+                                                   </effect>
+                                                </LineChart>
+                                                <LineChart fx:id="chartBeltD" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutX="848.0" layoutY="14.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="278.0" title="Пояс &quot;D&quot;, мм">
+                                                   <xAxis>
+                                                      <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
+                                                   </xAxis>
+                                                   <yAxis>
+                                                      <NumberAxis label="Высота" side="LEFT" />
+                                                   </yAxis>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <ColorAdjust />
+                                                   </effect>
+                                                </LineChart>
+                                             </children></AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab text="Протокол прям-ти">
+                           <content>
+                              <AnchorPane>
+                                 <children>
+                                    <ScrollPane layoutY="-4.0" prefHeight="677.0" prefWidth="930.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                       <content>
+                                          <AnchorPane>
+                                             <children>
+                                                <TableView layoutX="14.0" layoutY="14.0" prefHeight="492.0" prefWidth="470.0">
+                                                  <columns>
+                                                    <TableColumn prefWidth="69.0" text="Высота, м" />
+                                                    <TableColumn prefWidth="306.0" text="Отклонение поясов, мм ">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0" text="Пояс А" />
+                                                            <TableColumn prefWidth="75.0" text="Пояс В" />
+                                                            <TableColumn prefWidth="75.0" text="Пояс С" />
+                                                            <TableColumn prefWidth="75.0" text="Пояс D" />
+                                                         </columns>
+                                                      </TableColumn>
+                                                      <TableColumn prefWidth="99.0" text="Допуск, мм" />
+                                                  </columns>
+                                                </TableView>
+                                             </children></AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab text="Журнал угл. изм.">
+                           <content>
+                              <AnchorPane>
+                                 <children>
+                                    <ScrollPane prefHeight="688.0" prefWidth="1094.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                       <content>
+                                          <AnchorPane prefHeight="637.0" prefWidth="721.0">
+                                             <children>
+                                                <TableView layoutX="14.0" layoutY="14.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="621.0" prefWidth="707.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                                   <columns>
+                                                      <TableColumn prefWidth="105.0" text="Высота, мм" />
+                                                      <TableColumn prefWidth="158.0" text="Стоянка А">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0">
+                                                               <columns>
+                                                                  <TableColumn prefWidth="75.0" text="Лево" />
+                                                                  <TableColumn prefWidth="75.0" text="Право" />
+                                                               </columns>
+                                                               <graphic>
+                                                                  <TextField promptText="Расстояние, м" />
+                                                               </graphic>
+                                                            </TableColumn>
+                                                         </columns>
+                                                      </TableColumn>
+                                                      <TableColumn prefWidth="158.0" text="Стоянка В">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0">
+                                                               <columns>
+                                                                  <TableColumn prefWidth="75.0" text="Лево" />
+                                                                  <TableColumn prefWidth="75.0" text="Право" />
+                                                               </columns>
+                                                               <graphic>
+                                                                  <TextField promptText="Расстояние, м" />
+                                                               </graphic>
+                                                            </TableColumn>
+                                                         </columns>
+                                                      </TableColumn>
+                                                      <TableColumn prefWidth="158.0" text="Стоянка С">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0">
+                                                               <columns>
+                                                                  <TableColumn prefWidth="75.0" text="Лево" />
+                                                                  <TableColumn prefWidth="75.0" text="Право" />
+                                                               </columns>
+                                                               <graphic>
+                                                                  <TextField promptText="Расстояние, м" />
+                                                               </graphic>
+                                                            </TableColumn>
+                                                         </columns>
+                                                      </TableColumn>
+                                                      <TableColumn minWidth="0.0" prefWidth="214.0" text="Стоянка D">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0">
+                                                               <columns>
+                                                                  <TableColumn prefWidth="75.0" text="Лево" />
+                                                                  <TableColumn prefWidth="75.0" text="Право" />
+                                                               </columns>
+                                                               <graphic>
+                                                                  <TextField promptText="Расстояние, м" />
+                                                               </graphic>
+                                                            </TableColumn>
+                                                         </columns>
+                                                      </TableColumn>
+                                                   </columns>
+                                                </TableView>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab text="Служебный">
+                           <content>
+                              <AnchorPane>
+                                 <children>
+                                    <ScrollPane layoutX="5.0" layoutY="5.0" prefHeight="688.0" prefWidth="1094.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                       <content>
+                                          <AnchorPane prefHeight="637.0" prefWidth="721.0">
+                                             <children>
+                                                <TableView layoutX="14.0" layoutY="14.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="515.0" prefWidth="630.0">
+                                                   <columns>
+                                                      <TableColumn prefWidth="28.0" text="П. п" />
+                                                      <TableColumn prefWidth="227.0" text="Стоянка А">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0">
+                                                               <columns>
+                                                                  <TableColumn prefWidth="75.0">
+                                                                     <graphic>
+                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="73.0" promptText="Гор. " />
+                                                                     </graphic>
+                                                                  </TableColumn>
+                                                                  <TableColumn prefWidth="75.0">
+                                                                     <graphic>
+                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="71.0" promptText="Верт." />
+                                                                     </graphic>
+                                                                  </TableColumn>
+                                                               </columns>
+                                                               <graphic>
+                                                                  <TextField alignment="CENTER" promptText="Расстояние, м" />
+                                                               </graphic>
+                                                            </TableColumn>
+                                                         </columns>
+                                                      </TableColumn>
+                                                      <TableColumn prefWidth="158.0" text="Стоянка В">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0">
+                                                               <columns>
+                                                                  <TableColumn prefWidth="75.0" text="Лево">
+                                                                     <graphic>
+                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="72.0" promptText="Гор." />
+                                                                     </graphic>
+                                                                  </TableColumn>
+                                                                  <TableColumn prefWidth="75.0" text="Право">
+                                                                     <graphic>
+                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="72.0" promptText="Верт." />
+                                                                     </graphic>
+                                                                  </TableColumn>
+                                                               </columns>
+                                                               <graphic>
+                                                                  <TextField alignment="CENTER" promptText="Расстояние, м" />
+                                                               </graphic>
+                                                            </TableColumn>
+                                                         </columns>
+                                                      </TableColumn>
+                                                      <TableColumn prefWidth="158.0" text="Стоянка С">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0">
+                                                               <columns>
+                                                                  <TableColumn prefWidth="75.0" text="Лево">
+                                                                     <graphic>
+                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="76.0" promptText="Гор." />
+                                                                     </graphic>
+                                                                  </TableColumn>
+                                                                  <TableColumn prefWidth="75.0" text="Право">
+                                                                     <graphic>
+                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="72.0" promptText="Верт." />
+                                                                     </graphic>
+                                                                  </TableColumn>
+                                                               </columns>
+                                                               <graphic>
+                                                                  <TextField alignment="CENTER" promptText="Расстояние, м" />
+                                                               </graphic>
+                                                            </TableColumn>
+                                                         </columns>
+                                                      </TableColumn>
+                                                      <TableColumn minWidth="0.0" prefWidth="214.0" text="Стоянка D">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0">
+                                                               <columns>
+                                                                  <TableColumn prefWidth="75.0" text="Лево">
+                                                                     <graphic>
+                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="73.0" promptText="Гор." />
+                                                                     </graphic>
+                                                                  </TableColumn>
+                                                                  <TableColumn prefWidth="75.0" text="Право">
+                                                                     <graphic>
+                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="71.0" promptText="Верт." />
+                                                                     </graphic>
+                                                                  </TableColumn>
+                                                               </columns>
+                                                               <graphic>
+                                                                  <TextField alignment="CENTER" promptText="Расстояние, м" />
+                                                               </graphic>
+                                                            </TableColumn>
+                                                         </columns>
+                                                      </TableColumn>
+                                                   </columns>
+                                                </TableView>
+                                                <AnchorPane layoutX="14.0" layoutY="105.0" prefHeight="532.0" prefWidth="624.0">
+                                                   <children>
+                                                      <HBox layoutY="-14.0" prefHeight="444.0" prefWidth="629.0">
+                                                         <children>
+                                                            <TextField prefHeight="444.0" prefWidth="33.0">
+                                                               <HBox.margin>
+                                                                  <Insets right="3.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <TextField prefHeight="500.0" prefWidth="73.0">
+                                                               <HBox.margin>
+                                                                  <Insets right="3.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <TextField prefHeight="500.0" prefWidth="73.0">
+                                                               <HBox.margin>
+                                                                  <Insets right="3.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <TextField prefHeight="500.0" prefWidth="73.0">
+                                                               <HBox.margin>
+                                                                  <Insets right="3.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <TextField prefHeight="500.0" prefWidth="73.0">
+                                                               <HBox.margin>
+                                                                  <Insets right="3.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <TextField prefHeight="500.0" prefWidth="73.0">
+                                                               <HBox.margin>
+                                                                  <Insets right="3.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <TextField prefHeight="500.0" prefWidth="73.0">
+                                                               <HBox.margin>
+                                                                  <Insets right="3.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <TextField prefHeight="500.0" prefWidth="73.0">
+                                                               <HBox.margin>
+                                                                  <Insets right="3.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <TextField prefHeight="500.0" prefWidth="73.0">
+                                                               <HBox.margin>
+                                                                  <Insets right="3.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <AnchorPane layoutY="44.0" prefHeight="22.0" prefWidth="1300.0" style="-fx-background-color: #FF7100;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0">
+         <children>
+            <Button layoutY="2.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="76.0" style="-fx-background-color: #FF7100;" text="Новый" textFill="WHITE" AnchorPane.leftAnchor="0.0">
+               <font>
+                  <Font name="Times New Roman Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="152.0" layoutY="2.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="122.0" style="-fx-background-color: #FF7100;" text="Добавить к сравн." textFill="WHITE" AnchorPane.leftAnchor="152.0">
+               <font>
+                  <Font name="Times New Roman Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="76.0" layoutY="2.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="76.0" style="-fx-background-color: #FF7100;" text="Новый" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
