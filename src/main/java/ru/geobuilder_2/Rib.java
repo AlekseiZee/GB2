@@ -3,17 +3,11 @@ package ru.geobuilder_2;
 public class Rib {
 
     private Integer tier;
-    private static int count = 0;
     private String ribLength;
 
-    public Rib(String ribLength) {
-        count++;
-        this.tier = count;
+    public Rib(Integer tier, String ribLength) {
+        this.tier = tier;
         this.ribLength = ribLength;
-    }
-
-    public static void setCount() {
-        Rib.count = --count;
     }
 
     public Integer getTier() {

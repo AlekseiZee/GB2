@@ -7,25 +7,14 @@ public class Point {
     private String distancePoint;
     private String vAnglePoint;
     private String hAnglePoint;
-    private static int countPoint = 0;
 
-    public static int getCountPoint() {
-        return countPoint;
-    }
-
-    public Point(String namePoint, String distancePoint, String vAnglePoint, String hAnglePoint) {
-        countPoint++;
-        this.setIdPoint(countPoint);
+    public Point(Integer idPoint, String namePoint, String distancePoint, String vAnglePoint, String hAnglePoint) {
+        this.setIdPoint(idPoint);
         this.setNamePoint(namePoint);
         this.setDistancePoint(distancePoint);
         this.setVAnglePoint(vAnglePoint);
         this.setHAnglePoint(hAnglePoint);
     }
-
-    public static void setCountPoint() {
-        Point.countPoint = --countPoint;
-    }
-
 
     public Integer getIdPoint() {
         return idPoint;

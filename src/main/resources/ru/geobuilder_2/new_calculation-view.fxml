@@ -371,6 +371,11 @@
             </TableView>
             <Label fx:id="valueTier" layoutX="179.0" layoutY="197.0" prefHeight="17.0" prefWidth="107.0" text="Label" />
             <Label fx:id="valueRib" layoutX="336.0" layoutY="197.0" prefHeight="17.0" prefWidth="109.0" text="Label" />
+            <Button layoutX="606.0" layoutY="195.0" mnemonicParsing="false" onAction="#print" prefHeight="1.0" prefWidth="41.0" text="Print">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
          </children>
          <VBox.margin>
             <Insets />

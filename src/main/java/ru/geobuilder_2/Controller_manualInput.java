@@ -9,7 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
 import static ru.geobuilder_2.Angle.setCountAngle;
-import static ru.geobuilder_2.Point.setCountPoint;
+//import static ru.geobuilder_2.Point.setCountPoint;
 
 public class Controller_manualInput {
 
@@ -96,19 +96,22 @@ public class Controller_manualInput {
         hAngleCol.setSortable(false);
     }
 
+    int val = 0;
     // Добавление стоянки (Point)
     @FXML
     private void addLinePoint(){
-        Point point = new Point("", "", "", "");
+        val++;
+        Point point = new Point(val, "", "", "", "");
         pointsData.add(point);
     }
 
     // Удаление стоянки (Point)
     @FXML
     private void removeLinePoint() {
+        val--;
         pointTable.getItems().remove(pointsData.size() - 1);
 
-        setCountPoint();
+//        setCountPoint();
     }
 
     // Добавление углов (Angles)

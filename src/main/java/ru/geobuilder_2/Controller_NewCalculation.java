@@ -41,12 +41,6 @@ public class Controller_NewCalculation {
 
     private ObservableList<Rib> ribs = FXCollections.observableArrayList();
 
-//    private void initDataRib(){
-//        ribs.add(new Rib("1", "7900"));
-//        ribs.add(new Rib("2", "7100"));
-//        ribs.add(new Rib("3", "6500"));
-//    }
-
     @FXML
     private TextFlow messageField;
 
@@ -92,6 +86,8 @@ public class Controller_NewCalculation {
     }
 
     public void print() {
+
+        messageField.getChildren().clear();
         for (Rib rib : ribs) {
             Text text = new Text("ярус: " + rib.getTier() + "    " + "грань:  " + rib.getRibLength() + "\n");
             messageField.getChildren().add(text);
@@ -101,9 +97,6 @@ public class Controller_NewCalculation {
 
     @FXML
     private void initialize() {
-
-        //initDataRib();
-
 
         tierColumn.setCellValueFactory(new PropertyValueFactory<Rib, Integer>("tier"));
         ribLengthColumn.setCellValueFactory(new PropertyValueFactory<Rib, String>("ribLength"));
@@ -121,15 +114,14 @@ public class Controller_NewCalculation {
         tableRib.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showRibsDetails(newValue));
 
-        // Разрешаем изменение в ячейке
+        // Разрешаем изменения в таблице
         tableRib.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
         ribLengthColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        // выводим в поле для информации
-        print();
     }
+
+    int numb = 0;
 
     /**
      * Вызывается, когда пользователь кликаек по кнопке добавить
@@ -138,8 +130,9 @@ public class Controller_NewCalculation {
      */
     @FXML
     public void addRib(ActionEvent event) {
-        Rib rib = new Rib("");
-        tableRib.getItems().add(rib);
+        numb++;
+        Rib rib = new Rib(numb, "");
+        ribs.add(rib);
     }
 
     /**
@@ -147,26 +140,10 @@ public class Controller_NewCalculation {
      */
     @FXML
     private void removeRib(){
+        numb--;
         tableRib.getItems().remove(ribs.size() - 1);
-        Rib.setCount();
+        // если надо удалить выделенную строку, то - tableRib.getItems().remove(selectedIndex);
     }
-//    @FXML
-//    private void handleDeletePerson(ActionEvent event) {
-//        int selectedIndex = tableRib.getSelectionModel().getSelectedIndex();
-//        if (selectedIndex >= 0) {
-//            tableRib.getItems().remove(selectedIndex);
-//            Rib.setCount();
-//        } else {
-//            // Ничего не выбрано.
-//            Alert alert = new Alert(Alert.AlertType.WARNING);
-//            alert.initOwner(StartGeoApplication.getStage());
-//            alert.setTitle("Предупреждение");
-//            alert.setHeaderText("Не выбран ни один ярус");
-//            alert.setContentText("Выберите один из ярусов");
-//
-//            alert.showAndWait();
-//        }
-//    }
 
     /**
      * Выводим в поля

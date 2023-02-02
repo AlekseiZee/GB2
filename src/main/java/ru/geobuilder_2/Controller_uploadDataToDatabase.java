@@ -210,18 +210,11 @@ public class Controller_uploadDataToDatabase {
         tableRibBD.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
-        //ribLengthColumnBD.setCellFactory(TextFieldTableCell.forTableColumn());
+        ribLengthColumnBD.setCellFactory(TextFieldTableCell.forTableColumn());
 
         //Запрет на сортировку столбцов
         tierColumnBD.setSortable(false);
         ribLengthColumnBD.setSortable(false);
-
-        // Нужно для того, что бы вносить изменения в ячейку, но при этом переопределяем метод TextFieldTableCell.
-        // После внесения значения в ячейку не нужно нажимать ввод.
-        Callback<TableColumn<RibBD, String>,
-                        TableCell<RibBD, String>> cellFactory
-                = (TableColumn<RibBD, String> p) -> new EditingCell();
-        ribLengthColumnBD.setCellFactory(cellFactory);
 
     }
 
@@ -240,67 +233,5 @@ public class Controller_uploadDataToDatabase {
         RibBD.setCountBD();
     }
 }
-class EditingCell extends TableCell<RibBD, String> {
 
-    private TextField textField;
-
-    public EditingCell() {
-    }
-
-    @Override
-    public void startEdit() {
-        if (!isEmpty()) {
-            super.startEdit();
-            createTextField();
-            setText(null);
-            setGraphic(textField);
-            textField.selectAll();
-        }
-    }
-
-    @Override
-    public void cancelEdit() {
-        super.cancelEdit();
-
-        setText((String) getItem());
-        setGraphic(null);
-    }
-
-    @Override
-    public void updateItem(String item, boolean empty) {
-        super.updateItem(item, empty);
-
-        if (empty) {
-            setText(null);
-            setGraphic(null);
-        } else {
-            if (isEditing()) {
-                if (textField != null) {
-                    textField.setText(getString());
-                }
-                setText(null);
-                setGraphic(textField);
-            } else {
-                setText(getString());
-                setGraphic(null);
-            }
-        }
-    }
-
-    private void createTextField() {
-        textField = new TextField(getString());
-        textField.setMinWidth(this.getWidth() - this.getGraphicTextGap()* 2);
-        textField.focusedProperty().addListener(
-                (ObservableValue<? extends Boolean> arg0,
-                 Boolean arg1, Boolean arg2) -> {
-                    if (!arg2) {
-                        commitEdit(textField.getText());
-                    }
-                });
-    }
-
-    private String getString() {
-        return getItem() == null ? "" : getItem().toString();
-    }
-}
 
