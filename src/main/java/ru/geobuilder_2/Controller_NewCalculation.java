@@ -181,6 +181,12 @@ public class Controller_NewCalculation {
             valueRib.setText("");
         }
     }
+
+    // Нужно для инициализации измененных значений в ячейках. Без него данные не воспринимаются
+    public void onEditChanger(TableColumn.CellEditEvent<Rib, String> ribStringCellEditEvent) {
+       Rib rib = tableRib.getSelectionModel().getSelectedItem();
+       rib.setRibLength(ribStringCellEditEvent.getNewValue());
+    }
     @FXML
     private Label valueTier;
 
@@ -1062,4 +1068,6 @@ public class Controller_NewCalculation {
         pTrForSqr.setVisible(true);
         pF.setVisible(true);
     }
+
+
 }
