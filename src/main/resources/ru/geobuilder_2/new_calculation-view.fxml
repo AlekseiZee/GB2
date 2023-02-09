@@ -366,7 +366,7 @@
             <TableView fx:id="tableRib" layoutX="14.0" layoutY="220.0" prefHeight="218.0" prefWidth="121.0">
               <columns>
                 <TableColumn fx:id="tierColumn" prefWidth="39.0" text="Ярус" />
-                <TableColumn fx:id="ribLengthColumn" text="Грань" />
+                <TableColumn fx:id="ribLengthColumn" onEditCommit="#onEditChanger" text="Грань" />
               </columns>
             </TableView>
             <Label fx:id="valueTier" layoutX="179.0" layoutY="197.0" prefHeight="17.0" prefWidth="107.0" text="Label" />

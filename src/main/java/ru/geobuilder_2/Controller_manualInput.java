@@ -7,6 +7,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 import static ru.geobuilder_2.Angle.setCountAngle;
 import static ru.geobuilder_2.Point.setCountPoint;
@@ -76,6 +78,8 @@ public class Controller_manualInput {
         angleTable.setItems(anglesData);
 
         angleTable.setEditable(true);
+
+        // Разрешаем вносить изменение в определенную колонку
         vAngleCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
         hAngleCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
 
@@ -135,8 +139,13 @@ public class Controller_manualInput {
         nameAnglePCol.getColumns().setAll(vAngleCol, hAngleCol);
         angleTable.getColumns().addAll(nameAnglePCol);
 
+
+        angleTable.setEditable(true);
         // Разрешение на ввод данных в ячейку
-        nameAnglePCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+        vAngleCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+        hAngleCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+
+
     }
 
     // Удаление стоянки
@@ -150,5 +159,20 @@ public class Controller_manualInput {
     public String getNameP(Point point) {
         nameP = point.getNamePoint();
         return nameP;
+    }
+
+    // Нужно для инициализации измененных значений в ячейках. Без него данные не воспринимаются
+    public void onEditChangerPoint(TableColumn.CellEditEvent<Point, String> pointStringCellEditEvent) {
+        Point point = pointTable.getSelectionModel().getSelectedItem();
+        point.setNamePoint(pointStringCellEditEvent.getNewValue());
+        point.setDistancePoint(pointStringCellEditEvent.getNewValue());
+        point.setVAnglePoint(pointStringCellEditEvent.getNewValue());
+        point.setHAnglePoint(pointStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditChangerAngle(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+        Angle angle = angleTable.getSelectionModel().getSelectedItem();
+        angle.setVAngle(angleStringCellEditEvent.getNewValue());
+        angle.setHAngle(angleStringCellEditEvent.getNewValue());
     }
 }
