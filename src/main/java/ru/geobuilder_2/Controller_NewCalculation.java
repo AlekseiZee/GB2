@@ -1,32 +1,43 @@
 package ru.geobuilder_2;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.TextFlow;
-import javafx.stage.Stage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.io.File;
-import java.io.IOException;
 
 public class Controller_NewCalculation {
 
@@ -41,11 +52,11 @@ public class Controller_NewCalculation {
 
     private ObservableList<Rib> ribs = FXCollections.observableArrayList();
 
-//    private void initDataRib(){
-//        ribs.add(new Rib("1", "7900"));
-//        ribs.add(new Rib("2", "7100"));
-//        ribs.add(new Rib("3", "6500"));
-//    }
+    private void initDataRib(){
+        this.ribs.add(new Rib("4", 1));
+        this.ribs.add(new Rib("2", 2));
+        this.ribs.add(new Rib("6", 3));
+    }
 
     @FXML
     private TextFlow messageField;
@@ -104,12 +115,11 @@ public class Controller_NewCalculation {
 
         //initDataRib();
 
-
         tierColumn.setCellValueFactory(new PropertyValueFactory<Rib, Integer>("tier"));
         ribLengthColumn.setCellValueFactory(new PropertyValueFactory<Rib, String>("ribLength"));
 
         // указываем, что хотим использовать этот набор данных из коллекции RibsList
-        tableRib.setItems(ribs);
+        tableRib.setItems(this.ribs);
 
         // Добавляем слушателя для автоматического отслеживания изменений в листе
         ribs.addListener((ListChangeListener<Rib>) c -> updateCountLabel());
@@ -138,7 +148,7 @@ public class Controller_NewCalculation {
      */
     @FXML
     public void addRib(ActionEvent event) {
-        Rib rib = new Rib("");
+        Rib rib = new Rib("", this.tableRib.getItems().size()+1);
         tableRib.getItems().add(rib);
     }
 
@@ -148,7 +158,7 @@ public class Controller_NewCalculation {
     @FXML
     private void removeRib(){
         tableRib.getItems().remove(ribs.size() - 1);
-        Rib.setCount();
+//        Rib.setCount();
     }
 //    @FXML
 //    private void handleDeletePerson(ActionEvent event) {
@@ -411,10 +421,10 @@ public class Controller_NewCalculation {
      */
     @FXML
     public void openFileJob(ActionEvent event) {
-
         if (!manualInput.isSelected()) {
             FileChooser fileChooserJob = new FileChooser();
-            fileChooserJob.setInitialDirectory(new File("C:\\Users\\Home")); // Указываем какую папку открыть изначально
+//            fileChooserJob.setInitialDirectory(new File("C:\\Users\\Home")); // Указываем какую папку открыть изначально
+            fileChooserJob.setInitialDirectory(new File("C:\\Users")); // Указываем какую папку открыть изначально
             fileChooserJob.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("txt Files", "*.txt")); // Задаем расширения для выбора конкретных файлов
             File selectedFile = fileChooserJob.showOpenDialog(null);
@@ -423,6 +433,12 @@ public class Controller_NewCalculation {
             } else {
                 System.out.println("file is not valid");
             }
+            
+            try {
+				this.tableRib.setItems(this.deserializeData());
+			} catch (ClassNotFoundException | IOException e) {
+				e.printStackTrace();
+			}
         } else {
 
             /**
@@ -441,6 +457,32 @@ public class Controller_NewCalculation {
             }
         }
     }
+    
+    @FXML
+    void saveExit(ActionEvent event){
+    	try {
+    		this.serializeData(this.ribs);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+		}
+    }
+    
+    private void serializeData(ObservableList<Rib> ribs) throws FileNotFoundException, IOException{
+    	File f = new File("C:\\Users\\A0707220\\Alexey\\save\\ribs.txt");
+    	try(FileOutputStream fos = new FileOutputStream(f); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+    		ArrayList<Rib> al = new ArrayList<Rib>(ribs);
+    		oos.writeObject(new ArrayList<Rib>(al));
+    	}
+    }
+    
+    private ObservableList<Rib> deserializeData() throws FileNotFoundException, IOException, ClassNotFoundException{
+    	ArrayList<Rib> ribs = new ArrayList<Rib>();
+    	File f = new File("C:\\Users\\A0707220\\Alexey\\save\\ribs.txt");
+    	try(FileInputStream fis = new FileInputStream(f); ObjectInputStream ois = new ObjectInputStream(fis)) {
+    		ribs = (ArrayList<Rib>) ois.readObject();
+    	}
+    	return FXCollections.observableArrayList(ribs);
+    }
 
     @FXML
     public void toChange(ActionEvent event) {
@@ -455,7 +497,8 @@ public class Controller_NewCalculation {
     @FXML
     void specifyDirectory(ActionEvent event) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
-        directoryChooser.setInitialDirectory(new File("C:\\Users\\Home")); // Указываем, какую папку открыть изначально
+//        directoryChooser.setInitialDirectory(new File("C:\\Users\\Home")); // Указываем, какую папку открыть изначально
+        directoryChooser.setInitialDirectory(new File("C:\\Users"));
         File selectedDir = directoryChooser.showDialog(null);
         if (selectedDir != null) {
             addressFieldDirectory.setText(selectedDir.getAbsolutePath());
@@ -463,7 +506,7 @@ public class Controller_NewCalculation {
             System.out.println("file is not valid");
         }
     }
-
+    
     // Точки съемки
 
     /**

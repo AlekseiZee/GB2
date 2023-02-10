@@ -117,7 +117,7 @@
                </font>
             </Text>
             <Button fx:id="continueButton" layoutX="459.0" layoutY="456.0" mnemonicParsing="false" onAction="#onCont" prefHeight="25.0" prefWidth="134.0" text="Дальше" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="459.0" />
-            <Button layoutX="607.0" layoutY="462.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Сохранить и выйти" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="607.0" AnchorPane.rightAnchor="15.0" />
+            <Button layoutX="607.0" layoutY="462.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Сохранить и выйти" onAction="#saveExit" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="607.0" AnchorPane.rightAnchor="15.0" />
             <Text fill="#868686" layoutX="21.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тип конструкции / определение допуска">
                <font>
                   <Font name="Times New Roman" size="14.0" />
@@ -347,12 +347,12 @@
                </toggleGroup>
             </RadioButton>
             <RadioButton fx:id="right" layoutX="672.0" layoutY="112.0" mnemonicParsing="false" onAction="#setSide" selected="true" text="справа" toggleGroup="$side" visible="false" />
-            <RadioButton fx:id="up" layoutX="672.0" layoutY="151.0" mnemonicParsing="false" onAction="#setUpDown" text="на верху" visible="false">
+            <RadioButton fx:id="up" layoutX="672.0" layoutY="151.0" mnemonicParsing="false" onAction="#setUpDown" text="наверху" visible="false">
                <toggleGroup>
                   <ToggleGroup fx:id="upDown" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="down" layoutX="672.0" layoutY="171.0" mnemonicParsing="false" onAction="#setUpDown" selected="true" text="в ниузу" toggleGroup="$upDown" visible="false" />
+            <RadioButton fx:id="down" layoutX="672.0" layoutY="171.0" mnemonicParsing="false" onAction="#setUpDown" selected="true" text="внизу" toggleGroup="$upDown" visible="false" />
             <Label fx:id="labelCount" layoutX="15.0" layoutY="460.0" prefHeight="17.0" prefWidth="109.0" />
           <AnchorPane layoutX="179.0" layoutY="220.0" minHeight="0.0" minWidth="0.0" prefHeight="218.0" prefWidth="562.0">
                <children>
