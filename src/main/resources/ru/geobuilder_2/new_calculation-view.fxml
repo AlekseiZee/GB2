@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
@@ -22,52 +21,59 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="643.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_NewCalculation">
+<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_NewCalculation">
    <children>
-      <AnchorPane prefHeight="34.0" prefWidth="757.0" style="-fx-background-color: #494949;">
+      <AnchorPane prefHeight="34.0" prefWidth="757.0" style="-fx-background-color: #494949;" VBox.vgrow="ALWAYS">
          <children>
-            <Label layoutX="651.0" layoutY="3.0" prefHeight="19.0" prefWidth="89.0" text="GeoBuilder" textFill="#f8f8f8" AnchorPane.rightAnchor="17.0">
+            <Label layoutX="651.0" layoutY="3.0" prefHeight="19.0" prefWidth="89.0" text="GeoBuilder" textFill="#f8f8f8" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="648.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="3.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="651.0" layoutY="26.0" prefHeight="18.0" prefWidth="89.0" text="2022 2.0" textFill="WHITE" AnchorPane.rightAnchor="17.0">
+            <Label layoutX="651.0" layoutY="26.0" prefHeight="18.0" prefWidth="89.0" text="2022 2.0" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="648.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="26.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="31.0" prefWidth="757.0" style="-fx-background-color: #FF7100;">
+      <AnchorPane prefHeight="31.0" prefWidth="757.0" style="-fx-background-color: #FF7100;" VBox.vgrow="ALWAYS">
          <children>
-            <CheckBox fx:id="manualInput" layoutX="14.0" layoutY="5.0" mnemonicParsing="false" onAction="#enterValueManually" prefHeight="17.0" prefWidth="134.0" text="Ввести вручную" textFill="#faf7f7" />
+            <RadioButton fx:id="downloadFromFileBut" layoutX="8.0" mnemonicParsing="false" onAction="#downloadingFromFile" prefHeight="25.0" prefWidth="127.0" selected="true" text="Загрузить из файла" textFill="#faf7f7" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="619.0" AnchorPane.topAnchor="5.0">
+               <toggleGroup>
+                  <ToggleGroup fx:id="LoadingData" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="manualInputBut" layoutX="153.0" layoutY="5.0" mnemonicParsing="false" onAction="#enterValueManually" text="Ввести вручную" textFill="#faf7f7" toggleGroup="$LoadingData" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="491.0" AnchorPane.topAnchor="5.0" />
+            <RadioButton fx:id="downloadFromBDBut" layoutX="279.0" layoutY="4.0" mnemonicParsing="false" onAction="#downloadingFromBD" text="Загрузить из БД" textFill="#faf7f7" toggleGroup="$LoadingData" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="279.0" AnchorPane.rightAnchor="366.0" AnchorPane.topAnchor="5.0" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="21.0" prefWidth="757.0">
+      <AnchorPane prefHeight="21.0" prefWidth="757.0" VBox.vgrow="ALWAYS">
          <children>
-            <Text fill="#868686" layoutX="15.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя расчета:" AnchorPane.leftAnchor="15.0">
+            <Text fill="#868686" layoutX="15.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя расчета:" AnchorPane.bottomAnchor="0.9716796875" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="661.1865234375" AnchorPane.topAnchor="14.5244140625">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <TextField layoutX="143.0" layoutY="6.0" />
+            <TextField layoutX="143.0" layoutY="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="462.0" AnchorPane.topAnchor="6.0" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="40.0" prefWidth="757.0">
+      <AnchorPane prefHeight="40.0" prefWidth="757.0" VBox.vgrow="ALWAYS">
          <children>
-            <Text fill="#868686" layoutX="15.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Местоположение:" AnchorPane.leftAnchor="15.0">
+            <Text fill="#868686" layoutX="15.0" layoutY="22.50390625" strokeType="OUTSIDE" strokeWidth="0.0" text="Местоположение:" AnchorPane.bottomAnchor="14.4677734375" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="631.552734375" AnchorPane.topAnchor="10.0283203125">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Button fx:id="pathDirectory" layoutX="633.0" layoutY="5.0" mnemonicParsing="false" onAction="#specifyDirectory" prefHeight="22.0" prefWidth="107.0" text="Открыть" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="5.0" />
-            <TextField fx:id="addressFieldDirectory" layoutX="144.0" layoutY="6.0" prefHeight="25.0" prefWidth="441.0" />
+            <Button fx:id="pathDirectory" layoutX="489.0" layoutY="5.0" mnemonicParsing="false" onAction="#specifyDirectory" prefHeight="22.0" prefWidth="107.0" text="Открыть" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="489.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="5.0" />
+            <TextField fx:id="addressFieldDirectory" layoutX="160.0" layoutY="5.0" prefHeight="25.0" prefWidth="319.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="5.0" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="25.0" prefWidth="767.0" VBox.vgrow="ALWAYS">
+      <AnchorPane prefHeight="363.0" prefWidth="754.0" VBox.vgrow="ALWAYS">
          <children>
-            <Rectangle fx:id="typeOfConstBorder" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="52.0" layoutX="14.0" layoutY="29.0" stroke="#868686" strokeType="INSIDE" width="728.0" AnchorPane.rightAnchor="15.0" />
-            <RadioButton fx:id="towerBorder" layoutX="25.0" layoutY="49.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="89.0" text="Башня" textFill="#868686" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="643.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="99.0" layoutX="14.0" layoutY="89.0" stroke="#868686" strokeType="INSIDE" width="728.0" />
+            <Rectangle fx:id="typeOfConstBorder" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="52.0" layoutX="15.0" layoutY="33.0" stroke="#868686" strokeType="INSIDE" width="728.0" AnchorPane.bottomAnchor="436.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="33.0" />
+            <RadioButton fx:id="towerBorder" layoutX="25.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="89.0" selected="true" text="Башня" textFill="#868686" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="643.0" AnchorPane.topAnchor="41.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -75,55 +81,55 @@
                   <ToggleGroup fx:id="typeBorder" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="mastBorder" layoutX="124.0" layoutY="49.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="89.0" text="Мачта" textFill="#868686" toggleGroup="$typeBorder" AnchorPane.leftAnchor="124.0" AnchorPane.rightAnchor="544.0">
+            <RadioButton fx:id="mastBorder" layoutX="124.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="89.0" text="Мачта" textFill="#868686" toggleGroup="$typeBorder" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="124.0" AnchorPane.rightAnchor="544.0" AnchorPane.topAnchor="41.0">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="metalPoleBorder" layoutX="245.0" layoutY="49.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="99.0" text="Столб мет." textFill="#868686" toggleGroup="$typeBorder" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="413.0">
+            <RadioButton fx:id="metalPoleBorder" layoutX="243.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="99.0" text="Столб мет." textFill="#868686" toggleGroup="$typeBorder" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="243.0" AnchorPane.rightAnchor="415.0" AnchorPane.topAnchor="41.0">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="reinforcedPoleBorder" layoutX="371.0" layoutY="50.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="99.0" text="Столб ж/б" textFill="#868686" toggleGroup="$typeBorder" AnchorPane.leftAnchor="371.0" AnchorPane.rightAnchor="287.0">
+            <RadioButton fx:id="reinforcedPoleBorder" layoutX="371.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="99.0" text="Столб ж/б" textFill="#868686" toggleGroup="$typeBorder" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="371.0" AnchorPane.rightAnchor="287.0" AnchorPane.topAnchor="41.0">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="ourBorder" layoutX="502.0" layoutY="49.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="121.0" text="Задать допуск" textFill="#868686" toggleGroup="$typeBorder" AnchorPane.leftAnchor="502.0" AnchorPane.rightAnchor="134.0">
+            <RadioButton fx:id="ourBorder" layoutX="502.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="121.0" text="Задать допуск" textFill="#868686" toggleGroup="$typeBorder" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="502.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="41.0">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
-            <Text fx:id="mm" fill="#868686" layoutX="701.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="мм." visible="false" wrappingWidth="29.298828125">
+            <Text fx:id="mm" fill="#868686" layoutX="705.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="мм." visible="false" wrappingWidth="29.298828125" AnchorPane.bottomAnchor="445.9716796875" AnchorPane.leftAnchor="704.298828125" AnchorPane.rightAnchor="19.701171875" AnchorPane.topAnchor="59.5244140625">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="99.0" layoutX="14.0" layoutY="90.0" stroke="#868686" strokeType="INSIDE" width="728.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="90.0" />
-            <Text fill="#868686" layoutX="23.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Точки съемки" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="93.5244140625">
+            <TextField fx:id="borderField" layoutX="627.0" layoutY="53.0" prefHeight="25.0" prefWidth="64.0" visible="false" AnchorPane.bottomAnchor="443.0" AnchorPane.leftAnchor="627.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="53.0" />
+            <Text fill="#868686" layoutX="23.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Точки съемки" AnchorPane.bottomAnchor="410.9716796875" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="650.79296875" AnchorPane.topAnchor="94.5244140625">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Text fill="#868686" layoutX="25.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="всего&#10;стоянок" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="123.5244140625">
+            <Text fill="#868686" layoutX="25.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="всего&#10;стоянок" AnchorPane.bottomAnchor="342.873046875" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="494.482421875" AnchorPane.topAnchor="123.5244140625">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Text fill="#868686" layoutX="17.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Грани АМС, мм." wrappingWidth="109.0">
+            <Text fill="#868686" layoutX="17.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Грани АМС, мм." wrappingWidth="109.0" AnchorPane.bottomAnchor="284.9716796875" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="628.0" AnchorPane.topAnchor="197.0283203125">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Button fx:id="continueButton" layoutX="459.0" layoutY="456.0" mnemonicParsing="false" onAction="#onCont" prefHeight="25.0" prefWidth="134.0" text="Дальше" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="459.0" />
-            <Button layoutX="607.0" layoutY="462.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Сохранить и выйти" onAction="#saveExit" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="607.0" AnchorPane.rightAnchor="15.0" />
-            <Text fill="#868686" layoutX="21.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тип конструкции / определение допуска">
+            <Button fx:id="goBack" layoutX="321.0" layoutY="477.0" mnemonicParsing="false" onAction="#goingBack" prefHeight="26.0" prefWidth="135.0" text="Вернуться назад" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="321.0" AnchorPane.rightAnchor="301.0" AnchorPane.topAnchor="477.0" />
+            <Button fx:id="continueButton" layoutX="474.0" layoutY="477.0" mnemonicParsing="false" onAction="#onCont" prefHeight="26.0" prefWidth="135.0" text="Дальше" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="474.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="477.0" />
+            <Button layoutX="620.0" layoutY="477.0" mnemonicParsing="false" onAction="#saveExit" prefHeight="26.0" prefWidth="135.0" text="Сохранить и выйти" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="477.0" />
+            <Text fill="#868686" layoutX="21.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тип конструкции / определение допуска" AnchorPane.bottomAnchor="470.9716796875" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="494.3837890625" AnchorPane.topAnchor="34.5244140625">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Button fx:id="goBack" layoutX="311.0" layoutY="456.0" mnemonicParsing="false" onAction="#goingBack" prefHeight="25.0" prefWidth="134.0" text="Вернуться назад" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="311.0" />
             <VBox layoutX="295.0" layoutY="121.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="70.0" snapToPixel="false">
                <children>
                   <SplitMenuButton fx:id="directionOne" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
@@ -245,12 +251,12 @@
             </VBox>
             <Rectangle fx:id="square" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="611.0" layoutY="132.0" rotate="45.0" stroke="#f80202" strokeType="INSIDE" strokeWidth="2.0" visible="false" width="29.0" />
             <Polygon fx:id="triangle" fill="WHITE" layoutX="664.0" layoutY="122.0" points="-50.0, 40.0, -14.422104835510254, 40.00005340576172, -33.99424743652344, 12.347031593322754" rotate="90.0" stroke="#00ff3e" strokeType="INSIDE" strokeWidth="2.0" visible="false" />
-            <Text fill="#868686" layoutX="207.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="название">
+            <Text fill="#868686" layoutX="207.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="название" AnchorPane.bottomAnchor="355.9716796875" AnchorPane.leftAnchor="206.2587890625" AnchorPane.rightAnchor="493.7412109375" AnchorPane.topAnchor="126.5244140625">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Text fill="#868686" layoutX="207.0" layoutY="162.0" stroke="#0a0a0a" strokeType="OUTSIDE" strokeWidth="0.0" text="кол. в одном&#10;направлении">
+            <Text fill="#868686" layoutX="207.0" layoutY="160.0" stroke="#0a0a0a" strokeType="OUTSIDE" strokeWidth="0.0" text="кол. в одном&#10;направлении">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -281,7 +287,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Text fill="#868686" layoutX="624.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="y">
+            <Text fill="#868686" layoutX="624.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="y" AnchorPane.bottomAnchor="389.9716796875" AnchorPane.leftAnchor="624.0" AnchorPane.rightAnchor="123.0" AnchorPane.topAnchor="92.5244140625">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -292,7 +298,7 @@
                </font>
             </Text>
             <Line endX="100.0" endY="1.0" layoutX="545.0" layoutY="118.0" rotate="90.0" startX="100.0" startY="56.5" strokeWidth="0.5" />
-            <VBox layoutX="143.0" layoutY="220.0" prefHeight="60.0" prefWidth="29.0">
+            <VBox layoutX="144.0" layoutY="221.0" prefHeight="60.0" prefWidth="29.0" AnchorPane.bottomAnchor="213.0" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="581.0" AnchorPane.topAnchor="221.0">
                <children>
                   <Button fx:id="addTierRib" mnemonicParsing="false" onAction="#addRib" prefHeight="22.0" prefWidth="23.0" text="+">
                      <VBox.margin>
@@ -312,15 +318,13 @@
                   </Button>
                </children>
             </VBox>
-            <Button fx:id="advancedSettingsButton" disable="true" layoutX="179.0" layoutY="456.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="100.0" text="Прод. настр." />
             <Text fx:id="pT" fill="#868686" layoutX="621.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="false">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Button fx:id="openJOB" layoutX="633.0" layoutY="-3.0" mnemonicParsing="false" onAction="#openFileJob" prefHeight="22.0" prefWidth="107.0" text="Открыть" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="-3.0" />
-            <TextField fx:id="addressFieldFile" layoutX="143.0" layoutY="-3.0" prefHeight="25.0" prefWidth="441.0" />
-            <Text fill="#868686" layoutX="15.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Файл с прибора:">
+            <TextField fx:id="addressFieldFile" layoutX="285.0" prefHeight="25.0" prefWidth="319.0" AnchorPane.bottomAnchor="495.0" AnchorPane.leftAnchor="285.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="0.0" />
+            <Text fill="#868686" layoutX="14.8212890625" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Данные для расчета:" AnchorPane.bottomAnchor="500.9716796875" AnchorPane.leftAnchor="14.8212890625" AnchorPane.rightAnchor="616.357421875" AnchorPane.topAnchor="3.5244140625">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -335,39 +339,26 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="borderField" layoutX="625.0" layoutY="46.0" prefHeight="25.0" prefWidth="70.0" visible="false" />
-            <Text fx:id="pTrForSqr" fill="#868686" layoutX="590.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="false">
+            <Text fx:id="pTrForSqr" fill="#868686" layoutX="590.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="false" AnchorPane.bottomAnchor="343.9716796875" AnchorPane.leftAnchor="590.0" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="138.0283203125">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <RadioButton fx:id="left" layoutX="672.0" layoutY="92.0" mnemonicParsing="false" onAction="#setSide" text="слева" visible="false">
-               <toggleGroup>
-                  <ToggleGroup fx:id="side" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="right" layoutX="672.0" layoutY="112.0" mnemonicParsing="false" onAction="#setSide" selected="true" text="справа" toggleGroup="$side" visible="false" />
-            <RadioButton fx:id="up" layoutX="672.0" layoutY="151.0" mnemonicParsing="false" onAction="#setUpDown" text="наверху" visible="false">
-               <toggleGroup>
-                  <ToggleGroup fx:id="upDown" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="down" layoutX="672.0" layoutY="171.0" mnemonicParsing="false" onAction="#setUpDown" selected="true" text="внизу" toggleGroup="$upDown" visible="false" />
-            <Label fx:id="labelCount" layoutX="15.0" layoutY="460.0" prefHeight="17.0" prefWidth="109.0" />
-          <AnchorPane layoutX="179.0" layoutY="220.0" minHeight="0.0" minWidth="0.0" prefHeight="218.0" prefWidth="562.0">
+            <Label fx:id="labelCount" layoutX="15.0" layoutY="460.0" prefHeight="17.0" prefWidth="109.0" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="630.0" AnchorPane.topAnchor="460.0" />
+            <AnchorPane layoutX="179.0" layoutY="220.0" minHeight="0.0" minWidth="0.0" prefHeight="241.0" prefWidth="564.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="179.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="220.0">
                <children>
-                  <ScrollPane prefHeight="218.0" prefWidth="562.0">
+                  <ScrollPane prefHeight="241.0" prefWidth="566.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
-                        <TextFlow fx:id="messageField" prefHeight="215.0" prefWidth="559.0" style="-fx-background-color: #ffffff;" />
+                        <TextFlow fx:id="messageField" prefHeight="238.0" prefWidth="561.0" style="-fx-background-color: #ffffff;" />
                      </content>
                   </ScrollPane>
                </children>
             </AnchorPane>
-            <TableView fx:id="tableRib" layoutX="14.0" layoutY="220.0" prefHeight="218.0" prefWidth="121.0">
-              <columns>
-                <TableColumn fx:id="tierColumn" prefWidth="39.0" text="Ярус" />
-                <TableColumn fx:id="ribLengthColumn" onEditCommit="#onEditChanger" text="Грань" />
-              </columns>
+            <TableView fx:id="tableRib" layoutX="14.0" layoutY="220.0" prefHeight="241.0" prefWidth="121.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="622.0" AnchorPane.topAnchor="220.0">
+               <columns>
+                  <TableColumn fx:id="tierColumn" prefWidth="39.0" text="Ярус" />
+                  <TableColumn fx:id="ribLengthColumn" onEditCommit="#onEditChanger" text="Грань" />
+               </columns>
             </TableView>
             <Label fx:id="valueTier" layoutX="179.0" layoutY="197.0" prefHeight="17.0" prefWidth="107.0" text="Label" />
             <Label fx:id="valueRib" layoutX="336.0" layoutY="197.0" prefHeight="17.0" prefWidth="109.0" text="Label" />
@@ -376,6 +367,46 @@
                   <Font size="10.0" />
                </font>
             </Button>
+            <VBox layoutX="666.0" layoutY="96.0" prefHeight="99.0" prefWidth="77.0">
+               <children>
+                  <RadioButton fx:id="right" mnemonicParsing="false" onAction="#setSide" prefHeight="17.0" prefWidth="77.0" selected="true" text="вос" visible="false">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="side" />
+                     </toggleGroup>
+                     <VBox.margin>
+                        <Insets top="-1.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="left" mnemonicParsing="false" onAction="#setSide" prefHeight="17.0" prefWidth="83.0" text="зап" toggleGroup="$side" visible="false">
+                     <VBox.margin>
+                        <Insets top="4.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="up" mnemonicParsing="false" onAction="#setUpDown" prefHeight="9.0" prefWidth="77.0" text="сев" visible="false">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets top="14.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets top="2.0" />
+                     </padding>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="upDown" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="down" mnemonicParsing="false" onAction="#setUpDown" prefHeight="17.0" prefWidth="78.0" selected="true" text="юг" toggleGroup="$upDown" visible="false">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets top="2.0" />
+                     </padding>
+                  </RadioButton>
+               </children>
+            </VBox>
+            <Button fx:id="openJOB" layoutX="160.0" layoutY="-1.0" mnemonicParsing="false" onAction="#openFileJob" prefHeight="25.0" prefWidth="107.0" text="Открыть" AnchorPane.bottomAnchor="496.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="487.0" AnchorPane.topAnchor="-1.0" />
          </children>
          <VBox.margin>
             <Insets />

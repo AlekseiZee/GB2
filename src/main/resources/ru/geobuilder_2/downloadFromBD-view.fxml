@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="854.0" prefWidth="1194.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_DownloadFromBD">
+   <children>
+      <AnchorPane prefHeight="34.0" prefWidth="757.0" style="-fx-background-color: #494949;">
+         <children>
+            <Label layoutX="651.0" layoutY="3.0" prefHeight="19.0" prefWidth="89.0" text="GeoBuilder" textFill="#f8f8f8" AnchorPane.rightAnchor="17.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="651.0" layoutY="26.0" prefHeight="18.0" prefWidth="89.0" text="2022 2.0" textFill="WHITE" AnchorPane.rightAnchor="17.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="28.0" prefWidth="757.0" style="-fx-background-color: #FF7100;">
+         <children>
+            <Label layoutX="14.0" layoutY="1.0" prefHeight="25.0" prefWidth="145.0" text="Получение данных из БД" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="1195.0">
+         <children>
+            <TableView layoutX="16.0" layoutY="43.0" prefHeight="362.0" prefWidth="480.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="699.0" AnchorPane.topAnchor="43.0">
+              <columns>
+                <TableColumn prefWidth="32.0" text=" N&#10;п.п." />
+                <TableColumn prefWidth="92.0" text="   Код&#10;объекта" />
+                  <TableColumn prefWidth="261.0" text=" Адрес&#10;объекта" />
+                  <TableColumn prefWidth="94.0" text="Оператор" />
+              </columns>
+            </TableView>
+            <Button layoutX="16.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="165.0" text="Получить список объектов" AnchorPane.bottomAnchor="413.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="1014.0" AnchorPane.topAnchor="9.0" />
+            <TableView layoutX="575.0" layoutY="43.0" prefHeight="362.0" prefWidth="608.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="571.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="43.0">
+              <columns>
+                <TableColumn prefWidth="38.0" text=" N&#10;п.п." />
+                <TableColumn prefWidth="85.0" text=" Вид&#10;работ" />
+                  <TableColumn prefWidth="157.0" text="Основание&#10;     работ" />
+                  <TableColumn prefWidth="117.0" text="Автор" />
+                  <TableColumn prefWidth="107.0" text="Дата съемки" />
+                  <TableColumn minWidth="7.0" prefWidth="102.0" text="Дата создания" />
+              </columns>
+            </TableView>
+            <Button layoutX="510.0" layoutY="169.0" mnemonicParsing="false" text="----&gt;" AnchorPane.bottomAnchor="253.0" AnchorPane.leftAnchor="510.0" AnchorPane.rightAnchor="641.0" AnchorPane.topAnchor="169.0" />
+            <Button layoutX="1044.0" layoutY="413.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Журнал угловых изм." AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="1044.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="413.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="303.0" prefWidth="1194.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Text fx:id="mm" fill="#868686" layoutX="701.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="мм." visible="false" wrappingWidth="29.298828125">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Text>
+            <Button layoutX="896.0" layoutY="294.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Выгрузить данные" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="896.0" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="294.0" />
+            <Button layoutX="1046.0" layoutY="294.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Выйти" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="1046.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="294.0" />
+            <Button fx:id="goBackButton" layoutX="745.0" layoutY="294.0" mnemonicParsing="false" onAction="#goingBackToNewCal" prefHeight="25.0" prefWidth="134.0" text="Вернуться назад" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="745.0" AnchorPane.rightAnchor="315.0" AnchorPane.topAnchor="294.0" />
+            <SplitMenuButton fx:id="typeOfWork" disable="true" layoutX="658.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" AnchorPane.bottomAnchor="276.0" AnchorPane.leftAnchor="658.0" AnchorPane.rightAnchor="421.0" AnchorPane.topAnchor="32.0">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="ТО" />
+                  <MenuItem mnemonicParsing="false" text="АВР" />
+               </items>
+            </SplitMenuButton>
+            <Text layoutX="585.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вид работ:" AnchorPane.bottomAnchor="281.49609375" AnchorPane.leftAnchor="584.7978515625" AnchorPane.rightAnchor="544.2021484375" AnchorPane.topAnchor="36.0">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="584.3447265625" layoutY="73.4755859375" strokeType="OUTSIDE" strokeWidth="0.0" text="Основание&#10;        работ:" textAlignment="RIGHT" AnchorPane.bottomAnchor="240.3974609375" AnchorPane.leftAnchor="583.689453125" AnchorPane.rightAnchor="544.310546875" AnchorPane.topAnchor="61.0">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="numberBasisOfWorkField" disable="true" layoutX="658.0" layoutY="64.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.bottomAnchor="244.0" AnchorPane.leftAnchor="658.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="64.0" />
+            <Text layoutX="609.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Автор:" AnchorPane.bottomAnchor="215.9716796875" AnchorPane.leftAnchor="608.728515625" AnchorPane.rightAnchor="544.271484375" AnchorPane.topAnchor="101.5244140625">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="author" disable="true" layoutX="658.0" layoutY="97.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.bottomAnchor="211.0" AnchorPane.leftAnchor="658.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="97.0" />
+            <Text layoutX="602.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="    Дата &#10;съемки:" textAlignment="RIGHT" AnchorPane.bottomAnchor="165.873046875" AnchorPane.leftAnchor="602.45703125" AnchorPane.rightAnchor="544.54296875" AnchorPane.topAnchor="135.5244140625">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Text>
+            <DatePicker fx:id="photoDate" disable="true" layoutX="658.0" layoutY="139.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.bottomAnchor="169.0" AnchorPane.leftAnchor="658.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="139.0" />
+            <SplitMenuButton fx:id="operator" disable="true" layoutX="122.0" layoutY="97.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="173.0" AnchorPane.bottomAnchor="211.0" AnchorPane.leftAnchor="122.0" AnchorPane.rightAnchor="899.0" AnchorPane.topAnchor="97.0">
+               <items>
+                  <MenuItem fx:id="megafon" mnemonicParsing="false" onAction="#setMegafon" text="ПАО Мегафон" />
+                  <MenuItem fx:id="mts" mnemonicParsing="false" onAction="#setMts" text="ПАО МТС" />
+                  <MenuItem fx:id="vimpel" mnemonicParsing="false" onAction="#setVimpel" text="ПАО ВымпелКом" />
+                  <MenuItem fx:id="t2" mnemonicParsing="false" onAction="#setT2" text="ПАО Теле2" />
+                  <MenuItem fx:id="non" mnemonicParsing="false" onAction="#setNon" text="- иной-" />
+               </items>
+            </SplitMenuButton>
+            <Text layoutX="49.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Оператор:" AnchorPane.bottomAnchor="215.9716796875" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="1083.9619140625" AnchorPane.topAnchor="101.5244140625">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Text>
+            <ScrollPane layoutX="14.0" layoutY="165.0" prefHeight="156.0" prefWidth="480.0">
+               <content>
+                  <TextFlow fx:id="messageF" prefHeight="154.0" prefWidth="478.0" style="-fx-background-color: #ffffff;" />
+               </content>
+            </ScrollPane>
+            <Text layoutX="43.0" layoutY="48.4755859375" strokeType="OUTSIDE" strokeWidth="0.0" text="Код объета:" textAlignment="RIGHT" AnchorPane.bottomAnchor="281.49609375" AnchorPane.leftAnchor="42.7587890625" AnchorPane.rightAnchor="1080.2412109375" AnchorPane.topAnchor="36.0">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="objectСodeField" disable="true" layoutX="122.0" layoutY="32.0" prefHeight="25.0" prefWidth="77.0" visible="true" AnchorPane.bottomAnchor="276.0" AnchorPane.leftAnchor="122.0" AnchorPane.rightAnchor="995.0" AnchorPane.topAnchor="32.0" />
+            <Text layoutX="70.0" layoutY="79.4755859375" strokeType="OUTSIDE" strokeWidth="0.0" text="Адрес:" textAlignment="RIGHT" AnchorPane.bottomAnchor="250.49609375" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="1083.44921875" AnchorPane.topAnchor="67.0">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="address" alignment="TOP_LEFT" disable="true" layoutX="121.0" layoutY="64.0" prefHeight="25.0" prefWidth="372.0" AnchorPane.bottomAnchor="244.0" AnchorPane.leftAnchor="121.0" AnchorPane.rightAnchor="701.0" AnchorPane.topAnchor="64.0" />
+            <Text fill="#868686" layoutX="14.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Информационные сообщения:" wrappingWidth="186.00000000000006" AnchorPane.bottomAnchor="169.9716796875" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="994.0" AnchorPane.topAnchor="147.5244140625">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Text>
+            <CheckBox layoutX="14.0" layoutY="35.0" mnemonicParsing="false" AnchorPane.bottomAnchor="281.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="1164.0" AnchorPane.topAnchor="35.0" />
+            <CheckBox layoutX="14.0" layoutY="67.0" mnemonicParsing="false" AnchorPane.bottomAnchor="249.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="1164.0" AnchorPane.topAnchor="67.0" />
+            <CheckBox layoutX="14.0" layoutY="100.0" mnemonicParsing="false" AnchorPane.bottomAnchor="216.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="1164.0" AnchorPane.topAnchor="100.0" />
+            <CheckBox layoutX="556.0" layoutY="36.0" mnemonicParsing="false" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="556.0" AnchorPane.rightAnchor="622.0" AnchorPane.topAnchor="36.0" />
+            <CheckBox layoutX="556.0" layoutY="68.0" mnemonicParsing="false" AnchorPane.bottomAnchor="248.0" AnchorPane.leftAnchor="556.0" AnchorPane.rightAnchor="622.0" AnchorPane.topAnchor="68.0" />
+            <CheckBox layoutX="556.0" layoutY="101.0" mnemonicParsing="false" AnchorPane.bottomAnchor="215.0" AnchorPane.leftAnchor="556.0" AnchorPane.rightAnchor="622.0" AnchorPane.topAnchor="101.0" />
+            <CheckBox layoutX="557.0" layoutY="147.0" mnemonicParsing="false" AnchorPane.bottomAnchor="169.0" AnchorPane.leftAnchor="557.0" AnchorPane.rightAnchor="621.0" AnchorPane.topAnchor="147.0" />
+            <Text layoutX="14.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Фильтр" wrappingWidth="55.00000000000006" AnchorPane.bottomAnchor="311.9716796875" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="1125.0" AnchorPane.topAnchor="5.5244140625">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="556.0" layoutY="18.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Фильтр" wrappingWidth="55.00000000000006" AnchorPane.bottomAnchor="311.9716796875" AnchorPane.leftAnchor="555.0" AnchorPane.rightAnchor="583.0" AnchorPane.topAnchor="5.5244140625">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Text>
+            <Button layoutX="368.0" layoutY="127.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" text="Применить фильтр" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="368.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="127.0" />
+            <Button layoutX="745.0" layoutY="191.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" text="Применить фильтр" AnchorPane.bottomAnchor="117.0" AnchorPane.leftAnchor="745.0" AnchorPane.rightAnchor="323.0" AnchorPane.topAnchor="191.0" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </AnchorPane>
+   </children>
+</VBox>

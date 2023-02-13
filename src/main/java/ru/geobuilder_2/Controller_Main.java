@@ -50,10 +50,10 @@ public class Controller_Main implements Initializable {
         Parent root = fxmlLoaderNewCal.getRoot();
         Stage stage = new Stage();
         stage.setTitle("GeoBuilder 2.0");
-        stage.setMinWidth(757);
-        stage.setMinHeight(643);
-        stage.setMaxWidth(757);
-        stage.setMaxHeight(643);
+        stage.setMinWidth(768);
+        stage.setMinHeight(700);
+        stage.setMaxWidth(768);
+        stage.setMaxHeight(700);
         stage.setScene(new Scene(root));
         stage.showAndWait();
     }

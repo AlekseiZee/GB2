@@ -30,12 +30,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.scene.text.TextFlow;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -52,11 +55,6 @@ public class Controller_NewCalculation {
 
     private ObservableList<Rib> ribs = FXCollections.observableArrayList();
 
-//    private void initDataRib(){
-//        ribs.add(new Rib("1", "7900"));
-//        ribs.add(new Rib("2", "7100"));
-//        ribs.add(new Rib("3", "6500"));
-//    }
 
     @FXML
     private TextFlow messageField;
@@ -118,27 +116,27 @@ public class Controller_NewCalculation {
         tierColumn.setCellValueFactory(new PropertyValueFactory<Rib, Integer>("tier"));
         ribLengthColumn.setCellValueFactory(new PropertyValueFactory<Rib, String>("ribLength"));
 
-        // указываем, что хотим использовать этот набор данных из коллекции RibsList
+        // указываем, что хотим использовать этот набор данных из коллекции ribs
         tableRib.setItems(this.ribs);
-
-        // Добавляем слушателя для автоматического отслеживания изменений в листе
-        ribs.addListener((ListChangeListener<Rib>) c -> updateCountLabel());
-
-        updateCountLabel();
-
-        showRibsDetails(null);
-         //Следим за выделеной строкой. То, что выделли, появляется в полях
-        tableRib.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> showRibsDetails(newValue));
 
         // Разрешаем изменения в таблице
         tableRib.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
         ribLengthColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-    }
 
-    //int numb = 0;
+//        // Добавляем слушателя для автоматического отслеживания изменений в листе
+//        ribs.addListener((ListChangeListener<Rib>) c -> updateCountLabel());
+//
+//        updateCountLabel();
+
+//        showRibsDetails(null);
+//         //Следим за выделеной строкой. То, что выделли, появляется в полях
+//        tableRib.getSelectionModel().selectedItemProperty().addListener(
+//                (observable, oldValue, newValue) -> showRibsDetails(newValue));
+
+
+    }
 
     /**
      * Вызывается, когда пользователь кликаек по кнопке добавить
@@ -147,8 +145,8 @@ public class Controller_NewCalculation {
      */
     @FXML
     public void addRib(ActionEvent event) {
-        // numb++;
-        Rib rib = new Rib("", this.tableRib.getItems().size()+1);
+
+        Rib rib = new Rib(this.tableRib.getItems().size()+1, "");
         tableRib.getItems().add(rib);
         //ribs.add(rib);
     }
@@ -163,19 +161,19 @@ public class Controller_NewCalculation {
         // если надо удалить выделенную строку, то - tableRib.getItems().remove(selectedIndex);
     }
 
-    /**
-     * Выводим в поля
-     * @param rib
-     */
-    private void showRibsDetails(Rib rib) {
-        if (rib != null) {
-            valueTier.setText(String.valueOf(rib.getTier()));
-            valueRib.setText(rib.getRibLength());
-        } else {
-            valueTier.setText("");
-            valueRib.setText("");
-        }
-    }
+//    /**
+//     * Выводим в поля
+//     * @param rib
+//     */
+//    private void showRibsDetails(Rib rib) {
+//        if (rib != null) {
+//            valueTier.setText(String.valueOf(rib.getTier()));
+//            valueRib.setText(rib.getRibLength());
+//        } else {
+//            valueTier.setText("");
+//            valueRib.setText("");
+//        }
+//    }
 
     // Нужно для инициализации измененных значений в ячейках. Без него данные не воспринимаются
     public void onEditChanger(TableColumn.CellEditEvent<Rib, String> ribStringCellEditEvent) {
@@ -259,7 +257,9 @@ public class Controller_NewCalculation {
      */
     @FXML
     private void standardFollowing(ActionEvent event) {
-        ourBorder.setSelected(true);
+        if (metalPoleBorder.isSelected() || reinforcedPoleBorder.isSelected()) {
+            towerBorder.setSelected(true);
+        }
         left.setVisible(false);
         right.setVisible(false);
         up.setVisible(false);
@@ -290,8 +290,37 @@ public class Controller_NewCalculation {
         square.setVisible(true);
     }
 
+//    @FXML
+//    private CheckBox manualInput;
+
     @FXML
-    private CheckBox manualInput;
+    private RadioButton downloadFromFileBut;
+
+    @FXML
+    private RadioButton manualInputBut;
+
+    @FXML
+    private RadioButton downloadFromBDBut;
+
+    @FXML
+    private void downloadingFromFile(ActionEvent event){
+        if (downloadFromFileBut.isSelected()) {
+            addressFieldFile.setText("");
+            openJOB.setText("Открыть");
+            addressFieldFile.setDisable(false);
+        } else {
+
+        }
+    }
+
+    @FXML
+    private void downloadingFromBD(ActionEvent event){
+        if (downloadFromBDBut.isSelected()){
+            addressFieldFile.setText("");
+            addressFieldFile.setDisable(true);
+            openJOB.setText("Загрузить из БД");
+        }
+    }
 
     /**
      * Говорим, что данные углов будем вводить вручную
@@ -300,7 +329,7 @@ public class Controller_NewCalculation {
      */
     @FXML
     private void enterValueManually(ActionEvent event) {
-        if (manualInput.isSelected()) { // если выбрано
+        if (manualInputBut.isSelected()) { // если выбрано
             // adressFieldFile.setEditable(false); // запрет на ввод, но поле активно
             addressFieldFile.setDisable(true); // поле не активно
             openJOB.setText("Внести углы");
@@ -407,7 +436,7 @@ public class Controller_NewCalculation {
     @FXML
     public void openFileJob(ActionEvent event) {
 
-        if (!manualInput.isSelected()) {
+        if (downloadFromFileBut.isSelected()) {
             FileChooser fileChooserJob = new FileChooser();
 //            fileChooserJob.setInitialDirectory(new File("C:\\Users\\Home")); // Указываем какую папку открыть изначально
             fileChooserJob.setInitialDirectory(new File("C:\\Users")); // Указываем какую папку открыть изначально
@@ -426,20 +455,33 @@ public class Controller_NewCalculation {
 				e.printStackTrace();
 			}
         } else {
+            if (manualInputBut.isSelected()) {
+                /**
+                 * Открываем окно для внесения углов вручную
+                 */
+                try {
+                    FXMLLoader fxmlLoaderManualInput = new FXMLLoader(Controller_NewCalculation.class.getResource("manualInput-view.fxml"));
+                    Stage stageMan = new Stage();
+                    Scene sceneMan = new Scene(fxmlLoaderManualInput.load(), 905, 723);
 
-            /**
-             * Открываем окно для внесения углов вручную
-             */
-            try {
-                FXMLLoader fxmlLoaderManualInput = new FXMLLoader(Controller_NewCalculation.class.getResource("manualInput-view.fxml"));
-                Stage stage = new Stage();
-                Scene scene = new Scene(fxmlLoaderManualInput.load(), 905, 723);
+                    stageMan.setTitle("Table");
+                    stageMan.setScene(sceneMan);
+                    stageMan.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    FXMLLoader fxmlLoaderDownloadFBD = new FXMLLoader(Controller_NewCalculation.class.getResource("downloadFromBD-view.fxml"));
+                    Stage stageBD = new Stage();
+                    Scene sceneBD = new Scene(fxmlLoaderDownloadFBD.load(), 905, 723);
 
-                stage.setTitle("Table");
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
+                    stageBD.setTitle("Database");
+                    stageBD.setScene(sceneBD);
+                    stageBD.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -454,7 +496,7 @@ public class Controller_NewCalculation {
     }
 
     private void serializeData(ObservableList<Rib> ribs) throws FileNotFoundException, IOException{
-    	File f = new File("C:\\Users\\A0707220\\Alexey\\save\\ribs.txt");
+    	File f = new File("D:\\Test GB\\ribs.txt");
     	try(FileOutputStream fos = new FileOutputStream(f); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
     		ArrayList<Rib> al = new ArrayList<Rib>(ribs);
     		oos.writeObject(new ArrayList<Rib>(al));
@@ -463,7 +505,7 @@ public class Controller_NewCalculation {
 
     private ObservableList<Rib> deserializeData() throws FileNotFoundException, IOException, ClassNotFoundException{
     	ArrayList<Rib> ribs = new ArrayList<Rib>();
-    	File f = new File("C:\\Users\\A0707220\\Alexey\\save\\ribs.txt");
+    	File f = new File("D:\\Test GB\\ribs.txt");
     	try(FileInputStream fis = new FileInputStream(f); ObjectInputStream ois = new ObjectInputStream(fis)) {
     		ribs = (ArrayList<Rib>) ois.readObject();
     	}

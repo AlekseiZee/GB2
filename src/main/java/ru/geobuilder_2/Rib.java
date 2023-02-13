@@ -23,8 +23,8 @@ public class Rib implements Serializable {
     private transient IntegerProperty tier;
     private transient StringProperty ribLength;
 
-    public Rib(String ribLength, int count) {
-        this.tier = new SimpleIntegerProperty(count);
+    public Rib(int tier, String ribLength) {
+        this.tier = new SimpleIntegerProperty(tier);
         this.ribLength = new SimpleStringProperty(ribLength);
     }
 
