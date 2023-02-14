@@ -8,29 +8,26 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -41,6 +38,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.util.Pair;
 
 public class Controller_NewCalculation {
 
@@ -88,16 +86,21 @@ public class Controller_NewCalculation {
 
     @FXML
     public void goingBack(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initOwner(StartGeoApplication.getStage());
         alert.setTitle("Предупреждение");
         alert.setHeaderText("Вы уверены, что хотите вернуться назад?");
         alert.setContentText("Если да, нажмите \"ок\"");
 
-        alert.showAndWait();
-        goBack.getScene().getWindow().hide();
-        StartGeoApplication startGeoApplication = new StartGeoApplication();
-        startGeoApplication.iniRoot();
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            goBack.getScene().getWindow().hide();
+            StartGeoApplication startGeoApplication = new StartGeoApplication();
+            startGeoApplication.iniRoot();
+        } else {
+            // ... user chose CANCEL or closed the dialog
+            alert.close();
+        }
     }
 
     public void print() {
@@ -463,25 +466,88 @@ public class Controller_NewCalculation {
                     FXMLLoader fxmlLoaderManualInput = new FXMLLoader(Controller_NewCalculation.class.getResource("manualInput-view.fxml"));
                     Stage stageMan = new Stage();
                     Scene sceneMan = new Scene(fxmlLoaderManualInput.load(), 905, 723);
-
+                    stageMan.setMinWidth(905);
+                    stageMan.setMinHeight(723);
+                    stageMan.setMinWidth(905);
+                    stageMan.setMinHeight(723);
                     stageMan.setTitle("Table");
                     stageMan.setScene(sceneMan);
                     stageMan.show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else {
-                try {
+            } else { // Загрузка окна для получения данных из БД
+
+                // Create the custom dialog.
+                Dialog<Pair<String, String>> dialog = new Dialog<>();
+                dialog.setTitle("Login Dialog");
+                dialog.setHeaderText("Look, a Custom Login Dialog");
+
+// Set the icon (must be included in the project).
+                //dialog.setGraphic(new ImageView(this.getClass().getResource("login.png").toString()));
+
+// Set the button types.
+                ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
+                dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+
+// Create the username and password labels and fields.
+                GridPane grid = new GridPane();
+                grid.setHgap(10);
+                grid.setVgap(10);
+                grid.setPadding(new Insets(20, 150, 10, 10));
+
+                TextField username = new TextField();
+                username.setPromptText("Username");
+                PasswordField password = new PasswordField();
+                password.setPromptText("Password");
+
+                grid.add(new Label("Username:"), 0, 0);
+                grid.add(username, 1, 0);
+                grid.add(new Label("Password:"), 0, 1);
+                grid.add(password, 1, 1);
+
+// Enable/Disable login button depending on whether a username was entered.
+                Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
+                loginButton.setDisable(true);
+
+// Do some validation (using the Java 8 lambda syntax).
+                username.textProperty().addListener((observable, oldValue, newValue) -> {
+                    loginButton.setDisable(newValue.trim().isEmpty());
+                });
+
+                dialog.getDialogPane().setContent(grid);
+
+// Request focus on the username field by default.
+                Platform.runLater(() -> username.requestFocus());
+
+// Convert the result to a username-password-pair when the login button is clicked.
+                dialog.setResultConverter(dialogButton -> {
+                    if (dialogButton == loginButtonType) {
+                        return new Pair<>(username.getText(), password.getText());
+                    }
+                    return null;
+                });
+
+                Optional<Pair<String, String>> result = dialog.showAndWait();
+
+                result.ifPresent(usernamePassword -> {
+                    System.out.println("Username=" + usernamePassword.getKey() + ", Password=" + usernamePassword.getValue());
+                });
+
+                /*try {
                     FXMLLoader fxmlLoaderDownloadFBD = new FXMLLoader(Controller_NewCalculation.class.getResource("downloadFromBD-view.fxml"));
                     Stage stageBD = new Stage();
-                    Scene sceneBD = new Scene(fxmlLoaderDownloadFBD.load(), 905, 723);
-
+                    Scene sceneBD = new Scene(fxmlLoaderDownloadFBD.load(), 1194, 854);
+                    stageBD.setMinWidth(1194);
+                    stageBD.setMinHeight(854);
+                    stageBD.setMaxWidth(1194);
+                    stageBD.setMaxHeight(854);
                     stageBD.setTitle("Database");
                     stageBD.setScene(sceneBD);
                     stageBD.show();
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
         }
     }

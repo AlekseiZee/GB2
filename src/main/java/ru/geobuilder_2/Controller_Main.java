@@ -65,7 +65,7 @@ public class Controller_Main implements Initializable {
     @FXML
      void openFileCal(ActionEvent event){
         FileChooser fileChooserGeoBuilder = new FileChooser();
-        fileChooserGeoBuilder.setInitialDirectory(new File("C:\\Users\\Home")); // Указываем какую папку открыть изначально
+        fileChooserGeoBuilder.setInitialDirectory(new File("D:\\Test GB")); // Указываем какую папку открыть изначально
         fileChooserGeoBuilder.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("geoBuilder Files", "*.txt")); // Задаем расширения для выбора конкретных файлов
         List<File> selectedFiles = fileChooserGeoBuilder.showOpenMultipleDialog(null);
