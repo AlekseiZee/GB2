@@ -33,9 +33,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.scene.text.TextFlow;
-import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
+import javafx.stage.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.Pair;
@@ -59,6 +57,7 @@ public class Controller_NewCalculation {
 
     @FXML
     private Label labelCount;
+
     @FXML
     private Button rotater;
     @FXML
@@ -104,17 +103,26 @@ public class Controller_NewCalculation {
     }
 
     public void print() {
-
         messageField.getChildren().clear();
         for (Rib rib : ribs) {
             Text text = new Text("ярус: " + rib.getTier() + "    " + "грань:  " + rib.getRibLength() + "\n");
             messageField.getChildren().add(text);
+        }
+    }
 
+
+    @FXML
+    private void loadRibs(){
+        try {
+            this.tableRib.setItems(this.deserializeData());
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
         }
     }
 
     @FXML
     private void initialize() {
+
 
         tierColumn.setCellValueFactory(new PropertyValueFactory<Rib, Integer>("tier"));
         ribLengthColumn.setCellValueFactory(new PropertyValueFactory<Rib, String>("ribLength"));
@@ -452,11 +460,11 @@ public class Controller_NewCalculation {
                 System.out.println("file is not valid");
             }
 
-            try {
-				this.tableRib.setItems(this.deserializeData());
-			} catch (ClassNotFoundException | IOException e) {
-				e.printStackTrace();
-			}
+//            try {
+//				this.tableRib.setItems(this.deserializeData());
+//			} catch (ClassNotFoundException | IOException e) {
+//				e.printStackTrace();
+//			}
         } else {
             if (manualInputBut.isSelected()) {
                 /**
@@ -465,76 +473,82 @@ public class Controller_NewCalculation {
                 try {
                     FXMLLoader fxmlLoaderManualInput = new FXMLLoader(Controller_NewCalculation.class.getResource("manualInput-view.fxml"));
                     Stage stageMan = new Stage();
-                    Scene sceneMan = new Scene(fxmlLoaderManualInput.load(), 905, 723);
-                    stageMan.setMinWidth(905);
-                    stageMan.setMinHeight(723);
-                    stageMan.setMinWidth(905);
-                    stageMan.setMinHeight(723);
+                    stageMan.initModality(Modality.APPLICATION_MODAL); // Делаем окно модальным. Приоткрытии окна, блокируются все остальные
+                    Scene sceneMan = new Scene(fxmlLoaderManualInput.load(), 901, 729);
+                    stageMan.setMinWidth(901);
+                    stageMan.setMinHeight(729);
+                    stageMan.setMinWidth(901);
+                    stageMan.setMinHeight(729);
                     stageMan.setTitle("Table");
                     stageMan.setScene(sceneMan);
                     stageMan.show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else { // Загрузка окна для получения данных из БД
+            } else {
+//                /**
+//                 * Диалоговое окно авторизации
+//                 */
+//                // Create the custom dialog.
+//                Dialog<Pair<String, String>> dialog = new Dialog<>();
+//                dialog.setTitle("Login Dialog");
+//                dialog.setHeaderText("Look, a Custom Login Dialog");
+//
+//// Set the icon (must be included in the project).
+//                //dialog.setGraphic(new ImageView(this.getClass().getResource("login.png").toString()));
+//
+//// Set the button types.
+//                ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
+//                dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+//
+//// Create the username and password labels and fields.
+//                GridPane grid = new GridPane();
+//                grid.setHgap(10);
+//                grid.setVgap(10);
+//                grid.setPadding(new Insets(20, 150, 10, 10));
+//
+//                TextField username = new TextField();
+//                username.setPromptText("Username");
+//                PasswordField password = new PasswordField();
+//                password.setPromptText("Password");
+//
+//                grid.add(new Label("Username:"), 0, 0);
+//                grid.add(username, 1, 0);
+//                grid.add(new Label("Password:"), 0, 1);
+//                grid.add(password, 1, 1);
+//
+//// Enable/Disable login button depending on whether a username was entered.
+//                Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
+//                loginButton.setDisable(true);
+//
+//// Do some validation (using the Java 8 lambda syntax).
+//                username.textProperty().addListener((observable, oldValue, newValue) -> {
+//                    loginButton.setDisable(newValue.trim().isEmpty());
+//                });
+//
+//                dialog.getDialogPane().setContent(grid);
+//
+//// Request focus on the username field by default.
+//                Platform.runLater(() -> username.requestFocus());
+//
+//// Convert the result to a username-password-pair when the login button is clicked.
+//                dialog.setResultConverter(dialogButton -> {
+//                    if (dialogButton == loginButtonType) {
+//                        return new Pair<>(username.getText(), password.getText());
+//                    }
+//                    return null;
+//                });
+//
+//                Optional<Pair<String, String>> result = dialog.showAndWait();
+//
+//                result.ifPresent(usernamePassword -> {
+//                    System.out.println("Username=" + usernamePassword.getKey() + ", Password=" + usernamePassword.getValue());
+//                });
 
-                // Create the custom dialog.
-                Dialog<Pair<String, String>> dialog = new Dialog<>();
-                dialog.setTitle("Login Dialog");
-                dialog.setHeaderText("Look, a Custom Login Dialog");
-
-// Set the icon (must be included in the project).
-                //dialog.setGraphic(new ImageView(this.getClass().getResource("login.png").toString()));
-
-// Set the button types.
-                ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
-                dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
-
-// Create the username and password labels and fields.
-                GridPane grid = new GridPane();
-                grid.setHgap(10);
-                grid.setVgap(10);
-                grid.setPadding(new Insets(20, 150, 10, 10));
-
-                TextField username = new TextField();
-                username.setPromptText("Username");
-                PasswordField password = new PasswordField();
-                password.setPromptText("Password");
-
-                grid.add(new Label("Username:"), 0, 0);
-                grid.add(username, 1, 0);
-                grid.add(new Label("Password:"), 0, 1);
-                grid.add(password, 1, 1);
-
-// Enable/Disable login button depending on whether a username was entered.
-                Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
-                loginButton.setDisable(true);
-
-// Do some validation (using the Java 8 lambda syntax).
-                username.textProperty().addListener((observable, oldValue, newValue) -> {
-                    loginButton.setDisable(newValue.trim().isEmpty());
-                });
-
-                dialog.getDialogPane().setContent(grid);
-
-// Request focus on the username field by default.
-                Platform.runLater(() -> username.requestFocus());
-
-// Convert the result to a username-password-pair when the login button is clicked.
-                dialog.setResultConverter(dialogButton -> {
-                    if (dialogButton == loginButtonType) {
-                        return new Pair<>(username.getText(), password.getText());
-                    }
-                    return null;
-                });
-
-                Optional<Pair<String, String>> result = dialog.showAndWait();
-
-                result.ifPresent(usernamePassword -> {
-                    System.out.println("Username=" + usernamePassword.getKey() + ", Password=" + usernamePassword.getValue());
-                });
-
-                /*try {
+                /**
+                 * Окно для получение данных из БД
+                 */
+                try {
                     FXMLLoader fxmlLoaderDownloadFBD = new FXMLLoader(Controller_NewCalculation.class.getResource("downloadFromBD-view.fxml"));
                     Stage stageBD = new Stage();
                     Scene sceneBD = new Scene(fxmlLoaderDownloadFBD.load(), 1194, 854);
@@ -547,7 +561,7 @@ public class Controller_NewCalculation {
                     stageBD.show();
                 } catch (IOException e) {
                     e.printStackTrace();
-                }*/
+                }
             }
         }
     }
@@ -562,7 +576,7 @@ public class Controller_NewCalculation {
     }
 
     private void serializeData(ObservableList<Rib> ribs) throws FileNotFoundException, IOException{
-    	File f = new File("D:\\Test GB\\ribs.txt");
+    	File f = new File("D:\\TestGB\\ribs.txt");
     	try(FileOutputStream fos = new FileOutputStream(f); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
     		ArrayList<Rib> al = new ArrayList<Rib>(ribs);
     		oos.writeObject(new ArrayList<Rib>(al));
@@ -571,7 +585,7 @@ public class Controller_NewCalculation {
 
     private ObservableList<Rib> deserializeData() throws FileNotFoundException, IOException, ClassNotFoundException{
     	ArrayList<Rib> ribs = new ArrayList<Rib>();
-    	File f = new File("D:\\Test GB\\ribs.txt");
+    	File f = new File("D:\\TestGB\\ribs.txt");
     	try(FileInputStream fis = new FileInputStream(f); ObjectInputStream ois = new ObjectInputStream(fis)) {
     		ribs = (ArrayList<Rib>) ois.readObject();
     	}
@@ -591,8 +605,7 @@ public class Controller_NewCalculation {
     @FXML
     void specifyDirectory(ActionEvent event) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
-//        directoryChooser.setInitialDirectory(new File("C:\\Users\\Home")); // Указываем, какую папку открыть изначально
-        directoryChooser.setInitialDirectory(new File("C:\\Users"));
+        directoryChooser.setInitialDirectory(new File("D:\\TestGB")); // Указываем, какую папку открыть изначально
         File selectedDir = directoryChooser.showDialog(null);
         if (selectedDir != null) {
             addressFieldDirectory.setText(selectedDir.getAbsolutePath());

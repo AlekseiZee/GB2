@@ -2,7 +2,9 @@ package ru.geobuilder_2;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -44,6 +46,9 @@ public class Controller_manualInput {
 
     @FXML
     private TableColumn<Angle, String> hAngleCol;
+
+    @FXML
+    private Button goBackButton;
 
     private ObservableList<Point> pointsData = FXCollections.observableArrayList();
 
@@ -154,7 +159,7 @@ public class Controller_manualInput {
     // Удаление стоянки
     @FXML
     private void removeColumnPoint() {
-        angleTable.getColumns().remove(2);
+        angleTable.getColumns().remove(angleTable.getColumns().size() - 1);
     }
 
     private String nameP = "";
@@ -177,5 +182,13 @@ public class Controller_manualInput {
         Angle angle = angleTable.getSelectionModel().getSelectedItem();
         angle.setVAngle(angleStringCellEditEvent.getNewValue());
         angle.setHAngle(angleStringCellEditEvent.getNewValue());
+    }
+
+    @FXML
+    public void goingBackToNewCal(ActionEvent event) {
+
+        goBackButton.getScene().getWindow().hide();
+        Controller_Main controller_main = new Controller_Main();
+        controller_main.getNewCal(event);
     }
 }

@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="854.0" prefWidth="1194.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="ru.geobuilder_2.Controller_manualInput">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="729.0" prefWidth="901.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_manualInput">
    <children>
       <AnchorPane prefHeight="34.0" prefWidth="757.0" style="-fx-background-color: #494949;">
          <children>
@@ -32,13 +31,13 @@
             <Label layoutX="14.0" layoutY="1.0" prefHeight="25.0" prefWidth="175.0" text="Журнал угловых измерений" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="1193.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="644.0" prefWidth="902.0">
          <children>
-            <Pane prefHeight="779.0" prefWidth="1194.0">
+            <Pane prefHeight="653.0" prefWidth="901.0">
                <children>
-                  <AnchorPane layoutY="-2.0" prefHeight="181.0" prefWidth="1193.0">
+                  <AnchorPane layoutY="-2.0" prefHeight="181.0" prefWidth="901.0">
                      <children>
-                        <TableView fx:id="pointTable" layoutX="14.0" layoutY="11.0" prefHeight="133.0" prefWidth="312.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="867.0" AnchorPane.topAnchor="11.0">
+                        <TableView fx:id="pointTable" layoutX="14.0" layoutY="11.0" prefHeight="133.0" prefWidth="312.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="575.0" AnchorPane.topAnchor="11.0">
                            <columns>
                               <TableColumn fx:id="idPCol" prefWidth="26.0" text=" №&#10;п.п" />
                               <TableColumn fx:id="namePCol" onEditCommit="#onEditChangerPoint" prefWidth="36.0" text="Ст-ка" />
@@ -70,9 +69,9 @@
                       <AnchorPane layoutX="464.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="166.0" prefWidth="358.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutY="176.0" prefHeight="378.0" prefWidth="1194.0">
+                  <AnchorPane layoutY="176.0" prefHeight="378.0" prefWidth="901.0">
                      <children>
-                        <TableView fx:id="angleTable" layoutX="14.0" layoutY="6.0" prefHeight="378.0" prefWidth="960.0" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="6.0">
+                        <TableView fx:id="angleTable" layoutX="14.0" layoutY="6.0" prefHeight="378.0" prefWidth="877.0" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="6.0">
                            <columns>
                               <TableColumn fx:id="idAngleCol" prefWidth="28.0" text=" №&#10;п.п." />
                               <TableColumn fx:id="nameAnglePCol" prefWidth="168.0" text="A">
@@ -85,7 +84,7 @@
                         </TableView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutY="559.0" prefHeight="219.0" prefWidth="1193.0">
+                  <AnchorPane layoutY="559.0" prefHeight="101.0" prefWidth="901.0">
                      <children>
                         <Button fx:id="addLineAnglesButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles" text="+">
                            <font>
@@ -127,6 +126,9 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
+                        <Button layoutX="610.0" layoutY="49.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Выгрузить данные" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="610.0" AnchorPane.rightAnchor="163.0" AnchorPane.topAnchor="49.0" />
+                        <Button layoutX="758.0" layoutY="49.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Выйти" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="758.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="49.0" />
+                        <Button fx:id="goBackButton" layoutX="459.0" layoutY="49.0" mnemonicParsing="false" onAction="#goingBackToNewCal" prefHeight="26.0" prefWidth="134.0" text="Вернуться назад" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="459.0" AnchorPane.rightAnchor="308.0" AnchorPane.topAnchor="49.0" />
                      </children>
                   </AnchorPane>
                </children>

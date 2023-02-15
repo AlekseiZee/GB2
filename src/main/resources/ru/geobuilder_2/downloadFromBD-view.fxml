@@ -58,9 +58,9 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="address" alignment="TOP_LEFT" disable="true" layoutX="119.0" layoutY="70.0" prefHeight="25.0" prefWidth="376.0" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="70.0" />
-            <CheckBox layoutX="16.0" layoutY="74.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="17.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="74.0" />
-            <SplitMenuButton fx:id="operator" disable="true" layoutX="119.0" layoutY="106.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="174.0" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="106.0">
+            <TextField fx:id="addressTextField" alignment="TOP_LEFT" disable="true" layoutX="119.0" layoutY="70.0" prefHeight="25.0" prefWidth="367.0" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="70.0" />
+            <CheckBox fx:id="аddressCheck" layoutX="16.0" layoutY="74.0" mnemonicParsing="false" onAction="#setAddressCheck" prefHeight="16.0" prefWidth="17.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="74.0" />
+            <SplitMenuButton fx:id="operatorSplMenu" disable="true" layoutX="119.0" layoutY="106.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="106.0">
                <items>
                   <MenuItem fx:id="megafon" mnemonicParsing="false" onAction="#setMegafon" text="ПАО Мегафон" />
                   <MenuItem fx:id="mts" mnemonicParsing="false" onAction="#setMts" text="ПАО МТС" />
@@ -74,15 +74,15 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <CheckBox layoutX="16.0" layoutY="110.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="17.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="110.0" />
-            <Button layoutX="404.0" layoutY="197.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="89.0" text="Показвть" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="702.0">
+            <CheckBox fx:id="operatorCheck" layoutX="16.0" layoutY="110.0" mnemonicParsing="false" onAction="#setOperatorCheck" prefHeight="16.0" prefWidth="17.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="110.0" />
+            <Button layoutX="400.0" layoutY="197.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="89.0" text="Показвть" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="706.0">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font></Button>
-            <SplitMenuButton fx:id="typeOfWork" disable="true" layoutX="697.0" layoutY="38.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" AnchorPane.leftAnchor="697.0" AnchorPane.topAnchor="38.0">
+            <SplitMenuButton fx:id="typeOfWorkSplMenu" disable="true" layoutX="697.0" layoutY="38.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" AnchorPane.leftAnchor="697.0" AnchorPane.topAnchor="38.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="ТО" />
-                  <MenuItem mnemonicParsing="false" text="АВР" />
+                  <MenuItem fx:id="maintenance" mnemonicParsing="false" onAction="#setMaintenance" text="ТО" />
+                  <MenuItem fx:id="emergencyWork" mnemonicParsing="false" onAction="#setEmergencyWork" text="АВР" />
                </items>
             </SplitMenuButton>
             <Text fill="#868686" layoutX="623.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вид работ:" AnchorPane.leftAnchor="623.0" AnchorPane.topAnchor="41.5244140625">
@@ -95,35 +95,36 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="numberBasisOfWorkField" disable="true" layoutX="698.0" layoutY="79.0" prefHeight="25.0" prefWidth="218.0" AnchorPane.leftAnchor="698.0" AnchorPane.topAnchor="79.0" />
+            <TextField fx:id="basisOfWorksTextField" disable="true" layoutX="698.0" layoutY="79.0" prefHeight="25.0" prefWidth="218.0" AnchorPane.leftAnchor="698.0" AnchorPane.topAnchor="79.0" />
             <Text fill="#868686" layoutX="647.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Автор:" AnchorPane.leftAnchor="647.0" AnchorPane.topAnchor="116.5244140625">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="author" disable="true" layoutX="698.0" layoutY="112.0" prefHeight="25.0" prefWidth="218.0" AnchorPane.leftAnchor="698.0" AnchorPane.topAnchor="112.0" />
+            <TextField fx:id="authorTextField" disable="true" layoutX="698.0" layoutY="112.0" prefHeight="25.0" prefWidth="218.0" AnchorPane.leftAnchor="698.0" AnchorPane.topAnchor="112.0" />
             <Text fill="#868686" layoutX="644.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="    Дата &#10;съемки:" textAlignment="RIGHT" AnchorPane.leftAnchor="644.0" AnchorPane.topAnchor="149.5244140625">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <DatePicker fx:id="photoDate" disable="true" layoutX="699.0" layoutY="153.0" prefHeight="25.0" prefWidth="218.0" AnchorPane.leftAnchor="699.0" AnchorPane.topAnchor="153.0" />
-            <CheckBox layoutX="598.0" layoutY="43.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="17.0" AnchorPane.leftAnchor="598.0" AnchorPane.topAnchor="43.0" />
-            <CheckBox layoutX="598.0" layoutY="83.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="17.0" AnchorPane.leftAnchor="598.0" AnchorPane.topAnchor="83.0" />
-            <CheckBox layoutX="598.0" layoutY="116.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="17.0" AnchorPane.leftAnchor="598.0" AnchorPane.topAnchor="116.0" />
-            <CheckBox layoutX="598.0" layoutY="157.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="17.0" AnchorPane.leftAnchor="598.0" AnchorPane.topAnchor="157.0" />
+            <DatePicker fx:id="dateOfShootingDatePicker" disable="true" layoutX="699.0" layoutY="153.0" prefHeight="25.0" prefWidth="218.0" AnchorPane.leftAnchor="699.0" AnchorPane.topAnchor="153.0" />
+            <CheckBox fx:id="typeOfWorkCheck" layoutX="598.0" layoutY="43.0" mnemonicParsing="false" onAction="#setTypeOfWork" prefHeight="16.0" prefWidth="17.0" AnchorPane.leftAnchor="598.0" AnchorPane.topAnchor="43.0" />
+            <CheckBox fx:id="basisOfWorksCheck" layoutX="598.0" layoutY="83.0" mnemonicParsing="false" onAction="#setBasisOfWorks" prefHeight="16.0" prefWidth="17.0" AnchorPane.leftAnchor="598.0" AnchorPane.topAnchor="83.0" />
+            <CheckBox fx:id="authorCheck" layoutX="598.0" layoutY="116.0" mnemonicParsing="false" onAction="#setAuthor" prefHeight="16.0" prefWidth="17.0" AnchorPane.leftAnchor="598.0" AnchorPane.topAnchor="116.0" />
+            <CheckBox fx:id="dateOfShootingCheck" layoutX="598.0" layoutY="157.0" mnemonicParsing="false" onAction="#setDateOfShooting" prefHeight="16.0" prefWidth="17.0" AnchorPane.leftAnchor="598.0" AnchorPane.topAnchor="157.0" />
             <Text fill="#868686" layoutX="573.0" layoutY="27.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Фильтры" wrappingWidth="80.00000000000006" AnchorPane.leftAnchor="573.0" AnchorPane.topAnchor="10.9599609375">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
-            <Button layoutX="1092.0" layoutY="197.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="89.0" text="Показвть" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="14.0">
+            <Button layoutX="1090.0" layoutY="197.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="89.0" text="Показвть" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="16.0">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="15.0" layoutY="197.0" prefHeight="22.0" prefWidth="162.0" text="Найдено" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="15.0" />
-            <Label layoutX="575.0" layoutY="200.0" prefHeight="22.0" prefWidth="186.0" text="Найдено" AnchorPane.bottomAnchor="3.0" />
+            <Label fx:id="numberOfObjects" layoutX="15.0" layoutY="197.0" prefHeight="22.0" prefWidth="162.0" text="Найдено" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="15.0" />
+            <Label fx:id="numberOfInstance" layoutX="575.0" layoutY="200.0" prefHeight="22.0" prefWidth="186.0" text="Найдено" AnchorPane.bottomAnchor="3.0" />
+            <TextField fx:id="specifiedOperatorTextField" disable="true" layoutX="278.0" layoutY="106.0" prefHeight="25.0" prefWidth="207.0" visible="true" />
          </children>
       </AnchorPane>
       <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="831.0" VBox.vgrow="ALWAYS">
@@ -174,7 +175,7 @@
                   </TableView>
                </children>
             </HBox>
-            <Button layoutX="1047.0" layoutY="381.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Журнал угловых изм." AnchorPane.bottomAnchor="149.0" AnchorPane.leftAnchor="1047.0" />
+            <Button layoutX="1045.0" layoutY="381.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Журнал угловых изм." AnchorPane.bottomAnchor="149.0" AnchorPane.leftAnchor="1045.0" />
             <HBox layoutX="154.0" layoutY="349.0" prefHeight="25.0" prefWidth="162.0" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="154.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="&lt;" />
