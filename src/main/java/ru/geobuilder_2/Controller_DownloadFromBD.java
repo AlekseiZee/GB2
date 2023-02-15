@@ -11,24 +11,10 @@ public class Controller_DownloadFromBD {
     private Button goBackButton;
 
     @FXML
-    private TextField newOperator;
-    @FXML
-    private SplitMenuButton operator;
+    private MenuItem megafon, mts, vimpel, t2, non;
 
     @FXML
-    private MenuItem megafon;
-
-    @FXML
-    private MenuItem mts;
-
-    @FXML
-    private MenuItem vimpel;
-
-    @FXML
-    private MenuItem t2;
-
-    @FXML
-    private MenuItem non;
+    private MenuItem maintenance, emergencyWork;
 
     @FXML
     private CheckBox аddressCheck, operatorCheck, typeOfWorkCheck, basisOfWorksCheck, authorCheck, dateOfShootingCheck;
@@ -144,5 +130,13 @@ public class Controller_DownloadFromBD {
        if(dateOfShootingCheck.isSelected()){
            dateOfShootingDatePicker.setDisable(false);
        }
+    }
+
+    public void setMaintenance(ActionEvent event) {
+        typeOfWorkSplMenu.setText(maintenance.getText());
+    }
+
+    public void setEmergencyWork(ActionEvent event) {
+        typeOfWorkSplMenu.setText(emergencyWork.getText());
     }
 }
