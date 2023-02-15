@@ -14,7 +14,6 @@ import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,17 +24,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import javafx.scene.text.TextFlow;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.Pair;
@@ -462,20 +457,7 @@ public class Controller_NewCalculation {
                 /**
                  * Открываем окно для внесения углов вручную
                  */
-                try {
-                    FXMLLoader fxmlLoaderManualInput = new FXMLLoader(Controller_NewCalculation.class.getResource("manualInput-view.fxml"));
-                    Stage stageMan = new Stage();
-                    Scene sceneMan = new Scene(fxmlLoaderManualInput.load(), 905, 723);
-                    stageMan.setMinWidth(905);
-                    stageMan.setMinHeight(723);
-                    stageMan.setMinWidth(905);
-                    stageMan.setMinHeight(723);
-                    stageMan.setTitle("Table");
-                    stageMan.setScene(sceneMan);
-                    stageMan.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                openDataEntryWindowManually();
             } else { // Загрузка окна для получения данных из БД
 
                 // Create the custom dialog.
@@ -549,6 +531,23 @@ public class Controller_NewCalculation {
                     e.printStackTrace();
                 }*/
             }
+        }
+    }
+
+    protected void openDataEntryWindowManually() {
+        try {
+            FXMLLoader fxmlLoaderManualInput = new FXMLLoader(Controller_NewCalculation.class.getResource("manualInput-view.fxml"));
+            Stage stageMan = new Stage();
+            Scene sceneMan = new Scene(fxmlLoaderManualInput.load(), 905, 723);
+            stageMan.setMinWidth(905);
+            stageMan.setMinHeight(723);
+            stageMan.setMinWidth(905);
+            stageMan.setMinHeight(723);
+            stageMan.setTitle("Table");
+            stageMan.setScene(sceneMan);
+            stageMan.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

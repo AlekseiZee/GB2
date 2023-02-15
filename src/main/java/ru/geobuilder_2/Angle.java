@@ -1,56 +1,114 @@
 package ru.geobuilder_2;
 
-public class Angle {
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-    private Integer idAngle;
-    private String vAngle;
-    private String hAngle;
-    private static int countAngle = 0;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.Objects;
 
-    public static int getCountPoint() {
-        return getCountAngle();
+
+public class Angle implements Serializable {
+
+    private transient IntegerProperty idAngle;
+    private transient StringProperty vAngle;
+    private transient StringProperty hAngle;
+
+    public Angle(int idAngl, String vAngle, String hAngle) {
+        this.idAngle = new SimpleIntegerProperty(idAngl);
+        this.vAngle = new SimpleStringProperty(vAngle);
+        this.hAngle = new SimpleStringProperty(hAngle);
     }
 
-    public Angle(String vAngle, String hAngle) {
-        countAngle++;
-        this.setIdAngle(countAngle);
-        this.setVAngle(vAngle);
-        this.setHAngle(hAngle);
+    public final int getIdAngle() {
+        return this.idAngle.get();
     }
 
-    public static void setCountAngle() {
-        Angle.countAngle = --countAngle;
+    public final String getVAngle() {
+        return this.vAngle.get();
     }
 
-    public static int getCountAngle() {
-        return countAngle;
+    public final String getHAngle() {
+        return this.hAngle.get();
     }
 
-    public static void setCountAngle(int countAngle) {
-        Angle.countAngle = countAngle;
+    public final void setIdAngle(Integer idAngle) {
+        this.idAngle.set(idAngle);
     }
 
-    public Integer getIdAngle() {
-        return idAngle;
+    public final void setVAngle(String vAngle) {
+        this.vAngle.set(vAngle);
     }
 
-    public void setIdAngle(Integer idAngle) {
-        this.idAngle = idAngle;
+    public final void setHAngle(String hAngle) {
+        this.hAngle.set(hAngle);
     }
 
-    public String getVAngle() {
-        return vAngle;
+    public final IntegerProperty idAngleProperty() {
+        return this.idAngle;
     }
 
-    public void setVAngle(String vAngle) {
-        this.vAngle = vAngle;
+    public final StringProperty vAngleProperty() {
+        return this.vAngle;
     }
 
-    public String getHAngle() {
-        return hAngle;
+    public final StringProperty hAngleProperty() {
+        return this.hAngle;
     }
 
-    public void setHAngle(String hAngle) {
-        this.hAngle = hAngle;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Angle other = (Angle) obj;
+        if (this.idAngle.get() != other.idAngle.get()) {
+            return false;
+        }
+        if (this.vAngle.get() != other.vAngle.get()) {
+            return false;
+        }
+        if (this.hAngle.get() != other.hAngle.get()) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + Objects.hashCode(this.idAngle.get());
+        hash = 61 * hash + Objects.hashCode(this.vAngle.get());
+        hash = 61 * hash + Objects.hashCode(this.hAngle.get());
+        return hash;
+    }
+
+    @Override
+    public String toString() {
+        return "Angle{" +
+                "idAngle=" + this.idAngle.get() +
+                ", vAngle=" + this.vAngle.get() +
+                ", hAngle=" + this.hAngle.get() +
+                '}';
+    }
+
+    private void writeObject(ObjectOutputStream s) throws IOException {
+        s.defaultWriteObject();
+        s.writeInt(getIdAngle());
+        s.writeUTF(getVAngle());
+        s.writeUTF(getHAngle());
+    }
+
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+        idAngle = new SimpleIntegerProperty(s.readInt());
+        vAngle = new SimpleStringProperty(s.readUTF());
+        hAngle = new SimpleStringProperty(s.readUTF());
     }
 }

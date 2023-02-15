@@ -23,19 +23,26 @@ public class StartGeoApplication extends Application {
      * Инициализирует первую страницу
      */
     public void iniRoot() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(StartGeoApplication.class.getResource("main-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 681, 529);
-            stage.setTitle("GeoBuilder 2.0");
-            stage.setMinWidth(681); // не позволит уменьшить наше окно до нуля по ширене
-            stage.setMinHeight(529); // не позволит уменьшить окно до нуля по высоте
-            stage.setMaxWidth(681);
-            stage.setMaxHeight(529);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        // Временно. Для удобстава работы с окном "Ручной ввод"
+        Controller_NewCalculation controller_NewCalculation = new Controller_NewCalculation();
+        controller_NewCalculation.openDataEntryWindowManually();
+
+        // Разкомментировать после окончания работы с окном "Ручной ввод"
+//        try {
+//
+//            FXMLLoader fxmlLoader = new FXMLLoader(StartGeoApplication.class.getResource("main-view.fxml"));
+//            Scene scene = new Scene(fxmlLoader.load(), 681, 529);
+//            stage.setTitle("GeoBuilder 2.0");
+//            stage.setMinWidth(681); // не позволит уменьшить наше окно до нуля по ширене
+//            stage.setMinHeight(529); // не позволит уменьшить окно до нуля по высоте
+//            stage.setMaxWidth(681);
+//            stage.setMaxHeight(529);
+//            stage.setScene(scene);
+//            stage.show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
     /**
      * Возвращает главную сцену.

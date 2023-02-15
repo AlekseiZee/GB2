@@ -2,18 +2,21 @@ package ru.geobuilder_2;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 
-import static ru.geobuilder_2.Angle.setCountAngle;
 //import static ru.geobuilder_2.Point.setCountPoint;
 
 public class Controller_manualInput {
+
+    @FXML
+    private Button goBackButton;
 
     @FXML
     private TableView<Point> pointTable;
@@ -52,6 +55,9 @@ public class Controller_manualInput {
     @FXML
     private void initialize() {
 
+        Point point = new Point(this.pointTable.getItems().size()+1, "A", "", "", "");
+        pointsData.add(point);
+
         // Таблица Points
         idPCol.setCellValueFactory(new PropertyValueFactory<Point, String>("idPoint"));
         namePCol.setCellValueFactory(new PropertyValueFactory<Point, String>("namePoint"));
@@ -85,8 +91,8 @@ public class Controller_manualInput {
 
         // Следим за изменение в ячейке namePCol. Если изменилось значение то запускается метод getNameP() с
         // с новым значением.
-        pointTable.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> getNameP(newValue));
+//        pointTable.getSelectionModel().selectedItemProperty().addListener(
+//                (observable, oldValue, newValue) -> getNameP(newValue));
 
         //Запрет на сортировку столбцов
         idPCol.setSortable(false);
@@ -100,43 +106,41 @@ public class Controller_manualInput {
         hAngleCol.setSortable(false);
     }
 
-    int val = 0;
     // Добавление стоянки (Point)
     @FXML
     private void addLinePoint(){
-        val++;
-        Point point = new Point(val, "", "", "", "");
+
+        Point point = new Point(this.pointTable.getItems().size()+1, "", "", "", "");
         pointsData.add(point);
     }
 
     // Удаление стоянки (Point)
     @FXML
     private void removeLinePoint() {
-        val--;
-        pointTable.getItems().remove(pointsData.size() - 1);
-
-//        setCountPoint();
+        if(pointsData.size() > 1) {
+            pointTable.getItems().remove(pointsData.size() - 1);
+        }
     }
 
     // Добавление углов (Angles)
     @FXML
     private void addLineAngles() {
-        Angle angle = new Angle("", "");
+
+        Angle angle = new Angle(this.angleTable.getItems().size()+1,"", "");
+        //angleTable.getItems().add(angle);
         anglesData.add(angle);
     }
 
     // Удаление углов (Angles)
     @FXML
-    private void removeLineAngls() {
+    private void removeLineAngles() {
         angleTable.getItems().remove(anglesData.size() - 1);
-
-        setCountAngle();
     }
 
     // Добавление новой стоянки
     @FXML
     public void addColumnPoint() {
-        TableColumn nameAnglePCol = new TableColumn(nameP);
+        TableColumn nameAnglePCol = new TableColumn(pointsData.get(angleTable.getColumns().size()-1).getNamePoint());
         TableColumn vAngleCol = new TableColumn("Верт. угол");
         TableColumn hAngleCol = new TableColumn("Гор. угол");
         nameAnglePCol.getColumns().setAll(vAngleCol, hAngleCol);
@@ -154,15 +158,18 @@ public class Controller_manualInput {
     // Удаление стоянки
     @FXML
     private void removeColumnPoint() {
-        angleTable.getColumns().remove(2);
+        if(angleTable.getColumns().size() > 2){
+            angleTable.getColumns().remove(angleTable.getColumns().size()-1);
+        }
     }
 
-    private String nameP = "";
-
-    public String getNameP(Point point) {
-        nameP = point.getNamePoint();
-        return nameP;
-    }
+//    private String nameP = pointsData.get(pointsData.size() - 1).getNamePoint();;
+//
+//    public String getNameP(Point point) {
+//        nameP = pointsData.get(pointsData.size() - 1).getNamePoint();
+//        //nameP = point.getNamePoint();
+//        return nameP;
+//    }
 
     // Нужно для инициализации измененных значений в ячейках. Без него данные не воспринимаются
     public void onEditChangerPoint(TableColumn.CellEditEvent<Point, String> pointStringCellEditEvent) {
@@ -173,9 +180,21 @@ public class Controller_manualInput {
         point.setHAnglePoint(pointStringCellEditEvent.getNewValue());
     }
 
-    public void onEditChangerAngle(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
-        Angle angle = angleTable.getSelectionModel().getSelectedItem();
-        angle.setVAngle(angleStringCellEditEvent.getNewValue());
-        angle.setHAngle(angleStringCellEditEvent.getNewValue());
+   public void onEditChangerAngle(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+//        Angle angle = angleTable.getSelectionModel().getSelectedItem();
+//        angle.setVAngle(angleStringCellEditEvent.getNewValue());
+//        angle.setHAngle(angleStringCellEditEvent.getNewValue());
+   }
+
+    /**
+     * Возвращаемся в окно "Новый расчет"
+     * @param event
+     */
+    @FXML
+    public void goingBackToNewCal(ActionEvent event) {
+
+        goBackButton.getScene().getWindow().hide();
+        Controller_Main controller_main = new Controller_Main();
+        controller_main.openNewCalculationWindow("new_calculation-view.fxml", 768, 700);
     }
 }

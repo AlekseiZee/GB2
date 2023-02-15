@@ -40,8 +40,12 @@ public class Controller_Main implements Initializable {
     @FXML
     public void getNewCal(ActionEvent event){
         new_cal.getScene().getWindow().hide();
+        openNewCalculationWindow("new_calculation-view.fxml", 768, 700);
+    }
+
+    protected void openNewCalculationWindow(String name, int v, int v1) {
         FXMLLoader fxmlLoaderNewCal = new FXMLLoader();
-        fxmlLoaderNewCal.setLocation(getClass().getResource("new_calculation-view.fxml"));
+        fxmlLoaderNewCal.setLocation(getClass().getResource(name));
         try {
             fxmlLoaderNewCal.load();
         } catch (IOException e) {
@@ -50,10 +54,10 @@ public class Controller_Main implements Initializable {
         Parent root = fxmlLoaderNewCal.getRoot();
         Stage stage = new Stage();
         stage.setTitle("GeoBuilder 2.0");
-        stage.setMinWidth(768);
-        stage.setMinHeight(700);
-        stage.setMaxWidth(768);
-        stage.setMaxHeight(700);
+        stage.setMinWidth(v);
+        stage.setMinHeight(v1);
+        stage.setMaxWidth(v);
+        stage.setMaxHeight(v1);
         stage.setScene(new Scene(root));
         stage.showAndWait();
     }
@@ -87,22 +91,7 @@ public class Controller_Main implements Initializable {
     @FXML
     public void uploadDataToDatabase(ActionEvent event){
         new_cal.getScene().getWindow().hide();
-        FXMLLoader fxmlLoaderUploadData = new FXMLLoader();
-        fxmlLoaderUploadData.setLocation(getClass().getResource("uploadDataToDatabase-view.fxml"));
-        try {
-            fxmlLoaderUploadData.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Parent root = fxmlLoaderUploadData.getRoot();
-        Stage stage = new Stage();
-        stage.setTitle("GeoBuilder 2.0");
-        stage.setMinWidth(1194);
-        stage.setMinHeight(854);
-        stage.setMaxWidth(1194);
-        stage.setMaxHeight(854);
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
+        openNewCalculationWindow("uploadDataToDatabase-view.fxml", 1194, 854);
     }
 
     /**
