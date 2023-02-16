@@ -43,6 +43,12 @@ public class Controller_Main implements Initializable {
         openNewCalculationWindow("new_calculation-view.fxml", 768, 700);
     }
 
+    /**
+     * Метод открытия окна "Новый расчет"
+     * @param name
+     * @param v
+     * @param v1
+     */
     protected void openNewCalculationWindow(String name, int v, int v1) {
         FXMLLoader fxmlLoaderNewCal = new FXMLLoader();
         fxmlLoaderNewCal.setLocation(getClass().getResource(name));

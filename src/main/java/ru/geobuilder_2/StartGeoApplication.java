@@ -24,6 +24,10 @@ public class StartGeoApplication extends Application {
      */
     public void iniRoot() {
 
+        //Временно. для работы с окном "Новый расчет"
+//        Controller_Main controller_main = new Controller_Main();
+//        controller_main.openNewCalculationWindow("new_calculation-view.fxml", 768, 700);
+
         // Временно. Для удобстава работы с окном "Ручной ввод"
         Controller_NewCalculation controller_NewCalculation = new Controller_NewCalculation();
         controller_NewCalculation.openDataEntryWindowManually();

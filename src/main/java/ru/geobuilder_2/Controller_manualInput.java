@@ -62,6 +62,9 @@ public class Controller_manualInput {
         Point point = new Point(this.pointTable.getItems().size()+1, "A", "", "", "");
         pointsData.add(point);
 
+        Angle angle = new Angle(this.angleTable.getItems().size()+1,"", "");
+        anglesData.add(angle);
+
         // Таблица Points
         idPCol.setCellValueFactory(new PropertyValueFactory<Point, String>("idPoint"));
         namePCol.setCellValueFactory(new PropertyValueFactory<Point, String>("namePoint"));
