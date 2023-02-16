@@ -114,7 +114,9 @@ public class Controller_NewCalculation {
     @FXML
     private void loadRibs(){
         try {
-            this.tableRib.setItems(this.deserializeData());
+            this.ribs = this.deserializeData();
+            this.tableRib.setItems(this.ribs);
+
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }

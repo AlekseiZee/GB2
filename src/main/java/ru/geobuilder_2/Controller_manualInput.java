@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //import static ru.geobuilder_2.Point.setCountPoint;
 
@@ -95,7 +96,7 @@ public class Controller_manualInput {
         // Следим за изменением в ячейке namePCol. Если изменилось значение то запускается метод getNameP() с
         // с новым значением.
 //        pointTable.getSelectionModel().selectedItemProperty().addListener(
-//                (observable, oldValue, newValue) -> getgetNamePCol(newValue));
+//                (observable, oldValue, newValue) -> getNamePCol(newValue));
 
         //Запрет на сортировку столбцов
         idPCol.setSortable(false);
@@ -109,11 +110,13 @@ public class Controller_manualInput {
         hAngleCol.setSortable(false);
     }
 
-//    // Проверка вводимых данных в ячейку namePCol
+    // Проверка вводимых данных в ячейку namePCol
 //    private void checkingInputData(String newValue){
-//        Matcher matcher = new Matcher;
-//
-//        if(newValue)
+//        Pattern patterNamePoint = Pattern.compile("[a-zA-Z][1&2]?");
+//        Matcher matcherNamePoint = patterNamePoint.matcher(newValue);
+//        if (!matcherNamePoint.matches()) {
+//            pointTable.getItems().setNamePoint("")
+//        }
 //    }
 
 
