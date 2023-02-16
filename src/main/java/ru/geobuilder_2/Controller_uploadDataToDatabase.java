@@ -200,6 +200,8 @@ public class Controller_uploadDataToDatabase {
 
     @FXML
     private void initialize() {
+
+
         tierColumnBD.setCellValueFactory(new PropertyValueFactory<RibBD, Integer>("tierBD"));
         ribLengthColumnBD.setCellValueFactory(new PropertyValueFactory<RibBD, String>("ribLengthBD"));
 

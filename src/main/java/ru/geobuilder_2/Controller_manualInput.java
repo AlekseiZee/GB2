@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -47,6 +48,9 @@ public class Controller_manualInput {
 
     @FXML
     private TableColumn<Angle, String> hAngleCol;
+
+    @FXML
+    private Button goBackButton;
 
     private ObservableList<Point> pointsData = FXCollections.observableArrayList();
 
@@ -105,6 +109,7 @@ public class Controller_manualInput {
         vAngleCol.setSortable(false);
         hAngleCol.setSortable(false);
     }
+
 
     // Добавление стоянки (Point)
     @FXML
@@ -196,5 +201,13 @@ public class Controller_manualInput {
         goBackButton.getScene().getWindow().hide();
         Controller_Main controller_main = new Controller_Main();
         controller_main.openNewCalculationWindow("new_calculation-view.fxml", 768, 700);
+    }
+
+    @FXML
+    public void goingBackToNewCal(ActionEvent event) {
+
+        goBackButton.getScene().getWindow().hide();
+        Controller_Main controller_main = new Controller_Main();
+        controller_main.getNewCal(event);
     }
 }
