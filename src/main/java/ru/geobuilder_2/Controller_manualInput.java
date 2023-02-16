@@ -12,6 +12,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
+import java.util.regex.Matcher;
+
 //import static ru.geobuilder_2.Point.setCountPoint;
 
 public class Controller_manualInput {
@@ -48,9 +50,6 @@ public class Controller_manualInput {
 
     @FXML
     private TableColumn<Angle, String> hAngleCol;
-
-    @FXML
-    private Button goBackButton;
 
     private ObservableList<Point> pointsData = FXCollections.observableArrayList();
 
@@ -93,10 +92,10 @@ public class Controller_manualInput {
         vAngleCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
         hAngleCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
 
-        // Следим за изменение в ячейке namePCol. Если изменилось значение то запускается метод getNameP() с
+        // Следим за изменением в ячейке namePCol. Если изменилось значение то запускается метод getNameP() с
         // с новым значением.
 //        pointTable.getSelectionModel().selectedItemProperty().addListener(
-//                (observable, oldValue, newValue) -> getNameP(newValue));
+//                (observable, oldValue, newValue) -> getgetNamePCol(newValue));
 
         //Запрет на сортировку столбцов
         idPCol.setSortable(false);
@@ -109,6 +108,13 @@ public class Controller_manualInput {
         vAngleCol.setSortable(false);
         hAngleCol.setSortable(false);
     }
+
+//    // Проверка вводимых данных в ячейку namePCol
+//    private void checkingInputData(String newValue){
+//        Matcher matcher = new Matcher;
+//
+//        if(newValue)
+//    }
 
 
     // Добавление стоянки (Point)
@@ -203,11 +209,11 @@ public class Controller_manualInput {
         controller_main.openNewCalculationWindow("new_calculation-view.fxml", 768, 700);
     }
 
-    @FXML
+    /*@FXML
     public void goingBackToNewCal(ActionEvent event) {
 
         goBackButton.getScene().getWindow().hide();
         Controller_Main controller_main = new Controller_Main();
         controller_main.getNewCal(event);
-    }
+    }*/
 }
