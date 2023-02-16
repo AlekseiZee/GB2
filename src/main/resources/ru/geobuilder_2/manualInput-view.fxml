@@ -47,7 +47,7 @@
                <children>
                   <AnchorPane layoutY="-2.0" prefHeight="181.0" prefWidth="842.0">
                      <children>
-                        <TableView fx:id="pointTable" layoutX="14.0" layoutY="11.0" prefHeight="133.0" prefWidth="311.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="517.0" AnchorPane.topAnchor="13.0">
+                        <TableView fx:id="pointTable" layoutX="14.0" layoutY="11.0" prefHeight="150.0" prefWidth="313.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="515.0" AnchorPane.topAnchor="13.0">
                            <columns>
                               <TableColumn fx:id="idPCol" prefWidth="26.0" text=" №&#10;п.п" />
                               <TableColumn fx:id="namePCol" onEditCommit="#onEditChangerPoint" prefWidth="36.0" text="Ст-ка" />
@@ -96,47 +96,47 @@
                   </AnchorPane>
                   <AnchorPane layoutY="559.0" prefHeight="89.0" prefWidth="842.0">
                      <children>
-                        <Button fx:id="addLineAnglesButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles" text="+">
+                        <Button fx:id="addLineAnglesButton" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#addLineAngles" text="+">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
                         </Button>
-                        <Label layoutX="43.0" layoutY="14.0" prefHeight="22.0" prefWidth="97.0" text="Добавить углы">
+                        <Label layoutX="43.0" layoutY="12.0" prefHeight="22.0" prefWidth="97.0" text="Добавить углы">
                            <font>
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="addColumnPointButton" layoutX="178.0" layoutY="14.0" mnemonicParsing="false" onAction="#addColumnPoint" text="+">
+                        <Button fx:id="addColumnPointButton" layoutX="178.0" layoutY="11.0" mnemonicParsing="false" onAction="#addColumnPoint" text="+">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
                         </Button>
-                        <Label layoutX="209.0" layoutY="14.0" prefHeight="22.0" prefWidth="103.0" text="Добавить стоянку">
+                        <Label layoutX="209.0" layoutY="11.0" prefHeight="22.0" prefWidth="103.0" text="Добавить стоянку">
                            <font>
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="removePointButton" layoutX="178.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeColumnPoint" prefHeight="22.0" prefWidth="21.0" text="-">
+                        <Button fx:id="removePointButton" layoutX="178.0" layoutY="48.0" mnemonicParsing="false" onAction="#removeColumnPoint" prefHeight="22.0" prefWidth="21.0" text="-">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
                         </Button>
-                        <Label layoutX="209.0" layoutY="51.0" prefHeight="22.0" prefWidth="103.0" text="Удалить стоянку">
+                        <Label layoutX="209.0" layoutY="48.0" prefHeight="22.0" prefWidth="103.0" text="Удалить стоянку">
                            <font>
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="removeLineAngleButton" layoutX="14.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles" prefHeight="22.0" prefWidth="21.0" text="-">
+                        <Button fx:id="removeLineAngleButton" layoutX="14.0" layoutY="48.0" mnemonicParsing="false" onAction="#removeLineAngles" prefHeight="22.0" prefWidth="21.0" text="-">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
                         </Button>
-                        <Label layoutX="43.0" layoutY="51.0" prefHeight="22.0" prefWidth="103.0" text="Удалить углы">
+                        <Label layoutX="43.0" layoutY="48.0" prefHeight="22.0" prefWidth="103.0" text="Удалить углы">
                            <font>
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <HBox layoutX="385.0" layoutY="48.0" prefHeight="28.0" prefWidth="425.0">
+                        <HBox layoutX="403.0" layoutY="45.0" prefHeight="28.0" prefWidth="425.0">
                            <children>
                               <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goingBackToNewCal" prefHeight="26.0" prefWidth="128.0" text="Вернуться назад">
                                  <HBox.margin>
@@ -151,11 +151,11 @@
                               </Button>
                            </children>
                         </HBox>
-                        <HBox layoutX="451.0" layoutY="13.0" prefHeight="25.0" prefWidth="375.0">
+                        <HBox layoutX="540.0" layoutY="2.0" prefHeight="25.0" prefWidth="288.0">
                            <children>
                               <RadioButton mnemonicParsing="false" selected="true" text="Градусы">
                                  <padding>
-                                    <Insets right="50.0" />
+                                    <Insets right="30.0" />
                                  </padding>
                                  <toggleGroup>
                                     <ToggleGroup fx:id="unitOfMeasurementOfAngles" />
@@ -163,14 +163,10 @@
                               </RadioButton>
                               <RadioButton mnemonicParsing="false" text="Десятичные" toggleGroup="$unitOfMeasurementOfAngles">
                                  <padding>
-                                    <Insets right="50.0" />
+                                    <Insets right="30.0" />
                                  </padding>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="Радианы" toggleGroup="$unitOfMeasurementOfAngles">
-                                 <padding>
-                                    <Insets right="50.0" />
-                                 </padding>
-                              </RadioButton>
+                              <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="74.0" text="Радианы" toggleGroup="$unitOfMeasurementOfAngles" />
                            </children>
                         </HBox>
                      </children>
