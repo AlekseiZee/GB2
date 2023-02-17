@@ -125,7 +125,6 @@ public class Controller_NewCalculation {
     @FXML
     private void initialize() {
 
-
         tierColumn.setCellValueFactory(new PropertyValueFactory<Rib, Integer>("tier"));
         ribLengthColumn.setCellValueFactory(new PropertyValueFactory<Rib, String>("ribLength"));
 

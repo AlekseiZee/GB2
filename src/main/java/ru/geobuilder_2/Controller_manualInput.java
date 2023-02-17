@@ -1,16 +1,17 @@
 package ru.geobuilder_2;
 
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,6 +19,9 @@ import java.util.regex.Pattern;
 //import static ru.geobuilder_2.Point.setCountPoint;
 
 public class Controller_manualInput {
+
+    @FXML
+    private TextFlow massage;
 
     @FXML
     private Button goBackButton;
@@ -96,10 +100,14 @@ public class Controller_manualInput {
         vAngleCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
         hAngleCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
 
+
+        //pointTable.chang().addListener((observable, oldValue, newValue)
         // Следим за изменением в ячейке namePCol. Если изменилось значение то запускается метод getNameP() с
         // с новым значением.
-//        pointTable.getSelectionModel().selectedItemProperty().addListener(
-//                (observable, oldValue, newValue) -> getNamePCol(newValue));
+       pointTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+           checkingInputData(newValue);
+       });
+//                (observable, oldValue, newValue) -> checkingInputData(String.valueOf(newValue)));
 
         //Запрет на сортировку столбцов
         idPCol.setSortable(false);
@@ -114,13 +122,24 @@ public class Controller_manualInput {
     }
 
     // Проверка вводимых данных в ячейку namePCol
-//    private void checkingInputData(String newValue){
-//        Pattern patterNamePoint = Pattern.compile("[a-zA-Z][1&2]?");
-//        Matcher matcherNamePoint = patterNamePoint.matcher(newValue);
-//        if (!matcherNamePoint.matches()) {
-//            pointTable.getItems().setNamePoint("")
-//        }
-//    }
+    private void checkingInputData(Point point){
+        String newValueNamePoint = point.getNamePoint();
+        String newValueDistancePoint = point.getDistancePoint();
+        String newValueVAnglePoint = point.getVAnglePoint();
+        String newValueHAnglePoint = point.getHAnglePoint();
+        Pattern patterNamePoint = Pattern.compile("[a-zA-Z][1|2]?");
+        Pattern patterDistancePoint = Pattern.compile("");
+        Pattern patternVAnglePoint = Pattern.compile("");
+        Pattern patterHAnglePoint = Pattern.compile("");
+        Matcher matcherNamePoint = patterNamePoint.matcher(newValueNamePoint);
+        Matcher matcherDistancePoint = patterDistancePoint.matcher(newValueDistancePoint);
+        Matcher matcherVAnglePoint = patternVAnglePoint.matcher(newValueVAnglePoint);
+        Matcher matcherHAnglePoint = patterHAnglePoint.matcher(newValueHAnglePoint);
+        if (!matcherNamePoint.matches() || !matcherDistancePoint.matches() ||
+                !matcherVAnglePoint.matches() || !matcherHAnglePoint.matches()) {
+
+        }
+    }
 
 
     // Добавление стоянки (Point)
@@ -169,6 +188,9 @@ public class Controller_manualInput {
         vAngleCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
         hAngleCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
 
+        idAngleCol.setSortable(false);
+        vAngleCol.setSortable(false);
+        hAngleCol.setSortable(false);
 
     }
 
