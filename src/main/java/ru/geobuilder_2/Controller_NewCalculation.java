@@ -8,8 +8,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -22,7 +27,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -33,10 +50,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.scene.text.TextFlow;
-import javafx.stage.*;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.Pair;
+import ru.geobuilder_2.persistence.repository.AngleJpaRepository;
 
 public class Controller_NewCalculation {
 
@@ -103,6 +123,7 @@ public class Controller_NewCalculation {
     }
 
     public void print() {
+
         messageField.getChildren().clear();
         for (Rib rib : ribs) {
             Text text = new Text("ярус: " + rib.getTier() + "    " + "грань:  " + rib.getRibLength() + "\n");
@@ -535,6 +556,12 @@ public class Controller_NewCalculation {
                  * Окно для получение данных из БД
                  */
                 try {
+                    List<ru.geobuilder_2.persistence.entity.Angle> angles = AngleJpaRepository.readAll();
+                    Iterator it = angles.iterator();
+                    while (it.hasNext()) {
+                        ru.geobuilder_2.persistence.entity.Angle a = (ru.geobuilder_2.persistence.entity.Angle)it.next();
+                        System.out.println(a.toString());
+                    }
                     FXMLLoader fxmlLoaderDownloadFBD = new FXMLLoader(Controller_NewCalculation.class.getResource("downloadFromBD-view.fxml"));
                     Stage stageBD = new Stage();
                     Scene sceneBD = new Scene(fxmlLoaderDownloadFBD.load(), 1194, 854);
