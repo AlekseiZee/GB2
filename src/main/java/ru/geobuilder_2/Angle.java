@@ -13,17 +13,25 @@ import java.util.Objects;
 
 
 public class Angle implements Serializable {
-
     private transient IntegerProperty idAngle;
+    private transient StringProperty namePointFromTable;
     private transient StringProperty vAngle;
     private transient StringProperty hAngle;
 
-    public Angle(int idAngl, String vAngle, String hAngle) {
-        this.idAngle = new SimpleIntegerProperty(idAngl);
+    public Angle(int idAngle, String namePointFromTable, String vAngle, String hAngle) {
+        this.idAngle = new SimpleIntegerProperty(idAngle);
+        this.namePointFromTable = new SimpleStringProperty(namePointFromTable);
         this.vAngle = new SimpleStringProperty(vAngle);
         this.hAngle = new SimpleStringProperty(hAngle);
     }
 
+    public final String getNamePointFromTable() {
+        return this.namePointFromTable.get();
+    }
+
+    public final void  setNamePointFromTable(String namePointFromTable){
+        this.namePointFromTable.set(namePointFromTable);
+    }
     public final int getIdAngle() {
         return this.idAngle.get();
     }

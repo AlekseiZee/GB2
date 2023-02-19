@@ -1,70 +1,113 @@
 package ru.geobuilder_2;
 
-public class Point {
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-    private Integer idPoint;
-    private String namePoint;
-    private String distancePoint;
-    private String vAnglePoint;
-    private String hAnglePoint;
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Point implements Serializable {
+
+    private transient IntegerProperty idPoint;
+    private transient StringProperty namePoint;
+    private transient StringProperty distancePoint;
+    private transient StringProperty vAnglePoint;
+    private transient StringProperty hAnglePoint;
 
     public Point(Integer idPoint, String namePoint, String distancePoint, String vAnglePoint, String hAnglePoint) {
-        this.setIdPoint(idPoint);
-        this.setNamePoint(namePoint);
-        this.setDistancePoint(distancePoint);
-        this.setVAnglePoint(vAnglePoint);
-        this.setHAnglePoint(hAnglePoint);
+        this.idPoint = new SimpleIntegerProperty(idPoint);
+        this.namePoint = new SimpleStringProperty(namePoint);
+        this.distancePoint = new SimpleStringProperty(distancePoint);
+        this.vAnglePoint = new SimpleStringProperty(vAnglePoint);
+        this.hAnglePoint = new SimpleStringProperty(hAnglePoint);
+
     }
 
-    public Integer getIdPoint() {
-        return idPoint;
+    public final int getIdPoint() {
+        return this.idPoint.get();
     }
 
-    public void setIdPoint(Integer idPoint) {
-        this.idPoint = idPoint;
+    public final void setIdPoint(Integer idPoint) {
+        this.idPoint.set(idPoint);
     }
 
-    public String getNamePoint() {
-        return namePoint;
+    public final String getNamePoint() {
+        return this.namePoint.get();
     }
 
-    public void setNamePoint(String namePoint) {
-        this.namePoint = namePoint;
+    public final void setNamePoint(String namePoint) {
+        this.namePoint.set(namePoint);
     }
 
-    public String getDistancePoint() {
-        return distancePoint;
+    public final String getDistancePoint() {
+        return this.distancePoint.get();
     }
 
-    public void setDistancePoint(String distancePoint) {
-        this.distancePoint = distancePoint;
+    public final void setDistancePoint(String distancePoint) {
+        this.distancePoint.set(distancePoint);
     }
 
-    public String getVAnglePoint() {
-        return vAnglePoint;
+    public final String getVAnglePoint() {
+        return this.vAnglePoint.get();
     }
 
-    public void setVAnglePoint(String vAnglePoint) {
-        this.vAnglePoint = vAnglePoint;
+    public final void setVAnglePoint(String vAnglePoint) {
+        this.vAnglePoint.set(vAnglePoint);
     }
 
-    public String getHAnglePoint() {
-        return hAnglePoint;
+    public final String getHAnglePoint() {
+        return this.hAnglePoint.get();
     }
 
-    public void setHAnglePoint(String hAnglePoint) {
-        this.hAnglePoint = hAnglePoint;
+    public final void setHAnglePoint(String hAnglePoint) {
+        this.hAnglePoint.set(hAnglePoint);
     }
 
     @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + Objects.hashCode(this.idPoint.get());
+        hash = 61 * hash + Objects.hashCode(this.namePoint.get());
+        hash = 61 * hash + Objects.hashCode(this.distancePoint.get());
+        hash = 61 * hash + Objects.hashCode(this.vAnglePoint.get());
+        hash = 61 * hash + Objects.hashCode(this.hAnglePoint.get());
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Point other = (Point) obj;
+        if (this.idPoint.get() != other.idPoint.get()) {
+            return false;
+        }
+        if (this.namePoint.get() != other.namePoint.get()) {
+            return false;
+        }
+        if (this.distancePoint.get() != other.distancePoint.get()) {
+            return false;
+        }
+        if (this.vAnglePoint.get() != other.vAnglePoint.get()) {
+            return false;
+        }
+        if (this.hAnglePoint.get() != other.hAnglePoint.get()) {
+            return false;
+        }
+        return true;
+    }
+    @Override
     public String toString() {
-        return "Point{" +
-                "idPoint=" + idPoint +
-                ", namePoint='" + namePoint + '\'' +
-                ", distancePoint='" + distancePoint + '\'' +
-                ", vAnglePoint='" + vAnglePoint + '\'' +
-                ", hAnglePoint='" + hAnglePoint + '\'' +
-                '}';
+        return "Point [idPoint=" + this.idPoint.get() + "\n" +  ", namePoint=" +
+                this.namePoint.get() + "\n" + ", distancePoint=" +
+                this.distancePoint.get() +  "\n" + ", vAnglePoint=" +
+                this.vAnglePoint.get() + "\n" + ", hAnglePoint=" + this.hAnglePoint.get() + "]";
     }
 }
 
