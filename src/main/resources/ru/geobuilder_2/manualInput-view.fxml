@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="724.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_manualInput">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="903.0" prefWidth="1245.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_manualInput">
    <children>
       <AnchorPane prefHeight="34.0" prefWidth="757.0" style="-fx-background-color: #494949;">
          <children>
@@ -42,13 +42,13 @@
             <Label layoutX="14.0" layoutY="1.0" prefHeight="25.0" prefWidth="175.0" text="Журнал угловых измерений" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="842.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="826.0" prefWidth="1245.0">
          <children>
-            <Pane prefHeight="648.0" prefWidth="842.0">
+            <Pane prefHeight="826.0" prefWidth="1245.0">
                <children>
-                  <AnchorPane layoutY="-2.0" prefHeight="181.0" prefWidth="842.0">
+                  <AnchorPane layoutY="-2.0" prefHeight="227.0" prefWidth="1245.0">
                      <children>
-                        <TableView fx:id="pointTable" layoutX="14.0" layoutY="11.0" prefHeight="150.0" prefWidth="355.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="515.0" AnchorPane.topAnchor="13.0">
+                        <TableView fx:id="pointTable" layoutX="14.0" layoutY="11.0" prefHeight="172.0" prefWidth="311.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="920.0" AnchorPane.topAnchor="13.0">
                            <columns>
                               <TableColumn fx:id="idPCol" prefWidth="26.0" text=" №&#10;п.п" />
                               <TableColumn fx:id="namePCol" onEditCommit="#onEditChangerNamePoint" prefWidth="36.0" text="Ст-ка" />
@@ -57,106 +57,32 @@
                               <TableColumn fx:id="hAnglePCol" onEditCommit="#onEditChangerHAngPoint" prefWidth="89.0" text="Гор. нач. уг." />
                            </columns>
                         </TableView>
-                        <Button fx:id="addLinePointButton" layoutX="333.0" layoutY="15.0" mnemonicParsing="false" onAction="#addLinePoint" text="+">
+                        <Button fx:id="addLinePointButton" layoutX="14.0" layoutY="199.0" mnemonicParsing="false" onAction="#addLinePoint" text="+">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
                         </Button>
-                        <Label layoutX="363.0" layoutY="15.0" prefHeight="22.0" prefWidth="103.0" text="Добавить стоянку">
+                        <Label layoutX="44.0" layoutY="199.0" prefHeight="22.0" prefWidth="103.0" text="Добавить стоянку">
                            <font>
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="removeLinePointButton" layoutX="333.0" layoutY="50.0" mnemonicParsing="false" onAction="#removeLinePoint" prefHeight="22.0" prefWidth="21.0" text="-">
+                        <Button fx:id="removeLinePointButton" layoutX="157.0" layoutY="199.0" mnemonicParsing="false" onAction="#removeLinePoint" prefHeight="22.0" prefWidth="21.0" text="-">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
                         </Button>
-                        <Label layoutX="363.0" layoutY="50.0" prefHeight="22.0" prefWidth="103.0" text="Удалить стоянку">
+                        <Label layoutX="187.0" layoutY="199.0" prefHeight="22.0" prefWidth="103.0" text="Удалить стоянку">
                            <font>
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                      <AnchorPane layoutX="464.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="166.0" prefWidth="349.0">
+                      <AnchorPane layoutX="497.0" layoutY="7.0" minHeight="0.0" minWidth="0.0" prefHeight="166.0" prefWidth="349.0">
                            <children>
-                              <TextFlow fx:id="massage" layoutX="-1.0" prefHeight="166.0" prefWidth="349.0" />
-                           </children></AnchorPane>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane layoutX="14.0" layoutY="170.0" prefHeight="382.0" prefWidth="831.0">
-                     <children>
-                        <TableView fx:id="angleTable" prefHeight="382.0" prefWidth="816.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="15.0">
-                           <columns>
-                              <TableColumn fx:id="idAngleCol" prefWidth="28.0" text=" №&#10;п.п." />
-                              <TableColumn fx:id="namePointFromTableCol" prefWidth="48.0" text="Ст-ка" />
-                              <TableColumn fx:id="nameAnglePCol" prefWidth="160.0" text="A">
-                                 <columns>
-                                    <TableColumn fx:id="vAngleCol" onEditCommit="#onEditChangerVAngle" prefWidth="75.0" text="Верт. угол" />
-                                    <TableColumn fx:id="hAngleCol" onEditCommit="#onEditChangerHAngle" prefWidth="76.0" text="Гор. угол" />
-                                 </columns>
-                              </TableColumn>
-                           </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane layoutY="559.0" prefHeight="89.0" prefWidth="842.0">
-                     <children>
-                        <Button fx:id="addLineAnglesButton" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#addLineAngles" text="+">
-                           <font>
-                              <Font name="Times New Roman Bold" size="11.0" />
-                           </font>
-                        </Button>
-                        <Label layoutX="43.0" layoutY="12.0" prefHeight="22.0" prefWidth="97.0" text="Добавить углы">
-                           <font>
-                              <Font name="Times New Roman" size="12.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="addColumnPointButton" layoutX="178.0" layoutY="11.0" mnemonicParsing="false" onAction="#addColumnPoint" text="+">
-                           <font>
-                              <Font name="Times New Roman Bold" size="11.0" />
-                           </font>
-                        </Button>
-                        <Label layoutX="209.0" layoutY="11.0" prefHeight="22.0" prefWidth="103.0" text="Добавить стоянку">
-                           <font>
-                              <Font name="Times New Roman" size="12.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="removePointButton" layoutX="178.0" layoutY="48.0" mnemonicParsing="false" onAction="#removeColumnPoint" prefHeight="22.0" prefWidth="21.0" text="-">
-                           <font>
-                              <Font name="Times New Roman Bold" size="11.0" />
-                           </font>
-                        </Button>
-                        <Label layoutX="209.0" layoutY="48.0" prefHeight="22.0" prefWidth="103.0" text="Удалить стоянку">
-                           <font>
-                              <Font name="Times New Roman" size="12.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="removeLineAngleButton" layoutX="14.0" layoutY="48.0" mnemonicParsing="false" onAction="#removeLineAngles" prefHeight="22.0" prefWidth="21.0" text="-">
-                           <font>
-                              <Font name="Times New Roman Bold" size="11.0" />
-                           </font>
-                        </Button>
-                        <Label layoutX="43.0" layoutY="48.0" prefHeight="22.0" prefWidth="103.0" text="Удалить углы">
-                           <font>
-                              <Font name="Times New Roman" size="12.0" />
-                           </font>
-                        </Label>
-                        <HBox layoutX="403.0" layoutY="45.0" prefHeight="28.0" prefWidth="425.0">
-                           <children>
-                              <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goingBackToNewCal" prefHeight="26.0" prefWidth="128.0" text="Вернуться назад">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Применить" />
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Выйти">
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
-                              </Button>
+                              <TextFlow fx:id="massage" prefHeight="166.0" prefWidth="349.0" />
                            </children>
-                        </HBox>
-                        <HBox layoutX="540.0" layoutY="2.0" prefHeight="25.0" prefWidth="288.0">
+                        </AnchorPane>
+                        <HBox layoutX="810.0" layoutY="197.0" prefHeight="25.0" prefWidth="288.0">
                            <children>
                               <RadioButton mnemonicParsing="false" selected="true" text="Градусы">
                                  <padding>
@@ -174,6 +100,219 @@
                               <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="74.0" text="Радианы" toggleGroup="$unitOfMeasurementOfAngles" />
                            </children>
                         </HBox>
+                        <HBox layoutX="362.0" layoutY="192.0" prefHeight="28.0" prefWidth="425.0">
+                           <children>
+                              <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goingBackToNewCal" prefHeight="26.0" prefWidth="128.0" text="Вернуться назад">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Применить" />
+                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Выйти">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="14.0" layoutY="234.0" prefHeight="499.0" prefWidth="1231.0">
+                     <children>
+                        <HBox prefHeight="499.0" prefWidth="1086.0">
+                           <children>
+                              <TableView fx:id="angleTable" prefHeight="279.0" prefWidth="181.0">
+                                 <columns>
+                                    <TableColumn fx:id="idAngleCol" prefWidth="28.0" text=" №&#10;п.п." />
+                                    <TableColumn fx:id="nameAnglePCol" prefWidth="160.0" text="A">
+                                       <columns>
+                                          <TableColumn fx:id="vAngleCol" onEditCommit="#onEditChangerVAngle" prefWidth="75.0" text="Верт. угол" />
+                                          <TableColumn fx:id="hAngleCol" onEditCommit="#onEditChangerHAngle" prefWidth="76.0" text="Гор. угол" />
+                                       </columns>
+                                    </TableColumn>
+                                 </columns>
+                              </TableView>
+                              <TableView fx:id="angleTable1" disable="true" prefHeight="279.0" prefWidth="181.0">
+                                 <columns>
+                                    <TableColumn fx:id="idAngleCol1" prefWidth="28.0" text=" №&#10;п.п." />
+                                    <TableColumn fx:id="nameAnglePCol1" prefWidth="160.0">
+                                       <columns>
+                                          <TableColumn fx:id="vAngleCol1" onEditCommit="#onEditChangerVAngle" prefWidth="75.0" text="Верт. угол" />
+                                          <TableColumn fx:id="hAngleCol1" onEditCommit="#onEditChangerHAngle" prefWidth="76.0" text="Гор. угол" />
+                                       </columns>
+                                    </TableColumn>
+                                 </columns>
+                              </TableView>
+                              <TableView fx:id="angleTable2" disable="true" prefHeight="279.0" prefWidth="181.0">
+                                 <columns>
+                                    <TableColumn fx:id="idAngleCol2" prefWidth="28.0" text=" №&#10;п.п." />
+                                    <TableColumn fx:id="nameAnglePCol2" prefWidth="160.0">
+                                       <columns>
+                                          <TableColumn fx:id="vAngleCol2" onEditCommit="#onEditChangerVAngle" prefWidth="75.0" text="Верт. угол" />
+                                          <TableColumn fx:id="hAngleCol2" onEditCommit="#onEditChangerHAngle" prefWidth="76.0" text="Гор. угол" />
+                                       </columns>
+                                    </TableColumn>
+                                 </columns>
+                              </TableView>
+                              <TableView fx:id="angleTable3" disable="true" prefHeight="279.0" prefWidth="181.0">
+                                 <columns>
+                                    <TableColumn fx:id="idAngleCol3" prefWidth="28.0" text=" №&#10;п.п." />
+                                    <TableColumn fx:id="nameAnglePCol3" prefWidth="160.0">
+                                       <columns>
+                                          <TableColumn fx:id="vAngleCol3" onEditCommit="#onEditChangerVAngle" prefWidth="75.0" text="Верт. угол" />
+                                          <TableColumn fx:id="hAngleCol3" onEditCommit="#onEditChangerHAngle" prefWidth="76.0" text="Гор. угол" />
+                                       </columns>
+                                    </TableColumn>
+                                 </columns>
+                              </TableView>
+                              <TableView fx:id="angleTable4" disable="true" prefHeight="279.0" prefWidth="181.0">
+                                 <columns>
+                                    <TableColumn fx:id="idAngleCol4" prefWidth="28.0" text=" №&#10;п.п." />
+                                    <TableColumn fx:id="nameAnglePCol4" prefWidth="160.0">
+                                       <columns>
+                                          <TableColumn fx:id="vAngleCol4" onEditCommit="#onEditChangerVAngle" prefWidth="75.0" text="Верт. угол" />
+                                          <TableColumn fx:id="hAngleCol4" onEditCommit="#onEditChangerHAngle" prefWidth="76.0" text="Гор. угол" />
+                                       </columns>
+                                    </TableColumn>
+                                 </columns>
+                              </TableView>
+                              <TableView fx:id="angleTable5" disable="true" prefHeight="279.0" prefWidth="181.0">
+                                 <columns>
+                                    <TableColumn fx:id="idAngleCol5" prefWidth="28.0" text=" №&#10;п.п." />
+                                    <TableColumn fx:id="nameAnglePCol5" prefWidth="160.0">
+                                       <columns>
+                                          <TableColumn fx:id="vAngleCol5" onEditCommit="#onEditChangerVAngle" prefWidth="75.0" text="Верт. угол" />
+                                          <TableColumn fx:id="hAngleCol5" onEditCommit="#onEditChangerHAngle" prefWidth="76.0" text="Гор. угол" />
+                                       </columns>
+                                    </TableColumn>
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutY="740.0" prefHeight="86.0" prefWidth="1245.0">
+                     <children>
+                        <Button fx:id="addLineAnglesButton" layoutX="22.0" layoutY="11.0" mnemonicParsing="false" onAction="#addLineAngles" text="+">
+                           <font>
+                              <Font name="Times New Roman Bold" size="11.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="51.0" layoutY="12.0" prefHeight="22.0" prefWidth="97.0" text="Добавить углы">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="removeLineAngleButton" layoutX="22.0" layoutY="48.0" mnemonicParsing="false" onAction="#removeLineAngles" prefHeight="22.0" prefWidth="21.0" text="-">
+                           <font>
+                              <Font name="Times New Roman Bold" size="11.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="51.0" layoutY="48.0" prefHeight="22.0" prefWidth="103.0" text="Удалить углы">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="208.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles1" text="+">
+                           <font>
+                              <Font name="Times New Roman Bold" size="11.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="237.0" layoutY="15.0" prefHeight="22.0" prefWidth="97.0" text="Добавить углы">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="208.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles1" prefHeight="22.0" prefWidth="21.0" text="-">
+                           <font>
+                              <Font name="Times New Roman Bold" size="11.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="237.0" layoutY="51.0" prefHeight="22.0" prefWidth="103.0" text="Удалить углы">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="383.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles2" text="+">
+                           <font>
+                              <Font name="Times New Roman Bold" size="11.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="412.0" layoutY="15.0" prefHeight="22.0" prefWidth="97.0" text="Добавить углы">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="383.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles2" prefHeight="22.0" prefWidth="21.0" text="-">
+                           <font>
+                              <Font name="Times New Roman Bold" size="11.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="412.0" layoutY="51.0" prefHeight="22.0" prefWidth="103.0" text="Удалить углы">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="567.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles3" text="+">
+                           <font>
+                              <Font name="Times New Roman Bold" size="11.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="596.0" layoutY="15.0" prefHeight="22.0" prefWidth="97.0" text="Добавить углы">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="567.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles3" prefHeight="22.0" prefWidth="21.0" text="-">
+                           <font>
+                              <Font name="Times New Roman Bold" size="11.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="596.0" layoutY="51.0" prefHeight="22.0" prefWidth="103.0" text="Удалить углы">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="747.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles4" text="+">
+                           <font>
+                              <Font name="Times New Roman Bold" size="11.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="776.0" layoutY="15.0" prefHeight="22.0" prefWidth="97.0" text="Добавить углы">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="747.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles4" prefHeight="22.0" prefWidth="21.0" text="-">
+                           <font>
+                              <Font name="Times New Roman Bold" size="11.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="776.0" layoutY="51.0" prefHeight="22.0" prefWidth="103.0" text="Удалить углы">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="928.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles5" text="+">
+                           <font>
+                              <Font name="Times New Roman Bold" size="11.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="957.0" layoutY="15.0" prefHeight="22.0" prefWidth="97.0" text="Добавить углы">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="928.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles5" prefHeight="22.0" prefWidth="21.0" text="-">
+                           <font>
+                              <Font name="Times New Roman Bold" size="11.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="957.0" layoutY="51.0" prefHeight="22.0" prefWidth="103.0" text="Удалить углы">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </children>

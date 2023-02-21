@@ -12,10 +12,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
-import java.util.List;
-
-//import static ru.geobuilder_2.Point.setCountPoint;
-
 public class Controller_manualInput {
 
     @FXML
@@ -26,6 +22,22 @@ public class Controller_manualInput {
 
     @FXML
     private TableView<Point> pointTable;
+
+    @FXML
+    private TableColumn nameAnglePCol1;
+
+    @FXML
+    private TableColumn nameAnglePCol2;
+
+    @FXML
+    private TableColumn nameAnglePCol3;
+
+    @FXML
+    private TableColumn nameAnglePCol4;
+
+    @FXML
+    private TableColumn nameAnglePCol5;
+
 
     @FXML
     private TableColumn<Point, String> idPCol;
@@ -43,34 +55,34 @@ public class Controller_manualInput {
     private TableColumn<Point, String> hAnglePCol;
 
     @FXML
-    private TableView<Angle> angleTable;
+    private TableView<Angle> angleTable, angleTable1, angleTable2, angleTable3, angleTable4, angleTable5;
 
     @FXML
-    private TableColumn<Angle, Integer> idAngleCol;
+    private TableColumn<Angle, Integer> idAngleCol, idAngleCol1, idAngleCol2, idAngleCol3, idAngleCol4, idAngleCol5;
 
     @FXML
-    private TableColumn<Angle, String> namePointFromTableCol;
-
-    @FXML
-    private TableColumn<Angle, String> vAngleCol;
+    private TableColumn<Angle, String> vAngleCol, vAngleCol1, hAngleCol1, vAngleCol2, hAngleCol2,
+            vAngleCol3, hAngleCol3, vAngleCol4, hAngleCol4, vAngleCol5, hAngleCol5;
 
     @FXML
     private TableColumn<Angle, String> hAngleCol;
 
     private ObservableList<Point> pointsData = FXCollections.observableArrayList();
-
     private ObservableList<Angle> anglesData = FXCollections.observableArrayList();
+    private ObservableList<Angle> anglesData1 = FXCollections.observableArrayList();
+    private ObservableList<Angle> anglesData2 = FXCollections.observableArrayList();
+    private ObservableList<Angle> anglesData3 = FXCollections.observableArrayList();
+    private ObservableList<Angle> anglesData4 = FXCollections.observableArrayList();
+    private ObservableList<Angle> anglesData5 = FXCollections.observableArrayList();
+    
+    
 
     @FXML
     private void initialize() {
 
-        Point point = new Point(this.pointTable.getItems().size()+1, "A", "",
+        Point point = new Point(this.pointTable.getItems().size() + 1, "A", "",
                 "", "");
         pointsData.add(point);
-
-        Angle angle = new Angle(this.angleTable.getItems().size()+1,
-                "A","54321", "56473829");
-        anglesData.add(angle);
 
         // Таблица Points
         idPCol.setCellValueFactory(new PropertyValueFactory<Point, String>("idPoint"));
@@ -89,11 +101,9 @@ public class Controller_manualInput {
         vAnglePCol.setCellFactory(TextFieldTableCell.forTableColumn());
         hAnglePCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        // Таблица Angles
+        // Таблица Angles0
         // Инициализация таблицы адресатов с двумя столбцами.
-
         idAngleCol.setCellValueFactory(new PropertyValueFactory<Angle, Integer>("idAngle"));
-        namePointFromTableCol.setCellValueFactory(new PropertyValueFactory<Angle, String>("namePointFromTable"));
         vAngleCol.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
         hAngleCol.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
 
@@ -103,6 +113,74 @@ public class Controller_manualInput {
         // Разрешаем вносить изменение в определенную колонку
         vAngleCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
         hAngleCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+
+        // Таблица Angles1
+        // Инициализация таблицы адресатов с двумя столбцами.
+        idAngleCol1.setCellValueFactory(new PropertyValueFactory<Angle, Integer>("idAngle"));
+        vAngleCol1.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
+        hAngleCol1.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
+
+        angleTable1.setItems(anglesData1);
+        angleTable1.setEditable(true);
+
+        // Разрешаем вносить изменение в определенную колонку
+        vAngleCol1.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+        hAngleCol1.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+
+        // Таблица Angles2
+        // Инициализация таблицы адресатов с двумя столбцами.
+        idAngleCol2.setCellValueFactory(new PropertyValueFactory<Angle, Integer>("idAngle"));
+        vAngleCol2.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
+        hAngleCol2.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
+
+        angleTable2.setItems(anglesData2);
+        angleTable2.setEditable(true);
+
+        // Разрешаем вносить изменение в определенную колонку
+        vAngleCol2.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+        hAngleCol2.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+
+        // Таблица Angles3
+        // Инициализация таблицы адресатов с двумя столбцами.
+        idAngleCol3.setCellValueFactory(new PropertyValueFactory<Angle, Integer>("idAngle"));
+        vAngleCol3.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
+        hAngleCol3.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
+
+        angleTable3.setItems(anglesData3);
+        angleTable3.setEditable(true);
+
+        // Разрешаем вносить изменение в определенную колонку
+        vAngleCol3.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+        hAngleCol3.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+
+        // Таблица Angles4
+        // Инициализация таблицы адресатов с двумя столбцами.
+        idAngleCol4.setCellValueFactory(new PropertyValueFactory<Angle, Integer>("idAngle"));
+        vAngleCol4.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
+        hAngleCol4.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
+
+        angleTable4.setItems(anglesData4);
+        angleTable4.setEditable(true);
+
+        // Разрешаем вносить изменение в определенную колонку
+        vAngleCol4.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+        hAngleCol4.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+
+        // Таблица Angles5
+        // Инициализация таблицы адресатов с двумя столбцами.
+        idAngleCol5.setCellValueFactory(new PropertyValueFactory<Angle, Integer>("idAngle"));
+        vAngleCol5.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
+        hAngleCol5.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
+
+        angleTable5.setItems(anglesData5);
+        angleTable5.setEditable(true);
+
+        // Разрешаем вносить изменение в определенную колонку
+        vAngleCol5.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+        hAngleCol5.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+
+        // Добавляем слушателя для автоматического отслеживания изменений в листе
+        pointsData.addListener((ListChangeListener<Point>) c -> updateNamePoint());
 
 
 //        // Добавляем слушателя для автоматического отслеживания изменений в листе
@@ -127,19 +205,36 @@ public class Controller_manualInput {
         vAnglePCol.setSortable(false);
         hAnglePCol.setSortable(false);
 
-        namePointFromTableCol.setSortable(false);
         idAngleCol.setSortable(false);
         vAngleCol.setSortable(false);
         hAngleCol.setSortable(false);
     }
 
-    private void printP(){
+    private void updateNamePoint(){
+        if(!angleTable1.isDisabled()) {
+            nameAnglePCol1.setText(pointsData.get(1).getNamePoint());
+        }
+        if(!angleTable2.isDisabled()){
+            nameAnglePCol2.setText(pointsData.get(2).getNamePoint());
+        }
+        if(!angleTable3.isDisabled()) {
+            nameAnglePCol3.setText(pointsData.get(3).getNamePoint());
+        }
+        if(!angleTable4.isDisabled()) {
+            nameAnglePCol4.setText(pointsData.get(4).getNamePoint());
+        }
+        if(!angleTable5.isDisabled()) {
+            nameAnglePCol5.setText(pointsData.get(5).getNamePoint());
+        }
+    }
+
+    private void printP() {
         massage.getChildren().add(new Text("Работает метод"));
     }
 
     // Проверка вводимых данных в ячейку namePCol
-    private void checkingInputData(Point point){
-        if(!pointTable.getItems().isEmpty()) {
+    private void checkingInputData(Point point) {
+        if (!pointTable.getItems().isEmpty()) {
             massage.getChildren().clear();
             massage.getChildren().add(new Text("Ячейка не пустая"));
         } else {
@@ -171,80 +266,171 @@ public class Controller_manualInput {
 
     // Добавление стоянки (Point)
     @FXML
-    private void addLinePoint(){
+    private void addLinePoint() {
 
-        Point point = new Point(this.pointTable.getItems().size()+1, "", "", "", "");
+        Point point = new Point(this.pointTable.getItems().size() + 1, "",
+                "", "", "");
         pointsData.add(point);
+
+        switch (this.pointTable.getItems().size() + 1){
+            case 1 -> angleTable1.setDisable(false);
+            case 2 -> {
+                angleTable1.setDisable(false);
+                angleTable2.setDisable(false);
+            } break;
+            case 3 -> {
+                angleTable1.setDisable(false);
+                angleTable2.setDisable(false);
+                angleTable3.setDisable(false);
+            }
+            case 4 -> {
+                angleTable1.setDisable(false);
+                angleTable2.setDisable(false);
+                angleTable3.setDisable(false);
+                angleTable4.setDisable(false);
+            }
+            case 5 -> {
+                angleTable1.setDisable(false);
+                angleTable2.setDisable(false);
+                angleTable3.setDisable(false);
+                angleTable4.setDisable(false);
+                angleTable5.setDisable(false);
+            }
+            case 6 -> {
+                angleTable1.setDisable(false);
+                angleTable2.setDisable(false);
+                angleTable3.setDisable(false);
+                angleTable4.setDisable(false);
+                angleTable5.setDisable(false);
+            }
+        }
     }
 
     // Удаление стоянки (Point)
     @FXML
     private void removeLinePoint() {
-        if(pointsData.size() > 1) {
+
+        if (pointsData.size() > 1) {
             pointTable.getItems().remove(pointsData.size() - 1);
         }
     }
-    //String nP = pointsData.get(pointsData.size()-1).getNamePoint();
-    //pointTable.()
-    // Добавление углов (Angles)
-    @FXML
-    private void addLineAngles() {
 
-        Angle angle = new Angle(this.angleTable.getItems().size()+1, "", "", "");
-        //angleTable.getItems().add(angle);
-        anglesData.add(angle);
+    // Добавление углов (Angles)
+    private void addLineAng(ObservableList anglesDataList, String namePointFromTable) {
+
+        updateNamePoint();
+
+        Angle angle = new Angle(anglesDataList.size() + 1, namePointFromTable, "", "");
+        anglesDataList.add(angle);
     }
 
     // Удаление углов (Angles)
+    private void removeLineAng(ObservableList anglesDataList, TableView angleTable) {
+        angleTable.getItems().remove(anglesDataList.size() - 1);
+    }
+
+    @FXML
+    private void addLineAngles(){
+        addLineAng(anglesData, pointsData.get(0).getNamePoint());
+    }
+
     @FXML
     private void removeLineAngles() {
-        if(anglesData.size() > 1) {
-            angleTable.getItems().remove(anglesData.size() - 1);
-        }
+        removeLineAng(anglesData, angleTable);
     }
 
-    // Добавление новой стоянки
     @FXML
-    public void addColumnPoint() {
-
-        ObservableList<Angle> anglesData2 = FXCollections.observableArrayList();
-
-        Angle angle = new Angle(this.angleTable.getItems().size()+1, "", "12345", "98765");
-        //angleTable.getItems().add(angle);
-        anglesData2.add(angle);
-
-        TableColumn nameAnglePCol = new TableColumn(this.pointsData.get(this.angleTable.getColumns().size()-2).getNamePoint());
-        TableColumn vAngleCol = new TableColumn("Верт2. угол");
-        TableColumn hAngleCol = new TableColumn("Гор2. угол");
-        nameAnglePCol.getColumns().setAll(vAngleCol, hAngleCol);
-        angleTable.getColumns().addAll(nameAnglePCol);
-
-        angleTable.setItems(anglesData2);
-
-        idAngleCol.setCellValueFactory(new PropertyValueFactory<Angle, Integer>("idAngle"));
-        namePointFromTableCol.setCellValueFactory(new PropertyValueFactory<Angle, String>("namePointFromTable"));
-        vAngleCol.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
-        hAngleCol.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
-        angleTable.setItems(anglesData2);
-        angleTable.setEditable(true);
-
-        // Разрешение на ввод данных в ячейку
-        vAngleCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
-        hAngleCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
-
-        idAngleCol.setSortable(false);
-        vAngleCol.setSortable(false);
-        hAngleCol.setSortable(false);
-
+    private void addLineAngles1(){
+        addLineAng(anglesData1, pointsData.get(1).getNamePoint());
     }
 
-    // Удаление стоянки
     @FXML
-    private void removeColumnPoint() {
-        if(angleTable.getColumns().size() > 3){
-            angleTable.getColumns().remove(angleTable.getColumns().size()-1);
-        }
+    private void removeLineAngles1() {
+        removeLineAng(anglesData1, angleTable1);
     }
+
+    @FXML
+    private void addLineAngles2(){
+        addLineAng(anglesData2, pointsData.get(2).getNamePoint());
+    }
+
+    @FXML
+    private void removeLineAngles2() {
+        removeLineAng(anglesData2, angleTable2);
+    }
+
+    @FXML
+    private void addLineAngles3(){
+        addLineAng(anglesData3, pointsData.get(3).getNamePoint());
+    }
+
+    @FXML
+    private void removeLineAngles3() {
+        removeLineAng(anglesData3, angleTable3);
+    }
+
+    @FXML
+    private void addLineAngles4(){
+        addLineAng(anglesData4, pointsData.get(4).getNamePoint());
+    }
+
+    @FXML
+    private void removeLineAngles4() {
+        removeLineAng(anglesData4, angleTable4);
+    }
+
+    @FXML
+    private void addLineAngles5(){
+        addLineAng(anglesData5, pointsData.get(5).getNamePoint());
+    }
+
+    @FXML
+    private void removeLineAngles5() {
+        removeLineAng(anglesData5, angleTable5);
+    }
+
+//    // Добавление новой стоянки
+//    @FXML
+//    public void addColumnPoint() {
+//
+//        ObservableList<Angle> anglesData2 = FXCollections.observableArrayList();
+//
+//        Angle angle = new Angle(this.angleTable.getItems().size()+1, "", "12345", "98765");
+//        //angleTable.getItems().add(angle);
+//        anglesData2.add(angle);
+//
+//        TableColumn nameAnglePCol = new TableColumn(this.pointsData.get(this.angleTable.getColumns().size()-2).getNamePoint());
+//        TableColumn vAngleCol = new TableColumn("Верт2. угол");
+//        TableColumn hAngleCol = new TableColumn("Гор2. угол");
+//        nameAnglePCol.getColumns().setAll(vAngleCol, hAngleCol);
+//        angleTable.getColumns().addAll(nameAnglePCol);
+//
+//        angleTable.setItems(anglesData2);
+//
+//        idAngleCol.setCellValueFactory(new PropertyValueFactory<Angle, Integer>("idAngle"));
+//        namePointFromTableCol.setCellValueFactory(new PropertyValueFactory<Angle, String>("namePointFromTable"));
+//        vAngleCol.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
+//        hAngleCol.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
+//        angleTable.setItems(anglesData2);
+//        angleTable.setEditable(true);
+//
+//        // Разрешение на ввод данных в ячейку
+//        vAngleCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+//        hAngleCol.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+//
+//        idAngleCol.setSortable(false);
+//        vAngleCol.setSortable(false);
+//        hAngleCol.setSortable(false);
+//
+//    }
+//
+//    // Удаление стоянки
+//    @FXML
+//    private void removeColumnPoint() {
+//        if(angleTable.getColumns().size() > 3){
+//            angleTable.getColumns().remove(angleTable.getColumns().size()-1);
+//        }
+//    }
 
 //    private String nameP = pointsData.get(pointsData.size() - 1).getNamePoint();;
 //
@@ -276,10 +462,10 @@ public class Controller_manualInput {
     }
 
 
-   public void onEditChangerVAngle(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+    public void onEditChangerVAngle(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
         Angle angle = angleTable.getSelectionModel().getSelectedItem();
         angle.setVAngle(angleStringCellEditEvent.getNewValue());
-   }
+    }
 
     public void onEditChangerHAngle(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
         Angle angle = angleTable.getSelectionModel().getSelectedItem();
@@ -288,6 +474,7 @@ public class Controller_manualInput {
 
     /**
      * Возвращаемся в окно "Новый расчет"
+     *
      * @param event
      */
     @FXML

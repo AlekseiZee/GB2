@@ -583,11 +583,11 @@ public class Controller_NewCalculation {
         try {
             FXMLLoader fxmlLoaderManualInput = new FXMLLoader(Controller_NewCalculation.class.getResource("manualInput-view.fxml"));
             Stage stageMan = new Stage();
-            Scene sceneMan = new Scene(fxmlLoaderManualInput.load(), 905, 723);
-            stageMan.setMinWidth(905);
-            stageMan.setMinHeight(723);
-            stageMan.setMinWidth(905);
-            stageMan.setMinHeight(723);
+            Scene sceneMan = new Scene(fxmlLoaderManualInput.load(), 1245, 903);
+            stageMan.setMinWidth(1245);
+            stageMan.setMinHeight(903);
+            stageMan.setMinWidth(1245);
+            stageMan.setMinHeight(903);
             stageMan.setTitle("Table");
             stageMan.setScene(sceneMan);
             stageMan.show();
