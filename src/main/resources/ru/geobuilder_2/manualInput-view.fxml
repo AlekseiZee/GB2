@@ -48,7 +48,7 @@
                <children>
                   <AnchorPane layoutY="-2.0" prefHeight="227.0" prefWidth="1245.0">
                      <children>
-                        <TableView fx:id="pointTable" layoutX="14.0" layoutY="11.0" prefHeight="172.0" prefWidth="311.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="920.0" AnchorPane.topAnchor="13.0">
+                        <TableView fx:id="pointTable" layoutX="14.0" layoutY="11.0" prefHeight="174.0" prefWidth="314.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="917.0" AnchorPane.topAnchor="13.0">
                            <columns>
                               <TableColumn fx:id="idPCol" prefWidth="26.0" text=" №&#10;п.п" />
                               <TableColumn fx:id="namePCol" onEditCommit="#onEditChangerNamePoint" prefWidth="36.0" text="Ст-ка" />
@@ -100,21 +100,7 @@
                               <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="74.0" text="Радианы" toggleGroup="$unitOfMeasurementOfAngles" />
                            </children>
                         </HBox>
-                        <HBox layoutX="362.0" layoutY="192.0" prefHeight="28.0" prefWidth="425.0">
-                           <children>
-                              <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goingBackToNewCal" prefHeight="26.0" prefWidth="128.0" text="Вернуться назад">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Применить" />
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Выйти">
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                        </HBox>
+                        <HBox layoutX="362.0" layoutY="192.0" prefHeight="28.0" prefWidth="425.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="14.0" layoutY="234.0" prefHeight="499.0" prefWidth="1231.0">
@@ -189,6 +175,20 @@
                               </TableView>
                            </children>
                         </HBox>
+                        <VBox layoutX="1095.0" layoutY="362.0" prefHeight="137.0" prefWidth="128.0">
+                           <children>
+                              <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goingBackToNewCal" prefHeight="0.0" prefWidth="128.0" text="Вернуться назад">
+                                 <VBox.margin>
+                                    <Insets bottom="30.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Применить">
+                                 <VBox.margin>
+                                    <Insets bottom="30.0" />
+                                 </VBox.margin></Button>
+                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Выйти" />
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutY="740.0" prefHeight="86.0" prefWidth="1245.0">
@@ -213,7 +213,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button layoutX="208.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles1" text="+">
+                        <Button fx:id="adderPoint1" layoutX="208.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles1" text="+">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -223,7 +223,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button layoutX="208.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles1" prefHeight="22.0" prefWidth="21.0" text="-">
+                        <Button fx:id="removerPoint1" layoutX="208.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles1" prefHeight="22.0" prefWidth="21.0" text="-">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -233,7 +233,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button layoutX="383.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles2" text="+">
+                        <Button fx:id="adderPoint2" layoutX="383.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles2" text="+">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -243,7 +243,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button layoutX="383.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles2" prefHeight="22.0" prefWidth="21.0" text="-">
+                        <Button fx:id="removerPoint2" layoutX="383.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles2" prefHeight="22.0" prefWidth="21.0" text="-">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -253,7 +253,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button layoutX="567.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles3" text="+">
+                        <Button fx:id="adderPoint3" layoutX="567.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles3" text="+">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -263,7 +263,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button layoutX="567.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles3" prefHeight="22.0" prefWidth="21.0" text="-">
+                        <Button fx:id="removerPoint3" layoutX="567.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles3" prefHeight="22.0" prefWidth="21.0" text="-">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -273,7 +273,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button layoutX="747.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles4" text="+">
+                        <Button fx:id="adderPoint4" layoutX="747.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles4" text="+">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -283,7 +283,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button layoutX="747.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles4" prefHeight="22.0" prefWidth="21.0" text="-">
+                        <Button fx:id="removerPoint4" layoutX="747.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles4" prefHeight="22.0" prefWidth="21.0" text="-">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -293,7 +293,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button layoutX="928.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles5" text="+">
+                        <Button fx:id="adderPoint5" layoutX="928.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles5" text="+">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -303,7 +303,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button layoutX="928.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles5" prefHeight="22.0" prefWidth="21.0" text="-">
+                        <Button fx:id="removerPoint5" layoutX="928.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles5" prefHeight="22.0" prefWidth="21.0" text="-">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>

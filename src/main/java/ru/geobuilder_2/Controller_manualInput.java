@@ -15,6 +15,10 @@ import javafx.scene.text.TextFlow;
 public class Controller_manualInput {
 
     @FXML
+    private Button adderPoint1, adderPoint2, adderPoint3, adderPoint4, adderPoint5,
+            removerPoint1, removerPoint2, removerPoint3, removerPoint4, removerPoint5;
+
+    @FXML
     private TextFlow massage;
 
     @FXML
@@ -267,41 +271,71 @@ public class Controller_manualInput {
     // Добавление стоянки (Point)
     @FXML
     private void addLinePoint() {
+        if (this.pointTable.getItems().size() < 6) {
+            Point point = new Point(this.pointTable.getItems().size() + 1, "",
+                    "", "", "");
+            pointsData.add(point);
 
-        Point point = new Point(this.pointTable.getItems().size() + 1, "",
-                "", "", "");
-        pointsData.add(point);
-
-        switch (this.pointTable.getItems().size() + 1){
-            case 1 -> angleTable1.setDisable(false);
-            case 2 -> {
-                angleTable1.setDisable(false);
-                angleTable2.setDisable(false);
-            } break;
-            case 3 -> {
-                angleTable1.setDisable(false);
-                angleTable2.setDisable(false);
-                angleTable3.setDisable(false);
-            }
-            case 4 -> {
-                angleTable1.setDisable(false);
-                angleTable2.setDisable(false);
-                angleTable3.setDisable(false);
-                angleTable4.setDisable(false);
-            }
-            case 5 -> {
-                angleTable1.setDisable(false);
-                angleTable2.setDisable(false);
-                angleTable3.setDisable(false);
-                angleTable4.setDisable(false);
-                angleTable5.setDisable(false);
-            }
-            case 6 -> {
-                angleTable1.setDisable(false);
-                angleTable2.setDisable(false);
-                angleTable3.setDisable(false);
-                angleTable4.setDisable(false);
-                angleTable5.setDisable(false);
+            switch (this.pointTable.getItems().size() - 1) {
+                case 1 -> {
+                    angleTable1.setDisable(false);
+                    adderPoint1.setDisable(false);
+                    removerPoint1.setDisable(false);
+                }
+                case 2 -> {
+                    angleTable1.setDisable(false);
+                    angleTable2.setDisable(false);
+                    adderPoint1.setDisable(false);
+                    adderPoint2.setDisable(false);
+                    removerPoint1.setDisable(false);
+                    removerPoint2.setDisable(false);
+                    break;
+                }
+                case 3 -> {
+                    angleTable1.setDisable(false);
+                    angleTable2.setDisable(false);
+                    angleTable3.setDisable(false);
+                    adderPoint1.setDisable(false);
+                    adderPoint2.setDisable(false);
+                    adderPoint3.setDisable(false);
+                    removerPoint1.setDisable(false);
+                    removerPoint2.setDisable(false);
+                    removerPoint3.setDisable(false);
+                    break;
+                }
+                case 4 -> {
+                    angleTable1.setDisable(false);
+                    angleTable2.setDisable(false);
+                    angleTable3.setDisable(false);
+                    angleTable4.setDisable(false);
+                    adderPoint1.setDisable(false);
+                    adderPoint2.setDisable(false);
+                    adderPoint3.setDisable(false);
+                    adderPoint4.setDisable(false);
+                    removerPoint1.setDisable(false);
+                    removerPoint2.setDisable(false);
+                    removerPoint3.setDisable(false);
+                    removerPoint4.setDisable(false);
+                    break;
+                }
+                case 5 -> {
+                    angleTable1.setDisable(false);
+                    angleTable2.setDisable(false);
+                    angleTable3.setDisable(false);
+                    angleTable4.setDisable(false);
+                    angleTable5.setDisable(false);
+                    adderPoint1.setDisable(false);
+                    adderPoint2.setDisable(false);
+                    adderPoint3.setDisable(false);
+                    adderPoint4.setDisable(false);
+                    adderPoint5.setDisable(false);
+                    removerPoint1.setDisable(false);
+                    removerPoint2.setDisable(false);
+                    removerPoint3.setDisable(false);
+                    removerPoint4.setDisable(false);
+                    removerPoint5.setDisable(false);
+                    break;
+                }
             }
         }
     }
@@ -311,6 +345,68 @@ public class Controller_manualInput {
     private void removeLinePoint() {
 
         if (pointsData.size() > 1) {
+            switch (this.pointTable.getItems().size() - 1) {
+                case 1 -> {
+                    angleTable1.setDisable(true);
+                    angleTable2.setDisable(true);
+                    angleTable3.setDisable(true);
+                    angleTable4.setDisable(true);
+                    angleTable5.setDisable(true);
+                    adderPoint1.setDisable(true);
+                    adderPoint2.setDisable(true);
+                    adderPoint3.setDisable(true);
+                    adderPoint4.setDisable(true);
+                    adderPoint5.setDisable(true);
+                    removerPoint1.setDisable(true);
+                    removerPoint2.setDisable(true);
+                    removerPoint3.setDisable(true);
+                    removerPoint4.setDisable(true);
+                    removerPoint5.setDisable(true);
+                    break;
+                }
+                case 2 -> {
+                    angleTable2.setDisable(true);
+                    angleTable3.setDisable(true);
+                    angleTable4.setDisable(true);
+                    angleTable5.setDisable(true);
+                    adderPoint2.setDisable(true);
+                    adderPoint3.setDisable(true);
+                    adderPoint4.setDisable(true);
+                    adderPoint5.setDisable(true);
+                    removerPoint2.setDisable(true);
+                    removerPoint3.setDisable(true);
+                    removerPoint4.setDisable(true);
+                    removerPoint5.setDisable(true);
+                    break;
+                }
+                case 3 -> {
+                    angleTable3.setDisable(true);
+                    angleTable4.setDisable(true);
+                    angleTable5.setDisable(true);
+                    adderPoint3.setDisable(true);
+                    adderPoint4.setDisable(true);
+                    adderPoint5.setDisable(true);
+                    removerPoint3.setDisable(true);
+                    removerPoint4.setDisable(true);
+                    removerPoint5.setDisable(true);
+                    break;
+                }
+                case 4 -> {
+                    angleTable4.setDisable(true);
+                    angleTable5.setDisable(true);
+                    adderPoint4.setDisable(true);
+                    adderPoint5.setDisable(true);
+                    removerPoint4.setDisable(true);
+                    removerPoint5.setDisable(true);
+                    break;
+                }
+                case 5 -> {
+                    angleTable5.setDisable(true);
+                    adderPoint5.setDisable(true);
+                    removerPoint5.setDisable(true);
+                    break;
+                }
+            }
             pointTable.getItems().remove(pointsData.size() - 1);
         }
     }
