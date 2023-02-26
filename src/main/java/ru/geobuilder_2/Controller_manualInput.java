@@ -15,8 +15,8 @@ import javafx.scene.text.TextFlow;
 public class Controller_manualInput {
 
     @FXML
-    private Button adderPoint1, adderPoint2, adderPoint3, adderPoint4, adderPoint5,
-            removerPoint1, removerPoint2, removerPoint3, removerPoint4, removerPoint5;
+    private Button adderPoint1, adderPoint2, adderPoint3, adderPoint4, adderPoint5, adderPoint6, adderPoint7,
+            removerPoint1, removerPoint2, removerPoint3, removerPoint4, removerPoint5, removerPoint6, removerPoint7;
 
     @FXML
     private TextFlow massage;
@@ -40,7 +40,7 @@ public class Controller_manualInput {
     private TableColumn nameAnglePCol4;
 
     @FXML
-    private TableColumn nameAnglePCol5;
+    private TableColumn nameAnglePCol5, nameAnglePCol6, nameAnglePCol7;
 
 
     @FXML
@@ -59,14 +59,14 @@ public class Controller_manualInput {
     private TableColumn<Point, String> hAnglePCol;
 
     @FXML
-    private TableView<Angle> angleTable, angleTable1, angleTable2, angleTable3, angleTable4, angleTable5;
+    private TableView<Angle> angleTable, angleTable1, angleTable2, angleTable3, angleTable4, angleTable5, angleTable6, angleTable7;
 
     @FXML
-    private TableColumn<Angle, Integer> idAngleCol, idAngleCol1, idAngleCol2, idAngleCol3, idAngleCol4, idAngleCol5;
+    private TableColumn<Angle, Integer> idAngleCol, idAngleCol1, idAngleCol2, idAngleCol3, idAngleCol4, idAngleCol5, idAngleCol6, idAngleCol7;
 
     @FXML
     private TableColumn<Angle, String> vAngleCol, vAngleCol1, hAngleCol1, vAngleCol2, hAngleCol2,
-            vAngleCol3, hAngleCol3, vAngleCol4, hAngleCol4, vAngleCol5, hAngleCol5;
+            vAngleCol3, hAngleCol3, vAngleCol4, hAngleCol4, vAngleCol5, hAngleCol5, vAngleCol6, hAngleCol6, vAngleCol7, hAngleCol7;
 
     @FXML
     private TableColumn<Angle, String> hAngleCol;
@@ -78,6 +78,10 @@ public class Controller_manualInput {
     private ObservableList<Angle> anglesData3 = FXCollections.observableArrayList();
     private ObservableList<Angle> anglesData4 = FXCollections.observableArrayList();
     private ObservableList<Angle> anglesData5 = FXCollections.observableArrayList();
+
+    private ObservableList<Angle> anglesData6 = FXCollections.observableArrayList();
+
+    private ObservableList<Angle> anglesData7 = FXCollections.observableArrayList();
     
     
 
@@ -183,6 +187,32 @@ public class Controller_manualInput {
         vAngleCol5.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
         hAngleCol5.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
 
+        // Таблица Angles6
+        // Инициализация таблицы адресатов с двумя столбцами.
+        idAngleCol6.setCellValueFactory(new PropertyValueFactory<Angle, Integer>("idAngle"));
+        vAngleCol6.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
+        hAngleCol6.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
+
+        angleTable6.setItems(anglesData6);
+        angleTable6.setEditable(true);
+
+        // Разрешаем вносить изменение в определенную колонку
+        vAngleCol6.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+        hAngleCol6.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+
+        // Таблица Angles7
+        // Инициализация таблицы адресатов с двумя столбцами.
+        idAngleCol7.setCellValueFactory(new PropertyValueFactory<Angle, Integer>("idAngle"));
+        vAngleCol7.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
+        hAngleCol7.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
+
+        angleTable7.setItems(anglesData7);
+        angleTable7.setEditable(true);
+
+        // Разрешаем вносить изменение в определенную колонку
+        vAngleCol7.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+        hAngleCol7.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
+
         // Добавляем слушателя для автоматического отслеживания изменений в листе
         pointsData.addListener((ListChangeListener<Point>) c -> updateNamePoint());
 
@@ -271,7 +301,7 @@ public class Controller_manualInput {
     // Добавление стоянки (Point)
     @FXML
     private void addLinePoint() {
-        if (this.pointTable.getItems().size() < 6) {
+        if (this.pointTable.getItems().size() < 8) {
             Point point = new Point(this.pointTable.getItems().size() + 1, "",
                     "", "", "");
             pointsData.add(point);
@@ -336,6 +366,51 @@ public class Controller_manualInput {
                     removerPoint5.setDisable(false);
                     break;
                 }
+                case 6 -> {
+                    angleTable1.setDisable(false);
+                    angleTable2.setDisable(false);
+                    angleTable3.setDisable(false);
+                    angleTable4.setDisable(false);
+                    angleTable5.setDisable(false);
+                    angleTable6.setDisable(false);
+                    adderPoint1.setDisable(false);
+                    adderPoint2.setDisable(false);
+                    adderPoint3.setDisable(false);
+                    adderPoint4.setDisable(false);
+                    adderPoint5.setDisable(false);
+                    adderPoint6.setDisable(false);
+                    removerPoint1.setDisable(false);
+                    removerPoint2.setDisable(false);
+                    removerPoint3.setDisable(false);
+                    removerPoint4.setDisable(false);
+                    removerPoint5.setDisable(false);
+                    removerPoint6.setDisable(false);
+                    break;
+                }
+                case 7 -> {
+                    angleTable1.setDisable(false);
+                    angleTable2.setDisable(false);
+                    angleTable3.setDisable(false);
+                    angleTable4.setDisable(false);
+                    angleTable5.setDisable(false);
+                    angleTable6.setDisable(false);
+                    angleTable7.setDisable(false);
+                    adderPoint1.setDisable(false);
+                    adderPoint2.setDisable(false);
+                    adderPoint3.setDisable(false);
+                    adderPoint4.setDisable(false);
+                    adderPoint5.setDisable(false);
+                    adderPoint6.setDisable(false);
+                    adderPoint7.setDisable(false);
+                    removerPoint1.setDisable(false);
+                    removerPoint2.setDisable(false);
+                    removerPoint3.setDisable(false);
+                    removerPoint4.setDisable(false);
+                    removerPoint5.setDisable(false);
+                    removerPoint6.setDisable(false);
+                    removerPoint7.setDisable(false);
+                    break;
+                }
             }
         }
     }
@@ -357,11 +432,15 @@ public class Controller_manualInput {
                     adderPoint3.setDisable(true);
                     adderPoint4.setDisable(true);
                     adderPoint5.setDisable(true);
+                    adderPoint6.setDisable(true);
+                    adderPoint7.setDisable(true);
                     removerPoint1.setDisable(true);
                     removerPoint2.setDisable(true);
                     removerPoint3.setDisable(true);
                     removerPoint4.setDisable(true);
                     removerPoint5.setDisable(true);
+                    removerPoint6.setDisable(true);
+                    removerPoint7.setDisable(true);
                     break;
                 }
                 case 2 -> {
@@ -373,10 +452,14 @@ public class Controller_manualInput {
                     adderPoint3.setDisable(true);
                     adderPoint4.setDisable(true);
                     adderPoint5.setDisable(true);
+                    adderPoint6.setDisable(true);
+                    adderPoint7.setDisable(true);
                     removerPoint2.setDisable(true);
                     removerPoint3.setDisable(true);
                     removerPoint4.setDisable(true);
                     removerPoint5.setDisable(true);
+                    removerPoint6.setDisable(true);
+                    removerPoint7.setDisable(true);
                     break;
                 }
                 case 3 -> {
@@ -386,24 +469,55 @@ public class Controller_manualInput {
                     adderPoint3.setDisable(true);
                     adderPoint4.setDisable(true);
                     adderPoint5.setDisable(true);
+                    adderPoint6.setDisable(true);
+                    adderPoint7.setDisable(true);
                     removerPoint3.setDisable(true);
                     removerPoint4.setDisable(true);
                     removerPoint5.setDisable(true);
+                    removerPoint6.setDisable(true);
+                    removerPoint7.setDisable(true);
                     break;
                 }
                 case 4 -> {
                     angleTable4.setDisable(true);
                     angleTable5.setDisable(true);
+                    angleTable6.setDisable(true);
+                    angleTable7.setDisable(true);
                     adderPoint4.setDisable(true);
                     adderPoint5.setDisable(true);
+                    adderPoint6.setDisable(true);
+                    adderPoint7.setDisable(true);
                     removerPoint4.setDisable(true);
                     removerPoint5.setDisable(true);
+                    removerPoint6.setDisable(true);
+                    removerPoint7.setDisable(true);
                     break;
                 }
                 case 5 -> {
                     angleTable5.setDisable(true);
+                    angleTable6.setDisable(true);
+                    angleTable7.setDisable(true);
                     adderPoint5.setDisable(true);
+                    adderPoint6.setDisable(true);
+                    adderPoint7.setDisable(true);
                     removerPoint5.setDisable(true);
+                    removerPoint6.setDisable(true);
+                    removerPoint7.setDisable(true);
+                    break;
+                }
+                case 6 -> {
+                    angleTable6.setDisable(true);
+                    angleTable7.setDisable(true);
+                    adderPoint6.setDisable(true);
+                    adderPoint7.setDisable(true);
+                    removerPoint6.setDisable(true);
+                    removerPoint7.setDisable(true);
+                    break;
+                }
+                case 7 -> {
+                    angleTable7.setDisable(true);
+                    adderPoint7.setDisable(true);
+                    removerPoint7.setDisable(true);
                     break;
                 }
             }
@@ -483,6 +597,25 @@ public class Controller_manualInput {
     @FXML
     private void removeLineAngles5() {
         removeLineAng(anglesData5, angleTable5);
+    }
+
+    @FXML
+    private void addLineAngles6(){
+        addLineAng(anglesData6, pointsData.get(6).getNamePoint());
+    }
+
+    private void removeLineAngles6() {
+        removeLineAng(anglesData6, angleTable6);
+    }
+
+    @FXML
+    private void addLineAngles7(){
+        addLineAng(anglesData7, pointsData.get(7).getNamePoint());
+    }
+
+    @FXML
+    private void removeLineAngles7() {
+        removeLineAng(anglesData7, angleTable7);
     }
 
 //    // Добавление новой стоянки
