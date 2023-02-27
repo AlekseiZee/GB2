@@ -12,6 +12,9 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+import java.io.*;
+import java.util.ArrayList;
+
 public class Controller_manualInput {
 
     @FXML
@@ -604,6 +607,7 @@ public class Controller_manualInput {
         addLineAng(anglesData6, pointsData.get(6).getNamePoint());
     }
 
+    @FXML
     private void removeLineAngles6() {
         removeLineAng(anglesData6, angleTable6);
     }
@@ -710,7 +714,45 @@ public class Controller_manualInput {
     public void goingBackToNewCal(ActionEvent event) {
 
         goBackButton.getScene().getWindow().hide();
-        Controller_Main controller_main = new Controller_Main();
-        controller_main.openNewCalculationWindow("new_calculation-view.fxml", 768, 700);
+//        goBackButton.getScene().getWindow().hide();
+//        Controller_Main controller_main = new Controller_Main();
+//        controller_main.openNewCalculationWindow("new_calculation-view.fxml", 768, 700);
+    }
+
+    private void serializePoint(ObservableList<Point> pointsData) throws FileNotFoundException, IOException {
+        File file = new File("D:\\Test GB\\cache\\point.txt");
+        try(FileOutputStream fosManInpWin = new FileOutputStream(file); ObjectOutputStream oos = new ObjectOutputStream(fosManInpWin)) {
+            ArrayList<Point> pointsManInpWin = new ArrayList<Point>(pointsData);
+            oos.writeObject(new ArrayList<Point> (pointsManInpWin));
+        }
+    }
+
+    private ObservableList<Point> deserializePoint() throws FileNotFoundException, IOException, ClassNotFoundException{
+        ArrayList<Point> pointsData = new ArrayList<Point>();
+        File file = new File("D:\\Test GB\\cache\\point.txt");
+        try(FileInputStream fis = new FileInputStream(file); ObjectInputStream ois = new ObjectInputStream(fis)) {
+            pointsData = (ArrayList<Point>) ois.readObject();
+        }
+        return FXCollections.observableArrayList(pointsData);
+    }
+
+    @FXML
+    void savePoint(ActionEvent event){
+        try {
+            this.serializePoint(this.pointsData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void loadRibs(){
+        try {
+            this.pointsData = this.deserializePoint();
+            this.pointTable.setItems(this.pointsData);
+
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }
