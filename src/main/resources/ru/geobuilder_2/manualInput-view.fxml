@@ -126,10 +126,10 @@
                      <children>
                         <HBox prefHeight="499.0" prefWidth="1271.0">
                            <children>
-                              <TableView fx:id="angleTable" prefHeight="279.0" prefWidth="181.0">
+                              <TableView fx:id="angleTable" disable="true" prefHeight="279.0" prefWidth="181.0">
                                  <columns>
                                     <TableColumn fx:id="idAngleCol" prefWidth="28.0" text=" №&#10;п.п." />
-                                    <TableColumn fx:id="nameAnglePCol" prefWidth="160.0" text="A">
+                                    <TableColumn fx:id="nameAnglePCol" prefWidth="160.0">
                                        <columns>
                                           <TableColumn fx:id="vAngleCol" onEditCommit="#onEditChangerVAngle" prefWidth="75.0" text="Верт. угол" />
                                           <TableColumn fx:id="hAngleCol" onEditCommit="#onEditChangerHAngle" prefWidth="76.0" text="Гор. угол" />
@@ -195,7 +195,7 @@
                               <TableView fx:id="angleTable6" disable="true" prefHeight="499.0" prefWidth="181.0">
                                  <columns>
                                     <TableColumn fx:id="idAngleCol6" prefWidth="28.0" text=" №&#10;п.п." />
-                                    <TableColumn fx:id="nameAnglePCol51" prefWidth="160.0">
+                                    <TableColumn fx:id="nameAnglePCol6" prefWidth="160.0">
                                        <columns>
                                           <TableColumn fx:id="vAngleCol6" onEditCommit="#onEditChangerVAngle" prefWidth="75.0" text="Верт. угол" />
                                           <TableColumn fx:id="hAngleCol6" onEditCommit="#onEditChangerHAngle" prefWidth="76.0" text="Гор. угол" />

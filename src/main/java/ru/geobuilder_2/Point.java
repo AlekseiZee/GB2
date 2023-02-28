@@ -88,6 +88,7 @@ public class Point implements Serializable {
         if (getClass() != obj.getClass())
             return false;
         final Point other = (Point) obj;
+
         if (this.idPoint.get() != other.idPoint.get()) {
             return false;
         }
