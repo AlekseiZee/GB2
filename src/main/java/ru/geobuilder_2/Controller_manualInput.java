@@ -18,8 +18,10 @@ import java.util.ArrayList;
 public class Controller_manualInput {
 
     @FXML
-    private Button adderPoint1, adderPoint2, adderPoint3, adderPoint4, adderPoint5, adderPoint6, adderPoint7,
-            removerPoint1, removerPoint2, removerPoint3, removerPoint4, removerPoint5, removerPoint6, removerPoint7;
+    private Button addLineAnglesButton, addLineAnglesButton1, addLineAnglesButton2, addLineAnglesButton3,
+            addLineAnglesButton4, addLineAnglesButton5, addLineAnglesButton6, addLineAnglesButton7,
+            removeLineAngleButton, removeLineAngleButton1, removeLineAngleButton2, removeLineAngleButton3,
+            removeLineAngleButton4, removeLineAngleButton5, removeLineAngleButton6, removeLineAngleButton7;
 
     @FXML
     private TextFlow massage;
@@ -91,9 +93,9 @@ public class Controller_manualInput {
     @FXML
     private void initialize() {
 
-        Point point = new Point(this.pointTable.getItems().size() + 1, "A", "",
-                "", "");
-        pointsData.add(point);
+//        Point point = new Point(this.pointTable.getItems().size() + 1, "A", "",
+//                "", "");
+//        pointsData.add(point);
 
         // Таблица Points
         idPCol.setCellValueFactory(new PropertyValueFactory<Point, String>("idPoint"));
@@ -102,7 +104,7 @@ public class Controller_manualInput {
         vAnglePCol.setCellValueFactory(new PropertyValueFactory<Point, String>("vAnglePoint"));
         vAnglePCol.setCellValueFactory(new PropertyValueFactory<Point, String>("hAnglePoint"));
 
-        pointTable.setItems(pointsData);
+        pointTable.setItems(this.pointsData);
 
         pointTable.setEditable(true);
 
@@ -310,87 +312,113 @@ public class Controller_manualInput {
             pointsData.add(point);
 
             switch (this.pointTable.getItems().size() - 1) {
+                case 0 -> {
+                    angleTable.setDisable(false);
+                    addLineAnglesButton.setDisable(false);
+                    removeLineAngleButton.setDisable(false);
+                    break;
+                }
                 case 1 -> {
+                    angleTable.setDisable(false);
                     angleTable1.setDisable(false);
-                    adderPoint1.setDisable(false);
-                    removerPoint1.setDisable(false);
+                    addLineAnglesButton.setDisable(false);
+                    addLineAnglesButton1.setDisable(false);
+                    removeLineAngleButton.setDisable(false);
+                    removeLineAngleButton1.setDisable(false);
+                    break;
                 }
                 case 2 -> {
+                    angleTable.setDisable(false);
                     angleTable1.setDisable(false);
                     angleTable2.setDisable(false);
-                    adderPoint1.setDisable(false);
-                    adderPoint2.setDisable(false);
-                    removerPoint1.setDisable(false);
-                    removerPoint2.setDisable(false);
+                    addLineAnglesButton.setDisable(false);
+                    addLineAnglesButton1.setDisable(false);
+                    addLineAnglesButton2.setDisable(false);
+                    removeLineAngleButton.setDisable(false);
+                    removeLineAngleButton1.setDisable(false);
+                    removeLineAngleButton2.setDisable(false);
                     break;
                 }
                 case 3 -> {
+                    angleTable.setDisable(false);
                     angleTable1.setDisable(false);
                     angleTable2.setDisable(false);
                     angleTable3.setDisable(false);
-                    adderPoint1.setDisable(false);
-                    adderPoint2.setDisable(false);
-                    adderPoint3.setDisable(false);
-                    removerPoint1.setDisable(false);
-                    removerPoint2.setDisable(false);
-                    removerPoint3.setDisable(false);
+                    addLineAnglesButton.setDisable(false);
+                    addLineAnglesButton1.setDisable(false);
+                    addLineAnglesButton2.setDisable(false);
+                    addLineAnglesButton3.setDisable(false);
+                    removeLineAngleButton.setDisable(false);
+                    removeLineAngleButton1.setDisable(false);
+                    removeLineAngleButton2.setDisable(false);
+                    removeLineAngleButton3.setDisable(false);
                     break;
                 }
                 case 4 -> {
+                    angleTable.setDisable(false);
                     angleTable1.setDisable(false);
                     angleTable2.setDisable(false);
                     angleTable3.setDisable(false);
                     angleTable4.setDisable(false);
-                    adderPoint1.setDisable(false);
-                    adderPoint2.setDisable(false);
-                    adderPoint3.setDisable(false);
-                    adderPoint4.setDisable(false);
-                    removerPoint1.setDisable(false);
-                    removerPoint2.setDisable(false);
-                    removerPoint3.setDisable(false);
-                    removerPoint4.setDisable(false);
+                    addLineAnglesButton.setDisable(false);
+                    addLineAnglesButton1.setDisable(false);
+                    addLineAnglesButton2.setDisable(false);
+                    addLineAnglesButton3.setDisable(false);
+                    addLineAnglesButton4.setDisable(false);
+                    removeLineAngleButton.setDisable(false);
+                    removeLineAngleButton1.setDisable(false);
+                    removeLineAngleButton2.setDisable(false);
+                    removeLineAngleButton3.setDisable(false);
+                    removeLineAngleButton4.setDisable(false);
                     break;
                 }
                 case 5 -> {
+                    angleTable.setDisable(false);
                     angleTable1.setDisable(false);
                     angleTable2.setDisable(false);
                     angleTable3.setDisable(false);
                     angleTable4.setDisable(false);
                     angleTable5.setDisable(false);
-                    adderPoint1.setDisable(false);
-                    adderPoint2.setDisable(false);
-                    adderPoint3.setDisable(false);
-                    adderPoint4.setDisable(false);
-                    adderPoint5.setDisable(false);
-                    removerPoint1.setDisable(false);
-                    removerPoint2.setDisable(false);
-                    removerPoint3.setDisable(false);
-                    removerPoint4.setDisable(false);
-                    removerPoint5.setDisable(false);
+                    addLineAnglesButton.setDisable(false);
+                    addLineAnglesButton1.setDisable(false);
+                    addLineAnglesButton2.setDisable(false);
+                    addLineAnglesButton3.setDisable(false);
+                    addLineAnglesButton4.setDisable(false);
+                    addLineAnglesButton5.setDisable(false);
+                    removeLineAngleButton.setDisable(false);
+                    removeLineAngleButton1.setDisable(false);
+                    removeLineAngleButton2.setDisable(false);
+                    removeLineAngleButton3.setDisable(false);
+                    removeLineAngleButton4.setDisable(false);
+                    removeLineAngleButton5.setDisable(false);
                     break;
                 }
                 case 6 -> {
+                    angleTable.setDisable(false);
                     angleTable1.setDisable(false);
                     angleTable2.setDisable(false);
                     angleTable3.setDisable(false);
                     angleTable4.setDisable(false);
                     angleTable5.setDisable(false);
                     angleTable6.setDisable(false);
-                    adderPoint1.setDisable(false);
-                    adderPoint2.setDisable(false);
-                    adderPoint3.setDisable(false);
-                    adderPoint4.setDisable(false);
-                    adderPoint5.setDisable(false);
-                    adderPoint6.setDisable(false);
-                    removerPoint1.setDisable(false);
-                    removerPoint2.setDisable(false);
-                    removerPoint3.setDisable(false);
-                    removerPoint4.setDisable(false);
-                    removerPoint5.setDisable(false);
-                    removerPoint6.setDisable(false);
+                    addLineAnglesButton.setDisable(false);
+                    addLineAnglesButton1.setDisable(false);
+                    addLineAnglesButton2.setDisable(false);
+                    addLineAnglesButton3.setDisable(false);
+                    addLineAnglesButton4.setDisable(false);
+                    addLineAnglesButton5.setDisable(false);
+                    addLineAnglesButton6.setDisable(false);
+                    removeLineAngleButton.setDisable(false);
+                    removeLineAngleButton1.setDisable(false);
+                    removeLineAngleButton2.setDisable(false);
+                    removeLineAngleButton3.setDisable(false);
+                    removeLineAngleButton4.setDisable(false);
+                    removeLineAngleButton5.setDisable(false);
+                    removeLineAngleButton6.setDisable(false);
                     break;
                 }
                 case 7 -> {
+                    angleTable.setDisable(false);
                     angleTable1.setDisable(false);
                     angleTable2.setDisable(false);
                     angleTable3.setDisable(false);
@@ -398,20 +426,22 @@ public class Controller_manualInput {
                     angleTable5.setDisable(false);
                     angleTable6.setDisable(false);
                     angleTable7.setDisable(false);
-                    adderPoint1.setDisable(false);
-                    adderPoint2.setDisable(false);
-                    adderPoint3.setDisable(false);
-                    adderPoint4.setDisable(false);
-                    adderPoint5.setDisable(false);
-                    adderPoint6.setDisable(false);
-                    adderPoint7.setDisable(false);
-                    removerPoint1.setDisable(false);
-                    removerPoint2.setDisable(false);
-                    removerPoint3.setDisable(false);
-                    removerPoint4.setDisable(false);
-                    removerPoint5.setDisable(false);
-                    removerPoint6.setDisable(false);
-                    removerPoint7.setDisable(false);
+                    addLineAnglesButton.setDisable(false);
+                    addLineAnglesButton1.setDisable(false);
+                    addLineAnglesButton2.setDisable(false);
+                    addLineAnglesButton3.setDisable(false);
+                    addLineAnglesButton4.setDisable(false);
+                    addLineAnglesButton5.setDisable(false);
+                    addLineAnglesButton6.setDisable(false);
+                    addLineAnglesButton7.setDisable(false);
+                    removeLineAngleButton.setDisable(false);
+                    removeLineAngleButton1.setDisable(false);
+                    removeLineAngleButton2.setDisable(false);
+                    removeLineAngleButton3.setDisable(false);
+                    removeLineAngleButton4.setDisable(false);
+                    removeLineAngleButton5.setDisable(false);
+                    removeLineAngleButton6.setDisable(false);
+                    removeLineAngleButton7.setDisable(false);
                     break;
                 }
             }
@@ -424,26 +454,55 @@ public class Controller_manualInput {
 
         if (pointsData.size() > 1) {
             switch (this.pointTable.getItems().size() - 1) {
+                case 0 -> {
+                    angleTable.setDisable(true);
+                    angleTable1.setDisable(true);
+                    angleTable2.setDisable(true);
+                    angleTable3.setDisable(true);
+                    angleTable4.setDisable(true);
+                    angleTable5.setDisable(true);
+                    angleTable6.setDisable(true);
+                    angleTable7.setDisable(true);
+                    addLineAnglesButton.setDisable(true);
+                    addLineAnglesButton1.setDisable(true);
+                    addLineAnglesButton2.setDisable(true);
+                    addLineAnglesButton3.setDisable(true);
+                    addLineAnglesButton4.setDisable(true);
+                    addLineAnglesButton5.setDisable(true);
+                    addLineAnglesButton6.setDisable(true);
+                    addLineAnglesButton7.setDisable(true);
+                    removeLineAngleButton.setDisable(true);
+                    removeLineAngleButton1.setDisable(true);
+                    removeLineAngleButton2.setDisable(true);
+                    removeLineAngleButton3.setDisable(true);
+                    removeLineAngleButton4.setDisable(true);
+                    removeLineAngleButton5.setDisable(true);
+                    removeLineAngleButton6.setDisable(true);
+                    removeLineAngleButton7.setDisable(true);
+                    break;
+                }
                 case 1 -> {
                     angleTable1.setDisable(true);
                     angleTable2.setDisable(true);
                     angleTable3.setDisable(true);
                     angleTable4.setDisable(true);
                     angleTable5.setDisable(true);
-                    adderPoint1.setDisable(true);
-                    adderPoint2.setDisable(true);
-                    adderPoint3.setDisable(true);
-                    adderPoint4.setDisable(true);
-                    adderPoint5.setDisable(true);
-                    adderPoint6.setDisable(true);
-                    adderPoint7.setDisable(true);
-                    removerPoint1.setDisable(true);
-                    removerPoint2.setDisable(true);
-                    removerPoint3.setDisable(true);
-                    removerPoint4.setDisable(true);
-                    removerPoint5.setDisable(true);
-                    removerPoint6.setDisable(true);
-                    removerPoint7.setDisable(true);
+                    angleTable6.setDisable(true);
+                    angleTable7.setDisable(true);
+                    addLineAnglesButton1.setDisable(true);
+                    addLineAnglesButton2.setDisable(true);
+                    addLineAnglesButton3.setDisable(true);
+                    addLineAnglesButton4.setDisable(true);
+                    addLineAnglesButton5.setDisable(true);
+                    addLineAnglesButton6.setDisable(true);
+                    addLineAnglesButton7.setDisable(true);
+                    removeLineAngleButton1.setDisable(true);
+                    removeLineAngleButton2.setDisable(true);
+                    removeLineAngleButton3.setDisable(true);
+                    removeLineAngleButton4.setDisable(true);
+                    removeLineAngleButton5.setDisable(true);
+                    removeLineAngleButton6.setDisable(true);
+                    removeLineAngleButton7.setDisable(true);
                     break;
                 }
                 case 2 -> {
@@ -451,34 +510,38 @@ public class Controller_manualInput {
                     angleTable3.setDisable(true);
                     angleTable4.setDisable(true);
                     angleTable5.setDisable(true);
-                    adderPoint2.setDisable(true);
-                    adderPoint3.setDisable(true);
-                    adderPoint4.setDisable(true);
-                    adderPoint5.setDisable(true);
-                    adderPoint6.setDisable(true);
-                    adderPoint7.setDisable(true);
-                    removerPoint2.setDisable(true);
-                    removerPoint3.setDisable(true);
-                    removerPoint4.setDisable(true);
-                    removerPoint5.setDisable(true);
-                    removerPoint6.setDisable(true);
-                    removerPoint7.setDisable(true);
+                    angleTable6.setDisable(true);
+                    angleTable7.setDisable(true);
+                    addLineAnglesButton2.setDisable(true);
+                    addLineAnglesButton3.setDisable(true);
+                    addLineAnglesButton4.setDisable(true);
+                    addLineAnglesButton5.setDisable(true);
+                    addLineAnglesButton6.setDisable(true);
+                    addLineAnglesButton7.setDisable(true);
+                    removeLineAngleButton2.setDisable(true);
+                    removeLineAngleButton3.setDisable(true);
+                    removeLineAngleButton4.setDisable(true);
+                    removeLineAngleButton5.setDisable(true);
+                    removeLineAngleButton6.setDisable(true);
+                    removeLineAngleButton7.setDisable(true);
                     break;
                 }
                 case 3 -> {
                     angleTable3.setDisable(true);
                     angleTable4.setDisable(true);
                     angleTable5.setDisable(true);
-                    adderPoint3.setDisable(true);
-                    adderPoint4.setDisable(true);
-                    adderPoint5.setDisable(true);
-                    adderPoint6.setDisable(true);
-                    adderPoint7.setDisable(true);
-                    removerPoint3.setDisable(true);
-                    removerPoint4.setDisable(true);
-                    removerPoint5.setDisable(true);
-                    removerPoint6.setDisable(true);
-                    removerPoint7.setDisable(true);
+                    angleTable6.setDisable(true);
+                    angleTable7.setDisable(true);
+                    addLineAnglesButton3.setDisable(true);
+                    addLineAnglesButton4.setDisable(true);
+                    addLineAnglesButton5.setDisable(true);
+                    addLineAnglesButton6.setDisable(true);
+                    addLineAnglesButton7.setDisable(true);
+                    removeLineAngleButton3.setDisable(true);
+                    removeLineAngleButton4.setDisable(true);
+                    removeLineAngleButton5.setDisable(true);
+                    removeLineAngleButton6.setDisable(true);
+                    removeLineAngleButton7.setDisable(true);
                     break;
                 }
                 case 4 -> {
@@ -486,41 +549,41 @@ public class Controller_manualInput {
                     angleTable5.setDisable(true);
                     angleTable6.setDisable(true);
                     angleTable7.setDisable(true);
-                    adderPoint4.setDisable(true);
-                    adderPoint5.setDisable(true);
-                    adderPoint6.setDisable(true);
-                    adderPoint7.setDisable(true);
-                    removerPoint4.setDisable(true);
-                    removerPoint5.setDisable(true);
-                    removerPoint6.setDisable(true);
-                    removerPoint7.setDisable(true);
+                    addLineAnglesButton4.setDisable(true);
+                    addLineAnglesButton5.setDisable(true);
+                    addLineAnglesButton6.setDisable(true);
+                    addLineAnglesButton7.setDisable(true);
+                    removeLineAngleButton4.setDisable(true);
+                    removeLineAngleButton5.setDisable(true);
+                    removeLineAngleButton6.setDisable(true);
+                    removeLineAngleButton7.setDisable(true);
                     break;
                 }
                 case 5 -> {
                     angleTable5.setDisable(true);
                     angleTable6.setDisable(true);
                     angleTable7.setDisable(true);
-                    adderPoint5.setDisable(true);
-                    adderPoint6.setDisable(true);
-                    adderPoint7.setDisable(true);
-                    removerPoint5.setDisable(true);
-                    removerPoint6.setDisable(true);
-                    removerPoint7.setDisable(true);
+                    addLineAnglesButton5.setDisable(true);
+                    addLineAnglesButton6.setDisable(true);
+                    addLineAnglesButton7.setDisable(true);
+                    removeLineAngleButton5.setDisable(true);
+                    removeLineAngleButton6.setDisable(true);
+                    removeLineAngleButton7.setDisable(true);
                     break;
                 }
                 case 6 -> {
                     angleTable6.setDisable(true);
                     angleTable7.setDisable(true);
-                    adderPoint6.setDisable(true);
-                    adderPoint7.setDisable(true);
-                    removerPoint6.setDisable(true);
-                    removerPoint7.setDisable(true);
+                    addLineAnglesButton6.setDisable(true);
+                    addLineAnglesButton7.setDisable(true);
+                    removeLineAngleButton6.setDisable(true);
+                    removeLineAngleButton7.setDisable(true);
                     break;
                 }
                 case 7 -> {
                     angleTable7.setDisable(true);
-                    adderPoint7.setDisable(true);
-                    removerPoint7.setDisable(true);
+                    addLineAnglesButton7.setDisable(true);
+                    removeLineAngleButton7.setDisable(true);
                     break;
                 }
             }
@@ -720,18 +783,18 @@ public class Controller_manualInput {
     }
 
     private void serializePoint(ObservableList<Point> pointsData) throws FileNotFoundException, IOException {
-        File file = new File("D:\\Test GB\\cache\\point.txt");
-        try(FileOutputStream fosManInpWin = new FileOutputStream(file); ObjectOutputStream oos = new ObjectOutputStream(fosManInpWin)) {
+        File fileFS = new File("D:\\TestGB\\cache\\point.txt");
+        try(FileOutputStream fosManInpWin = new FileOutputStream(fileFS); ObjectOutputStream oosPoint = new ObjectOutputStream(fosManInpWin)) {
             ArrayList<Point> pointsManInpWin = new ArrayList<Point>(pointsData);
-            oos.writeObject(new ArrayList<Point> (pointsManInpWin));
+            oosPoint.writeObject(new ArrayList<Point> (pointsManInpWin));
         }
     }
 
     private ObservableList<Point> deserializePoint() throws FileNotFoundException, IOException, ClassNotFoundException{
         ArrayList<Point> pointsData = new ArrayList<Point>();
-        File file = new File("D:\\Test GB\\cache\\point.txt");
-        try(FileInputStream fis = new FileInputStream(file); ObjectInputStream ois = new ObjectInputStream(fis)) {
-            pointsData = (ArrayList<Point>) ois.readObject();
+        File fileFS = new File("D:\\TestGB\\cache\\point.txt");
+        try(FileInputStream fisPoint = new FileInputStream(fileFS); ObjectInputStream oisPoint = new ObjectInputStream(fisPoint)) {
+            pointsData = (ArrayList<Point>) oisPoint.readObject();
         }
         return FXCollections.observableArrayList(pointsData);
     }

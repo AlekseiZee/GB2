@@ -240,7 +240,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="adderPoint1" layoutX="174.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles1" text="+">
+                        <Button fx:id="addLineAnglesButton1" layoutX="174.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles1" text="+">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -250,7 +250,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="removerPoint1" layoutX="174.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles1" prefHeight="22.0" prefWidth="21.0" text="-">
+                        <Button fx:id="removeLineAngleButton1" layoutX="174.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles1" prefHeight="22.0" prefWidth="21.0" text="-">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -260,7 +260,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="adderPoint2" layoutX="338.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles2" text="+">
+                        <Button fx:id="addLineAnglesButton2" layoutX="338.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles2" text="+">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -270,7 +270,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="removerPoint2" layoutX="338.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles2" prefHeight="22.0" prefWidth="21.0" text="-">
+                        <Button fx:id="removeLineAngleButton2" layoutX="338.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles2" prefHeight="22.0" prefWidth="21.0" text="-">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -280,7 +280,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="adderPoint3" layoutX="499.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles3" text="+">
+                        <Button fx:id="addLineAnglesButton3" layoutX="499.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles3" text="+">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -290,7 +290,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="removerPoint3" layoutX="499.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles3" prefHeight="22.0" prefWidth="21.0" text="-">
+                        <Button fx:id="removeLineAngleButton3" layoutX="499.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles3" prefHeight="22.0" prefWidth="21.0" text="-">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -300,7 +300,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="adderPoint4" layoutX="655.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles4" text="+">
+                        <Button fx:id="addLineAnglesButton4" layoutX="655.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles4" text="+">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -310,7 +310,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="removerPoint4" layoutX="655.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles4" prefHeight="22.0" prefWidth="21.0" text="-">
+                        <Button fx:id="removeLineAngleButton4" layoutX="655.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles4" prefHeight="22.0" prefWidth="21.0" text="-">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -320,7 +320,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="adderPoint5" layoutX="815.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles5" text="+">
+                        <Button fx:id="addLineAnglesButton5" layoutX="815.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles5" text="+">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -330,7 +330,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="removerPoint5" layoutX="815.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles5" prefHeight="22.0" prefWidth="21.0" text="-">
+                        <Button fx:id="removeLineAngleButton5" layoutX="815.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles5" prefHeight="22.0" prefWidth="21.0" text="-">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -340,7 +340,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="adderPoint6" layoutX="974.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles6" text="+">
+                        <Button fx:id="addLineAnglesButton6" layoutX="974.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles6" text="+">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -350,7 +350,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="removerPoint6" layoutX="974.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles6" prefHeight="22.0" prefWidth="21.0" text="-">
+                        <Button fx:id="removeLineAngleButton6" layoutX="974.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles6" prefHeight="22.0" prefWidth="21.0" text="-">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -360,7 +360,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="adderPoint7" layoutX="1136.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles7" text="+">
+                        <Button fx:id="addLineAnglesButton7" layoutX="1136.0" layoutY="14.0" mnemonicParsing="false" onAction="#addLineAngles7" text="+">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>
@@ -370,7 +370,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="removerPoint7" layoutX="1136.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles7" prefHeight="22.0" prefWidth="21.0" text="-">
+                        <Button fx:id="removeLineAngleButton7" layoutX="1136.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLineAngles7" prefHeight="22.0" prefWidth="21.0" text="-">
                            <font>
                               <Font name="Times New Roman Bold" size="11.0" />
                            </font>

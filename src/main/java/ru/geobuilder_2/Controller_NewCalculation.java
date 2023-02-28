@@ -189,7 +189,7 @@ public class Controller_NewCalculation {
      */
     @FXML
     private void removeRib(){
-        // numb--;
+
         tableRib.getItems().remove(ribs.size() - 1);
         // если надо удалить выделенную строку, то - tableRib.getItems().remove(selectedIndex);
     }
@@ -606,7 +606,7 @@ public class Controller_NewCalculation {
     }
 
     private void serializeData(ObservableList<Rib> ribs) throws FileNotFoundException, IOException{
-    	File f = new File("D:\\TestGB\\ribs.txt");
+    	File f = new File("D:\\TestGB\\cache\\ribs.txt");
     	try(FileOutputStream fos = new FileOutputStream(f); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
     		ArrayList<Rib> al = new ArrayList<Rib>(ribs);
     		oos.writeObject(new ArrayList<Rib>(al));
@@ -615,7 +615,7 @@ public class Controller_NewCalculation {
 
     private ObservableList<Rib> deserializeData() throws FileNotFoundException, IOException, ClassNotFoundException{
     	ArrayList<Rib> ribs = new ArrayList<Rib>();
-    	File f = new File("D:\\TestGB\\ribs.txt");
+    	File f = new File("D:\\TestGB\\cache\\ribs.txt");
     	try(FileInputStream fis = new FileInputStream(f); ObjectInputStream ois = new ObjectInputStream(fis)) {
     		ribs = (ArrayList<Rib>) ois.readObject();
     	}

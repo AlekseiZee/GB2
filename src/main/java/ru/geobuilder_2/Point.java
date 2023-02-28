@@ -5,6 +5,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -108,6 +111,22 @@ public class Point implements Serializable {
                 this.namePoint.get() + "\n" + ", distancePoint=" +
                 this.distancePoint.get() +  "\n" + ", vAnglePoint=" +
                 this.vAnglePoint.get() + "\n" + ", hAnglePoint=" + this.hAnglePoint.get() + "]";
+    }
+    private void writeObject(ObjectOutputStream s) throws IOException {
+        s.defaultWriteObject();
+        s.writeInt(getIdPoint());
+        s.writeUTF(getNamePoint());
+        s.writeUTF(getDistancePoint());
+        s.writeUTF(getVAnglePoint());
+        s.writeUTF(getHAnglePoint());
+    }
+
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+        idPoint = new SimpleIntegerProperty(s.readInt());
+        namePoint = new SimpleStringProperty(s.readUTF());
+        distancePoint = new SimpleStringProperty(s.readUTF());
+        vAnglePoint = new SimpleStringProperty(s.readUTF());
+        hAnglePoint = new SimpleStringProperty(s.readUTF());
     }
 }
 

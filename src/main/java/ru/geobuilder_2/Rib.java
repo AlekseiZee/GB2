@@ -55,8 +55,8 @@ public class Rib implements Serializable {
 	@Override
 	public int hashCode() {
 		int hash = 7;
+        hash = 61 * hash + Objects.hashCode(this.tier.get());
 		hash = 61 * hash + Objects.hashCode(this.ribLength.get());
-		hash = 61 * hash + Objects.hashCode(this.tier.get());
 		return hash;
 	}
 
@@ -69,10 +69,10 @@ public class Rib implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		final Rib other = (Rib) obj;
-        if (this.ribLength.get() != other.ribLength.get()) {
+        if (this.tier.get() != other.tier.get()) {
             return false;
         }
-        if (this.tier.get() != other.tier.get()) {
+        if (this.ribLength.get() != other.ribLength.get()) {
             return false;
         }
         return true;
