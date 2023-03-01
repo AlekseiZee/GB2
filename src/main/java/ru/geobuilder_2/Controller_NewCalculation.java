@@ -105,6 +105,7 @@ public class Controller_NewCalculation {
 
     @FXML
     public void goingBack(ActionEvent event) {
+        save();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initOwner(StartGeoApplication.getStage());
         alert.setTitle("Предупреждение");
@@ -145,6 +146,8 @@ public class Controller_NewCalculation {
 
     @FXML
     private void initialize() {
+
+        loadRibs();
 
         tierColumn.setCellValueFactory(new PropertyValueFactory<Rib, Integer>("tier"));
         ribLengthColumn.setCellValueFactory(new PropertyValueFactory<Rib, String>("ribLength"));
@@ -597,7 +600,7 @@ public class Controller_NewCalculation {
     }
 
     @FXML
-    void saveExit(ActionEvent event){
+    void save(){
     	try {
     		this.serializeData(this.ribs);
     	} catch (Exception e) {

@@ -38,13 +38,14 @@ public class Controller_Main implements Initializable {
 
 
     @FXML
-    public void getNewCal(ActionEvent event){
+    public void getNewCal(ActionEvent event) {
         new_cal.getScene().getWindow().hide();
         openNewCalculationWindow("new_calculation-view.fxml", 768, 700);
     }
 
     /**
      * Метод открытия окна "Новый расчет"
+     *
      * @param name
      * @param v
      * @param v1
@@ -70,12 +71,13 @@ public class Controller_Main implements Initializable {
 
     /**
      * При нажатии переходим к выбору файлов
+     *
      * @param event
      */
     @FXML
-     void openFileCal(ActionEvent event){
+    void openFileCal(ActionEvent event) {
         FileChooser fileChooserGeoBuilder = new FileChooser();
-        fileChooserGeoBuilder.setInitialDirectory(new File("D:\\Test GB")); // Указываем какую папку открыть изначально
+        fileChooserGeoBuilder.setInitialDirectory(new File("D:\\TestGB")); // Указываем какую папку открыть изначально
         fileChooserGeoBuilder.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("geoBuilder Files", "*.txt")); // Задаем расширения для выбора конкретных файлов
         List<File> selectedFiles = fileChooserGeoBuilder.showOpenMultipleDialog(null);
@@ -88,6 +90,7 @@ public class Controller_Main implements Initializable {
             System.out.println("file is not valid");
         }
     }
+
     @FXML
     void getSearch(ActionEvent event) {
         listViewGeoCal.getItems().clear();
@@ -95,30 +98,29 @@ public class Controller_Main implements Initializable {
     }
 
     @FXML
-    public void uploadDataToDatabase(ActionEvent event){
+    public void uploadDataToDatabase(ActionEvent event) {
         new_cal.getScene().getWindow().hide();
         openNewCalculationWindow("uploadDataToDatabase-view.fxml", 1194, 854);
     }
 
     /**
      * Поиск файла
-     * @param location
-     * The location used to resolve relative paths for the root object, or
-     * {@code null} if the location is not known.
      *
-     * @param resources
-     * The resources used to localize the root object, or {@code null} if
-     * the root object was not localized.
+     * @param location  The location used to resolve relative paths for the root object, or
+     *                  {@code null} if the location is not known.
+     * @param resources The resources used to localize the root object, or {@code null} if
+     *                  the root object was not localized.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listViewGeoCal.getItems().addAll(namesFiles);
     }
-        private List<String> searchList(String searFiles, List<String> listOfStrings) {
-            List<String> searchFileArrey = Arrays.asList(searFiles.trim().split(" "));
-            return listOfStrings.stream().filter(imput -> {
-                return searchFileArrey.stream().allMatch(namesFiles ->
-                        imput.toLowerCase().contains(namesFiles.toLowerCase()));
-            }).collect(Collectors.toList());
-        }
+
+    private List<String> searchList(String searFiles, List<String> listOfStrings) {
+        List<String> searchFileArrey = Arrays.asList(searFiles.trim().split(" "));
+        return listOfStrings.stream().filter(imput -> {
+            return searchFileArrey.stream().allMatch(namesFiles ->
+                    imput.toLowerCase().contains(namesFiles.toLowerCase()));
+        }).collect(Collectors.toList());
+    }
 }

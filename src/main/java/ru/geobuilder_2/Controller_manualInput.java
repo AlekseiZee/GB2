@@ -74,6 +74,8 @@ public class Controller_manualInput {
     @FXML
     private void initialize() {
 
+        loadPointAngle();
+
 //        Point point = new Point(this.pointTable.getItems().size() + 1, "A", "",
 //                "", "");
 //        pointsData.add(point);
@@ -762,6 +764,77 @@ public class Controller_manualInput {
         angle.setHAngle(angleStringCellEditEvent.getNewValue());
     }
 
+    public void onEditChangerVAngle1(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+        Angle angle1 = angleTable1.getSelectionModel().getSelectedItem();
+        angle1.setVAngle(angleStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditChangerHAngle1(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+        Angle angle1 = angleTable1.getSelectionModel().getSelectedItem();
+        angle1.setHAngle(angleStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditChangerVAngle2(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+        Angle angle2 = angleTable2.getSelectionModel().getSelectedItem();
+        angle2.setVAngle(angleStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditChangerHAngle2(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+        Angle angle2 = angleTable2.getSelectionModel().getSelectedItem();
+        angle2.setHAngle(angleStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditChangerVAngle3(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+        Angle angle3 = angleTable3.getSelectionModel().getSelectedItem();
+        angle3.setVAngle(angleStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditChangerHAngle3(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+        Angle angle3 = angleTable3.getSelectionModel().getSelectedItem();
+        angle3.setHAngle(angleStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditChangerVAngle4(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+        Angle angle4 = angleTable4.getSelectionModel().getSelectedItem();
+        angle4.setVAngle(angleStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditChangerHAngle4(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+        Angle angle4 = angleTable4.getSelectionModel().getSelectedItem();
+        angle4.setHAngle(angleStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditChangerVAngle5(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+        Angle angle5 = angleTable5.getSelectionModel().getSelectedItem();
+        angle5.setVAngle(angleStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditChangerHAngle5(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+        Angle angle5 = angleTable5.getSelectionModel().getSelectedItem();
+        angle5.setHAngle(angleStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditChangerVAngle6(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+        Angle angle6 = angleTable6.getSelectionModel().getSelectedItem();
+        angle6.setVAngle(angleStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditChangerHAngle6(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+        Angle angle6 = angleTable6.getSelectionModel().getSelectedItem();
+        angle6.setHAngle(angleStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditChangerVAngle7(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+        Angle angle7 = angleTable7.getSelectionModel().getSelectedItem();
+        angle7.setVAngle(angleStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditChangerHAngle7(TableColumn.CellEditEvent<Angle, String> angleStringCellEditEvent) {
+        Angle angle7 = angleTable7.getSelectionModel().getSelectedItem();
+        angle7.setHAngle(angleStringCellEditEvent.getNewValue());
+    }
+
+
     /**
      * Возвращаемся в окно "Новый расчет"
      *
@@ -770,17 +843,39 @@ public class Controller_manualInput {
     @FXML
     public void goingBackToNewCal(ActionEvent event) {
 
+        savePoint();
+
         goBackButton.getScene().getWindow().hide();
 //        goBackButton.getScene().getWindow().hide();
 //        Controller_Main controller_main = new Controller_Main();
 //        controller_main.openNewCalculationWindow("new_calculation-view.fxml", 768, 700);
     }
 
+    private void serializeAngle(ObservableList<Angle> anglesData) throws FileNotFoundException, IOException {
+        File fileAng = new File("D:\\TestGB\\cache\\angle.txt");
+        try(FileOutputStream fosManInpWinAng = new FileOutputStream(fileAng); ObjectOutputStream oosAngle = new ObjectOutputStream(fosManInpWinAng)) {
+            ArrayList<Angle> anglesManInpWin = new ArrayList<Angle>(anglesData);
+            oosAngle.writeObject(anglesManInpWin);
+        }
+    }
+
+    private ObservableList<Angle> deserializeAngle() throws FileNotFoundException, IOException, ClassNotFoundException{
+        ArrayList<Angle> anglesData = new ArrayList<Angle>();
+        File fileAng = new File("D:\\TestGB\\cache\\angle.txt");
+        try(FileInputStream fisAngle = new FileInputStream(fileAng);
+            ObjectInputStream oisAngle = new ObjectInputStream(fisAngle)) {
+            anglesData = (ArrayList<Angle>) oisAngle.readObject();
+        }
+        return FXCollections.observableArrayList(anglesData);
+    }
+
+
     private void serializePoint(ObservableList<Point> pointsData) throws FileNotFoundException, IOException {
         File fileFS = new File("D:\\TestGB\\cache\\point.txt");
         try(FileOutputStream fosManInpWin = new FileOutputStream(fileFS); ObjectOutputStream oosPoint = new ObjectOutputStream(fosManInpWin)) {
             ArrayList<Point> pointsManInpWin = new ArrayList<Point>(pointsData);
-            oosPoint.writeObject(new ArrayList<Point> (pointsManInpWin));
+            oosPoint.writeObject(pointsManInpWin);
+            //oosPoint.writeObject(new ArrayList<Point> (pointsManInpWin));
         }
     }
 
@@ -794,19 +889,22 @@ public class Controller_manualInput {
     }
 
     @FXML
-    void savePoint(ActionEvent event){
+    void savePoint(){
         try {
             this.serializePoint(this.pointsData);
+            this.serializeAngle(this.anglesData);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    private void loadRibs(){
+    private void loadPointAngle(){
         try {
             this.pointsData = this.deserializePoint();
             this.pointTable.setItems(this.pointsData);
+            this.anglesData = this.deserializeAngle();
+            this.angleTable.setItems(this.anglesData);
             scenarioOfManipulatorStates();
 
         } catch (ClassNotFoundException | IOException e) {
