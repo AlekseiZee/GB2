@@ -2,6 +2,7 @@ package ru.geobuilder_2;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ManualInputWin implements Serializable {
 
