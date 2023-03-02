@@ -228,7 +228,11 @@ public class AngleJpaRepository {
 			}
 		}
 	}
-	
+
+	/**
+	 * Удаляем по запросу, обозначенному в Angel
+	 * @param id
+	 */
 	public static void deleteByIdViaNamedQuery(Long id) {
 		EntityManager em = null;
 		EntityTransaction transaction = null;
@@ -236,7 +240,7 @@ public class AngleJpaRepository {
 			em = PersistenceManager.INSTANCE.getEntityManager();
 			transaction = em.getTransaction();
 			transaction.begin();
-			em.createNamedQuery("Angle.deleteById").setParameter("id", id).executeUpdate();
+			em.createNamedQuery("Angle.deleteById").setParameter("id", id).executeUpdate(); //отсутствует в Angle (пока)
 			em.flush();
 			transaction.commit();
 

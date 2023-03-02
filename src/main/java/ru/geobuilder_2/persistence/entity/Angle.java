@@ -19,7 +19,9 @@ import jakarta.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name="Angle.findAll", query="SELECT a FROM Angle a")
+		@NamedQuery(name = "Angle.findAll", query = "SELECT a FROM Angle a"),
+		@NamedQuery(name = "Angle.deleteById", query = "DELETE FROM Angle a WHERE a.id = :id"),
+		@NamedQuery(name = "Angle.update", query = "update Angle a set a.hangle = :hangle, a.vangle = :vangle where a.id = :id")
 })
 public class Angle implements Serializable {
 	private static final long serialVersionUID = 1L;
