@@ -3,12 +3,16 @@ package ru.geobuilder_2.persistence.entity;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 
 
 /**
@@ -24,11 +28,16 @@ public class Object implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 
-	private String adresse;
-
 	private BigInteger number;
 
 	private String operator;
+
+	private String address;
+
+	//bi-directional many-to-one association to Point
+	@OneToMany(mappedBy="object", cascade = CascadeType.PERSIST)
+	private List<Instance> instances = new ArrayList<>();
+
 
 	public Object() {
 	}
@@ -41,19 +50,19 @@ public class Object implements Serializable {
 		this.id = id;
 	}
 
-	public String getAdresse() {
-		return this.adresse;
+	public String getAddress() {
+		return this.address;
 	}
 
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public BigInteger getNumber() {
 		return this.number;
 	}
 
-	public void setNumber(BigInteger number) {
+	public void setNumber(Integer number) {
 		this.number = number;
 	}
 

@@ -29,12 +29,12 @@ public class Instance implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 
-	private String author;
 
 	@Column(name="creation_date")
 	private Timestamp creationDate;
 
-	private String label;
+	private String author;
+
 
 	//bi-directional many-to-one association to Point
 	@OneToMany(mappedBy="instance", cascade = CascadeType.PERSIST)
@@ -67,14 +67,6 @@ public class Instance implements Serializable {
 		this.creationDate = creationDate;
 	}
 
-	public String getLabel() {
-		return this.label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
-	}
-
 	public List<Point> getPoints() {
 		return this.points;
 	}
@@ -99,7 +91,6 @@ public class Instance implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Instance [id=" + id + ", author=" + author + ", creationDate=" + creationDate + ", label=" + label
-				+ ", points=" + points + "]";
+		return "Instance [id=" + id + ", author=" + author + ", creationDate=" + creationDate + ", points=" + points + "]";
 	}
 }

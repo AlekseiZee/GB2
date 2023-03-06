@@ -247,27 +247,27 @@ public class Controller_manualInput {
     private void updateNamePoint(){
         if(!angleTable.isDisabled()) {
             nameAnglePCol.setText(pointsData.get(0).getNamePoint());
-        }
-        if(!angleTable1.isDisabled()) {
-            nameAnglePCol1.setText(pointsData.get(1).getNamePoint());
-        }
-        if(!angleTable2.isDisabled()){
-            nameAnglePCol2.setText(pointsData.get(2).getNamePoint());
-        }
-        if(!angleTable3.isDisabled()) {
-            nameAnglePCol3.setText(pointsData.get(3).getNamePoint());
-        }
-        if(!angleTable4.isDisabled()) {
-            nameAnglePCol4.setText(pointsData.get(4).getNamePoint());
-        }
-        if(!angleTable5.isDisabled()) {
-            nameAnglePCol5.setText(pointsData.get(5).getNamePoint());
-        }
-        if(!angleTable6.isDisabled()) {
-            nameAnglePCol6.setText(pointsData.get(6).getNamePoint());
-        }
-        if(!angleTable7.isDisabled()) {
-            nameAnglePCol7.setText(pointsData.get(7).getNamePoint());
+            if (!angleTable1.isDisabled()) {
+                nameAnglePCol1.setText(pointsData.get(1).getNamePoint());
+                if (!angleTable2.isDisabled()) {
+                    nameAnglePCol2.setText(pointsData.get(2).getNamePoint());
+                    if (!angleTable3.isDisabled()) {
+                        nameAnglePCol3.setText(pointsData.get(3).getNamePoint());
+                        if (!angleTable4.isDisabled()) {
+                            nameAnglePCol4.setText(pointsData.get(4).getNamePoint());
+                            if (!angleTable5.isDisabled()) {
+                                nameAnglePCol5.setText(pointsData.get(5).getNamePoint());
+                                if (!angleTable6.isDisabled()) {
+                                    nameAnglePCol6.setText(pointsData.get(6).getNamePoint());
+                                    if (!angleTable7.isDisabled()) {
+                                        nameAnglePCol7.setText(pointsData.get(7).getNamePoint());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
