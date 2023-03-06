@@ -39,15 +39,15 @@
       </AnchorPane>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="1195.0">
          <children>
-            <TableView layoutX="16.0" layoutY="43.0" prefHeight="362.0" prefWidth="480.0" AnchorPane.leftAnchor="16.0">
+            <TableView fx:id="objectTable" layoutX="16.0" layoutY="43.0" prefHeight="362.0" prefWidth="480.0" AnchorPane.leftAnchor="16.0">
               <columns>
-                <TableColumn prefWidth="32.0" text=" N&#10;п.п." />
-                <TableColumn prefWidth="92.0" text="   Код&#10;объекта" />
-                  <TableColumn prefWidth="261.0" text=" Адрес&#10;объекта" />
-                  <TableColumn prefWidth="94.0" text="Оператор" />
+                <TableColumn fx:id="idOColumn" prefWidth="32.0" text=" N&#10;п.п." />
+                <TableColumn fx:id="codOColumn" prefWidth="92.0" text="   Код&#10;объекта" />
+                  <TableColumn fx:id="addressOColumn" prefWidth="261.0" text=" Адрес&#10;объекта" />
+                  <TableColumn fx:id="operatorOColumn" prefWidth="94.0" text="Оператор" />
               </columns>
             </TableView>
-            <Button layoutX="16.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="165.0" text="Получить список объектов" />
+            <Button fx:id="reedObjectButton" layoutX="16.0" layoutY="9.0" mnemonicParsing="false" onAction="#reedObjectFromDB" prefHeight="25.0" prefWidth="165.0" text="Получить список объектов" />
             <Button layoutX="501.0" layoutY="186.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="65.0" text="Обновить&#10;  данные">
                <font>
                   <Font size="11.0" />
@@ -65,8 +65,8 @@
             </TableView>
             <Button layoutX="511.0" layoutY="94.0" mnemonicParsing="false" text="----&gt;" />
             <Button fx:id="commitInstanceButton" disable="true" layoutX="511.0" layoutY="138.0" mnemonicParsing="false" text="&lt;----" />
-            <Button fx:id="addNewObjectButton" layoutX="16.0" layoutY="413.0" mnemonicParsing="false" onAction="#addNewObject" prefHeight="25.0" prefWidth="115.0" text="Добавить" />
-            <Button fx:id="removeObjectButton" layoutX="141.0" layoutY="413.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Удалить" />
+            <Button fx:id="addNewObjectButton" layoutX="16.0" layoutY="413.0" mnemonicParsing="false" onAction="#addNewObject" prefHeight="25.0" prefWidth="29.0" text="+" />
+            <Button fx:id="removeObjectButton" layoutX="70.0" layoutY="413.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="-" />
             <Button fx:id="addNewInstanceButton" layoutX="571.0" layoutY="413.0" mnemonicParsing="false" onAction="#addNewInstance" prefHeight="25.0" prefWidth="115.0" text="Добавить" />
             <Button layoutX="696.0" layoutY="413.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Удалить" />
             <Button layoutX="1044.0" layoutY="413.0" mnemonicParsing="false" onAction="#showLogOfAngularMeasurements" prefHeight="25.0" prefWidth="134.0" text="Журнал угловых изм." />
@@ -124,7 +124,7 @@
                   <MenuItem fx:id="mts" mnemonicParsing="false" onAction="#setMts" text="ПАО МТС" />
                   <MenuItem fx:id="vimpel" mnemonicParsing="false" onAction="#setVimpel" text="ПАО ВымпелКом" />
                   <MenuItem fx:id="t2" mnemonicParsing="false" onAction="#setT2" text="ПАО Теле2" />
-                  <MenuItem fx:id="non" mnemonicParsing="false" onAction="#setNon" text="- иной-" />
+                  <MenuItem fx:id="non" mnemonicParsing="false" onAction="#setNon" text="-иной-" />
                </items>
             </SplitMenuButton>
             <Text fill="#868686" layoutX="23.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Оператор:">
@@ -133,9 +133,9 @@
                </font>
             </Text>
             <TextField fx:id="newOperator" alignment="TOP_LEFT" layoutX="281.0" layoutY="72.0" prefHeight="25.0" prefWidth="211.0" />
-            <ScrollPane layoutX="182.0" layoutY="130.0" prefHeight="191.0" prefWidth="312.0">
+            <ScrollPane layoutX="182.0" layoutY="130.0" prefHeight="154.0" prefWidth="312.0">
                <content>
-                  <TextFlow fx:id="messageF" prefHeight="189.0" prefWidth="310.0" style="-fx-background-color: #ffffff;" />
+                  <TextFlow fx:id="messageF" prefHeight="151.0" prefWidth="310.0" style="-fx-background-color: #ffffff;" />
                </content>
             </ScrollPane>
             <Text fill="#868686" layoutX="17.0" layoutY="18.4755859375" strokeType="OUTSIDE" strokeWidth="0.0" text="Код объета:" textAlignment="RIGHT" AnchorPane.topAnchor="6.0">
@@ -149,7 +149,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="address" alignment="TOP_LEFT" disable="true" layoutX="95.0" layoutY="36.0" prefHeight="25.0" prefWidth="398.0" />
+            <TextField fx:id="addressObjectField" alignment="TOP_LEFT" disable="true" layoutX="95.0" layoutY="36.0" prefHeight="25.0" prefWidth="398.0" />
             <TableView fx:id="tableRibBD" disable="true" layoutX="17.0" layoutY="129.0" prefHeight="191.0" prefWidth="121.0">
                <columns>
                   <TableColumn fx:id="tierColumnBD" prefWidth="39.0" text="Ярус" />
@@ -182,6 +182,7 @@
                </font>
             </Text>
             <Label layoutX="662.0" layoutY="33.0" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #FFFF; -fx-border-color: #a4a4a4;" text="Объект" textFill="#5b5b5b" />
+            <Button layoutX="183.0" layoutY="294.0" mnemonicParsing="false" onAction="#uploadObject" prefHeight="25.0" prefWidth="121.0" text="Загрузить" />
          </children>
          <VBox.margin>
             <Insets />

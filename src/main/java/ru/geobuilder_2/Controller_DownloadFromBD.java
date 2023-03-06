@@ -150,41 +150,5 @@ public class Controller_DownloadFromBD {
         typeOfWorkSplMenu.setText(emergencyWork.getText());
     }
 
-    /**
-     *  Записывает entity. Делается через транзакцию.
-     * @return
-     */
-    public Object createObject() {
-        EntityManager em = null;
-        EntityTransaction transaction = null;
-        try {
-            em = PersistenceManager.INSTANCE.getEntityManager();
 
-            Object object = new Object();
-            object.setNumber(Integer.valueOf(objectСodeField.getText()));
-            object.setOperator(operatorSplMenu.getText());
-            object.setAddress(addressTextField.getText());
-
-            transaction = em.getTransaction();
-            transaction.begin();
-            em.persist(object);
-            em.flush(); // отправляем в базу все что сделали
-            transaction.commit(); // завершили транзакцию
-            return object;
-        } catch (Exception e) {
-            try{
-                if (transaction!=null) {
-                    transaction.rollback();
-                }
-            } catch (Exception e1) {
-                e1.printStackTrace(System.out);
-            }
-            e.printStackTrace(System.out);
-            return null;
-        } finally {
-            if (em != null) {
-                em.close();
-            }
-        }
-    }
 }

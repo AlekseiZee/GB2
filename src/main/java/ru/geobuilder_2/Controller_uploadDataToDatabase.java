@@ -1,5 +1,7 @@
 package ru.geobuilder_2;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,20 +16,35 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import ru.geobuilder_2.persistence.entity.Object;
+import ru.geobuilder_2.persistence.repository.ObjectJpaRepository;
+import ru.geobuilder_2.persistence.repository.RibJpaRepository;
+import ru.geobuilder_2.persistence.tools.PersistenceManager;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Controller_uploadDataToDatabase {
 
     @FXML
-    private TableView<RibBD> tableRibBD;
+    private TableView<Rib> tableRibBD;
 
     @FXML
-    private TableColumn<RibBD, Integer> tierColumnBD;
+    private TableView<Object> objectTable;
 
     @FXML
-    private TableColumn<RibBD, String> ribLengthColumnBD;
+    private TableColumn<Object, Integer> idOColumn, codOColumn;
+
+    @FXML
+    private TableColumn<Object, String> addressOColumn, operatorOColumn;
+
+    @FXML
+    private TableColumn<Rib, Integer> tierColumnBD;
+
+    @FXML
+    private TableColumn<Rib, String> ribLengthColumnBD;
 
     @FXML
     private Button commitInstanceButton;
@@ -84,7 +101,7 @@ public class Controller_uploadDataToDatabase {
     private SplitMenuButton operator;
 
     @FXML
-    private TextField objectСodeField;
+    private TextField objectСodeField, addressObjectField;
 
     @FXML
     private TextField address;
@@ -96,7 +113,7 @@ public class Controller_uploadDataToDatabase {
     private TextField addressFieldFileJOB;
 
     @FXML
-    public void showLogOfAngularMeasurements (ActionEvent event){
+    public void showLogOfAngularMeasurements(ActionEvent event) {
         FXMLLoader fxmlLoaderLogOfAngularMeasurements = new FXMLLoader();
         fxmlLoaderLogOfAngularMeasurements.setLocation(getClass().getResource("log_of_angular_measurements-view.fxml"));
         try {
@@ -126,31 +143,31 @@ public class Controller_uploadDataToDatabase {
     }
 
     @FXML
-    public void setMegafon(ActionEvent event){
+    public void setMegafon(ActionEvent event) {
         newOperator.setDisable(true);
         operator.setText(megafon.getText());
     }
 
     @FXML
-    public void setMts(ActionEvent event){
+    public void setMts(ActionEvent event) {
         newOperator.setDisable(true);
         operator.setText(mts.getText());
     }
 
     @FXML
-    public void setT2(ActionEvent event){
+    public void setT2(ActionEvent event) {
         newOperator.setDisable(true);
         operator.setText(t2.getText());
     }
 
     @FXML
-    public void setVimpel(ActionEvent event){
+    public void setVimpel(ActionEvent event) {
         newOperator.setDisable(true);
         operator.setText(vimpel.getText());
     }
 
     @FXML
-    public void setNon(ActionEvent event){
+    public void setNon(ActionEvent event) {
         newOperator.setDisable(false);
         operator.setText(non.getText());
     }
@@ -171,7 +188,7 @@ public class Controller_uploadDataToDatabase {
     @FXML
     public void openJOB(ActionEvent event) {
         FileChooser fileChooserJob = new FileChooser();
-        fileChooserJob.setInitialDirectory(new File("C:\\Users\\Home")); // Указываем какую папку открыть изначально
+        fileChooserJob.setInitialDirectory(new File("D:\\TestGB")); // Указываем какую папку открыть изначально
         fileChooserJob.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("txt Files", "*.txt")); // Задаем расширения для выбора конкретных файлов
         File selectedFile = fileChooserJob.showOpenDialog(null);
@@ -196,14 +213,25 @@ public class Controller_uploadDataToDatabase {
         startGeoApplication.iniRoot();
     }
 
-    private ObservableList<RibBD> ribsBD = FXCollections.observableArrayList();
+    private ObservableList<Rib> ribsBD = FXCollections.observableArrayList();
+
+    private ObservableList<Object> objectsData = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
 
+        // Таблица Object
+        idOColumn.setCellValueFactory(new PropertyValueFactory<Object, Integer>("id"));
+        codOColumn.setCellValueFactory(new PropertyValueFactory<Object, Integer>("number"));
+        addressOColumn.setCellValueFactory(new PropertyValueFactory<Object, String>("operator"));
+        operatorOColumn.setCellValueFactory(new PropertyValueFactory<Object, String>("address"));
 
-        tierColumnBD.setCellValueFactory(new PropertyValueFactory<RibBD, Integer>("tierBD"));
-        ribLengthColumnBD.setCellValueFactory(new PropertyValueFactory<RibBD, String>("ribLengthBD"));
+
+        objectTable.setItems(this.objectsData);
+
+
+        tierColumnBD.setCellValueFactory(new PropertyValueFactory<Rib, Integer>("tier"));
+        ribLengthColumnBD.setCellValueFactory(new PropertyValueFactory<Rib, String>("ribLength"));
 
         // указываем, что хотим использовать этот набор данных из коллекции RibsList
         tableRibBD.setItems(ribsBD);
@@ -222,18 +250,48 @@ public class Controller_uploadDataToDatabase {
 
     @FXML
     public void addRibBD() {
-        RibBD ribBD = new RibBD("");
-        tableRibBD.getItems().add(ribBD);
+        Rib rib = new Rib(this.tableRibBD.getItems().size()+1, "");
+        tableRibBD.getItems().add(rib);
     }
 
     /**
      * Вызывается, когда пользователь кликает по кнопке удаления.
      */
     @FXML
-    private void removeRibBD(){
+    private void removeRibBD() {
         tableRibBD.getItems().remove(ribsBD.size() - 1);
-        RibBD.setCountBD();
     }
+
+    /**
+     * Получаем список объектов из базы
+     */
+    @FXML
+    private ObservableList<Object> reedObjectFromDB(){
+        List<Object> objects = new ArrayList<Object>();
+        ObjectJpaRepository objectJpaRepository = new ObjectJpaRepository();
+        objects = objectJpaRepository.readAllObject();
+        return FXCollections.observableArrayList(objects);
+    }
+
+
+    /**
+     *  Записывает entity. Делается через транзакцию.
+     * @return
+     */
+    @FXML
+    private void uploadObject(ActionEvent event){
+        ObjectJpaRepository objectJpaRepository = new ObjectJpaRepository();
+        objectJpaRepository.createObject(Integer.valueOf(objectСodeField.getText()), objectСodeField.getText(), addressObjectField.getText());
+    }
+
+//    @FXML
+//    private ObservableList<Rib> reedRibsFromDB(){
+//        List<ru.geobuilder_2.persistence.entity.Rib> ribs = new ArrayList<>();
+//        RibJpaRepository ribJpaRepository = new RibJpaRepository();
+//        ribs = RibJpaRepository.readAllRib();
+//        return (ObservableList<Rib>) FXCollections.observableArrayList(ribs);
+//    }
+
 }
 
 

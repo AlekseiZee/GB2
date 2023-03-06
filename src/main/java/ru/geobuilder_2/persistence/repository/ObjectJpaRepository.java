@@ -39,7 +39,7 @@ public class ObjectJpaRepository {
 	}
 	
 	// Считываем объекты
-	public static List<Object> readAll() {
+	public static List<Object> readAllObject() {
 		EntityManager em = null;
 		try {
 			em = PersistenceManager.INSTANCE.getEntityManager();
@@ -64,17 +64,17 @@ public class ObjectJpaRepository {
 	 *  Записывает entity. Делается через транзакцию.
 	 * @return
 	 */
-	public Object create() {
+	public static Object createObject(Integer numberObject, String operatorObject, String addressObject) {
 		EntityManager em = null;
 		EntityTransaction transaction = null;
 		try {
 			em = PersistenceManager.INSTANCE.getEntityManager();
 
 			Object object = new Object();
-			object.setNumber();
-			object.setOperator();
-			object.setAddress();
-			
+			object.setNumber(numberObject);
+			object.setOperator(operatorObject);
+			object.setAddress(addressObject);
+
 			transaction = em.getTransaction();
 			transaction.begin();
 			em.persist(object);
@@ -95,44 +95,44 @@ public class ObjectJpaRepository {
 			if (em != null) {
 				em.close();
 			}
-		}		
+		}
 	}
-/**
- * Создаем сразу партию значений Angle. Список значений типа <Angle> 
- * @param quantity
- */
-	public static void createBatch(int quantity) {
-		EntityManager em = null;
-		EntityTransaction transaction = null;
-		try {
-			em = PersistenceManager.INSTANCE.getEntityManager();
-			transaction = em.getTransaction();
-			transaction.begin();
-			for (int i=0; i<quantity; i++) {
-				Object object = new Object();
-				object.setNumber();
-				object.setOperator();
-				object.setAddress();
-				em.persist(object);
-			}
-			em.flush();
-			transaction.commit();
-			
-		} catch (Exception e) {
-			try{
-				if (transaction!=null) {
-					transaction.rollback();
-				}
-			} catch (Exception e1) {
-				e1.printStackTrace(System.out);
-			}
-			e.printStackTrace(System.out);
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}		
-	}
+///**
+// * Создаем сразу партию значений Object. Список значений типа <Object>
+// * @param quantity
+// */
+//	public static void createBatch(int quantity) {
+//		EntityManager em = null;
+//		EntityTransaction transaction = null;
+//		try {
+//			em = PersistenceManager.INSTANCE.getEntityManager();
+//			transaction = em.getTransaction();
+//			transaction.begin();
+//			for (int i=0; i<quantity; i++) {
+//				Object object = new Object();
+//				object.setNumber();
+//				object.setOperator();
+//				object.setAddress();
+//				em.persist(object);
+//			}
+//			em.flush();
+//			transaction.commit();
+//
+//		} catch (Exception e) {
+//			try{
+//				if (transaction!=null) {
+//					transaction.rollback();
+//				}
+//			} catch (Exception e1) {
+//				e1.printStackTrace(System.out);
+//			}
+//			e.printStackTrace(System.out);
+//		} finally {
+//			if (em != null) {
+//				em.close();
+//			}
+//		}
+//	}
 	/**
 	 * Удаляет сущность из базы 
 	 * @param object

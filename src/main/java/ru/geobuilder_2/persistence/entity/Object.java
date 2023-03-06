@@ -28,7 +28,7 @@ public class Object implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 
-	private BigInteger number;
+	private Integer number;
 
 	private String operator;
 
@@ -58,7 +58,7 @@ public class Object implements Serializable {
 		this.address = address;
 	}
 
-	public BigInteger getNumber() {
+	public Integer getNumber() {
 		return this.number;
 	}
 
