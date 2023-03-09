@@ -100,7 +100,7 @@ public class Controller_Main implements Initializable {
     @FXML
     public void uploadDataToDatabase(ActionEvent event) {
         new_cal.getScene().getWindow().hide();
-        openNewCalculationWindow("uploadDataToDatabase-view.fxml", 1194, 854);
+        openNewCalculationWindow("uploadDataToDatabase-view.fxml", 1210, 890);
     }
 
     /**

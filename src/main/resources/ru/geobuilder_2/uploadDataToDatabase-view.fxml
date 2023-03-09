@@ -34,7 +34,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="28.0" prefWidth="757.0" style="-fx-background-color: #FF7100;">
          <children>
-            <Label layoutX="14.0" layoutY="1.0" prefHeight="25.0" prefWidth="145.0" text="Работа с БД" textFill="WHITE" />
+            <Label layoutX="14.0" layoutY="1.0" prefHeight="25.0" prefWidth="145.0" text="Заносим данные в БД" textFill="WHITE" />
          </children>
       </AnchorPane>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="1195.0">
@@ -53,22 +53,22 @@
                   <Font size="11.0" />
                </font>
             </Button>
-            <TableView layoutX="575.0" layoutY="43.0" prefHeight="362.0" prefWidth="608.0" AnchorPane.rightAnchor="16.0">
+            <TableView fx:id="instanceTable" layoutX="575.0" layoutY="43.0" prefHeight="362.0" prefWidth="608.0" AnchorPane.rightAnchor="16.0">
               <columns>
-                <TableColumn prefWidth="38.0" text=" N&#10;п.п." />
-                <TableColumn prefWidth="85.0" text=" Вид&#10;работ" />
-                  <TableColumn prefWidth="157.0" text="Основание&#10;     работ" />
-                  <TableColumn prefWidth="117.0" text="Автор" />
-                  <TableColumn prefWidth="107.0" text="Дата съемки" />
-                  <TableColumn minWidth="7.0" prefWidth="102.0" text="Дата создания" />
+                <TableColumn fx:id="idInstColumn" prefWidth="38.0" text=" N&#10;п.п." />
+                <TableColumn fx:id="typeOfWorkColumn" prefWidth="85.0" text=" Вид&#10;работ" />
+                  <TableColumn fx:id="numberBasisOfWorkFieldColumn" prefWidth="157.0" text="Основание&#10;     работ" />
+                  <TableColumn fx:id="authorColumn" prefWidth="117.0" text="Автор" />
+                  <TableColumn fx:id="photoDateColumn" prefWidth="107.0" text="Дата съемки" />
+                  <TableColumn fx:id="DateColumn" minWidth="7.0" prefWidth="102.0" text="Дата создания" />
               </columns>
             </TableView>
             <Button layoutX="511.0" layoutY="94.0" mnemonicParsing="false" text="----&gt;" />
             <Button fx:id="commitInstanceButton" disable="true" layoutX="511.0" layoutY="138.0" mnemonicParsing="false" text="&lt;----" />
             <Button fx:id="addNewObjectButton" layoutX="16.0" layoutY="413.0" mnemonicParsing="false" onAction="#addNewObject" prefHeight="25.0" prefWidth="29.0" text="+" />
             <Button fx:id="removeObjectButton" layoutX="70.0" layoutY="413.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="-" />
-            <Button fx:id="addNewInstanceButton" layoutX="571.0" layoutY="413.0" mnemonicParsing="false" onAction="#addNewInstance" prefHeight="25.0" prefWidth="115.0" text="Добавить" />
-            <Button layoutX="696.0" layoutY="413.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Удалить" />
+            <Button fx:id="addNewInstanceButton" layoutX="571.0" layoutY="413.0" mnemonicParsing="false" onAction="#addNewInstance" prefHeight="25.0" prefWidth="29.0" text="+" />
+            <Button layoutX="628.0" layoutY="413.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="-" />
             <Button layoutX="1044.0" layoutY="413.0" mnemonicParsing="false" onAction="#showLogOfAngularMeasurements" prefHeight="25.0" prefWidth="134.0" text="Журнал угловых изм." />
          </children>
       </AnchorPane>
@@ -79,13 +79,13 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Button layoutX="663.0" layoutY="243.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Записать" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="663.0" />
-            <Button layoutX="1046.0" layoutY="294.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Выйти" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="1046.0" />
-            <Button fx:id="goBackButton" layoutX="896.0" layoutY="294.0" mnemonicParsing="false" onAction="#goingBackToNewCal" prefHeight="25.0" prefWidth="134.0" text="Вернуться назад" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="896.0" />
+            <Button layoutX="663.0" layoutY="294.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Загрузить сост. в БД" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="663.0" AnchorPane.rightAnchor="397.0" AnchorPane.topAnchor="294.0" />
+            <Button layoutX="1046.0" layoutY="294.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Выйти" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="1046.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="294.0" />
+            <Button fx:id="goBackButton" layoutX="896.0" layoutY="294.0" mnemonicParsing="false" onAction="#goingBackToNewCal" prefHeight="25.0" prefWidth="134.0" text="Вернуться назад" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="896.0" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="294.0" />
             <SplitMenuButton fx:id="typeOfWork" disable="true" layoutX="662.0" layoutY="67.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" AnchorPane.topAnchor="67.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="ТО" />
-                  <MenuItem mnemonicParsing="false" text="АВР" />
+                  <MenuItem fx:id="maintenance" mnemonicParsing="false" onAction="#setMaintenance" text="ТО" />
+                  <MenuItem fx:id="accident" mnemonicParsing="false" onAction="#setAccident" text="АВР" />
                </items>
             </SplitMenuButton>
             <Text fill="#868686" layoutX="589.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вид работ:" AnchorPane.topAnchor="70.5244140625">
@@ -115,8 +115,8 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="addressFieldFileJOB" layoutX="663.0" layoutY="204.0" prefHeight="25.0" prefWidth="217.0" />
-            <Button fx:id="openJOBButton" layoutX="890.0" layoutY="204.0" mnemonicParsing="false" onAction="#openJOB" prefHeight="25.0" prefWidth="71.0" text="Открыть" AnchorPane.topAnchor="204.0" />
+            <TextField fx:id="addressFieldFileJOB" disable="true" layoutX="663.0" layoutY="204.0" prefHeight="25.0" prefWidth="217.0" />
+            <Button fx:id="openJOBButton" disable="true" layoutX="890.0" layoutY="204.0" mnemonicParsing="false" onAction="#openJOB" prefHeight="25.0" prefWidth="71.0" text="Открыть" AnchorPane.topAnchor="204.0" />
             <DatePicker fx:id="photoDate" disable="true" layoutX="662.0" layoutY="171.0" prefHeight="25.0" prefWidth="217.0" />
             <SplitMenuButton fx:id="operator" disable="true" layoutX="96.0" layoutY="72.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="173.0">
                <items>
@@ -132,7 +132,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="newOperator" alignment="TOP_LEFT" layoutX="281.0" layoutY="72.0" prefHeight="25.0" prefWidth="211.0" />
+            <TextField fx:id="newOperator" alignment="TOP_LEFT" disable="true" layoutX="281.0" layoutY="72.0" prefHeight="25.0" prefWidth="211.0" />
             <ScrollPane layoutX="182.0" layoutY="130.0" prefHeight="154.0" prefWidth="312.0">
                <content>
                   <TextFlow fx:id="messageF" prefHeight="151.0" prefWidth="310.0" style="-fx-background-color: #ffffff;" />
@@ -150,7 +150,7 @@
                </font>
             </Text>
             <TextField fx:id="addressObjectField" alignment="TOP_LEFT" disable="true" layoutX="95.0" layoutY="36.0" prefHeight="25.0" prefWidth="398.0" />
-            <TableView fx:id="tableRibBD" disable="true" layoutX="17.0" layoutY="129.0" prefHeight="191.0" prefWidth="121.0">
+            <TableView fx:id="tableRibBD" disable="true" layoutX="17.0" layoutY="129.0" prefHeight="191.0" prefWidth="121.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="1056.0" AnchorPane.topAnchor="129.0">
                <columns>
                   <TableColumn fx:id="tierColumnBD" prefWidth="39.0" text="Ярус" />
                   <TableColumn fx:id="ribLengthColumnBD" text="Грань" />
@@ -181,8 +181,8 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Label layoutX="662.0" layoutY="33.0" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #FFFF; -fx-border-color: #a4a4a4;" text="Объект" textFill="#5b5b5b" />
-            <Button layoutX="183.0" layoutY="294.0" mnemonicParsing="false" onAction="#uploadObject" prefHeight="25.0" prefWidth="121.0" text="Загрузить" />
+            <Label fx:id="objectReferenceField" disable="true" layoutX="662.0" layoutY="33.0" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #FFFF; -fx-border-color: #a4a4a4;" text="Объект" textFill="#5b5b5b" />
+            <Button layoutX="183.0" layoutY="294.0" mnemonicParsing="false" onAction="#uploadObject" prefHeight="25.0" prefWidth="134.0" text="Загр. объект в БД" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="183.0" AnchorPane.rightAnchor="877.0" AnchorPane.topAnchor="294.0" />
          </children>
          <VBox.margin>
             <Insets />

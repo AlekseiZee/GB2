@@ -29,11 +29,16 @@ public class Instance implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 
+	private String typeOfWork;
+
+	private String numberBasisOfWork;
+
+	private String author;
+
+	private Timestamp photoDateColumn;
 
 	@Column(name="creation_date")
 	private Timestamp creationDate;
-
-	private String author;
 
 
 	//bi-directional many-to-one association to Point

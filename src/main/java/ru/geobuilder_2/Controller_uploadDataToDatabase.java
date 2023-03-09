@@ -10,20 +10,26 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import ru.geobuilder_2.persistence.entity.Instance;
 import ru.geobuilder_2.persistence.entity.Object;
 import ru.geobuilder_2.persistence.repository.ObjectJpaRepository;
 import ru.geobuilder_2.persistence.repository.RibJpaRepository;
 import ru.geobuilder_2.persistence.tools.PersistenceManager;
 
+import javax.xml.crypto.Data;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Controller_uploadDataToDatabase {
@@ -41,6 +47,17 @@ public class Controller_uploadDataToDatabase {
     private TableColumn<Object, String> addressOColumn, operatorOColumn;
 
     @FXML
+    private TableView<Instance> instanceTable;
+
+    @FXML
+    private TableColumn<Instance, Integer> idInstColumn;
+    @FXML
+    private TableColumn<Instance, String> typeOfWorkColumn, numberBasisOfWorkFieldColumn, authorColumn;
+
+    @FXML
+    private TableColumn<Instance, Timestamp> photoDateColumn, DateColumn;
+
+    @FXML
     private TableColumn<Rib, Integer> tierColumnBD;
 
     @FXML
@@ -48,6 +65,9 @@ public class Controller_uploadDataToDatabase {
 
     @FXML
     private Button commitInstanceButton;
+
+    @FXML
+    private MenuItem maintenance, accident;
 
     @FXML
     private MenuItem megafon;
@@ -86,7 +106,7 @@ public class Controller_uploadDataToDatabase {
     private SplitMenuButton typeOfWork;
 
     @FXML
-    private TextField objectReferenceField;
+    private Label objectReferenceField;
 
     @FXML
     private Button removeRibObjectButton;
@@ -112,6 +132,11 @@ public class Controller_uploadDataToDatabase {
     @FXML
     private TextField addressFieldFileJOB;
 
+
+    /**
+     * Вызываем окно "журнал угловых измерений"
+     * @param event
+     */
     @FXML
     public void showLogOfAngularMeasurements(ActionEvent event) {
         FXMLLoader fxmlLoaderLogOfAngularMeasurements = new FXMLLoader();
@@ -132,10 +157,15 @@ public class Controller_uploadDataToDatabase {
         stage.showAndWait();
     }
 
+
+    /**
+     * Открываем функционал для добавления объекта в БД.
+     * @param
+     */
     @FXML
-    public void addNewObject(ActionEvent event) {
+    public void addNewObject() {
         objectСodeField.setDisable(false);
-        address.setDisable(false);
+        addressObjectField.setDisable(false);
         operator.setDisable(false);
         tableRibBD.setDisable(false);
         addNewRibObjectButton.setDisable(false);
@@ -172,10 +202,22 @@ public class Controller_uploadDataToDatabase {
         operator.setText(non.getText());
     }
 
+    @FXML
+    public void setMaintenance(ActionEvent event) {
+        typeOfWork.setText(maintenance.getText());
+    }
 
     @FXML
+    public void setAccident(ActionEvent event) {
+        typeOfWork.setText(accident.getText());
+    }
+
+    /**
+     * Открываем функционал для добавления нового состояния
+     * @param event
+     */
+    @FXML
     public void addNewInstance(ActionEvent event) {
-        commitInstanceButton.setDisable(false);
         objectReferenceField.setDisable(false);
         typeOfWork.setDisable(false);
         numberBasisOfWorkField.setDisable(false);
@@ -185,6 +227,12 @@ public class Controller_uploadDataToDatabase {
         openJOBButton.setDisable(false);
     }
 
+
+
+    /**
+     * Открываем окно для выбора файла с данными
+     * @param event
+     */
     @FXML
     public void openJOB(ActionEvent event) {
         FileChooser fileChooserJob = new FileChooser();
@@ -199,6 +247,10 @@ public class Controller_uploadDataToDatabase {
         }
     }
 
+    /**
+     * Возвращаемся назад
+     * @param event
+     */
     @FXML
     public void goingBackToNewCal(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -213,9 +265,9 @@ public class Controller_uploadDataToDatabase {
         startGeoApplication.iniRoot();
     }
 
-    private ObservableList<Rib> ribsBD = FXCollections.observableArrayList();
-
     private ObservableList<Object> objectsData = FXCollections.observableArrayList();
+    private ObservableList<Instance> instancesData = FXCollections.observableArrayList();
+    private ObservableList<Rib> ribsBD = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
@@ -226,13 +278,18 @@ public class Controller_uploadDataToDatabase {
         addressOColumn.setCellValueFactory(new PropertyValueFactory<Object, String>("operator"));
         operatorOColumn.setCellValueFactory(new PropertyValueFactory<Object, String>("address"));
 
-
         objectTable.setItems(this.objectsData);
 
+        idInstColumn.setCellValueFactory(new PropertyValueFactory<Instance, Integer>("id"));
+        typeOfWorkColumn.setCellValueFactory(new PropertyValueFactory<Instance, String>("typeOfWork"));
+        numberBasisOfWorkFieldColumn.setCellValueFactory(new PropertyValueFactory<Instance, String>("typeOfWork"));
+        photoDateColumn.setCellValueFactory(new PropertyValueFactory<Instance, Timestamp>("photoDateColumn"));
+        DateColumn.setCellValueFactory(new PropertyValueFactory<Instance, Timestamp>("creationDate"));
+
+        instanceTable.setItems(this.instancesData);
 
         tierColumnBD.setCellValueFactory(new PropertyValueFactory<Rib, Integer>("tier"));
         ribLengthColumnBD.setCellValueFactory(new PropertyValueFactory<Rib, String>("ribLength"));
-
         // указываем, что хотим использовать этот набор данных из коллекции RibsList
         tableRibBD.setItems(ribsBD);
 
@@ -283,6 +340,7 @@ public class Controller_uploadDataToDatabase {
         ObjectJpaRepository objectJpaRepository = new ObjectJpaRepository();
         objectJpaRepository.createObject(Integer.valueOf(objectСodeField.getText()), objectСodeField.getText(), addressObjectField.getText());
     }
+
 
 //    @FXML
 //    private ObservableList<Rib> reedRibsFromDB(){
