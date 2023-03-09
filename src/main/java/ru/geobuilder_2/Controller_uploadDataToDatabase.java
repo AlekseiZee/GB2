@@ -14,6 +14,8 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -33,6 +35,9 @@ import java.util.Date;
 import java.util.List;
 
 public class Controller_uploadDataToDatabase {
+
+    @FXML
+    private TextFlow messageF;
 
     @FXML
     private TableView<Rib> tableRibBD;
@@ -135,6 +140,7 @@ public class Controller_uploadDataToDatabase {
 
     /**
      * Вызываем окно "журнал угловых измерений"
+     *
      * @param event
      */
     @FXML
@@ -160,6 +166,7 @@ public class Controller_uploadDataToDatabase {
 
     /**
      * Открываем функционал для добавления объекта в БД.
+     *
      * @param
      */
     @FXML
@@ -214,6 +221,7 @@ public class Controller_uploadDataToDatabase {
 
     /**
      * Открываем функционал для добавления нового состояния
+     *
      * @param event
      */
     @FXML
@@ -228,9 +236,9 @@ public class Controller_uploadDataToDatabase {
     }
 
 
-
     /**
      * Открываем окно для выбора файла с данными
+     *
      * @param event
      */
     @FXML
@@ -249,6 +257,7 @@ public class Controller_uploadDataToDatabase {
 
     /**
      * Возвращаемся назад
+     *
      * @param event
      */
     @FXML
@@ -307,7 +316,7 @@ public class Controller_uploadDataToDatabase {
 
     @FXML
     public void addRibBD() {
-        Rib rib = new Rib(this.tableRibBD.getItems().size()+1, "");
+        Rib rib = new Rib(this.tableRibBD.getItems().size() + 1, "");
         tableRibBD.getItems().add(rib);
     }
 
@@ -323,7 +332,7 @@ public class Controller_uploadDataToDatabase {
      * Получаем список объектов из базы
      */
     @FXML
-    private ObservableList<Object> reedObjectFromDB(){
+    private ObservableList<Object> reedObjectFromDB() {
         List<Object> objects = new ArrayList<Object>();
         ObjectJpaRepository objectJpaRepository = new ObjectJpaRepository();
         objects = objectJpaRepository.readAllObject();
@@ -332,13 +341,45 @@ public class Controller_uploadDataToDatabase {
 
 
     /**
-     *  Записывает entity. Делается через транзакцию.
+     * Записывает entity. Делается через транзакцию.
+     *
      * @return
      */
     @FXML
-    private void uploadObject(ActionEvent event){
+    private void uploadObject(ActionEvent event) {
         ObjectJpaRepository objectJpaRepository = new ObjectJpaRepository();
-        objectJpaRepository.createObject(Integer.valueOf(objectСodeField.getText()), objectСodeField.getText(), addressObjectField.getText());
+        Object o = objectJpaRepository.createObject(Integer.valueOf(objectСodeField.getText()), operator.getText(), addressObjectField.getText());
+
+        if (o != null) {
+
+        }
+        Instance instance = new Instance();
+        instance.setTypeOfWork("ART");
+        instance.setNumberBasisOfWork("qwe");
+        instance.setAuthor("Aleksei");
+
+
+//        Instance instance2 = new Instance();
+//        instance2.setTypeOfWork("asdad");
+//        instance2.setNumberBasisOfWork("werwe");
+//        instance2.setAuthor("Pavel");
+
+        o.addInstance(instance);
+        //o.addInstance(instance2);
+        try {
+
+            EntityManager em = null;
+            EntityTransaction transaction = null;
+
+            em = PersistenceManager.INSTANCE.getEntityManager();
+            transaction = em.getTransaction();
+            transaction.begin();
+            em.merge(o);
+            //em.flush(); // отправляем в базу все что сделали
+            transaction.commit(); // завершили транзакцию
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
     }
 
 

@@ -38,6 +38,20 @@ public class Object implements Serializable {
 	@OneToMany(mappedBy="object", cascade = CascadeType.PERSIST)
 	private List<Instance> instances = new ArrayList<>();
 
+	public List<Instance> getInstances() {
+		return instances;
+	}
+
+	public void setInstances(List<Instance> instances) {
+		this.instances = instances;
+	}
+
+	public Instance addInstance(Instance instance) {
+		getInstances().add(instance);
+		instance.setObject(this);
+
+		return instance;
+	}
 
 	public Object() {
 	}

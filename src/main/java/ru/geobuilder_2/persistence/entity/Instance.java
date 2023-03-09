@@ -6,14 +6,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 
 /**
@@ -29,12 +22,15 @@ public class Instance implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 
+	@Column(name="Type_of_work")
 	private String typeOfWork;
 
+	@Column(name="Basis_of_works")
 	private String numberBasisOfWork;
 
 	private String author;
 
+	@Column(name="Photo_date")
 	private Timestamp photoDateColumn;
 
 	@Column(name="creation_date")
@@ -44,6 +40,19 @@ public class Instance implements Serializable {
 	//bi-directional many-to-one association to Point
 	@OneToMany(mappedBy="instance", cascade = CascadeType.PERSIST)
 	private List<Point> points = new ArrayList<>();
+
+	@ManyToOne
+	@JoinColumn(name="Id_object")
+	private Object object;
+
+
+	public Object getObject() {
+		return object;
+	}
+
+	public void setObject(Object object) {
+		this.object = object;
+	}
 
 	public Instance() {
 	}
@@ -70,6 +79,30 @@ public class Instance implements Serializable {
 
 	public void setCreationDate(Timestamp creationDate) {
 		this.creationDate = creationDate;
+	}
+
+	public String getTypeOfWork() {
+		return typeOfWork;
+	}
+
+	public void setTypeOfWork(String typeOfWork) {
+		this.typeOfWork = typeOfWork;
+	}
+
+	public String getNumberBasisOfWork() {
+		return numberBasisOfWork;
+	}
+
+	public void setNumberBasisOfWork(String numberBasisOfWork) {
+		this.numberBasisOfWork = numberBasisOfWork;
+	}
+
+	public Timestamp getPhotoDateColumn() {
+		return photoDateColumn;
+	}
+
+	public void setPhotoDateColumn(Timestamp photoDateColumn) {
+		this.photoDateColumn = photoDateColumn;
 	}
 
 	public List<Point> getPoints() {

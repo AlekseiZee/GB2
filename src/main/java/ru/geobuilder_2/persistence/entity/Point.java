@@ -46,9 +46,14 @@ public class Point implements Serializable {
 	@JoinColumn(name="Id_instance")
 	private Instance instance;
 
-	public Point() {
+	public Point(ru.geobuilder_2.Point jfxp) {
+		this.code = jfxp.getNamePoint();
+		this.distance = Double.parseDouble(jfxp.getDistancePoint());
+		this.hangle = Double.parseDouble(jfxp.getHAnglePoint());
+		this.vangle = Double.parseDouble(jfxp.getVAnglePoint());
 	}
 
+	public Point(){}
 	public long getId() {
 		return this.id;
 	}
