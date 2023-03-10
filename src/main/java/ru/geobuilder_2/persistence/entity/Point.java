@@ -33,9 +33,9 @@ public class Point implements Serializable {
 
 	private double distance;
 
-	private double hangle;
+	private double vAngle;
 
-	private double vangle;
+	private double hAngle;
 
 	//bi-directional many-to-one association to Anglepair
 	@OneToMany(mappedBy="point", cascade = CascadeType.PERSIST)
@@ -46,11 +46,11 @@ public class Point implements Serializable {
 	@JoinColumn(name="Id_instance")
 	private Instance instance;
 
-	public Point(ru.geobuilder_2.Point jfxp) {
-		this.code = jfxp.getNamePoint();
-		this.distance = Double.parseDouble(jfxp.getDistancePoint());
-		this.hangle = Double.parseDouble(jfxp.getHAnglePoint());
-		this.vangle = Double.parseDouble(jfxp.getVAnglePoint());
+	public Point(ru.geobuilder_2.Point jfxP) {
+		this.code = jfxP.getNamePoint();
+		this.distance = Double.parseDouble(jfxP.getDistancePoint());
+		this.vAngle = Double.parseDouble(jfxP.getVAnglePoint());
+		this.hAngle = Double.parseDouble(jfxP.getHAnglePoint());
 	}
 
 	public Point(){}
@@ -78,20 +78,20 @@ public class Point implements Serializable {
 		this.distance = distance;
 	}
 
-	public double getHangle() {
-		return this.hangle;
+	public double getHAngle() {
+		return this.hAngle;
 	}
 
-	public void setHangle(double hangle) {
-		this.hangle = hangle;
+	public void setHAngle(double hAngle) {
+		this.hAngle = hAngle;
 	}
 
-	public double getVangle() {
-		return this.vangle;
+	public double getVAngle() {
+		return this.vAngle;
 	}
 
-	public void setVangle(double vangle) {
-		this.vangle = vangle;
+	public void setVAngle(double vAngle) {
+		this.vAngle = vAngle;
 	}
 
 	public List<Anglepair> getAnglepairs() {
@@ -100,6 +100,14 @@ public class Point implements Serializable {
 
 	public void setAnglepairs(List<Anglepair> anglepairs) {
 		this.anglepairs = anglepairs;
+	}
+
+	public Instance getInstance() {
+		return this.instance;
+	}
+
+	public void setInstance(Instance instance) {
+		this.instance = instance;
 	}
 
 	public Anglepair addAnglepair(Anglepair anglepair) {
@@ -116,17 +124,10 @@ public class Point implements Serializable {
 		return anglepair;
 	}
 
-	public Instance getInstance() {
-		return this.instance;
-	}
-
-	public void setInstance(Instance instance) {
-		this.instance = instance;
-	}
 
 	@Override
 	public String toString() {
-		return "Point [id=" + id + ", code=" + code + ", distance=" + distance + ", hangle=" + hangle + ", vangle="
-				+ vangle + ", anglepairs=" + anglepairs + ", instance=Instance instance]";
+		return "Point [id=" + id + ", code=" + code + ", distance=" + distance + ", hangle=" + hAngle + ", vangle="
+				+ vAngle + ", anglepairs=" + anglepairs + ", instance=Instance instance]";
 	}
 }

@@ -41,6 +41,9 @@ public class Instance implements Serializable {
 	@OneToMany(mappedBy="instance", cascade = CascadeType.PERSIST)
 	private List<Point> points = new ArrayList<>();
 
+	@OneToMany(mappedBy="instance", cascade = CascadeType.PERSIST)
+	private List<Rib> ribs = new ArrayList<>();
+
 	@ManyToOne
 	@JoinColumn(name="Id_object")
 	private Object object;
@@ -113,6 +116,14 @@ public class Instance implements Serializable {
 		this.points = points;
 	}
 
+	public List<Rib> getRibs() {
+		return this.ribs;
+	}
+
+	public void setRibs(List<Rib> ribs) {
+		this.ribs = ribs;
+	}
+
 	public Point addPoint(Point point) {
 		getPoints().add(point);
 		point.setInstance(this);
@@ -127,8 +138,18 @@ public class Instance implements Serializable {
 		return point;
 	}
 
-	@Override
-	public String toString() {
-		return "Instance [id=" + id + ", author=" + author + ", creationDate=" + creationDate + ", points=" + points + "]";
+	public Rib addRib(Rib rib) {
+		getRibs().add(rib);
+		rib.setInstance(this);
+
+		return rib;
 	}
+
+	public Rib removeRib(Rib rib) {
+		getRibs().remove(rib);
+		rib.setInstance(null);
+
+		return rib;
+	}
+
 }

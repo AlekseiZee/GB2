@@ -35,7 +35,6 @@ import java.util.Date;
 import java.util.List;
 
 public class Controller_uploadDataToDatabase {
-
     @FXML
     private TextFlow messageF;
 
@@ -174,9 +173,6 @@ public class Controller_uploadDataToDatabase {
         objectСodeField.setDisable(false);
         addressObjectField.setDisable(false);
         operator.setDisable(false);
-        tableRibBD.setDisable(false);
-        addNewRibObjectButton.setDisable(false);
-        removeRibObjectButton.setDisable(false);
     }
 
     @FXML
@@ -233,6 +229,9 @@ public class Controller_uploadDataToDatabase {
         photoDate.setDisable(false);
         addressFieldFileJOB.setDisable(false);
         openJOBButton.setDisable(false);
+        tableRibBD.setDisable(false);
+        addNewRibObjectButton.setDisable(false);
+        removeRibObjectButton.setDisable(false);
     }
 
 
@@ -347,11 +346,24 @@ public class Controller_uploadDataToDatabase {
      */
     @FXML
     private void uploadObject(ActionEvent event) {
+        String operatorName;
+        if (operator.getText() == non.getText()){
+            operatorName = newOperator.getText();
+        } else {
+            operatorName = operator.getText();
+        }
         ObjectJpaRepository objectJpaRepository = new ObjectJpaRepository();
-        Object o = objectJpaRepository.createObject(Integer.valueOf(objectСodeField.getText()), operator.getText(), addressObjectField.getText());
+        Object o = objectJpaRepository.createObject(Integer.valueOf(objectСodeField.getText()), operatorName,
+                addressObjectField.getText());
 
         if (o != null) {
-
+            messageF.getChildren().clear();
+            Text mes = new Text("Объект записан");
+            messageF.getChildren().add(mes);
+        } else {
+            messageF.getChildren().clear();
+            Text mes = new Text("Объект не записался");
+            messageF.getChildren().add(mes);
         }
         Instance instance = new Instance();
         instance.setTypeOfWork("ART");

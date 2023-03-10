@@ -82,42 +82,42 @@
             <Button layoutX="663.0" layoutY="294.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Загрузить сост. в БД" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="663.0" AnchorPane.rightAnchor="397.0" AnchorPane.topAnchor="294.0" />
             <Button layoutX="1046.0" layoutY="294.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Выйти" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="1046.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="294.0" />
             <Button fx:id="goBackButton" layoutX="896.0" layoutY="294.0" mnemonicParsing="false" onAction="#goingBackToNewCal" prefHeight="25.0" prefWidth="134.0" text="Вернуться назад" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="896.0" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="294.0" />
-            <SplitMenuButton fx:id="typeOfWork" disable="true" layoutX="662.0" layoutY="67.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" AnchorPane.topAnchor="67.0">
+            <SplitMenuButton fx:id="typeOfWork" disable="true" layoutX="665.0" layoutY="36.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" AnchorPane.topAnchor="36.0">
                <items>
                   <MenuItem fx:id="maintenance" mnemonicParsing="false" onAction="#setMaintenance" text="ТО" />
                   <MenuItem fx:id="accident" mnemonicParsing="false" onAction="#setAccident" text="АВР" />
                </items>
             </SplitMenuButton>
-            <Text fill="#868686" layoutX="589.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вид работ:" AnchorPane.topAnchor="70.5244140625">
+            <Text fill="#868686" layoutX="592.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вид работ:" AnchorPane.topAnchor="39.5244140625">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Text fill="#868686" layoutX="589.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Основание&#10;        работ:" textAlignment="RIGHT">
+            <Text fill="#868686" layoutX="592.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Основание&#10;        работ:" textAlignment="RIGHT">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="numberBasisOfWorkField" disable="true" layoutX="662.0" layoutY="104.0" prefHeight="25.0" prefWidth="217.0" />
-            <Text fill="#868686" layoutX="613.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Автор:">
+            <TextField fx:id="numberBasisOfWorkField" disable="true" layoutX="665.0" layoutY="68.0" prefHeight="25.0" prefWidth="217.0" />
+            <Text fill="#868686" layoutX="617.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Автор:">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="author" disable="true" layoutX="662.0" layoutY="137.0" prefHeight="25.0" prefWidth="217.0" />
-            <Text fill="#868686" layoutX="606.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="    Дата &#10;съемки:" textAlignment="RIGHT">
+            <TextField fx:id="author" disable="true" layoutX="666.0" layoutY="104.0" prefHeight="25.0" prefWidth="217.0" />
+            <Text fill="#868686" layoutX="609.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="    Дата &#10;съемки:" textAlignment="RIGHT">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Text fill="#868686" layoutX="575.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Путь к файл:">
+            <Text fill="#868686" layoutX="578.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Путь к файл:">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="addressFieldFileJOB" disable="true" layoutX="663.0" layoutY="204.0" prefHeight="25.0" prefWidth="217.0" />
-            <Button fx:id="openJOBButton" disable="true" layoutX="890.0" layoutY="204.0" mnemonicParsing="false" onAction="#openJOB" prefHeight="25.0" prefWidth="71.0" text="Открыть" AnchorPane.topAnchor="204.0" />
-            <DatePicker fx:id="photoDate" disable="true" layoutX="662.0" layoutY="171.0" prefHeight="25.0" prefWidth="217.0" />
+            <TextField fx:id="addressFieldFileJOB" disable="true" layoutX="666.0" layoutY="180.0" prefHeight="25.0" prefWidth="134.0" />
+            <Button fx:id="openJOBButton" disable="true" layoutX="811.0" layoutY="179.0" mnemonicParsing="false" onAction="#openJOB" prefHeight="25.0" prefWidth="71.0" text="Открыть" AnchorPane.topAnchor="179.0" />
+            <DatePicker fx:id="photoDate" disable="true" layoutX="665.0" layoutY="140.0" prefHeight="25.0" prefWidth="217.0" />
             <SplitMenuButton fx:id="operator" disable="true" layoutX="96.0" layoutY="72.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="173.0">
                <items>
                   <MenuItem fx:id="megafon" mnemonicParsing="false" onAction="#setMegafon" text="ПАО Мегафон" />
@@ -133,7 +133,7 @@
                </font>
             </Text>
             <TextField fx:id="newOperator" alignment="TOP_LEFT" disable="true" layoutX="281.0" layoutY="72.0" prefHeight="25.0" prefWidth="211.0" />
-            <ScrollPane layoutX="182.0" layoutY="130.0" prefHeight="154.0" prefWidth="312.0">
+            <ScrollPane layoutX="14.0" layoutY="128.0" prefHeight="154.0" prefWidth="312.0">
                <content>
                   <TextFlow fx:id="messageF" prefHeight="151.0" prefWidth="310.0" style="-fx-background-color: #ffffff;" />
                </content>
@@ -150,39 +150,39 @@
                </font>
             </Text>
             <TextField fx:id="addressObjectField" alignment="TOP_LEFT" disable="true" layoutX="95.0" layoutY="36.0" prefHeight="25.0" prefWidth="398.0" />
-            <TableView fx:id="tableRibBD" disable="true" layoutX="17.0" layoutY="129.0" prefHeight="191.0" prefWidth="121.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="1056.0" AnchorPane.topAnchor="129.0">
+            <TableView fx:id="tableRibBD" disable="true" layoutX="903.0" layoutY="27.0" prefHeight="224.0" prefWidth="121.0" AnchorPane.bottomAnchor="82.0" AnchorPane.leftAnchor="903.0" AnchorPane.rightAnchor="170.0" AnchorPane.topAnchor="27.0">
                <columns>
                   <TableColumn fx:id="tierColumnBD" prefWidth="39.0" text="Ярус" />
                   <TableColumn fx:id="ribLengthColumnBD" text="Грань" />
                </columns>
             </TableView>
-            <Text fill="#868686" layoutX="24.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Грани АМС, мм." wrappingWidth="109.0">
+            <Text fill="#868686" layoutX="910.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Грани АМС, мм." wrappingWidth="109.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Button fx:id="addNewRibObjectButton" disable="true" layoutX="146.0" layoutY="131.0" mnemonicParsing="false" onAction="#addRibBD" prefHeight="22.0" prefWidth="23.0" text="+">
+            <Button fx:id="addNewRibObjectButton" disable="true" layoutX="932.0" layoutY="257.0" mnemonicParsing="false" onAction="#addRibBD" prefHeight="22.0" prefWidth="23.0" text="+">
                <font>
                   <Font name="Times New Roman Bold Italic" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="removeRibObjectButton" disable="true" layoutX="146.0" layoutY="163.0" mnemonicParsing="false" onAction="#removeRibBD" prefHeight="22.0" prefWidth="23.0" text="-">
+            <Button fx:id="removeRibObjectButton" disable="true" layoutX="971.0" layoutY="257.0" mnemonicParsing="false" onAction="#removeRibBD" prefHeight="22.0" prefWidth="23.0" text="-">
                <font>
                   <Font name="Times New Roman Bold Italic" size="12.0" />
                </font>
             </Button>
-            <Text fill="#868686" layoutX="189.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Информационные сообщения:" wrappingWidth="238.00000000000006">
+            <Text fill="#868686" layoutX="15.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Информационные сообщения:" wrappingWidth="238.00000000000006">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Text fill="#868686" layoutX="603.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Объект:">
+            <Text fill="#868686" layoutX="606.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Объект:">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Label fx:id="objectReferenceField" disable="true" layoutX="662.0" layoutY="33.0" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #FFFF; -fx-border-color: #a4a4a4;" text="Объект" textFill="#5b5b5b" />
-            <Button layoutX="183.0" layoutY="294.0" mnemonicParsing="false" onAction="#uploadObject" prefHeight="25.0" prefWidth="134.0" text="Загр. объект в БД" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="183.0" AnchorPane.rightAnchor="877.0" AnchorPane.topAnchor="294.0" />
+            <Label fx:id="objectReferenceField" disable="true" layoutX="665.0" layoutY="3.0" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #FFFF; -fx-border-color: #a4a4a4;" text="Объект" textFill="#5b5b5b" />
+            <Button layoutX="15.0" layoutY="294.0" mnemonicParsing="false" onAction="#uploadObject" prefHeight="25.0" prefWidth="134.0" text="Загр. объект в БД" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="1045.0" AnchorPane.topAnchor="294.0" />
          </children>
          <VBox.margin>
             <Insets />

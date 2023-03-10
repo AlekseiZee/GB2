@@ -22,10 +22,15 @@ public class Rib implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-
     private Integer id;
 
     private Integer tier;
+
+    private Integer ribLength;
+
+    @ManyToOne
+    @JoinColumn(name="Id_instance")
+    private Instance instance;
 
     public Rib() {
     }
@@ -54,19 +59,21 @@ public class Rib implements Serializable {
         this.ribLength = ribLength;
     }
 
-    public ListRibs getListRibs() {
-        return listRibs;
+    public Instance getInstance() {
+        return this.instance;
     }
 
-    public void setListRibs(ListRibs listRibs) {
-        this.listRibs = listRibs;
+    public void setInstance(Instance instance) {
+        this.instance = instance;
     }
 
-    private Integer ribLength;
-
-    @ManyToOne
-    @JoinColumn(name="Id_ListRibs")
-    private ListRibs listRibs;
-
-
+    @Override
+    public String toString() {
+        return "Rib{" +
+                "id=" + id +
+                ", tier=" + tier +
+                ", ribLength=" + ribLength +
+                ", instance=" + instance +
+                '}';
+    }
 }
