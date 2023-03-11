@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Point implements Serializable {
+public class Point  {
 
     private transient IntegerProperty idPoint;
     private transient StringProperty namePoint;

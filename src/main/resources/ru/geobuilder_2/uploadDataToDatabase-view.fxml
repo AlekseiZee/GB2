@@ -47,7 +47,7 @@
                   <TableColumn fx:id="operatorOColumn" prefWidth="94.0" text="Оператор" />
               </columns>
             </TableView>
-            <Button fx:id="reedObjectButton" layoutX="16.0" layoutY="9.0" mnemonicParsing="false" onAction="#reedObjectFromDB" prefHeight="25.0" prefWidth="165.0" text="Получить список объектов" />
+            <Button fx:id="reedObjectButton" layoutX="16.0" layoutY="9.0" mnemonicParsing="false" onAction="#loadObjectJFX" prefHeight="25.0" prefWidth="165.0" text="Получить список объектов" />
             <Button layoutX="501.0" layoutY="186.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="65.0" text="Обновить&#10;  данные">
                <font>
                   <Font size="11.0" />

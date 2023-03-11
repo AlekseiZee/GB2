@@ -11,6 +11,7 @@
 		<class>ru.geobuilder_2.persistence.entity.Anglepair</class>
 		<class>ru.geobuilder_2.persistence.entity.Instance</class>
 		<class>ru.geobuilder_2.persistence.entity.Object</class>
+		<class>ru.geobuilder_2.persistence.entity.Rib</class>
 		
 
 <!-- https://www.eclipse.org/eclipselink/documentation/4.0/jpa/extensions/toc.htm -->

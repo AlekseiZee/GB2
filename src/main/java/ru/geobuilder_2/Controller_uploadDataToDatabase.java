@@ -2,7 +2,6 @@ package ru.geobuilder_2;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -18,20 +16,15 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import ru.geobuilder_2.persistence.entity.Instance;
 import ru.geobuilder_2.persistence.entity.Object;
 import ru.geobuilder_2.persistence.repository.ObjectJpaRepository;
-import ru.geobuilder_2.persistence.repository.RibJpaRepository;
 import ru.geobuilder_2.persistence.tools.PersistenceManager;
 
-import javax.xml.crypto.Data;
 import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Controller_uploadDataToDatabase {
@@ -42,13 +35,13 @@ public class Controller_uploadDataToDatabase {
     private TableView<Rib> tableRibBD;
 
     @FXML
-    private TableView<Object> objectTable;
+    private TableView<ObjectJFX> objectTable;
 
     @FXML
-    private TableColumn<Object, Integer> idOColumn, codOColumn;
+    private TableColumn<ObjectJFX, Integer> idOColumn, codOColumn;
 
     @FXML
-    private TableColumn<Object, String> addressOColumn, operatorOColumn;
+    private TableColumn<ObjectJFX, String> addressOColumn, operatorOColumn;
 
     @FXML
     private TableView<Instance> instanceTable;
@@ -273,7 +266,7 @@ public class Controller_uploadDataToDatabase {
         startGeoApplication.iniRoot();
     }
 
-    private ObservableList<Object> objectsData = FXCollections.observableArrayList();
+    private ObservableList<ObjectJFX> objectsJFX = FXCollections.observableArrayList();
     private ObservableList<Instance> instancesData = FXCollections.observableArrayList();
     private ObservableList<Rib> ribsBD = FXCollections.observableArrayList();
 
@@ -281,12 +274,13 @@ public class Controller_uploadDataToDatabase {
     private void initialize() {
 
         // Таблица Object
-        idOColumn.setCellValueFactory(new PropertyValueFactory<Object, Integer>("id"));
-        codOColumn.setCellValueFactory(new PropertyValueFactory<Object, Integer>("number"));
-        addressOColumn.setCellValueFactory(new PropertyValueFactory<Object, String>("operator"));
-        operatorOColumn.setCellValueFactory(new PropertyValueFactory<Object, String>("address"));
+        idOColumn.setCellValueFactory(new PropertyValueFactory<ObjectJFX, Integer>("idObjectJFX"));
+        codOColumn.setCellValueFactory(new PropertyValueFactory<ObjectJFX, Integer>("numberObjectJFX"));
+        operatorOColumn.setCellValueFactory(new PropertyValueFactory<ObjectJFX, String>("operatorObjectJFX"));
+        addressOColumn.setCellValueFactory(new PropertyValueFactory<ObjectJFX, String>("addressObjectJFX"));
 
-        objectTable.setItems(this.objectsData);
+
+        objectTable.setItems(this.objectsJFX);
 
         idInstColumn.setCellValueFactory(new PropertyValueFactory<Instance, Integer>("id"));
         typeOfWorkColumn.setCellValueFactory(new PropertyValueFactory<Instance, String>("typeOfWork"));
@@ -331,13 +325,29 @@ public class Controller_uploadDataToDatabase {
      * Получаем список объектов из базы
      */
     @FXML
-    private ObservableList<Object> reedObjectFromDB() {
+    private ObservableList<ObjectJFX> reedObjectFromDB() {
+        ArrayList<ObjectJFX> objectsJFX = new ArrayList<ObjectJFX>();
         List<Object> objects = new ArrayList<Object>();
         ObjectJpaRepository objectJpaRepository = new ObjectJpaRepository();
         objects = objectJpaRepository.readAllObject();
-        return FXCollections.observableArrayList(objects);
+        for (Object object: objects){
+            ObjectJFX objectJFX = new ObjectJFX((int) object.getId(), object.getNumber(),
+                    object.getOperator(), object.getAddress());
+            objectsJFX.add(objectJFX);
+        }
+        return FXCollections.observableArrayList(objectsJFX);
     }
 
+    @FXML
+    private void loadObjectJFX(){
+        if(objectsJFX.isEmpty()){
+            messageF.getChildren().add(new Text("В БД пока объектов нет" + "\n"));
+        } else {
+            messageF.getChildren().add(new Text("Кол. объектов в БД: " + objectsJFX.size() + " обектов" + "\n"));
+            this.objectsJFX = this.reedObjectFromDB();
+            this.objectTable.setItems(this.objectsJFX);
+        }
+    }
 
     /**
      * Записывает entity. Делается через транзакцию.
@@ -353,10 +363,11 @@ public class Controller_uploadDataToDatabase {
             operatorName = operator.getText();
         }
         ObjectJpaRepository objectJpaRepository = new ObjectJpaRepository();
-        Object o = objectJpaRepository.createObject(Integer.valueOf(objectСodeField.getText()), operatorName,
+        Object obj;
+        obj = objectJpaRepository.createObject(Integer.valueOf(objectСodeField.getText()), operatorName,
                 addressObjectField.getText());
 
-        if (o != null) {
+        if (obj != null) {
             messageF.getChildren().clear();
             Text mes = new Text("Объект записан");
             messageF.getChildren().add(mes);
@@ -376,7 +387,7 @@ public class Controller_uploadDataToDatabase {
 //        instance2.setNumberBasisOfWork("werwe");
 //        instance2.setAuthor("Pavel");
 
-        o.addInstance(instance);
+        obj.addInstance(instance);
         //o.addInstance(instance2);
         try {
 
@@ -386,7 +397,7 @@ public class Controller_uploadDataToDatabase {
             em = PersistenceManager.INSTANCE.getEntityManager();
             transaction = em.getTransaction();
             transaction.begin();
-            em.merge(o);
+            em.merge(obj);
             //em.flush(); // отправляем в базу все что сделали
             transaction.commit(); // завершили транзакцию
         } catch (Exception e) {
