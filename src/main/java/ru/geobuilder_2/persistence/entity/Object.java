@@ -28,7 +28,7 @@ public class Object implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 
-	private Integer number;
+	private String number;
 
 	private String operator;
 
@@ -72,11 +72,11 @@ public class Object implements Serializable {
 		this.address = address;
 	}
 
-	public Integer getNumber() {
+	public String getNumber() {
 		return this.number;
 	}
 
-	public void setNumber(Integer number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 

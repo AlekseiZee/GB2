@@ -1,7 +1,5 @@
 package ru.geobuilder_2;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,13 +17,14 @@ import javafx.stage.Stage;
 import ru.geobuilder_2.persistence.entity.Instance;
 import ru.geobuilder_2.persistence.entity.Object;
 import ru.geobuilder_2.persistence.repository.ObjectJpaRepository;
-import ru.geobuilder_2.persistence.tools.PersistenceManager;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Controller_uploadDataToDatabase {
     @FXML
@@ -330,7 +329,7 @@ public class Controller_uploadDataToDatabase {
         List<Object> objects = new ArrayList<Object>();
         ObjectJpaRepository objectJpaRepository = new ObjectJpaRepository();
         objects = objectJpaRepository.readAllObject();
-        for (Object object: objects){
+        for (Object object : objects) {
             ObjectJFX objectJFX = new ObjectJFX((int) object.getId(), object.getNumber(),
                     object.getOperator(), object.getAddress());
             objectsJFX.add(objectJFX);
@@ -339,15 +338,19 @@ public class Controller_uploadDataToDatabase {
     }
 
     @FXML
-    private void loadObjectJFX(){
-        if(objectsJFX.isEmpty()){
-            messageF.getChildren().add(new Text("В БД пока объектов нет" + "\n"));
+    private void loadObjectJFX() {
+        this.objectsJFX = this.reedObjectFromDB();
+        if (objectsJFX.isEmpty()) {
+            outputMessage("В БД пока нет объектов");
         } else {
-            messageF.getChildren().add(new Text("Кол. объектов в БД: " + objectsJFX.size() + " обектов" + "\n"));
-            this.objectsJFX = this.reedObjectFromDB();
             this.objectTable.setItems(this.objectsJFX);
+            outputMessage("Кол. объектов в БД: " + objectsJFX.size());
         }
     }
+
+    String nameObject;
+    String addressObject;
+    String operatorObject;
 
     /**
      * Записывает entity. Делается через транзакцию.
@@ -356,53 +359,59 @@ public class Controller_uploadDataToDatabase {
      */
     @FXML
     private void uploadObject(ActionEvent event) {
-        String operatorName;
-        if (operator.getText() == non.getText()){
-            operatorName = newOperator.getText();
-        } else {
-            operatorName = operator.getText();
-        }
+
         ObjectJpaRepository objectJpaRepository = new ObjectJpaRepository();
-        Object obj;
-        obj = objectJpaRepository.createObject(Integer.valueOf(objectСodeField.getText()), operatorName,
-                addressObjectField.getText());
+        Object obj = null;
+
+        if (entranceControlUploadDataBase()) {
+            try {
+                obj = objectJpaRepository.createObject(nameObject, operatorObject, addressObject);
+            } catch (Exception e) {
+                Text mes = new Text(
+                        e.getMessage().isEmpty() ? "Ошибка в запросе SQL" + "\n" : e.getMessage() + "\n"
+                );
+                messageF.getChildren().add(mes);
+            }
+        }
 
         if (obj != null) {
-            messageF.getChildren().clear();
-            Text mes = new Text("Объект записан");
-            messageF.getChildren().add(mes);
+            //messageF.getChildren().clear();
+            outputMessage("Объект записан");
+
+            objectСodeField.clear();
+            addressObjectField.clear();
+            operator.setText("");
+            newOperator.clear();
         } else {
-            messageF.getChildren().clear();
-            Text mes = new Text("Объект не записался");
-            messageF.getChildren().add(mes);
+            outputMessage("Объект не записан");
         }
-        Instance instance = new Instance();
-        instance.setTypeOfWork("ART");
-        instance.setNumberBasisOfWork("qwe");
-        instance.setAuthor("Aleksei");
-
-
+//        Instance instance = new Instance();
+//        instance.setTypeOfWork("ART");
+//        instance.setNumberBasisOfWork("qwe");
+//        instance.setAuthor("Aleksei");
+//
+//
 //        Instance instance2 = new Instance();
 //        instance2.setTypeOfWork("asdad");
 //        instance2.setNumberBasisOfWork("werwe");
 //        instance2.setAuthor("Pavel");
-
-        obj.addInstance(instance);
-        //o.addInstance(instance2);
-        try {
-
-            EntityManager em = null;
-            EntityTransaction transaction = null;
-
-            em = PersistenceManager.INSTANCE.getEntityManager();
-            transaction = em.getTransaction();
-            transaction.begin();
-            em.merge(obj);
-            //em.flush(); // отправляем в базу все что сделали
-            transaction.commit(); // завершили транзакцию
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-        }
+//
+//        obj.addInstance(instance);
+//        obj.addInstance(instance2);
+//        try {
+//
+//            EntityManager em = null;
+//            EntityTransaction transaction = null;
+//
+//            em = PersistenceManager.INSTANCE.getEntityManager();
+//            transaction = em.getTransaction();
+//            transaction.begin();
+//            em.merge(obj);
+//            //em.flush(); // отправляем в базу все что сделали
+//            transaction.commit(); // завершили транзакцию
+//        } catch (Exception e) {
+//            e.printStackTrace(System.out);
+//        }
     }
 
 
@@ -414,6 +423,58 @@ public class Controller_uploadDataToDatabase {
 //        return (ObservableList<Rib>) FXCollections.observableArrayList(ribs);
 //    }
 
+    /**
+     * Метод для проверки правильности и полноты вводимых данных для создания Object
+     * @return
+     */
+    public Boolean entranceControlUploadDataBase() {
+        if (objectСodeField.getText() != null && !objectСodeField.equals("")) {
+            Pattern patternNameObject = Pattern.compile("^\\d{2}[-]?[_]?\\d{3,5}");
+            Matcher matcherNameObject = patternNameObject.matcher(objectСodeField.getText());
+            if (matcherNameObject.matches()) {
+                this.nameObject = objectСodeField.getText().trim();
+                if (addressObjectField.getText() != null && !addressObjectField.getText().equals("")) {
+                    this.addressObject = addressObjectField.getText().trim();
+                    if (!operator.getText().equals("")) {
+                        if (operator.getText() == non.getText()) {
+                            if(!newOperator.getText().equals("")) {
+                                this.operatorObject = newOperator.getText().trim();
+                                return true;
+                            } else {
+                                outputMessage("Оператор объекта не заполнен");
+                                return false;
+                            }
+                        } else {
+                            this.operatorObject = operator.getText();
+                            return true;
+                        }
+                    }else {
+                        outputMessage("Оператор объекта не заполнен");
+                        return false;
+                    }
+                } else {
+                    outputMessage("Адрес объекта не заполнен");
+                    return false;
+                }
+            } else {
+                outputMessage("Не верный формат кода объекта");
+                return false;
+            }
+        } else {
+            outputMessage("Код объекта не заполнен");
+            return false;
+        }
+    }
+
+    /**
+     * Метод вывода сообщений
+     * @param mess
+     */
+    public void outputMessage(String mess) {
+        //messageF.getChildren().clear();
+        Text text = new Text(mess + "\n");
+        messageF.getChildren().add(text);
+    }
 }
 
 

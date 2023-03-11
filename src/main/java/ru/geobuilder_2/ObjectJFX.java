@@ -14,13 +14,13 @@ import java.util.Objects;
 public class ObjectJFX implements Serializable {
 
     private transient IntegerProperty idObjectJFX;
-    private transient IntegerProperty numberObjectJFX;
+    private transient StringProperty numberObjectJFX;
     private transient StringProperty operatorObjectJFX;
     private transient StringProperty addressObjectJFX;
 
-    public ObjectJFX(Integer idObjectJFX, Integer numberObjectJFX, String operatorObjectJFX, String addressObjectJFX) {
+    public ObjectJFX(Integer idObjectJFX, String numberObjectJFX, String operatorObjectJFX, String addressObjectJFX) {
         this.idObjectJFX = new SimpleIntegerProperty(idObjectJFX);
-        this.numberObjectJFX = new SimpleIntegerProperty(numberObjectJFX);
+        this.numberObjectJFX = new SimpleStringProperty(numberObjectJFX);
         this.operatorObjectJFX = new SimpleStringProperty(operatorObjectJFX);
         this.addressObjectJFX = new SimpleStringProperty(addressObjectJFX);
     }
@@ -33,11 +33,11 @@ public class ObjectJFX implements Serializable {
         this.idObjectJFX.set(idObjectJFX);
     }
 
-    public final int getNumberObjectJFX() {
+    public final String getNumberObjectJFX() {
         return this.numberObjectJFX.get();
     }
 
-    public final void setNumberObjectJFX(Integer numberObjectJFX) {
+    public final void setNumberObjectJFX(String numberObjectJFX) {
         this.numberObjectJFX.set(numberObjectJFX);
     }
 
@@ -101,14 +101,14 @@ public class ObjectJFX implements Serializable {
     private void writeObject(ObjectOutputStream s) throws IOException {
         s.defaultWriteObject();
         s.writeInt(getIdObjectJFX());
-        s.writeInt(getNumberObjectJFX());
+        s.writeUTF(getNumberObjectJFX());
         s.writeUTF(getOperatorObjectJFX());
         s.writeUTF(getAddressObjectJFX());
     }
 
     private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         idObjectJFX = new SimpleIntegerProperty(s.readInt());
-        numberObjectJFX = new SimpleIntegerProperty(s.readInt());
+        numberObjectJFX = new SimpleStringProperty(s.readUTF());
         operatorObjectJFX = new SimpleStringProperty(s.readUTF());
         addressObjectJFX = new SimpleStringProperty(s.readUTF());
     }

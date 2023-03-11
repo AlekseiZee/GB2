@@ -4,6 +4,7 @@ package ru.geobuilder_2.persistence.entity;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -34,7 +35,7 @@ public class Instance implements Serializable {
 	private Timestamp photoDateColumn;
 
 	@Column(name="creation_date")
-	private Timestamp creationDate;
+	private Timestamp creationDate = new Timestamp(new Date().getTime());
 
 
 	//bi-directional many-to-one association to Point

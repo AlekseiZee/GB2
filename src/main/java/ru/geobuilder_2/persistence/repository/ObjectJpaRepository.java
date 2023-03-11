@@ -64,7 +64,7 @@ public class ObjectJpaRepository {
 	 *  Записывает entity. Делается через транзакцию.
 	 * @return
 	 */
-	public static Object createObject(Integer numberObject, String operatorObject, String addressObject) {
+	public static Object createObject(String numberObject, String operatorObject, String addressObject) throws Exception {
 		EntityManager em = null;
 		EntityTransaction transaction = null;
 		try {
@@ -81,7 +81,8 @@ public class ObjectJpaRepository {
 			em.flush(); // отправляем в базу все что сделали
 			transaction.commit(); // завершили транзакцию
 			return object;
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			try{
 				if (transaction!=null) {
 					transaction.rollback();
@@ -90,7 +91,7 @@ public class ObjectJpaRepository {
 				e1.printStackTrace(System.out);
 			}
 			e.printStackTrace(System.out);
-			return null;
+			throw e;
 		} finally {
 			if (em != null) {
 				em.close();
