@@ -16,6 +16,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import ru.geobuilder_2.persistence.entity.Instance;
 import ru.geobuilder_2.persistence.entity.Object;
+import ru.geobuilder_2.persistence.repository.InstanceJpaRepository;
 import ru.geobuilder_2.persistence.repository.ObjectJpaRepository;
 
 import java.io.File;
@@ -304,6 +305,8 @@ public class Controller_uploadDataToDatabase {
         tierColumnBD.setSortable(false);
         ribLengthColumnBD.setSortable(false);
 
+        findObject();
+
     }
 
     @FXML
@@ -321,9 +324,8 @@ public class Controller_uploadDataToDatabase {
     }
 
     /**
-     * Получаем список объектов из базы
+     * Метод получения списока объектов из базы с помошью метода readAllObject() класса ObjectJpaRepository
      */
-    @FXML
     private ObservableList<ObjectJFX> reedObjectFromDB() {
         ArrayList<ObjectJFX> objectsJFX = new ArrayList<ObjectJFX>();
         List<Object> objects = new ArrayList<Object>();
@@ -337,10 +339,14 @@ public class Controller_uploadDataToDatabase {
         return FXCollections.observableArrayList(objectsJFX);
     }
 
+    /**
+     * При нажатии кнопки "Получить список объектов", выгружаем все объекты, которые есть, из БД
+     */
     @FXML
     private void loadObjectJFX() {
         this.objectsJFX = this.reedObjectFromDB();
         if (objectsJFX.isEmpty()) {
+            this.objectTable.setItems(this.objectsJFX);
             outputMessage("В БД пока нет объектов");
         } else {
             this.objectTable.setItems(this.objectsJFX);
@@ -352,8 +358,13 @@ public class Controller_uploadDataToDatabase {
     String addressObject;
     String operatorObject;
 
+    Long indexObject;
+    String typeOfWorkInstance;
+    String numberBasisOfWorkFieldInstance;
+
+
     /**
-     * Записывает entity. Делается через транзакцию.
+     * Заносим созданый объект в базу данных.
      *
      * @return
      */
@@ -363,7 +374,7 @@ public class Controller_uploadDataToDatabase {
         ObjectJpaRepository objectJpaRepository = new ObjectJpaRepository();
         Object obj = null;
 
-        if (entranceControlUploadDataBase()) {
+        if (entranceControlUploadDataBaseObject()) {
             try {
                 obj = objectJpaRepository.createObject(nameObject, operatorObject, addressObject);
             } catch (Exception e) {
@@ -414,6 +425,42 @@ public class Controller_uploadDataToDatabase {
 //        }
     }
 
+    /**
+     * Создаем и загружаем в БД состояние объекта со всеми данными
+     * @param event
+     * @throws Exception
+     */
+    @FXML
+    private void uploadInstance(ActionEvent event) throws Exception {
+
+        InstanceJpaRepository instanceJpaRepository = new InstanceJpaRepository();
+        Instance instance = null;
+
+        if (entranceControlUploadDataBaseInstance()) {
+            try {
+                instance = instanceJpaRepository.createInstanceForObjectWithData(indexObject, typeOfWork.getText(),
+                        numberBasisOfWorkField.getText(), author.getText(), addressFieldFileJOB.getText());
+
+            } catch (Exception e) {
+                Text mes = new Text(
+                        e.getMessage().isEmpty() ? "Ошибка в запросе SQL" + "\n" : e.getMessage() + "\n"
+                );
+                messageF.getChildren().add(mes);
+            }
+        }
+        if (instance != null) {
+            //messageF.getChildren().clear();
+            outputMessage("Состояние записано");
+
+            typeOfWork.setText("");
+            numberBasisOfWorkField.clear();
+            author.clear();
+
+        } else {
+            outputMessage("Состояние не записано");
+        }
+    }
+
 
 //    @FXML
 //    private ObservableList<Rib> reedRibsFromDB(){
@@ -425,9 +472,10 @@ public class Controller_uploadDataToDatabase {
 
     /**
      * Метод для проверки правильности и полноты вводимых данных для создания Object
+     *
      * @return
      */
-    public Boolean entranceControlUploadDataBase() {
+    public Boolean entranceControlUploadDataBaseObject() {
         if (objectСodeField.getText() != null && !objectСodeField.equals("")) {
             Pattern patternNameObject = Pattern.compile("^\\d{2}[-]?[_]?\\d{3,5}");
             Matcher matcherNameObject = patternNameObject.matcher(objectСodeField.getText());
@@ -437,7 +485,7 @@ public class Controller_uploadDataToDatabase {
                     this.addressObject = addressObjectField.getText().trim();
                     if (!operator.getText().equals("")) {
                         if (operator.getText() == non.getText()) {
-                            if(!newOperator.getText().equals("")) {
+                            if (!newOperator.getText().equals("")) {
                                 this.operatorObject = newOperator.getText().trim();
                                 return true;
                             } else {
@@ -448,7 +496,7 @@ public class Controller_uploadDataToDatabase {
                             this.operatorObject = operator.getText();
                             return true;
                         }
-                    }else {
+                    } else {
                         outputMessage("Оператор объекта не заполнен");
                         return false;
                     }
@@ -466,8 +514,38 @@ public class Controller_uploadDataToDatabase {
         }
     }
 
+    public Boolean entranceControlUploadDataBaseInstance() {
+        if (typeOfWork.getText() != null && !typeOfWork.equals("")) {
+            this.typeOfWorkInstance = typeOfWork.getText().trim();
+            if (numberBasisOfWorkField.getText() != null && !numberBasisOfWorkField.getText().equals("")) {
+                this.numberBasisOfWorkFieldInstance = numberBasisOfWorkField.getText().trim();
+                return true;
+            } else {
+                outputMessage("Не указано основание работ");
+                return false;
+            }
+        } else {
+            outputMessage("Не указан вид работ");
+            return false;
+        }
+    }
+
+
+    public void findObject() {
+        objectTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showRibsDetails(newValue));
+        ;
+    }
+
+    private void showRibsDetails(ObjectJFX newValue) {
+        newValue.getIdObjectJFX();
+        objectReferenceField.setText(newValue.getNumberObjectJFX());
+        indexObject = Long.valueOf(newValue.getIdObjectJFX());
+    }
+
     /**
      * Метод вывода сообщений
+     *
      * @param mess
      */
     public void outputMessage(String mess) {

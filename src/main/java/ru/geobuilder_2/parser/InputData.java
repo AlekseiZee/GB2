@@ -87,8 +87,6 @@ public class InputData {
 			if (getLastAnglePair().getAngles().size() != 2) {
 				throw new Exception ("У последней точки не полная пара");
 			}
-			points.forEach((p) -> System.out.println(p));
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
