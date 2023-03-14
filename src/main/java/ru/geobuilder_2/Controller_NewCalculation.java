@@ -56,9 +56,17 @@ import javafx.stage.Stage;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.Pair;
+import ru.geobuilder_2.model.SceneName;
 import ru.geobuilder_2.persistence.repository.AngleJpaRepository;
 
 public class Controller_NewCalculation {
+
+    private Stage stage;
+
+    public Controller_NewCalculation(Stage stage){
+        this.stage = stage;
+    }
+    public Controller_NewCalculation(){}
 
     @FXML
     private TableView<Rib> tableRib;
@@ -103,26 +111,30 @@ public class Controller_NewCalculation {
     //    typeOfConstBorder.setStroke(Color.RED);
     }
 
+//    @FXML
+//    public void goingBack(ActionEvent event) {
+//        save();
+//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//        alert.initOwner(StartGeoApplication.getStage());
+//        alert.setTitle("Предупреждение");
+//        alert.setHeaderText("Вы уверены, что хотите вернуться назад?");
+//        alert.setContentText("Если да, нажмите \"ок\"");
+//
+//        Optional<ButtonType> result = alert.showAndWait();
+//        if (result.get() == ButtonType.OK){
+//            goBack.getScene().getWindow().hide();
+//            StartGeoApplication startGeoApplication = new StartGeoApplication();
+//            startGeoApplication.iniRoot();
+//        } else {
+//            // ... user chose CANCEL or closed the dialog
+//            alert.close();
+//        }
+//    }
+
     @FXML
     public void goingBack(ActionEvent event) {
-        save();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.initOwner(StartGeoApplication.getStage());
-        alert.setTitle("Предупреждение");
-        alert.setHeaderText("Вы уверены, что хотите вернуться назад?");
-        alert.setContentText("Если да, нажмите \"ок\"");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            goBack.getScene().getWindow().hide();
-            StartGeoApplication startGeoApplication = new StartGeoApplication();
-            startGeoApplication.iniRoot();
-        } else {
-            // ... user chose CANCEL or closed the dialog
-            alert.close();
-        }
+        stage.setScene(StartGeoApplication.getScenes().get(SceneName.MAIN_GB2));
     }
-
     public void print() {
 
         messageField.getChildren().clear();
@@ -470,7 +482,7 @@ public class Controller_NewCalculation {
      * @param event
      */
     @FXML
-    public void openFileJob(ActionEvent event) {
+    public void openFileJob(ActionEvent event) throws IOException {
 
         if (downloadFromFileBut.isSelected()) {
             FileChooser fileChooserJob = new FileChooser();
@@ -558,13 +570,13 @@ public class Controller_NewCalculation {
                 /**
                  * Окно для получение данных из БД
                  */
-                try {
-                    List<ru.geobuilder_2.persistence.entity.Angle> angles = AngleJpaRepository.readAll();
-                    Iterator it = angles.iterator();
-                    while (it.hasNext()) {
-                        ru.geobuilder_2.persistence.entity.Angle a = (ru.geobuilder_2.persistence.entity.Angle)it.next();
-                        System.out.println(a.toString());
-                    }
+//                try {
+//                    List<ru.geobuilder_2.persistence.entity.Angle> angles = AngleJpaRepository.readAll();
+//                    Iterator it = angles.iterator();
+//                    while (it.hasNext()) {
+//                        ru.geobuilder_2.persistence.entity.Angle a = (ru.geobuilder_2.persistence.entity.Angle)it.next();
+//                        System.out.println(a.toString());
+//                    }
                     FXMLLoader fxmlLoaderDownloadFBD = new FXMLLoader(Controller_NewCalculation.class.getResource("downloadFromBD-view.fxml"));
                     Stage stageBD = new Stage();
                     Scene sceneBD = new Scene(fxmlLoaderDownloadFBD.load(), 1194, 854);
@@ -575,9 +587,9 @@ public class Controller_NewCalculation {
                     stageBD.setTitle("Database");
                     stageBD.setScene(sceneBD);
                     stageBD.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
             }
         }
     }

@@ -107,9 +107,9 @@ public class Controller_DownloadFromBD {
     @FXML
     public void goingBackToNewCal(ActionEvent event) {
 
-        goBackButton.getScene().getWindow().hide();
-        Controller_Main controller_main = new Controller_Main();
-        controller_main.getNewCal(event);
+//        goBackButton.getScene().getWindow().hide();
+//        Controller_Main controller_main = new Controller_Main();
+//        controller_main.getNewCal(event);
     }
 
     public void setTypeOfWork(ActionEvent event) {

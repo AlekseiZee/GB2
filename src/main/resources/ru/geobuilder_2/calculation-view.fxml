@@ -13,21 +13,29 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1292.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <MenuBar prefHeight="44.0" prefWidth="1300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MenuBar prefHeight="44.0" prefWidth="1300.0" style="-fx-background-color: #494949;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="Файл">
             <items>
@@ -98,19 +106,11 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <SplitPane dividerPositions="0.13486842105263158" layoutY="73.0" prefHeight="678.0" prefWidth="1290.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="72.0">
+      <SplitPane layoutY="73.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="74.0">
         <items>
-          <AnchorPane prefHeight="676.0" prefWidth="102.0">
-               <children>
-                  <AnchorPane prefHeight="676.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <TreeView prefHeight="676.0" prefWidth="170.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-               </children></AnchorPane>
           <AnchorPane>
                <children>
-                  <TabPane layoutY="-2.0" prefHeight="743.0" prefWidth="1103.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-2.0">
+                  <TabPane prefHeight="676.0" prefWidth="1104.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <tabs>
                       <Tab text="Входные данные">
                         <content>
@@ -120,7 +120,7 @@
                                       <content>
                                         <AnchorPane prefHeight="634.0" prefWidth="644.0">
                                              <children>
-                                                <TableView layoutX="14.0" layoutY="14.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="619.0" prefWidth="630.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                                                <TableView layoutX="14.0" layoutY="14.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="619.0" prefWidth="630.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                                                    <columns>
                                                       <TableColumn prefWidth="28.0" text="П. п" />
                                                       <TableColumn prefWidth="227.0" text="Стоянка А">
@@ -129,7 +129,7 @@
                                                                <columns>
                                                                   <TableColumn prefWidth="75.0">
                                                                      <graphic>
-                                                                        <TextField alignment="CENTER" prefHeight="24.0" prefWidth="73.0" promptText="Гор. " />
+                                                                        <TextField alignment="CENTER" prefHeight="3.0" prefWidth="71.0" promptText="Гор. " />
                                                                      </graphic>
                                                                   </TableColumn>
                                                                   <TableColumn prefWidth="75.0">
@@ -418,9 +418,9 @@
                                  <children>
                                     <ScrollPane layoutY="-4.0" prefHeight="677.0" prefWidth="930.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                        <content>
-                                          <AnchorPane>
+                                          <AnchorPane prefHeight="635.0" prefWidth="484.0">
                                              <children>
-                                                <TableView layoutX="14.0" layoutY="14.0" prefHeight="492.0" prefWidth="470.0">
+                                                <TableView layoutX="14.0" layoutY="14.0" prefHeight="621.0" prefWidth="470.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <columns>
                                                     <TableColumn prefWidth="69.0" text="Высота, м" />
                                                     <TableColumn prefWidth="306.0" text="Отклонение поясов, мм ">
@@ -674,11 +674,398 @@
                         </Tab>
                     </tabs>
                   </TabPane>
+                  <Pane layoutY="-2.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane layoutX="670.0" layoutY="623.0" prefHeight="52.0" prefWidth="617.0">
+                           <children>
+                              <Button layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadRibs" text="Загрузить" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="526.0" AnchorPane.topAnchor="14.0" />
+                              <Button fx:id="goBack" layoutX="160.0" layoutY="13.0" mnemonicParsing="false" onAction="#goingBack" prefHeight="26.0" prefWidth="135.0" text="Вернуться назад" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="322.0" AnchorPane.topAnchor="14.0" />
+                              <Button fx:id="continueButton" layoutX="307.0" layoutY="13.0" mnemonicParsing="false" onAction="#onCont" prefHeight="26.0" prefWidth="135.0" text="Дальше" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="307.0" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="14.0" />
+                              <Button layoutX="454.0" layoutY="13.0" mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="135.0" text="Сохранить и выйти" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="454.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="14.0" />
+                           </children>
+                        </AnchorPane>
+                     </children></Pane>
+                  <VBox>
+                     <children>
+                        <AnchorPane prefHeight="31.0" prefWidth="757.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <RadioButton fx:id="downloadFromFileBut" layoutX="8.0" mnemonicParsing="false" onAction="#downloadingFromFile" prefHeight="25.0" prefWidth="127.0" selected="true" text="Загрузить из файла" textFill="#868686" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="619.0" AnchorPane.topAnchor="5.0">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="LoadingData" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="manualInputBut" layoutX="153.0" layoutY="5.0" mnemonicParsing="false" onAction="#enterValueManually" text="Ввести вручную" textFill="#868686" toggleGroup="$LoadingData" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="491.0" AnchorPane.topAnchor="5.0" />
+                              <RadioButton fx:id="downloadFromBDBut" layoutX="279.0" layoutY="4.0" mnemonicParsing="false" onAction="#downloadingFromBD" text="Загрузить из БД" textFill="#868686" toggleGroup="$LoadingData" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="279.0" AnchorPane.rightAnchor="366.0" AnchorPane.topAnchor="5.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="21.0" prefWidth="757.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Text fill="#868686" layoutX="15.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя расчета:" AnchorPane.bottomAnchor="0.9716796875" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="661.1865234375" AnchorPane.topAnchor="14.5244140625">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField layoutX="143.0" layoutY="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="462.0" AnchorPane.topAnchor="6.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="40.0" prefWidth="757.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Text fill="#868686" layoutX="15.0" layoutY="22.50390625" strokeType="OUTSIDE" strokeWidth="0.0" text="Местоположение:" AnchorPane.bottomAnchor="14.4677734375" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="631.552734375" AnchorPane.topAnchor="10.0283203125">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="pathDirectory" layoutX="489.0" layoutY="5.0" mnemonicParsing="false" onAction="#specifyDirectory" prefHeight="22.0" prefWidth="107.0" text="Открыть" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="489.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="5.0" />
+                              <TextField fx:id="addressFieldDirectory" layoutX="160.0" layoutY="5.0" prefHeight="25.0" prefWidth="319.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="5.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="363.0" prefWidth="754.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="99.0" layoutX="14.0" layoutY="89.0" stroke="#868686" strokeType="INSIDE" width="728.0" />
+                              <Rectangle fx:id="typeOfConstBorder" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="52.0" layoutX="15.0" layoutY="33.0" stroke="#868686" strokeType="INSIDE" width="728.0" AnchorPane.bottomAnchor="436.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="33.0" />
+                              <RadioButton fx:id="towerBorder" layoutX="25.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="89.0" selected="true" text="Башня" textFill="#868686" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="643.0" AnchorPane.topAnchor="41.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="typeBorder" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="mastBorder" layoutX="124.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="89.0" text="Мачта" textFill="#868686" toggleGroup="$typeBorder" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="124.0" AnchorPane.rightAnchor="544.0" AnchorPane.topAnchor="41.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </RadioButton>
+                              <RadioButton fx:id="metalPoleBorder" layoutX="243.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="99.0" text="Столб мет." textFill="#868686" toggleGroup="$typeBorder" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="243.0" AnchorPane.rightAnchor="415.0" AnchorPane.topAnchor="41.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </RadioButton>
+                              <RadioButton fx:id="reinforcedPoleBorder" layoutX="371.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="99.0" text="Столб ж/б" textFill="#868686" toggleGroup="$typeBorder" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="371.0" AnchorPane.rightAnchor="287.0" AnchorPane.topAnchor="41.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </RadioButton>
+                              <RadioButton fx:id="ourBorder" layoutX="502.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="121.0" text="Задать допуск" textFill="#868686" toggleGroup="$typeBorder" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="502.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="41.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </RadioButton>
+                              <Text fx:id="mm" fill="#868686" layoutX="705.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="мм." visible="false" wrappingWidth="29.298828125" AnchorPane.bottomAnchor="445.9716796875" AnchorPane.leftAnchor="704.298828125" AnchorPane.rightAnchor="19.701171875" AnchorPane.topAnchor="59.5244140625">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="borderField" layoutX="627.0" layoutY="53.0" prefHeight="25.0" prefWidth="64.0" visible="false" AnchorPane.bottomAnchor="443.0" AnchorPane.leftAnchor="627.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="53.0" />
+                              <Text fill="#868686" layoutX="23.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Точки съемки" AnchorPane.bottomAnchor="410.9716796875" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="650.79296875" AnchorPane.topAnchor="94.5244140625">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#868686" layoutX="25.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="всего&#10;стоянок" AnchorPane.bottomAnchor="342.873046875" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="494.482421875" AnchorPane.topAnchor="123.5244140625">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#868686" layoutX="17.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Грани АМС, мм." wrappingWidth="109.0" AnchorPane.bottomAnchor="284.9716796875" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="628.0" AnchorPane.topAnchor="197.0283203125">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#868686" layoutX="21.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тип конструкции / определение допуска" AnchorPane.bottomAnchor="470.9716796875" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="494.3837890625" AnchorPane.topAnchor="34.5244140625">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <VBox layoutX="295.0" layoutY="121.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="70.0" snapToPixel="false">
+                                 <children>
+                                    <SplitMenuButton fx:id="directionOne" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
+                                       <items>
+                                          <MenuItem fx:id="litOfPointAOne" mnemonicParsing="false" onAction="#setLetterPointOfFirstDirectionA" text="A" />
+                                          <MenuItem fx:id="litOfPointBOne" mnemonicParsing="false" onAction="#setLetterPointOfFirstDirectionB" text="B" />
+                                          <MenuItem fx:id="litOfPointCOne" mnemonicParsing="false" onAction="#setLetterPointOfFirstDirectionC" text="C" />
+                                          <MenuItem fx:id="litOfPointDOne" mnemonicParsing="false" onAction="#setLetterPointOfFirstDirectionD" text="D" />
+                                       </items>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </SplitMenuButton>
+                                    <SplitMenuButton fx:id="pointOne" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
+                                       <items>
+                                          <MenuItem fx:id="aOne" mnemonicParsing="false" onAction="#setTextPointOneO" text="1" />
+                                          <MenuItem fx:id="aTwo" mnemonicParsing="false" onAction="#setTextPointOneT" text="2" />
+                                       </items>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </SplitMenuButton>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                              </VBox>
+                              <VBox layoutX="368.0" layoutY="122.0" prefHeight="67.0" prefWidth="59.0">
+                                 <children>
+                                    <SplitMenuButton fx:id="directionTwo" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
+                                       <items>
+                                          <MenuItem fx:id="litOfPointATwo" mnemonicParsing="false" onAction="#setLetterPointOfSecondDirectionA" text="A" />
+                                          <MenuItem fx:id="litOfPointBTwo" mnemonicParsing="false" onAction="#setLetterPointOfSecondDirectionB" text="B" />
+                                          <MenuItem fx:id="litOfPointCTwo" mnemonicParsing="false" onAction="#setLetterPointOfSecondDirectionC" text="C" />
+                                          <MenuItem fx:id="litOfPointDTwo" mnemonicParsing="false" onAction="#setLetterPointOfSecondDirectionD" text="D" />
+                                       </items>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </SplitMenuButton>
+                                    <SplitMenuButton fx:id="pointTwo" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
+                                       <items>
+                                          <MenuItem fx:id="bOne" mnemonicParsing="false" onAction="#setTextPointTwoO" text="1" />
+                                          <MenuItem fx:id="bTwo" mnemonicParsing="false" onAction="#setTextPointTwoT" text="2" />
+                                       </items>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </SplitMenuButton>
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="444.0" layoutY="121.0" prefHeight="67.0" prefWidth="69.0">
+                                 <children>
+                                    <SplitMenuButton fx:id="directionThree" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
+                                       <items>
+                                          <MenuItem fx:id="litOfPointNullThree" mnemonicParsing="false" onAction="#setLetterPointOfThirdDirectionNull" text="-Пусто-" />
+                                          <MenuItem fx:id="litOfPointAThree" mnemonicParsing="false" onAction="#setLetterPointOfThirdDirectionA" text="A" />
+                                          <MenuItem fx:id="litOfPointBThree" mnemonicParsing="false" onAction="#setLetterPointOfThirdDirectionB" text="B" />
+                                          <MenuItem fx:id="litOfPointCThree" mnemonicParsing="false" onAction="#setLetterPointOfThirdDirectionC" text="C" />
+                                          <MenuItem fx:id="litOfPointDThree" mnemonicParsing="false" onAction="#setLetterPointOfThirdDirectionD" text="D" />
+                                       </items>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </SplitMenuButton>
+                                    <SplitMenuButton fx:id="pointThree" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
+                                       <items>
+                                          <MenuItem fx:id="cOne" mnemonicParsing="false" onAction="#setTextPointThreeO" text="1" />
+                                          <MenuItem fx:id="cTwo" mnemonicParsing="false" onAction="#setTextPointThreeT" text="2" />
+                                       </items>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </SplitMenuButton>
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="522.0" layoutY="121.0" prefHeight="60.0" prefWidth="69.0">
+                                 <children>
+                                    <SplitMenuButton fx:id="directionFour" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
+                                       <items>
+                                          <MenuItem fx:id="litOfPointNullFour" mnemonicParsing="false" onAction="#setLetterPointOfFourthDirectionNull" text="-Пусто-" />
+                                          <MenuItem fx:id="litOfPointAFour" mnemonicParsing="false" onAction="#setLetterPointOfFourthDirectionA" text="A" />
+                                          <MenuItem fx:id="litOfPointBFour" mnemonicParsing="false" onAction="#setLetterPointOfFourthDirectionB" text="B" />
+                                          <MenuItem fx:id="litOfPointCFour" mnemonicParsing="false" onAction="#setLetterPointOfFourthDirectionC" text="C" />
+                                          <MenuItem fx:id="litOfPointDFour" mnemonicParsing="false" onAction="#setLetterPointOfFourthDirectionD" text="D" />
+                                       </items>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </SplitMenuButton>
+                                    <SplitMenuButton fx:id="pointFour" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
+                                       <items>
+                                          <MenuItem fx:id="dOne" mnemonicParsing="false" onAction="#setTextPointFourO" text="1" />
+                                          <MenuItem fx:id="dTwo" mnemonicParsing="false" onAction="#setTextPointFourT" text="2" />
+                                       </items>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </SplitMenuButton>
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="86.0" layoutY="127.0" prefHeight="52.0" prefWidth="69.0">
+                                 <children>
+                                    <SplitMenuButton fx:id="totalPoints" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0">
+                                       <items>
+                                          <MenuItem fx:id="totalOne" mnemonicParsing="false" onAction="#setTextTotalOne" text="2" />
+                                          <MenuItem fx:id="totalTwo" mnemonicParsing="false" onAction="#setTextTotalTwo" text="3" />
+                                          <MenuItem fx:id="totalThree" mnemonicParsing="false" onAction="#setTextTotalThree" text="4" />
+                                       </items>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </SplitMenuButton>
+                                    <Button fx:id="inOrder" mnemonicParsing="false" onAction="#standardFollowing" prefHeight="25.0" prefWidth="63.0" text="- ABCD -" />
+                                 </children>
+                              </VBox>
+                              <Rectangle fx:id="square" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="611.0" layoutY="132.0" rotate="45.0" stroke="#f80202" strokeType="INSIDE" strokeWidth="2.0" visible="false" width="29.0" />
+                              <Polygon fx:id="triangle" fill="WHITE" layoutX="664.0" layoutY="122.0" points="-50.0, 40.0, -14.422104835510254, 40.00005340576172, -33.99424743652344, 12.347031593322754" rotate="90.0" stroke="#00ff3e" strokeType="INSIDE" strokeWidth="2.0" visible="false" />
+                              <Text fill="#868686" layoutX="207.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="название" AnchorPane.bottomAnchor="355.9716796875" AnchorPane.leftAnchor="206.2587890625" AnchorPane.rightAnchor="493.7412109375" AnchorPane.topAnchor="126.5244140625">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#868686" layoutX="207.0" layoutY="160.0" stroke="#0a0a0a" strokeType="OUTSIDE" strokeWidth="0.0" text="кол. в одном&#10;направлении">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#868686" layoutX="299.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- 1 -">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#868686" layoutX="371.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- 2 -">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#868686" layoutX="448.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- 3 -">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#868686" layoutX="525.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- 4 -">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Line endX="100.0" endY="13.0" layoutX="528.0" layoutY="100.0" startX="100.0" startY="56.5" strokeWidth="0.5" />
+                              <Text fill="#868686" layoutX="679.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#868686" layoutX="624.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="y" AnchorPane.bottomAnchor="389.9716796875" AnchorPane.leftAnchor="624.0" AnchorPane.rightAnchor="123.0" AnchorPane.topAnchor="92.5244140625">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="pO" fill="#868686" layoutX="649.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="false">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Line endX="100.0" endY="1.0" layoutX="545.0" layoutY="118.0" rotate="90.0" startX="100.0" startY="56.5" strokeWidth="0.5" />
+                              <VBox layoutX="144.0" layoutY="221.0" prefHeight="60.0" prefWidth="29.0" AnchorPane.bottomAnchor="213.0" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="581.0" AnchorPane.topAnchor="221.0">
+                                 <children>
+                                    <Button fx:id="addTierRib" mnemonicParsing="false" onAction="#addRib" prefHeight="22.0" prefWidth="23.0" text="+">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Times New Roman Bold Italic" size="12.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="removeRib" mnemonicParsing="false" onAction="#removeRib" prefHeight="22.0" prefWidth="23.0" text="-">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Times New Roman Bold Italic" size="12.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <Text fx:id="pT" fill="#868686" layoutX="621.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="false">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="addressFieldFile" layoutX="285.0" prefHeight="25.0" prefWidth="319.0" AnchorPane.bottomAnchor="495.0" AnchorPane.leftAnchor="285.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="0.0" />
+                              <Text fill="#868686" layoutX="14.8212890625" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Данные для расчета:" AnchorPane.bottomAnchor="500.9716796875" AnchorPane.leftAnchor="14.8212890625" AnchorPane.rightAnchor="616.357421875" AnchorPane.topAnchor="3.5244140625">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="pTrForAngl" fill="#868686" layoutX="606.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="false" wrappingWidth="10.1103515625">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="pF" fill="#868686" layoutX="611.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="false">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="pTrForSqr" fill="#868686" layoutX="590.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="false" AnchorPane.bottomAnchor="343.9716796875" AnchorPane.leftAnchor="590.0" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="138.0283203125">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Label fx:id="labelCount" layoutX="15.0" layoutY="460.0" prefHeight="17.0" prefWidth="109.0" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="630.0" AnchorPane.topAnchor="460.0" />
+                              <AnchorPane layoutX="179.0" layoutY="220.0" minHeight="0.0" minWidth="0.0" prefHeight="241.0" prefWidth="564.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="179.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="220.0">
+                                 <children>
+                                    <ScrollPane prefHeight="241.0" prefWidth="566.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <content>
+                                          <TextFlow fx:id="messageField" prefHeight="238.0" prefWidth="561.0" style="-fx-background-color: #ffffff;" />
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </AnchorPane>
+                              <TableView fx:id="tableRib" layoutX="14.0" layoutY="220.0" prefHeight="241.0" prefWidth="121.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="622.0" AnchorPane.topAnchor="220.0">
+                                 <columns>
+                                    <TableColumn fx:id="tierColumn" prefWidth="39.0" text="Ярус" />
+                                    <TableColumn fx:id="ribLengthColumn" onEditCommit="#onEditChanger" text="Грань" />
+                                 </columns>
+                              </TableView>
+                              <Label fx:id="valueTier" layoutX="179.0" layoutY="197.0" prefHeight="17.0" prefWidth="107.0" text="Label" />
+                              <Label fx:id="valueRib" layoutX="336.0" layoutY="197.0" prefHeight="17.0" prefWidth="109.0" text="Label" />
+                              <Button layoutX="606.0" layoutY="195.0" mnemonicParsing="false" onAction="#print" prefHeight="1.0" prefWidth="41.0" text="Print">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Button>
+                              <VBox layoutX="666.0" layoutY="96.0" prefHeight="99.0" prefWidth="77.0">
+                                 <children>
+                                    <RadioButton fx:id="right" mnemonicParsing="false" onAction="#setSide" prefHeight="17.0" prefWidth="77.0" selected="true" text="вос" visible="false">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="side" />
+                                       </toggleGroup>
+                                       <VBox.margin>
+                                          <Insets top="-1.0" />
+                                       </VBox.margin>
+                                    </RadioButton>
+                                    <RadioButton fx:id="left" mnemonicParsing="false" onAction="#setSide" prefHeight="17.0" prefWidth="83.0" text="зап" toggleGroup="$side" visible="false">
+                                       <VBox.margin>
+                                          <Insets top="4.0" />
+                                       </VBox.margin>
+                                    </RadioButton>
+                                    <RadioButton fx:id="up" mnemonicParsing="false" onAction="#setUpDown" prefHeight="9.0" prefWidth="77.0" text="сев" visible="false">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <VBox.margin>
+                                          <Insets top="14.0" />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets top="2.0" />
+                                       </padding>
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="upDown" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="down" mnemonicParsing="false" onAction="#setUpDown" prefHeight="17.0" prefWidth="78.0" selected="true" text="юг" toggleGroup="$upDown" visible="false">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets top="2.0" />
+                                       </padding>
+                                    </RadioButton>
+                                 </children>
+                              </VBox>
+                              <Button fx:id="openJOB" layoutX="160.0" layoutY="-1.0" mnemonicParsing="false" onAction="#openFileJob" prefHeight="25.0" prefWidth="107.0" text="Открыть" AnchorPane.bottomAnchor="496.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="487.0" AnchorPane.topAnchor="-1.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
                </children>
             </AnchorPane>
         </items>
       </SplitPane>
-      <AnchorPane layoutY="44.0" prefHeight="22.0" prefWidth="1300.0" style="-fx-background-color: #FF7100;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0">
+      <AnchorPane layoutY="44.0" prefHeight="25.0" prefWidth="1292.0" style="-fx-background-color: #FF7100;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0">
          <children>
             <Button layoutY="2.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="76.0" style="-fx-background-color: #FF7100;" text="Новый" textFill="WHITE" AnchorPane.leftAnchor="0.0">
                <font>
@@ -690,7 +1077,7 @@
                   <Font name="Times New Roman Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="76.0" layoutY="2.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="76.0" style="-fx-background-color: #FF7100;" text="Новый" textFill="WHITE">
+            <Button layoutX="76.0" layoutY="2.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="76.0" style="-fx-background-color: #FF7100;" text="Открыть" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="12.0" />
                </font>

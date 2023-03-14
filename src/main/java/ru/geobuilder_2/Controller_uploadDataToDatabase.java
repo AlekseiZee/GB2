@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import ru.geobuilder_2.model.SceneName;
 import ru.geobuilder_2.persistence.entity.Instance;
 import ru.geobuilder_2.persistence.entity.Object;
 import ru.geobuilder_2.persistence.repository.InstanceJpaRepository;
@@ -28,6 +29,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Controller_uploadDataToDatabase {
+
+    private Stage stage;
+
+    public Controller_uploadDataToDatabase(Stage stage){
+        this.stage = stage;
+    }
+
+    public Controller_uploadDataToDatabase(){}
     @FXML
     private TextFlow messageF;
 
@@ -254,16 +263,19 @@ public class Controller_uploadDataToDatabase {
      */
     @FXML
     public void goingBackToNewCal(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.initOwner(StartGeoApplication.getStage());
-        alert.setTitle("Предупреждение");
-        alert.setHeaderText("Вы уверены, что хотите вернуться назад?");
-        alert.setContentText("Если да, нажмите \"ок\"");
 
-        alert.showAndWait();
-        goBackButton.getScene().getWindow().hide();
-        StartGeoApplication startGeoApplication = new StartGeoApplication();
-        startGeoApplication.iniRoot();
+        stage.setScene(StartGeoApplication.getScenes().get(SceneName.MAIN_GB2));
+
+//        Alert alert = new Alert(Alert.AlertType.WARNING);
+//        alert.initOwner(StartGeoApplication.getStage());
+//        alert.setTitle("Предупреждение");
+//        alert.setHeaderText("Вы уверены, что хотите вернуться назад?");
+//        alert.setContentText("Если да, нажмите \"ок\"");
+//
+//        alert.showAndWait();
+//        goBackButton.getScene().getWindow().hide();
+//        StartGeoApplication startGeoApplication = new StartGeoApplication();
+//        startGeoApplication.iniRoot();
     }
 
     private ObservableList<ObjectJFX> objectsJFX = FXCollections.observableArrayList();

@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import ru.geobuilder_2.model.SceneName;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +21,15 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class Controller_Main implements Initializable {
+
+    private Stage stage;
+
+    public Controller_Main(Stage stage) {
+        this.stage = stage;
+    }
+
+    public Controller_Main() {
+    }
 
     ArrayList<String> namesFiles = new ArrayList<>();
 
@@ -39,8 +49,11 @@ public class Controller_Main implements Initializable {
 
     @FXML
     public void getNewCal(ActionEvent event) {
-        new_cal.getScene().getWindow().hide();
-        openNewCalculationWindow("new_calculation-view.fxml", 768, 700);
+
+        stage.setScene(StartGeoApplication.getScenes().get(SceneName.SCENE_NEW_CALCULATION));
+
+//        new_cal.getScene().getWindow().hide();
+//        openNewCalculationWindow("new_calculation-view.fxml", 768, 700);
     }
 
     /**
@@ -99,8 +112,11 @@ public class Controller_Main implements Initializable {
 
     @FXML
     public void uploadDataToDatabase(ActionEvent event) {
-        new_cal.getScene().getWindow().hide();
-        openNewCalculationWindow("uploadDataToDatabase-view.fxml", 1210, 890);
+
+        stage.setScene(StartGeoApplication.getScenes().get(SceneName.SCENE_UPLOAD_DATA_BD));
+
+//        new_cal.getScene().getWindow().hide();
+//        openNewCalculationWindow("uploadDataToDatabase-view.fxml", 1210, 890);
     }
 
     /**
