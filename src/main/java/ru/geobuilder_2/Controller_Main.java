@@ -22,6 +22,14 @@ import java.util.stream.Collectors;
 
 public class Controller_Main implements Initializable {
 
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
     private Stage stage;
 
     public Controller_Main(Stage stage) {

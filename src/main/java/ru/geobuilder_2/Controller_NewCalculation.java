@@ -1265,4 +1265,11 @@ public class Controller_NewCalculation {
     }
 
 
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 }

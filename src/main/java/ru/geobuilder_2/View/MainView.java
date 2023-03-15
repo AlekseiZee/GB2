@@ -1,8 +1,10 @@
 package ru.geobuilder_2.View;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ru.geobuilder_2.Controller_Main;
 import ru.geobuilder_2.StartGeoApplication;
 
 import java.io.IOException;
@@ -18,8 +20,12 @@ public class MainView implements ViewMaker {
     @Override
     public Scene getScene() {
         try {
-        FXMLLoader fxmlLoaderMainView = new FXMLLoader(StartGeoApplication.class.getResource("main-view.fxml"));
-            Scene sceneMainView = new Scene(fxmlLoaderMainView.load(), 768, 700);
+            FXMLLoader fxmlLoaderMainView = new FXMLLoader(StartGeoApplication.class.getResource("main-view.fxml"));
+            Parent root = fxmlLoaderMainView.load();
+            Controller_Main controller = fxmlLoaderMainView.getController();
+            controller.setStage(stage);
+        //FXMLLoader fxmlLoaderMainView = new FXMLLoader(StartGeoApplication.class.getResource("main-view.fxml"));
+            Scene sceneMainView = new Scene(root, 768, 700);
             return sceneMainView;
         } catch (IOException e) {
             e.printStackTrace();
