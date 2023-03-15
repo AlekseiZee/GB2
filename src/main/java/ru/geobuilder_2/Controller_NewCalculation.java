@@ -63,10 +63,9 @@ public class Controller_NewCalculation {
 
     private Stage stage;
 
-    public Controller_NewCalculation(Stage stage){
-        this.stage = stage;
+    public Controller_NewCalculation(){
     }
-    public Controller_NewCalculation(){}
+
 
     @FXML
     private TableView<Rib> tableRib;

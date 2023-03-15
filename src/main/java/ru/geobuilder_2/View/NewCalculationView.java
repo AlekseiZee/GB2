@@ -11,6 +11,7 @@ import ru.geobuilder_2.StartGeoApplication;
 import java.io.IOException;
 
 public class NewCalculationView implements ViewMaker {
+
     private Stage stage;
 
     public NewCalculationView(Stage stage) {
@@ -24,7 +25,6 @@ public class NewCalculationView implements ViewMaker {
             Parent root = fxmlLoaderNewCalculation.load();
             Controller_NewCalculation controller = fxmlLoaderNewCalculation.getController();
             controller.setStage(stage);
-            //FXMLLoader fxmlLoaderNewCalculation = new FXMLLoader(StartGeoApplication.class.getResource("new_calculation-view.fxml"));
             Scene SCENE_NEW_CALCULATION = new Scene(root, 768, 700);
             return SCENE_NEW_CALCULATION;
         } catch (IOException e) {

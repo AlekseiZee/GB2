@@ -24,7 +24,6 @@ public class MainView implements ViewMaker {
             Parent root = fxmlLoaderMainView.load();
             Controller_Main controller = fxmlLoaderMainView.getController();
             controller.setStage(stage);
-        //FXMLLoader fxmlLoaderMainView = new FXMLLoader(StartGeoApplication.class.getResource("main-view.fxml"));
             Scene sceneMainView = new Scene(root, 768, 700);
             return sceneMainView;
         } catch (IOException e) {

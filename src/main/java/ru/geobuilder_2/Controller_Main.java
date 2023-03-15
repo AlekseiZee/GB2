@@ -32,10 +32,6 @@ public class Controller_Main implements Initializable {
 
     private Stage stage;
 
-    public Controller_Main(Stage stage) {
-        this.stage = stage;
-    }
-
     public Controller_Main() {
     }
 

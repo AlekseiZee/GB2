@@ -32,11 +32,16 @@ public class Controller_uploadDataToDatabase {
 
     private Stage stage;
 
-    public Controller_uploadDataToDatabase(Stage stage){
-        this.stage = stage;
+    public Controller_uploadDataToDatabase(){
     }
 
-    public Controller_uploadDataToDatabase(){}
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
     @FXML
     private TextFlow messageF;
 
