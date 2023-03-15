@@ -22,8 +22,10 @@ import ru.geobuilder_2.persistence.repository.ObjectJpaRepository;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -362,6 +364,14 @@ public class Controller_uploadDataToDatabase {
     String typeOfWorkInstance;
     String numberBasisOfWorkFieldInstance;
 
+public Timestamp getPhotoDate(){
+    LocalDate localDate = photoDate.getValue();
+    if (localDate == null){
+        outputMessage("Поле \"Дата съемки\" не задано");
+        return null;
+    }
+    return Timestamp.valueOf(localDate.atStartOfDay());
+}
 
     /**
      * Заносим созданый объект в базу данных.
@@ -439,7 +449,7 @@ public class Controller_uploadDataToDatabase {
         if (entranceControlUploadDataBaseInstance()) {
             try {
                 instance = instanceJpaRepository.createInstanceForObjectWithData(indexObject, typeOfWork.getText(),
-                        numberBasisOfWorkField.getText(), author.getText(), addressFieldFileJOB.getText());
+                        numberBasisOfWorkField.getText(), author.getText(), getPhotoDate(), addressFieldFileJOB.getText());
 
             } catch (Exception e) {
                 Text mes = new Text(

@@ -90,7 +90,7 @@ public class InstanceJpaRepository {
      * @return
      */
     public static Instance createInstanceForObjectWithData(Long idObject, String typeOfWork, String numberBasisOfWork,
-                                                           String author, String path) {
+                                                           String author, Timestamp photoDate, String path) {
         EntityManager em = null;
         EntityTransaction transaction = null;
         try {
@@ -99,6 +99,7 @@ public class InstanceJpaRepository {
             Instance instance = new Instance();
             instance.setTypeOfWork(typeOfWork);
             instance.setNumberBasisOfWork(numberBasisOfWork);
+            instance.setPhotoDateColumn(photoDate);
             instance.setAuthor(author);
 
             try {
