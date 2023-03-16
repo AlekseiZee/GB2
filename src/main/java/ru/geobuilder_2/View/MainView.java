@@ -24,6 +24,10 @@ public class MainView implements ViewMaker {
             Parent root = fxmlLoaderMainView.load();
             Controller_Main controller = fxmlLoaderMainView.getController();
             controller.setStage(stage);
+            stage.setMinWidth(768);
+            stage.setMinHeight(700);
+            stage.setMaxWidth(768);
+            stage.setMaxHeight(700);
             Scene sceneMainView = new Scene(root, 768, 700);
             return sceneMainView;
         } catch (IOException e) {

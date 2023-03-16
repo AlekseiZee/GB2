@@ -21,11 +21,15 @@ public class UploadDataToDBView implements ViewMaker {
     @Override
     public Scene getScene() {
         try {
-            FXMLLoader fxmlLoaderUploadToDB = new FXMLLoader(StartGeoApplication.class.getResource("uploadDataToDatabase-view"));
+            FXMLLoader fxmlLoaderUploadToDB = new FXMLLoader(StartGeoApplication.class.getResource("uploadDataToDatabase-view.fxml"));
             Parent root = fxmlLoaderUploadToDB.load();
             Controller_uploadDataToDatabase controller = fxmlLoaderUploadToDB.getController();
             controller.setStage(stage);
-            Scene SCENE_UPLOAD_DATA_BD = new Scene(root, 768, 700);
+            stage.setMinHeight(890);
+            stage.setMaxWidth(1210);
+            stage.setMaxHeight(890);
+            stage.setMaxWidth(1210);
+            Scene SCENE_UPLOAD_DATA_BD = new Scene(root);
             return SCENE_UPLOAD_DATA_BD;
         } catch (IOException e) {
             e.printStackTrace();

@@ -51,6 +51,10 @@ public class Controller_Main implements Initializable {
     private Button search;
 
 
+    /**
+     * Метод открытия окна "Новый расчет"
+     *
+     */
     @FXML
     public void getNewCal(ActionEvent event) {
 
@@ -60,31 +64,25 @@ public class Controller_Main implements Initializable {
 //        openNewCalculationWindow("new_calculation-view.fxml", 768, 700);
     }
 
-    /**
-     * Метод открытия окна "Новый расчет"
-     *
-     * @param name
-     * @param v
-     * @param v1
-     */
-    protected void openNewCalculationWindow(String name, int v, int v1) {
-        FXMLLoader fxmlLoaderNewCal = new FXMLLoader();
-        fxmlLoaderNewCal.setLocation(getClass().getResource(name));
-        try {
-            fxmlLoaderNewCal.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Parent root = fxmlLoaderNewCal.getRoot();
-        Stage stage = new Stage();
-        stage.setTitle("GeoBuilder 2.0");
-        stage.setMinWidth(v);
-        stage.setMinHeight(v1);
-        stage.setMaxWidth(v);
-        stage.setMaxHeight(v1);
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
-    }
+
+//    protected void openNewCalculationWindow(String name, int v, int v1) {
+//        FXMLLoader fxmlLoaderNewCal = new FXMLLoader();
+//        fxmlLoaderNewCal.setLocation(getClass().getResource(name));
+//        try {
+//            fxmlLoaderNewCal.load();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        Parent root = fxmlLoaderNewCal.getRoot();
+//        Stage stage = new Stage();
+//        stage.setTitle("GeoBuilder 2.0");
+//        stage.setMinWidth(v);
+//        stage.setMinHeight(v1);
+//        stage.setMaxWidth(v);
+//        stage.setMaxHeight(v1);
+//        stage.setScene(new Scene(root));
+//        stage.showAndWait();
+//    }
 
     /**
      * При нажатии переходим к выбору файлов
@@ -137,7 +135,7 @@ public class Controller_Main implements Initializable {
     }
 
     private List<String> searchList(String searFiles, List<String> listOfStrings) {
-        List<String> searchFileArrey = Arrays.asList(searFiles.trim().split(" "));
+        List<String> searchFileArrey = Arrays.asList(searFiles.trim().split(""));
         return listOfStrings.stream().filter(imput -> {
             return searchFileArrey.stream().allMatch(namesFiles ->
                     imput.toLowerCase().contains(namesFiles.toLowerCase()));

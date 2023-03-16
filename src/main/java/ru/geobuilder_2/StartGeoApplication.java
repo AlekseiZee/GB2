@@ -23,7 +23,7 @@ public class StartGeoApplication extends Application {
         // Create and store all scenes up front
         scenes.put(SceneName.MAIN_GB2, new MainView(stage).getScene());
         scenes.put(SceneName.SCENE_NEW_CALCULATION, new NewCalculationView(stage).getScene());
-        //scenes.put(SceneName.SCENE_UPLOAD_DATA_BD, new UploadDataToDBView(stage).getScene());
+        scenes.put(SceneName.SCENE_UPLOAD_DATA_BD, new UploadDataToDBView(stage).getScene());
 
         // Start with the main scene
         stage.setScene(scenes.get(SceneName.MAIN_GB2));

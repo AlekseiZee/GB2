@@ -42,6 +42,7 @@ public class Controller_uploadDataToDatabase {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
     @FXML
     private TextFlow messageF;
 
@@ -267,9 +268,9 @@ public class Controller_uploadDataToDatabase {
      * @param event
      */
     @FXML
-    public void goingBackToNewCal(ActionEvent event) {
-
+    public void goingBack(ActionEvent event) {
         stage.setScene(StartGeoApplication.getScenes().get(SceneName.MAIN_GB2));
+    }
 
 //        Alert alert = new Alert(Alert.AlertType.WARNING);
 //        alert.initOwner(StartGeoApplication.getStage());
@@ -281,7 +282,7 @@ public class Controller_uploadDataToDatabase {
 //        goBackButton.getScene().getWindow().hide();
 //        StartGeoApplication startGeoApplication = new StartGeoApplication();
 //        startGeoApplication.iniRoot();
-    }
+//    }
 
     private ObservableList<ObjectJFX> objectsJFX = FXCollections.observableArrayList();
     private ObservableList<Instance> instancesData = FXCollections.observableArrayList();
@@ -295,7 +296,6 @@ public class Controller_uploadDataToDatabase {
         codOColumn.setCellValueFactory(new PropertyValueFactory<ObjectJFX, Integer>("numberObjectJFX"));
         operatorOColumn.setCellValueFactory(new PropertyValueFactory<ObjectJFX, String>("operatorObjectJFX"));
         addressOColumn.setCellValueFactory(new PropertyValueFactory<ObjectJFX, String>("addressObjectJFX"));
-
 
         objectTable.setItems(this.objectsJFX);
 
@@ -323,7 +323,6 @@ public class Controller_uploadDataToDatabase {
         ribLengthColumnBD.setSortable(false);
 
         findObject();
-
     }
 
     @FXML

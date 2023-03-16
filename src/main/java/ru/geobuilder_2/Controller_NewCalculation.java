@@ -66,7 +66,6 @@ public class Controller_NewCalculation {
     public Controller_NewCalculation(){
     }
 
-
     @FXML
     private TableView<Rib> tableRib;
 
@@ -77,7 +76,6 @@ public class Controller_NewCalculation {
     private TableColumn<Rib, String> ribLengthColumn;
 
     private ObservableList<Rib> ribs = FXCollections.observableArrayList();
-
 
     @FXML
     private TextFlow messageField;

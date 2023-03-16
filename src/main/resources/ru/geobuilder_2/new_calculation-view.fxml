@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_NewCalculation">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_NewCalculation">
    <children>
       <AnchorPane prefHeight="34.0" prefWidth="757.0" style="-fx-background-color: #494949;" VBox.vgrow="ALWAYS">
          <children>
