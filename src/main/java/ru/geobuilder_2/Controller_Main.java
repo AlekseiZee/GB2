@@ -141,4 +141,9 @@ public class Controller_Main implements Initializable {
                     imput.toLowerCase().contains(namesFiles.toLowerCase()));
         }).collect(Collectors.toList());
     }
+
+    @FXML
+    public void exitMain(){
+        stage.close();
+    }
 }

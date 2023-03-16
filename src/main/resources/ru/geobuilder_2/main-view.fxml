@@ -8,48 +8,54 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_Main">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ru.geobuilder_2.Controller_Main">
    <children>
-      <AnchorPane prefHeight="52.0" prefWidth="757.0" style="-fx-background-color: #494949;">
+      <AnchorPane prefHeight="52.0" prefWidth="757.0" style="-fx-background-color: #494949;" VBox.vgrow="NEVER">
          <children>
-            <Label layoutX="581.0" prefHeight="19.0" prefWidth="89.0" text="GeoBuilder" textFill="#f8f8f8" AnchorPane.rightAnchor="17.0">
+            <Label layoutX="581.0" prefHeight="19.0" prefWidth="89.0" text="GeoBuilder" textFill="#f8f8f8" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="575.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="581.0" layoutY="23.0" prefHeight="18.0" prefWidth="89.0" text="2022 2.0" textFill="WHITE" AnchorPane.rightAnchor="17.0">
+            <Label layoutX="581.0" layoutY="23.0" prefHeight="18.0" prefWidth="89.0" text="2022 2.0" textFill="WHITE" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="575.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="23.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="31.0" prefWidth="681.0" style="-fx-background-color: #FF7100;">
+      <AnchorPane prefHeight="31.0" prefWidth="681.0" style="-fx-background-color: #FF7100;" VBox.vgrow="NEVER">
          <children>
-            <Button fx:id="new_cal" mnemonicParsing="false" onAction="#getNewCal" style="-fx-background-color: #FF7100;" text="Новый расчет" textFill="WHITE" AnchorPane.leftAnchor="0.0">
+            <Button fx:id="new_cal" mnemonicParsing="false" onAction="#getNewCal" style="-fx-background-color: #FF7100;" text="Новый расчет" textFill="WHITE" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="587.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="Times New Roman Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="open" layoutX="94.0" mnemonicParsing="false" onAction="#openFileCal" style="-fx-background-color: #FF7100;" text="Открыть" textFill="WHITE" AnchorPane.leftAnchor="94.0">
+            <Button fx:id="open" layoutX="94.0" mnemonicParsing="false" onAction="#openFileCal" style="-fx-background-color: #FF7100;" text="Открыть" textFill="WHITE" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="520.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="Times New Roman Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="uploadDataToDatabaseButton" layoutX="161.0" mnemonicParsing="false" onAction="#uploadDataToDatabase" style="-fx-background-color: #FF7100;" text="Загр. данные в БД" textFill="WHITE">
+            <Button fx:id="uploadDataToDatabaseButton" layoutX="161.0" mnemonicParsing="false" onAction="#uploadDataToDatabase" style="-fx-background-color: #FF7100;" text="Загр. данные в БД" textFill="WHITE" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="404.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Times New Roman Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="exitButton" layoutX="600.0" mnemonicParsing="false" onAction="#uploadDataToDatabase" style="-fx-background-color: #FF7100;" text="Выход" textFill="WHITE" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="Times New Roman Bold" size="12.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="18.0" prefWidth="692.0">
+      <AnchorPane prefHeight="18.0" prefWidth="692.0" VBox.vgrow="NEVER">
          <children>
-            <TextField fx:id="searchBar" layoutX="6.0" layoutY="9.0" prefHeight="25.0" prefWidth="530.0" promptText="Поиск расчеа" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="10.0" />
-            <Button fx:id="search" contentDisplay="TOP" layoutX="587.0" layoutY="9.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#getSearch" prefHeight="0.0" prefWidth="82.0" style="-fx-background-color: #ffffff; -fx-border-color: #bcbcbc;" text="Поиск" textFill="#bcbcbced" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="10.0" />
+            <TextField fx:id="searchBar" layoutX="11.0" layoutY="10.0" prefHeight="25.0" prefWidth="530.0" promptText="Поиск расчеа" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="10.0" />
+            <Button fx:id="search" contentDisplay="TOP" layoutX="586.0" layoutY="8.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#getSearch" prefHeight="0.0" prefWidth="82.0" style="-fx-background-color: #ffffff; -fx-border-color: #bcbcbc;" text="Поиск" textFill="#bcbcbced" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="586.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="8.0" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="423.0" prefWidth="681.0" VBox.vgrow="ALWAYS">
+      <AnchorPane prefHeight="423.0" prefWidth="681.0" VBox.vgrow="NEVER">
          <children>
             <ListView fx:id="listViewGeoCal" layoutX="6.0" layoutY="4.0" prefHeight="405.0" prefWidth="659.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="9.0" />
          </children>

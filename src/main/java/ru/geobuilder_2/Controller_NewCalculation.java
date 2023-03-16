@@ -63,8 +63,8 @@ public class Controller_NewCalculation {
 
     private Stage stage;
 
-    public Controller_NewCalculation(){
-    }
+    @FXML
+    private Button saveCloseButton;
 
     @FXML
     private TableView<Rib> tableRib;
@@ -104,8 +104,8 @@ public class Controller_NewCalculation {
     private Rectangle typeOfConstBorder;
 
     @FXML
-    public void onCont(ActionEvent event) {
-    //    typeOfConstBorder.setStroke(Color.RED);
+    public void createСalculation(ActionEvent event) {
+        //    typeOfConstBorder.setStroke(Color.RED);
     }
 
 //    @FXML
@@ -132,6 +132,7 @@ public class Controller_NewCalculation {
     public void goingBack(ActionEvent event) {
         stage.setScene(StartGeoApplication.getScenes().get(SceneName.MAIN_GB2));
     }
+
     public void print() {
 
         messageField.getChildren().clear();
@@ -143,7 +144,7 @@ public class Controller_NewCalculation {
 
 
     @FXML
-    private void loadRibs(){
+    private void loadRibs() {
         try {
             this.ribs = this.deserializeData();
             this.tableRib.setItems(this.ribs);
@@ -191,7 +192,7 @@ public class Controller_NewCalculation {
     @FXML
     public void addRib(ActionEvent event) {
 
-        Rib rib = new Rib(this.tableRib.getItems().size()+1, "");
+        Rib rib = new Rib(this.tableRib.getItems().size() + 1, "");
         tableRib.getItems().add(rib);
         //ribs.add(rib);
     }
@@ -200,7 +201,7 @@ public class Controller_NewCalculation {
      * Вызывается, когда пользователь кликает по кнопке удаления.
      */
     @FXML
-    private void removeRib(){
+    private void removeRib() {
 
         tableRib.getItems().remove(ribs.size() - 1);
         // если надо удалить выделенную строку, то - tableRib.getItems().remove(selectedIndex);
@@ -222,9 +223,10 @@ public class Controller_NewCalculation {
 
     // Нужно для инициализации измененных значений в ячейках. Без него данные не воспринимаются
     public void onEditChanger(TableColumn.CellEditEvent<Rib, String> ribStringCellEditEvent) {
-       Rib rib = tableRib.getSelectionModel().getSelectedItem();
-       rib.setRibLength(ribStringCellEditEvent.getNewValue());
+        Rib rib = tableRib.getSelectionModel().getSelectedItem();
+        rib.setRibLength(ribStringCellEditEvent.getNewValue());
     }
+
     @FXML
     private Label valueTier;
 
@@ -348,7 +350,7 @@ public class Controller_NewCalculation {
     private RadioButton downloadFromBDBut;
 
     @FXML
-    private void downloadingFromFile(ActionEvent event){
+    private void downloadingFromFile(ActionEvent event) {
         if (downloadFromFileBut.isSelected()) {
             addressFieldFile.setText("");
             openJOB.setText("Открыть");
@@ -359,8 +361,8 @@ public class Controller_NewCalculation {
     }
 
     @FXML
-    private void downloadingFromBD(ActionEvent event){
-        if (downloadFromBDBut.isSelected()){
+    private void downloadingFromBD(ActionEvent event) {
+        if (downloadFromBDBut.isSelected()) {
             addressFieldFile.setText("");
             addressFieldFile.setDisable(true);
             openJOB.setText("Загрузить из БД");
@@ -501,11 +503,16 @@ public class Controller_NewCalculation {
 //			}
         } else {
             if (manualInputBut.isSelected()) {
-                /**
-                 * Открываем окно для внесения углов вручную
-                 */
-                openDataEntryWindowManually();
+                //Открываем окно для внесения углов вручную
+                openWindow("manualInput-view.fxml", 1245, 903, "Table");
             } else {
+                if(downloadFromBDBut.isSelected()) {
+                    //Открываем окно для получение данных из БД
+                    openWindow("downloadFromBD-view.fxml", 1194, 854, "Database");
+                }
+            }
+        }
+    }
 //                /**
 //                 * Диалоговое окно авторизации
 //                 */
@@ -564,74 +571,56 @@ public class Controller_NewCalculation {
 //                result.ifPresent(usernamePassword -> {
 //                    System.out.println("Username=" + usernamePassword.getKey() + ", Password=" + usernamePassword.getValue());
 //                });
-                /**
-                 * Окно для получение данных из БД
-                 */
-//                try {
-//                    List<ru.geobuilder_2.persistence.entity.Angle> angles = AngleJpaRepository.readAll();
-//                    Iterator it = angles.iterator();
-//                    while (it.hasNext()) {
-//                        ru.geobuilder_2.persistence.entity.Angle a = (ru.geobuilder_2.persistence.entity.Angle)it.next();
-//                        System.out.println(a.toString());
-//                    }
-                    FXMLLoader fxmlLoaderDownloadFBD = new FXMLLoader(Controller_NewCalculation.class.getResource("downloadFromBD-view.fxml"));
-                    Stage stageBD = new Stage();
-                    Scene sceneBD = new Scene(fxmlLoaderDownloadFBD.load(), 1194, 854);
-                    stageBD.setMinWidth(1194);
-                    stageBD.setMinHeight(854);
-                    stageBD.setMaxWidth(1194);
-                    stageBD.setMaxHeight(854);
-                    stageBD.setTitle("Database");
-                    stageBD.setScene(sceneBD);
-                    stageBD.show();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-            }
-        }
-    }
 
-    protected void openDataEntryWindowManually() {
+    /**
+     * Метод для открытия окна с нужной сценой
+     * @param fxml - fxml файл с интерфейсом окна
+     * @param width - ширина окна
+     * @param Height - высота окна
+     * @param title - название окна
+     */
+    public void openWindow(String fxml, int width, int Height, String title) {
         try {
-            FXMLLoader fxmlLoaderManualInput = new FXMLLoader(Controller_NewCalculation.class.getResource("manualInput-view.fxml"));
-            Stage stageMan = new Stage();
-            Scene sceneMan = new Scene(fxmlLoaderManualInput.load(), 1245, 903);
-            stageMan.setMinWidth(1245);
-            stageMan.setMinHeight(903);
-            stageMan.setMinWidth(1245);
-            stageMan.setMinHeight(903);
-            stageMan.setTitle("Table");
-            stageMan.setScene(sceneMan);
-            stageMan.show();
+            FXMLLoader fxmlLoader = new FXMLLoader(Controller_NewCalculation.class.getResource("fxml"));
+            Stage stage = new Stage();
+            Scene sceneBD = new Scene(fxmlLoader.load(), width, Height);
+            stage.setMinWidth(1194);
+            stage.setMinHeight(854);
+            stage.setMaxWidth(1194);
+            stage.setMaxHeight(854);
+            stage.setTitle(title);
+            stage.setScene(sceneBD);
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    void save(){
-    	try {
-    		this.serializeData(this.ribs);
-    	} catch (Exception e) {
-    		e.printStackTrace();
-		}
+    void save() {
+        try {
+            this.serializeData(this.ribs);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        stage.close();
     }
 
-    private void serializeData(ObservableList<Rib> ribs) throws FileNotFoundException, IOException{
-    	File f = new File("D:\\TestGB\\cache\\ribs.txt");
-    	try(FileOutputStream fos = new FileOutputStream(f); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-    		ArrayList<Rib> al = new ArrayList<Rib>(ribs);
-    		oos.writeObject(new ArrayList<Rib>(al));
-    	}
+    private void serializeData(ObservableList<Rib> ribs) throws FileNotFoundException, IOException {
+        File f = new File("D:\\TestGB\\cache\\ribs.txt");
+        try (FileOutputStream fos = new FileOutputStream(f); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            ArrayList<Rib> al = new ArrayList<Rib>(ribs);
+            oos.writeObject(new ArrayList<Rib>(al));
+        }
     }
 
-    private ObservableList<Rib> deserializeData() throws FileNotFoundException, IOException, ClassNotFoundException{
-    	ArrayList<Rib> ribs = new ArrayList<Rib>();
-    	File f = new File("D:\\TestGB\\cache\\ribs.txt");
-    	try(FileInputStream fis = new FileInputStream(f); ObjectInputStream ois = new ObjectInputStream(fis)) {
-    		ribs = (ArrayList<Rib>) ois.readObject();
-    	}
-    	return FXCollections.observableArrayList(ribs);
+    private ObservableList<Rib> deserializeData() throws FileNotFoundException, IOException, ClassNotFoundException {
+        ArrayList<Rib> ribs = new ArrayList<Rib>();
+        File f = new File("D:\\TestGB\\cache\\ribs.txt");
+        try (FileInputStream fis = new FileInputStream(f); ObjectInputStream ois = new ObjectInputStream(fis)) {
+            ribs = (ArrayList<Rib>) ois.readObject();
+        }
+        return FXCollections.observableArrayList(ribs);
     }
 
     @FXML
