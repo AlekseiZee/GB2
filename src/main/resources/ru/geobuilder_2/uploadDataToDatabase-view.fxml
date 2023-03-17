@@ -81,7 +81,7 @@
             </Text>
             <Button layoutX="663.0" layoutY="294.0" mnemonicParsing="false" onAction="#uploadInstance" prefHeight="25.0" prefWidth="134.0" text="Загрузить сост. в БД" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="663.0" AnchorPane.rightAnchor="397.0" AnchorPane.topAnchor="294.0" />
             <Button layoutX="1046.0" layoutY="294.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Выйти" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="1046.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="294.0" />
-            <Button fx:id="goBackButton" layoutX="896.0" layoutY="294.0" mnemonicParsing="false" onAction="#goingBack" prefHeight="25.0" prefWidth="134.0" text="Вернуться назад" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="896.0" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="294.0" />
+            <Button fx:id="goBackButton" layoutX="896.0" layoutY="294.0" mnemonicParsing="false" onAction="#goingBackToNewCal" prefHeight="25.0" prefWidth="134.0" text="Вернуться назад" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="896.0" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="294.0" />
             <SplitMenuButton fx:id="typeOfWork" disable="true" layoutX="665.0" layoutY="36.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" AnchorPane.topAnchor="36.0">
                <items>
                   <MenuItem fx:id="maintenance" mnemonicParsing="false" onAction="#setMaintenance" text="ТО" />

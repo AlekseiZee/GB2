@@ -76,11 +76,7 @@ public class Controller_manualInput {
     @FXML
     private void initialize() {
 
-        //loadPointAngle();
-
-//        Point point = new Point(this.pointTable.getItems().size() + 1, "A", "",
-//                "", "");
-//        pointsData.add(point);
+        //loadPointAndAngle();
 
         // Таблица Points
         idPCol.setCellValueFactory(new PropertyValueFactory<Point, Integer>("idPoint"));
@@ -204,9 +200,9 @@ public class Controller_manualInput {
         vAngleCol7.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
         hAngleCol7.setCellFactory(TextFieldTableCell.<Angle>forTableColumn());
 
-        // Добавляем слушателя для автоматического отслеживания изменений в листе
-        pointsData.addListener((ListChangeListener<Point>) c -> updateNamePoint());
-
+//        // Добавляем слушателя для автоматического отслеживания изменений в листе
+//        pointsData.addListener((ListChangeListener<Point>) c -> updateNamePoint());
+//        pointsData.addListener((ListChangeListener<Point>) c -> scenarioOfManipulatorStates());
 
 //        // Добавляем слушателя для автоматического отслеживания изменений в листе
 //        pointsData.addListener((ListChangeListener<Point>) c ->
@@ -908,8 +904,8 @@ public class Controller_manualInput {
         ArrayList<ArrayList<Angle>> anglesDataS = new ArrayList<>();
         File fileAng = new File("D:\\TestGB\\cache\\angles.txt");
         try (FileInputStream fisAngles = new FileInputStream(fileAng);
-            ObjectInputStream oisAngles = new ObjectInputStream(fisAngles)) {
-                anglesDataS = (ArrayList<ArrayList<Angle>>) oisAngles.readObject();
+             ObjectInputStream oisAngles = new ObjectInputStream(fisAngles)) {
+            anglesDataS = (ArrayList<ArrayList<Angle>>) oisAngles.readObject();
 //            if (pointsData.get(0) != null) {
 //                this.anglesData = FXCollections.observableArrayList(anglesDataS.get(0));
 //                if (pointsData.get(1) != null) {
@@ -935,7 +931,7 @@ public class Controller_manualInput {
 //                }
 //            }
 //        }
-            }
+        }
         return anglesDataS;
     }
     //return FXCollections.observableArrayList(anglesData);
@@ -961,53 +957,69 @@ public class Controller_manualInput {
     }
 
     @FXML
-    private void loadPointAndAngle() {
+    private void loadPointAndAngle() throws IOException, ClassNotFoundException {
         try {
             this.pointsData = this.deserializePoint();
             this.pointTable.setItems(this.pointsData);
-
-            if (pointsData.get(0) != null) {
-                this.anglesData = FXCollections.observableArrayList(
-                        this.deserializeAngles().get(0)
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+        if (pointsData.get(0) != null) {
+            this.anglesData = FXCollections.observableArrayList(
+                    this.deserializeAngles().get(0)
+            );
+            this.angleTable.setItems(anglesData);
+            scenarioOfManipulatorStates();
+            updateNamePoint();
+            if (pointsData.get(1) != null) {
+                this.anglesData1 = FXCollections.observableArrayList(
+                        this.deserializeAngles().get(1)
                 );
-                this.angleTable.setItems(anglesData);
-                if (pointsData.get(1) != null) {
-                    this.anglesData1 = FXCollections.observableArrayList(
-                            this.deserializeAngles().get(1)
+                this.angleTable1.setItems(anglesData1);
+                scenarioOfManipulatorStates();
+                updateNamePoint();
+                if (pointsData.get(2) != null) {
+                    this.anglesData2 = FXCollections.observableArrayList(
+                            this.deserializeAngles().get(2)
                     );
-                    this.angleTable1.setItems(anglesData1);
-                    if (pointsData.get(2) != null) {
-                        this.anglesData2 = FXCollections.observableArrayList(
-                                this.deserializeAngles().get(2)
+                    this.angleTable2.setItems(anglesData2);
+                    scenarioOfManipulatorStates();
+                    updateNamePoint();
+                    if (pointsData.get(3) != null) {
+                        this.anglesData3 = FXCollections.observableArrayList(
+                                this.deserializeAngles().get(3)
                         );
-                        this.angleTable2.setItems(anglesData2);
-                        if (pointsData.get(3) != null) {
-                            this.anglesData3 = FXCollections.observableArrayList(
-                                    this.deserializeAngles().get(3)
+                        this.angleTable3.setItems(anglesData3);
+                        scenarioOfManipulatorStates();
+                        updateNamePoint();
+                        if (pointsData.get(4) != null) {
+                            this.anglesData4 = FXCollections.observableArrayList(
+                                    this.deserializeAngles().get(4)
                             );
-                            this.angleTable3.setItems(anglesData3);
-                            if (pointsData.get(4) != null) {
-                                this.anglesData4 = FXCollections.observableArrayList(
-                                        this.deserializeAngles().get(4)
+                            this.angleTable4.setItems(anglesData4);
+                            scenarioOfManipulatorStates();
+                            updateNamePoint();
+                            if (pointsData.get(5) != null) {
+                                this.anglesData5 = FXCollections.observableArrayList(
+                                        this.deserializeAngles().get(5)
                                 );
-                                this.angleTable4.setItems(anglesData4);
-                                if (pointsData.get(5) != null) {
-                                    this.anglesData5 = FXCollections.observableArrayList(
-                                            this.deserializeAngles().get(5)
+                                this.angleTable5.setItems(anglesData5);
+                                scenarioOfManipulatorStates();
+                                updateNamePoint();
+                                if (pointsData.get(6) != null) {
+                                    this.anglesData6 = FXCollections.observableArrayList(
+                                            this.deserializeAngles().get(6)
                                     );
-                                    this.angleTable5.setItems(anglesData5);
-                                    if (pointsData.get(6) != null) {
-                                        this.anglesData6 = FXCollections.observableArrayList(
-                                                this.deserializeAngles().get(6)
+                                    this.angleTable6.setItems(anglesData6);
+                                    scenarioOfManipulatorStates();
+                                    updateNamePoint();
+                                    if (pointsData.get(7) != null) {
+                                        this.anglesData7 = FXCollections.observableArrayList(
+                                                this.deserializeAngles().get(7)
                                         );
-                                        this.angleTable6.setItems(anglesData6);
-                                        if (pointsData.get(7) != null) {
-                                            this.anglesData7 = FXCollections.observableArrayList(
-                                                    this.deserializeAngles().get(7)
-                                            );
-                                            this.angleTable7.setItems(anglesData7);
-                                        }
-
+                                        this.angleTable7.setItems(anglesData7);
+                                        scenarioOfManipulatorStates();
+                                        updateNamePoint();
                                     }
                                 }
                             }
@@ -1015,9 +1027,6 @@ public class Controller_manualInput {
                     }
                 }
             }
-        }
-        catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
         }
     }
 }
