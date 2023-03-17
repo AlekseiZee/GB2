@@ -128,29 +128,12 @@ public class Controller_NewCalculation {
 //        }
 //    }
 
-    @FXML
-    public void goingBack(ActionEvent event) {
-        stage.setScene(StartGeoApplication.getScenes().get(SceneName.MAIN_GB2));
-    }
-
     public void print() {
 
         messageField.getChildren().clear();
         for (Rib rib : ribs) {
             Text text = new Text("ярус: " + rib.getTier() + "    " + "грань:  " + rib.getRibLength() + "\n");
             messageField.getChildren().add(text);
-        }
-    }
-
-
-    @FXML
-    private void loadRibs() {
-        try {
-            this.ribs = this.deserializeData();
-            this.tableRib.setItems(this.ribs);
-
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -581,7 +564,7 @@ public class Controller_NewCalculation {
      */
     public void openWindow(String fxml, int width, int Height, String title) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Controller_NewCalculation.class.getResource("fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Controller_NewCalculation.class.getResource(fxml));
             Stage stage = new Stage();
             Scene sceneBD = new Scene(fxmlLoader.load(), width, Height);
             stage.setMinWidth(1194);
@@ -597,13 +580,34 @@ public class Controller_NewCalculation {
     }
 
     @FXML
+    public void saveAndGoingBack(){
+        save();
+        stage.setScene(StartGeoApplication.getScenes().get(SceneName.MAIN_GB2));
+    }
+
+    @FXML
+    public void saveAndExit(){
+        save();
+        stage.close();
+    }
+    @FXML
     void save() {
         try {
             this.serializeData(this.ribs);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        stage.close();
+    }
+
+    @FXML
+    private void loadRibs() {
+        try {
+            this.ribs = this.deserializeData();
+            this.tableRib.setItems(this.ribs);
+
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void serializeData(ObservableList<Rib> ribs) throws FileNotFoundException, IOException {

@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_NewCalculation">
+<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_NewCalculation">
    <children>
       <AnchorPane prefHeight="34.0" prefWidth="757.0" style="-fx-background-color: #494949;" VBox.vgrow="ALWAYS">
          <children>
@@ -122,9 +122,9 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Button fx:id="goBack" layoutX="321.0" layoutY="477.0" mnemonicParsing="false" onAction="#goingBack" prefHeight="26.0" prefWidth="135.0" text="Вернуться назад" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="321.0" AnchorPane.rightAnchor="301.0" AnchorPane.topAnchor="477.0" />
-            <Button fx:id="buildButton" layoutX="474.0" layoutY="477.0" mnemonicParsing="false" onAction="#createСalculation" prefHeight="26.0" prefWidth="135.0" text="Строить" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="474.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="477.0" />
-            <Button fx:id="saveCloseButton" layoutX="620.0" layoutY="477.0" mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="135.0" text="Сохранить и выйти" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="477.0" />
+            <Button fx:id="goBack" layoutX="321.0" layoutY="477.0" mnemonicParsing="false" onAction="#saveAndGoingBack" prefHeight="26.0" prefWidth="135.0" text="Вернуться назад" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="321.0" AnchorPane.rightAnchor="301.0" AnchorPane.topAnchor="477.0" />
+            <Button layoutX="474.0" layoutY="477.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="135.0" text="Дальше" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="474.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="477.0" />
+            <Button layoutX="620.0" layoutY="477.0" mnemonicParsing="false" onAction="#saveAndExit" prefHeight="26.0" prefWidth="135.0" text="Сохранить и выйти" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="477.0" />
             <Text fill="#868686" layoutX="21.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тип конструкции / определение допуска" AnchorPane.bottomAnchor="470.9716796875" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="494.3837890625" AnchorPane.topAnchor="34.5244140625">
                <font>
                   <Font name="Times New Roman" size="14.0" />

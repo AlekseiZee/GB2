@@ -107,12 +107,12 @@
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#savePoint" prefHeight="25.0" prefWidth="128.0" text="Сохранить">
+                              <Button mnemonicParsing="false" onAction="#savePointAndAngle" prefHeight="25.0" prefWidth="128.0" text="Сохранить">
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#loadPointAngle" prefHeight="25.0" prefWidth="128.0" text="Загрузить">
+                              <Button mnemonicParsing="false" onAction="#loadPointAndAngle" prefHeight="25.0" prefWidth="128.0" text="Загрузить">
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
                                  </VBox.margin>

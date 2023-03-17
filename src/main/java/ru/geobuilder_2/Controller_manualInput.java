@@ -37,7 +37,7 @@ public class Controller_manualInput {
             nameAnglePCol5, nameAnglePCol6, nameAnglePCol7;
 
     @FXML
-    private TableColumn<Point, String> idPCol;
+    private TableColumn<Point, Integer> idPCol;
 
     @FXML
     private TableColumn<Point, String> namePCol;
@@ -61,7 +61,7 @@ public class Controller_manualInput {
     private TableColumn<Angle, String> vAngleCol, hAngleCol, vAngleCol1, hAngleCol1, vAngleCol2, hAngleCol2,
             vAngleCol3, hAngleCol3, vAngleCol4, hAngleCol4, vAngleCol5, hAngleCol5, vAngleCol6, hAngleCol6, vAngleCol7, hAngleCol7;
 
-    ArrayList<ObservableList<Angle>> obsListsAngles = new ArrayList<>();
+    ArrayList<ArrayList<Angle>> obsListsAngles = new ArrayList<>();
 
     private ObservableList<Point> pointsData = FXCollections.observableArrayList();
     private ObservableList<Angle> anglesData = FXCollections.observableArrayList();
@@ -83,7 +83,7 @@ public class Controller_manualInput {
 //        pointsData.add(point);
 
         // Таблица Points
-        idPCol.setCellValueFactory(new PropertyValueFactory<Point, String>("idPoint"));
+        idPCol.setCellValueFactory(new PropertyValueFactory<Point, Integer>("idPoint"));
         namePCol.setCellValueFactory(new PropertyValueFactory<Point, String>("namePoint"));
         distancePCol.setCellValueFactory(new PropertyValueFactory<Point, String>("distancePoint"));
         vAnglePCol.setCellValueFactory(new PropertyValueFactory<Point, String>("vAnglePoint"));
@@ -105,17 +105,8 @@ public class Controller_manualInput {
         vAngleCol.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
         hAngleCol.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
 
-        obsListsAngles.add((ObservableList<Angle>) anglesData);
-        obsListsAngles.add((ObservableList<Angle>) anglesData1);
-        obsListsAngles.add((ObservableList<Angle>) anglesData2);
-        obsListsAngles.add((ObservableList<Angle>) anglesData3);
-        obsListsAngles.add((ObservableList<Angle>) anglesData4);
-        obsListsAngles.add((ObservableList<Angle>) anglesData5);
-        obsListsAngles.add((ObservableList<Angle>) anglesData6);
-        obsListsAngles.add((ObservableList<Angle>) anglesData7);
 
-
-        angleTable.setItems((ObservableList<Angle>) obsListsAngles.get(0));
+        angleTable.setItems(anglesData);
         angleTable.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
@@ -128,7 +119,7 @@ public class Controller_manualInput {
         vAngleCol1.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
         hAngleCol1.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
 
-        angleTable1.setItems((ObservableList<Angle>) obsListsAngles.get(1));
+        angleTable1.setItems(anglesData1);
         angleTable1.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
@@ -141,7 +132,7 @@ public class Controller_manualInput {
         vAngleCol2.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
         hAngleCol2.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
 
-        angleTable2.setItems((ObservableList<Angle>) obsListsAngles.get(2));
+        angleTable2.setItems(anglesData2);
         angleTable2.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
@@ -154,7 +145,7 @@ public class Controller_manualInput {
         vAngleCol3.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
         hAngleCol3.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
 
-        angleTable3.setItems((ObservableList<Angle>) obsListsAngles.get(3));
+        angleTable3.setItems(anglesData3);
         angleTable3.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
@@ -167,7 +158,7 @@ public class Controller_manualInput {
         vAngleCol4.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
         hAngleCol4.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
 
-        angleTable4.setItems((ObservableList<Angle>) obsListsAngles.get(4));
+        angleTable4.setItems(anglesData4);
         angleTable4.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
@@ -180,7 +171,7 @@ public class Controller_manualInput {
         vAngleCol5.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
         hAngleCol5.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
 
-        angleTable5.setItems((ObservableList<Angle>) obsListsAngles.get(5));
+        angleTable5.setItems(anglesData5);
         angleTable5.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
@@ -193,7 +184,7 @@ public class Controller_manualInput {
         vAngleCol6.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
         hAngleCol6.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
 
-        angleTable6.setItems((ObservableList<Angle>) obsListsAngles.get(6));
+        angleTable6.setItems(anglesData6);
         angleTable6.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
@@ -206,7 +197,7 @@ public class Controller_manualInput {
         vAngleCol7.setCellValueFactory(new PropertyValueFactory<Angle, String>("vAngle"));
         hAngleCol7.setCellValueFactory(new PropertyValueFactory<Angle, String>("hAngle"));
 
-        angleTable7.setItems((ObservableList<Angle>) obsListsAngles.get(7));
+        angleTable7.setItems(anglesData7);
         angleTable7.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
@@ -244,8 +235,8 @@ public class Controller_manualInput {
         hAngleCol.setSortable(false);
     }
 
-    private void updateNamePoint(){
-        if(!angleTable.isDisabled()) {
+    private void updateNamePoint() {
+        if (!angleTable.isDisabled()) {
             nameAnglePCol.setText(pointsData.get(0).getNamePoint());
             if (!angleTable1.isDisabled()) {
                 nameAnglePCol1.setText(pointsData.get(1).getNamePoint());
@@ -615,7 +606,7 @@ public class Controller_manualInput {
     }
 
     @FXML
-    private void addLineAngles(){
+    private void addLineAngles() {
         addLineAng(anglesData, pointsData.get(0).getNamePoint());
     }
 
@@ -625,7 +616,7 @@ public class Controller_manualInput {
     }
 
     @FXML
-    private void addLineAngles1(){
+    private void addLineAngles1() {
         addLineAng(anglesData1, pointsData.get(1).getNamePoint());
     }
 
@@ -635,7 +626,7 @@ public class Controller_manualInput {
     }
 
     @FXML
-    private void addLineAngles2(){
+    private void addLineAngles2() {
         addLineAng(anglesData2, pointsData.get(2).getNamePoint());
     }
 
@@ -645,7 +636,7 @@ public class Controller_manualInput {
     }
 
     @FXML
-    private void addLineAngles3(){
+    private void addLineAngles3() {
         addLineAng(anglesData3, pointsData.get(3).getNamePoint());
     }
 
@@ -655,7 +646,7 @@ public class Controller_manualInput {
     }
 
     @FXML
-    private void addLineAngles4(){
+    private void addLineAngles4() {
         addLineAng(anglesData4, pointsData.get(4).getNamePoint());
     }
 
@@ -665,7 +656,7 @@ public class Controller_manualInput {
     }
 
     @FXML
-    private void addLineAngles5(){
+    private void addLineAngles5() {
         addLineAng(anglesData5, pointsData.get(5).getNamePoint());
     }
 
@@ -675,7 +666,7 @@ public class Controller_manualInput {
     }
 
     @FXML
-    private void addLineAngles6(){
+    private void addLineAngles6() {
         addLineAng(anglesData6, pointsData.get(6).getNamePoint());
     }
 
@@ -685,7 +676,7 @@ public class Controller_manualInput {
     }
 
     @FXML
-    private void addLineAngles7(){
+    private void addLineAngles7() {
         addLineAng(anglesData7, pointsData.get(7).getNamePoint());
     }
 
@@ -856,27 +847,25 @@ public class Controller_manualInput {
     @FXML
     public void goingBackToNewCal(ActionEvent event) {
 
-        savePoint();
+        savePointAndAngle();
 
         goBackButton.getScene().getWindow().hide();
-//        goBackButton.getScene().getWindow().hide();
-//        Controller_Main controller_main = new Controller_Main();
-//        controller_main.openNewCalculationWindow("new_calculation-view.fxml", 768, 700);
     }
 
     private void serializePoint(ObservableList<Point> pointsData) throws FileNotFoundException, IOException {
         File fileFS = new File("D:\\TestGB\\cache\\point.txt");
-        try(FileOutputStream fosManInpWin = new FileOutputStream(fileFS); ObjectOutputStream oosPoint = new ObjectOutputStream(fosManInpWin)) {
+        try (FileOutputStream fosManInpWin = new FileOutputStream(fileFS);
+             ObjectOutputStream oosPoint = new ObjectOutputStream(fosManInpWin)) {
             ArrayList<Point> pointsManInpWin = new ArrayList<Point>(pointsData);
             oosPoint.writeObject(pointsManInpWin);
             //oosPoint.writeObject(new ArrayList<Point> (pointsManInpWin));
         }
     }
 
-    private ObservableList<Point> deserializePoint() throws FileNotFoundException, IOException, ClassNotFoundException{
+    private ObservableList<Point> deserializePoint() throws FileNotFoundException, IOException, ClassNotFoundException {
         ArrayList<Point> pointsData = new ArrayList<Point>();
         File fileFS = new File("D:\\TestGB\\cache\\point.txt");
-        try(FileInputStream fisPoint = new FileInputStream(fileFS); ObjectInputStream oisPoint = new ObjectInputStream(fisPoint)) {
+        try (FileInputStream fisPoint = new FileInputStream(fileFS); ObjectInputStream oisPoint = new ObjectInputStream(fisPoint)) {
             pointsData = (ArrayList<Point>) oisPoint.readObject();
         }
         return FXCollections.observableArrayList(pointsData);
@@ -891,10 +880,10 @@ public class Controller_manualInput {
 //        }
 //    }
 
-    private void serializeAngles(ArrayList<ObservableList<Angle>> listsAngles) throws FileNotFoundException, IOException {
+    private void serializeAngles(ArrayList<ArrayList<Angle>> listsAngles) throws FileNotFoundException, IOException {
         File fileAng = new File("D:\\TestGB\\cache\\angles.txt");
-        try(FileOutputStream fosManInpWinAng = new FileOutputStream(fileAng);
-            ObjectOutputStream oosAngle = new ObjectOutputStream(fosManInpWinAng)) {
+        try (FileOutputStream fosManInpWinAng = new FileOutputStream(fileAng);
+             ObjectOutputStream oosAngle = new ObjectOutputStream(fosManInpWinAng)) {
             ArrayList<Angle> anglesManInpWin = new ArrayList<Angle>(this.anglesData);
             ArrayList<Angle> anglesManInpWin1 = new ArrayList<Angle>(this.anglesData1);
             ArrayList<Angle> anglesManInpWin2 = new ArrayList<Angle>(this.anglesData2);
@@ -903,24 +892,24 @@ public class Controller_manualInput {
             ArrayList<Angle> anglesManInpWin5 = new ArrayList<Angle>(this.anglesData5);
             ArrayList<Angle> anglesManInpWin6 = new ArrayList<Angle>(this.anglesData6);
             ArrayList<Angle> anglesManInpWin7 = new ArrayList<Angle>(this.anglesData7);
-            listsAngles.add((ObservableList<Angle>) anglesManInpWin);
-            listsAngles.add((ObservableList<Angle>) anglesManInpWin1);
-            listsAngles.add((ObservableList<Angle>) anglesManInpWin2);
-            listsAngles.add((ObservableList<Angle>) anglesManInpWin3);
-            listsAngles.add((ObservableList<Angle>) anglesManInpWin4);
-            listsAngles.add((ObservableList<Angle>) anglesManInpWin5);
-            listsAngles.add((ObservableList<Angle>) anglesManInpWin6);
-            listsAngles.add((ObservableList<Angle>) anglesManInpWin7);
+            listsAngles.add(anglesManInpWin);
+            listsAngles.add(anglesManInpWin1);
+            listsAngles.add(anglesManInpWin2);
+            listsAngles.add(anglesManInpWin3);
+            listsAngles.add(anglesManInpWin4);
+            listsAngles.add(anglesManInpWin5);
+            listsAngles.add(anglesManInpWin6);
+            listsAngles.add(anglesManInpWin7);
             oosAngle.writeObject(listsAngles);
         }
     }
 
-    private ArrayList<ObservableList<Angle>> deserializeAngles() throws FileNotFoundException, IOException, ClassNotFoundException {
-        ArrayList<ObservableList<Angle>> anglesDataS = new ArrayList<>();
+    private ArrayList<ArrayList<Angle>> deserializeAngles() throws FileNotFoundException, IOException, ClassNotFoundException {
+        ArrayList<ArrayList<Angle>> anglesDataS = new ArrayList<>();
         File fileAng = new File("D:\\TestGB\\cache\\angles.txt");
         try (FileInputStream fisAngles = new FileInputStream(fileAng);
-             ObjectInputStream oisAngles = new ObjectInputStream(fisAngles)) {
-            anglesDataS = (ArrayList<ObservableList<Angle>>) oisAngles.readObject();
+            ObjectInputStream oisAngles = new ObjectInputStream(fisAngles)) {
+                anglesDataS = (ArrayList<ArrayList<Angle>>) oisAngles.readObject();
 //            if (pointsData.get(0) != null) {
 //                this.anglesData = FXCollections.observableArrayList(anglesDataS.get(0));
 //                if (pointsData.get(1) != null) {
@@ -945,10 +934,11 @@ public class Controller_manualInput {
 //                    }
 //                }
 //            }
-            return anglesDataS;
-        }
+//        }
+            }
+        return anglesDataS;
     }
-        //return FXCollections.observableArrayList(anglesData);
+    //return FXCollections.observableArrayList(anglesData);
 
 //    private ObservableList<Angle> deserializeAngle() throws FileNotFoundException, IOException, ClassNotFoundException{
 //        ArrayList<Angle> anglesData = new ArrayList<Angle>();
@@ -961,36 +951,74 @@ public class Controller_manualInput {
 //    }
 
     @FXML
-    void savePoint(){
+    void savePointAndAngle() {
         try {
             this.serializePoint(this.pointsData);
-            this.serializeAngles(this.obsListsAngles);
+            this.serializeAngles(obsListsAngles);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-//    @FXML
-//    void savePoint(){
-//        try {
-//            this.serializePoint(this.pointsData);
-//            this.serializeAngle(this.anglesData);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     @FXML
-    private void loadPointAngle(){
+    private void loadPointAndAngle() {
         try {
             this.pointsData = this.deserializePoint();
             this.pointTable.setItems(this.pointsData);
-            this.obsListsAngles = deserializeAngles();
-            this.angleTable.setItems(this.anglesData);
-            scenarioOfManipulatorStates();
 
-        } catch (ClassNotFoundException | IOException e) {
+            if (pointsData.get(0) != null) {
+                this.anglesData = FXCollections.observableArrayList(
+                        this.deserializeAngles().get(0)
+                );
+                this.angleTable.setItems(anglesData);
+                if (pointsData.get(1) != null) {
+                    this.anglesData1 = FXCollections.observableArrayList(
+                            this.deserializeAngles().get(1)
+                    );
+                    this.angleTable1.setItems(anglesData1);
+                    if (pointsData.get(2) != null) {
+                        this.anglesData2 = FXCollections.observableArrayList(
+                                this.deserializeAngles().get(2)
+                        );
+                        this.angleTable2.setItems(anglesData2);
+                        if (pointsData.get(3) != null) {
+                            this.anglesData3 = FXCollections.observableArrayList(
+                                    this.deserializeAngles().get(3)
+                            );
+                            this.angleTable3.setItems(anglesData3);
+                            if (pointsData.get(4) != null) {
+                                this.anglesData4 = FXCollections.observableArrayList(
+                                        this.deserializeAngles().get(4)
+                                );
+                                this.angleTable4.setItems(anglesData4);
+                                if (pointsData.get(5) != null) {
+                                    this.anglesData5 = FXCollections.observableArrayList(
+                                            this.deserializeAngles().get(5)
+                                    );
+                                    this.angleTable5.setItems(anglesData5);
+                                    if (pointsData.get(6) != null) {
+                                        this.anglesData6 = FXCollections.observableArrayList(
+                                                this.deserializeAngles().get(6)
+                                        );
+                                        this.angleTable6.setItems(anglesData6);
+                                        if (pointsData.get(7) != null) {
+                                            this.anglesData7 = FXCollections.observableArrayList(
+                                                    this.deserializeAngles().get(7)
+                                            );
+                                            this.angleTable7.setItems(anglesData7);
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
     }
 }
+
