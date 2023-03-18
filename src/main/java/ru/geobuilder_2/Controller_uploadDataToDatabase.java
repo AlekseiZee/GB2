@@ -19,6 +19,7 @@ import ru.geobuilder_2.persistence.entity.Instance;
 import ru.geobuilder_2.persistence.entity.Object;
 import ru.geobuilder_2.persistence.repository.InstanceJpaRepository;
 import ru.geobuilder_2.persistence.repository.ObjectJpaRepository;
+import ru.geobuilder_2.persistence.repository.RibJpaRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -73,7 +74,7 @@ public class Controller_uploadDataToDatabase {
     private TableColumn<Rib, Integer> tierColumnBD;
 
     @FXML
-    private TableColumn<Rib, String> ribLengthColumnBD;
+    private TableColumn<Rib, Integer> ribLengthColumnBD;
 
     @FXML
     private Button commitInstanceButton;
@@ -308,7 +309,7 @@ public class Controller_uploadDataToDatabase {
         instanceTable.setItems(this.instancesData);
 
         tierColumnBD.setCellValueFactory(new PropertyValueFactory<Rib, Integer>("tier"));
-        ribLengthColumnBD.setCellValueFactory(new PropertyValueFactory<Rib, String>("ribLength"));
+        ribLengthColumnBD.setCellValueFactory(new PropertyValueFactory<Rib, Integer>("ribLength"));
         // указываем, что хотим использовать этот набор данных из коллекции RibsList
         tableRibBD.setItems(ribsBD);
 
@@ -316,7 +317,7 @@ public class Controller_uploadDataToDatabase {
         tableRibBD.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
-        ribLengthColumnBD.setCellFactory(TextFieldTableCell.forTableColumn());
+        //ribLengthColumnBD.setCellFactory(TextFieldTableCell.forTableColumn());
 
         //Запрет на сортировку столбцов
         tierColumnBD.setSortable(false);
@@ -327,7 +328,7 @@ public class Controller_uploadDataToDatabase {
 
     @FXML
     public void addRibBD() {
-        Rib rib = new Rib(this.tableRibBD.getItems().size() + 1, "");
+        Rib rib = new Rib(this.tableRibBD.getItems().size() + 1, 0);
         tableRibBD.getItems().add(rib);
     }
 
@@ -455,7 +456,7 @@ public class Controller_uploadDataToDatabase {
         if (entranceControlUploadDataBaseInstance()) {
             try {
                 instance = instanceJpaRepository.createInstanceForObjectWithData(indexObject, typeOfWork.getText(),
-                        numberBasisOfWorkField.getText(), author.getText(), addressFieldFileJOB.getText());
+                        numberBasisOfWorkField.getText(), author.getText(), addressFieldFileJOB.getText(), ribsBD.size(), ribsBD);
 
             } catch (Exception e) {
                 Text mes = new Text(
@@ -477,6 +478,10 @@ public class Controller_uploadDataToDatabase {
         }
     }
 
+//    public void uploadRibs(){
+//        RibJpaRepository ribJpaRepository = new RibJpaRepository();
+//        ribJpaRepository.createRibs(ribsBD.size(), ribsBD);
+//    }
 
 //    @FXML
 //    private ObservableList<Rib> reedRibsFromDB(){

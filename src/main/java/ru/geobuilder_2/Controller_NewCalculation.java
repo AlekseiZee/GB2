@@ -73,7 +73,7 @@ public class Controller_NewCalculation {
     private TableColumn<Rib, Integer> tierColumn;
 
     @FXML
-    private TableColumn<Rib, String> ribLengthColumn;
+    private TableColumn<Rib, Integer> ribLengthColumn;
 
     private ObservableList<Rib> ribs = FXCollections.observableArrayList();
 
@@ -143,7 +143,7 @@ public class Controller_NewCalculation {
         loadRibs();
 
         tierColumn.setCellValueFactory(new PropertyValueFactory<Rib, Integer>("tier"));
-        ribLengthColumn.setCellValueFactory(new PropertyValueFactory<Rib, String>("ribLength"));
+        ribLengthColumn.setCellValueFactory(new PropertyValueFactory<Rib, Integer>("ribLength"));
 
         // указываем, что хотим использовать этот набор данных из коллекции ribs
         tableRib.setItems(this.ribs);
@@ -152,7 +152,7 @@ public class Controller_NewCalculation {
         tableRib.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
-        ribLengthColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        //ribLengthColumn.setCellFactory((TextFieldTableCell.forTableColumn()));
 
 //        // Добавляем слушателя для автоматического отслеживания изменений в листе
 //        ribs.addListener((ListChangeListener<Rib>) c -> updateCountLabel());
@@ -175,7 +175,7 @@ public class Controller_NewCalculation {
     @FXML
     public void addRib(ActionEvent event) {
 
-        Rib rib = new Rib(this.tableRib.getItems().size() + 1, "");
+        Rib rib = new Rib(this.tableRib.getItems().size() + 1, 0);
         tableRib.getItems().add(rib);
         //ribs.add(rib);
     }
@@ -205,7 +205,7 @@ public class Controller_NewCalculation {
 //    }
 
     // Нужно для инициализации измененных значений в ячейках. Без него данные не воспринимаются
-    public void onEditChanger(TableColumn.CellEditEvent<Rib, String> ribStringCellEditEvent) {
+    public void onEditChanger(TableColumn.CellEditEvent<Rib, Integer> ribStringCellEditEvent) {
         Rib rib = tableRib.getSelectionModel().getSelectedItem();
         rib.setRibLength(ribStringCellEditEvent.getNewValue());
     }
