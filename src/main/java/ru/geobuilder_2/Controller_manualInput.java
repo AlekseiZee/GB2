@@ -11,11 +11,22 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.ArrayList;
 
 public class Controller_manualInput {
+
+    private ArrayList<ArrayList<String>> inputData = new ArrayList<>();
+
+    public ArrayList<ArrayList<String>> getInputData() {
+        return inputData;
+    }
+
+    public void setInputData(ArrayList<ArrayList<String>> inputData) {
+        this.inputData = inputData;
+    }
 
     @FXML
     private Button addLineAnglesButton, addLineAnglesButton1, addLineAnglesButton2, addLineAnglesButton3,
@@ -73,8 +84,26 @@ public class Controller_manualInput {
     private ObservableList<Angle> anglesData6 = FXCollections.observableArrayList();
     private ObservableList<Angle> anglesData7 = FXCollections.observableArrayList();
 
+    private void generateData() {
+
+        for (int i = 0; i < pointsData.size(); i++) {
+            ArrayList<String> data = new ArrayList<>();
+            data.add(pointsData.get(i).getNamePoint());
+            data.add(pointsData.get(i).getDistancePoint());
+            data.add(pointsData.get(i).getVAnglePoint());
+            data.add(pointsData.get(i).getHAnglePoint());
+            for (int k = 0; k < obsListsAngles.get(i).size(); k++) {
+                data.add(obsListsAngles.get(i).get(k).getVAngle());
+                data.add(obsListsAngles.get(i).get(k).getHAngle());
+            }
+            this.inputData.add(data);
+        }
+    }
+
     @FXML
     private void initialize() {
+
+
 
         //loadPointAndAngle();
 
@@ -834,6 +863,13 @@ public class Controller_manualInput {
         angle7.setHAngle(angleStringCellEditEvent.getNewValue());
     }
 
+    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+
 
     /**
      * Возвращаемся в окно "Новый расчет"
@@ -954,6 +990,7 @@ public class Controller_manualInput {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        generateData();
     }
 
     @FXML

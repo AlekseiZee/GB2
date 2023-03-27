@@ -61,6 +61,8 @@ import ru.geobuilder_2.persistence.repository.AngleJpaRepository;
 
 public class Controller_NewCalculation {
 
+    private ArrayList<ArrayList<String>> inputData = new ArrayList<>();
+
     private Stage stage;
 
     @FXML
@@ -133,6 +135,10 @@ public class Controller_NewCalculation {
         messageField.getChildren().clear();
         for (Rib rib : ribs) {
             Text text = new Text("ярус: " + rib.getTier() + "    " + "грань:  " + rib.getRibLength() + "\n");
+            messageField.getChildren().add(text);
+        }
+        for (String in : inputData.get(0)){
+            Text text = new Text(in + "\n");
             messageField.getChildren().add(text);
         }
     }
@@ -487,7 +493,25 @@ public class Controller_NewCalculation {
         } else {
             if (manualInputBut.isSelected()) {
                 //Открываем окно для внесения углов вручную
-                openWindow("manualInput-view.fxml", 1245, 903, "Table");
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(Controller_NewCalculation.class.getResource("manualInput-view.fxml"));
+                    Stage stage = new Stage();
+                    Scene sceneBD = new Scene(fxmlLoader.load(), 1194, 854);
+                    stage.setMinWidth(1194);
+                    stage.setMinHeight(854);
+                    stage.setMaxWidth(1194);
+                    stage.setMaxHeight(854);
+                    stage.setTitle("Ввод данных вручную");
+                    stage.setScene(sceneBD);
+                    Controller_manualInput controllerManualInput = fxmlLoader.getController();
+                    controllerManualInput.setStage(stage);
+                    //controller.getTextPanelForRibs();
+                    controllerManualInput.setInputData(inputData);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //openWindow("manualInput-view.fxml", 1245, 903, "Table");
             } else {
                 if(downloadFromBDBut.isSelected()) {
                     //Открываем окно для получение данных из БД
