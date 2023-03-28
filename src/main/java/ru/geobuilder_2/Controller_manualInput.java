@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Controller_manualInput {
 
@@ -101,7 +102,7 @@ public class Controller_manualInput {
     @FXML
     private void initialize() throws IOException, ClassNotFoundException {
 
-        //loadPointAndAngle();
+        loadPointAndAngle();
 
         // Таблица Points
         idPCol.setCellValueFactory(new PropertyValueFactory<Point, Integer>("idPoint"));
@@ -256,6 +257,9 @@ public class Controller_manualInput {
         hAngleCol.setSortable(false);
     }
 
+    /**
+     * Обновляем заголовки таблицы с угоами в зависимости от названий стоянок в таблице Point
+     */
     private void updateNamePoint() {
         if (!angleTable.isDisabled()) {
             nameAnglePCol.setText(pointsData.get(0).getNamePoint());
@@ -880,7 +884,13 @@ public class Controller_manualInput {
         goBackButton.getScene().getWindow().hide();
     }
 
-    private void serializePoint(ObservableList<Point> pointsData) throws FileNotFoundException, IOException {
+    /**
+     * Сохранение Point
+     *
+     * @param pointsData
+     * @throws IOException
+     */
+    private void serializePoint(ObservableList<Point> pointsData) throws IOException {
         File fileFS = new File("D:\\TestGB\\cache\\point.txt");
         try (FileOutputStream fosManInpWin = new FileOutputStream(fileFS);
              ObjectOutputStream oosPoint = new ObjectOutputStream(fosManInpWin)) {
@@ -890,6 +900,14 @@ public class Controller_manualInput {
         }
     }
 
+    /**
+     * Десериализация Point
+     *
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     private ObservableList<Point> deserializePoint() throws FileNotFoundException, IOException, ClassNotFoundException {
         ArrayList<Point> pointsData = new ArrayList<Point>();
         File fileFS = new File("D:\\TestGB\\cache\\point.txt");
@@ -899,15 +917,13 @@ public class Controller_manualInput {
         return FXCollections.observableArrayList(pointsData);
     }
 
-//    private void serializeAngle(ObservableList<Angle> anglesData) throws FileNotFoundException, IOException {
-//        File fileAng = new File("D:\\TestGB\\cache\\angle.txt");
-//        try(FileOutputStream fosManInpWinAng = new FileOutputStream(fileAng);
-//            ObjectOutputStream oosAngle = new ObjectOutputStream(fosManInpWinAng)) {
-//            ArrayList<Angle> anglesManInpWin = new ArrayList<Angle>(anglesData);
-//            oosAngle.writeObject(anglesManInpWin);
-//        }
-//    }
-
+    /**
+     * Сохранение Angle
+     *
+     * @param listsAngles
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     private void serializeAngles(ArrayList<ArrayList<Angle>> listsAngles) throws FileNotFoundException, IOException {
         File fileAng = new File("D:\\TestGB\\cache\\angles.txt");
         try (FileOutputStream fosManInpWinAng = new FileOutputStream(fileAng);
@@ -932,12 +948,43 @@ public class Controller_manualInput {
         }
     }
 
+    /**
+     * Десериализация Angle
+     *
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     private ArrayList<ArrayList<Angle>> deserializeAngles() throws FileNotFoundException, IOException, ClassNotFoundException {
         ArrayList<ArrayList<Angle>> anglesDataS = new ArrayList<>();
         File fileAng = new File("D:\\TestGB\\cache\\angles.txt");
         try (FileInputStream fisAngles = new FileInputStream(fileAng);
              ObjectInputStream oisAngles = new ObjectInputStream(fisAngles)) {
             anglesDataS = (ArrayList<ArrayList<Angle>>) oisAngles.readObject();
+        }
+        return anglesDataS;
+    }
+
+    /**
+     * Нажимаем сохранить Point и Angl
+     */
+    @FXML
+    void savePointAndAngle() {
+        try {
+            this.serializePoint(this.pointsData);
+            this.serializeAngles(obsListsAngles);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+//    @FXML
+//    private void loadPointAndAngle() {
+//        try {
+//            this.pointsData = this.deserializePoint();
+//            this.pointTable.setItems(this.pointsData);
+//
 //            if (pointsData.get(0) != null) {
 //                this.anglesData = FXCollections.observableArrayList(anglesDataS.get(0));
 //                if (pointsData.get(1) != null) {
@@ -962,22 +1009,14 @@ public class Controller_manualInput {
 //                    }
 //                }
 //            }
+//        } catch (ClassNotFoundException | IOException e) {
+//            e.printStackTrace();
 //        }
-        }
-        return anglesDataS;
-    }
-    //return FXCollections.observableArrayList(anglesData);
-
-//    private ObservableList<Angle> deserializeAngle() throws FileNotFoundException, IOException, ClassNotFoundException{
-//        ArrayList<Angle> anglesData = new ArrayList<Angle>();
-//        File fileAng = new File("D:\\TestGB\\cache\\angle.txt");
-//        try(FileInputStream fisAngle = new FileInputStream(fileAng);
-//            ObjectInputStream oisAngle = new ObjectInputStream(fisAngle)) {
-//            anglesData = (ArrayList<Angle>) oisAngle.readObject();
-//        }
-//        return FXCollections.observableArrayList(anglesData);
 //    }
 
+    /**
+     * Нажимаем для десериализации Point и Angle
+     */
     @FXML
     void savePointAndAngle() {
         try {
@@ -1063,4 +1102,5 @@ public class Controller_manualInput {
         }
     }
 }
+
 

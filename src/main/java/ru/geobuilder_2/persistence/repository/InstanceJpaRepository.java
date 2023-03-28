@@ -2,9 +2,11 @@ package ru.geobuilder_2.persistence.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import javafx.collections.ObservableList;
 import ru.geobuilder_2.parser.InputData;
 import ru.geobuilder_2.persistence.entity.Instance;
 import ru.geobuilder_2.persistence.entity.Object;
+import ru.geobuilder_2.persistence.entity.Rib;
 import ru.geobuilder_2.persistence.tools.PersistenceManager;
 
 import java.sql.Timestamp;
@@ -90,7 +92,7 @@ public class InstanceJpaRepository {
      * @return
      */
     public static Instance createInstanceForObjectWithData(Long idObject, String typeOfWork, String numberBasisOfWork,
-                                                           String author, String path) {
+                                                           String author, String path, int quantity, ObservableList<ru.geobuilder_2.Rib> ribss) {
         EntityManager em = null;
         EntityTransaction transaction = null;
         try {
@@ -101,6 +103,14 @@ public class InstanceJpaRepository {
             instance.setNumberBasisOfWork(numberBasisOfWork);
             instance.setAuthor(author);
 
+            for (int i=0; i<quantity; i++) {
+                Rib rib = new Rib();
+                rib.setTier((Integer) ribss.get(i).getTier());
+                rib.setRibLength(Integer.valueOf(ribss.get(i).getRibLength()));
+                instance.addRib(rib);
+                //em.persist(rib);
+            }
+
             try {
                 InputData inputData = new InputData();
                 inputData.readInputData(path);
@@ -108,7 +118,8 @@ public class InstanceJpaRepository {
             } catch (Exception e) {
                 e.printStackTrace(System.out);
             }
-            if(instance.getPoints().isEmpty()){
+
+            if(instance.getPoints().isEmpty() || instance.getRibs().isEmpty()){
 
             } else {
                 // Получаем объект по id
