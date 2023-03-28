@@ -61,7 +61,15 @@ import ru.geobuilder_2.persistence.repository.AngleJpaRepository;
 
 public class Controller_NewCalculation {
 
-    private ArrayList<ArrayList<String>> inputData = new ArrayList<>();
+    private ArrayList<String> inputData = new ArrayList<>();
+
+    public ArrayList<String> getInputData() {
+        return inputData;
+    }
+
+    public void setInputData(ArrayList<String> inputData) {
+        this.inputData = inputData;
+    }
 
     private Stage stage;
 
@@ -78,6 +86,14 @@ public class Controller_NewCalculation {
     private TableColumn<Rib, String> ribLengthColumn;
 
     private ObservableList<Rib> ribs = FXCollections.observableArrayList();
+
+    private ArrayList<String> lisRs = new ArrayList<>();
+
+    private void generatelistRs(){
+    for (int i = 1; i < this.ribs.size(); i += 1){
+        this.lisRs.add(ribs.get(i).getRibLength());
+        }
+    }
 
     @FXML
     private TextFlow messageField;
@@ -137,10 +153,10 @@ public class Controller_NewCalculation {
             Text text = new Text("ярус: " + rib.getTier() + "    " + "грань:  " + rib.getRibLength() + "\n");
             messageField.getChildren().add(text);
         }
-        for (String in : inputData.get(0)){
-            Text text = new Text(in + "\n");
-            messageField.getChildren().add(text);
-        }
+            for (String in : inputData) {
+                Text text = new Text(in + "\n");
+                messageField.getChildren().add(text);
+            }
     }
 
     @FXML
@@ -183,7 +199,6 @@ public class Controller_NewCalculation {
 
         Rib rib = new Rib(this.tableRib.getItems().size() + 1, "");
         tableRib.getItems().add(rib);
-        //ribs.add(rib);
     }
 
     /**
@@ -496,11 +511,11 @@ public class Controller_NewCalculation {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(Controller_NewCalculation.class.getResource("manualInput-view.fxml"));
                     Stage stage = new Stage();
-                    Scene sceneBD = new Scene(fxmlLoader.load(), 1194, 854);
-                    stage.setMinWidth(1194);
-                    stage.setMinHeight(854);
-                    stage.setMaxWidth(1194);
-                    stage.setMaxHeight(854);
+                    Scene sceneBD = new Scene(fxmlLoader.load(), 1300, 930);
+                    stage.setMinWidth(1300);
+                    stage.setMinHeight(930);
+                    stage.setMaxWidth(1300);
+                    stage.setMaxHeight(930);
                     stage.setTitle("Ввод данных вручную");
                     stage.setScene(sceneBD);
                     Controller_manualInput controllerManualInput = fxmlLoader.getController();
@@ -511,13 +526,34 @@ public class Controller_NewCalculation {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                //openWindow("manualInput-view.fxml", 1245, 903, "Table");
             } else {
-                if(downloadFromBDBut.isSelected()) {
+                if (downloadFromBDBut.isSelected()) {
                     //Открываем окно для получение данных из БД
                     openWindow("downloadFromBD-view.fxml", 1194, 854, "Database");
                 }
             }
+        }
+    }
+
+    @FXML
+    private void openCalculation(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Controller_NewCalculation.class.getResource("calculation-view.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(fxmlLoader.load(), 1300, 930);
+            stage.setMinWidth(1300);
+            stage.setMinHeight(930);
+            stage.setMaxWidth(1300);
+            stage.setMaxHeight(930);
+            stage.setTitle("Расчет");
+            stage.setScene(scene);
+            Controller_Calculation controller = fxmlLoader.getController();
+            controller.setInputData(inputData);
+            controller.setListRs(lisRs);
+            //controller.setStage(stage);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 //                /**
@@ -581,10 +617,11 @@ public class Controller_NewCalculation {
 
     /**
      * Метод для открытия окна с нужной сценой
-     * @param fxml - fxml файл с интерфейсом окна
-     * @param width - ширина окна
+     *
+     * @param fxml   - fxml файл с интерфейсом окна
+     * @param width  - ширина окна
      * @param Height - высота окна
-     * @param title - название окна
+     * @param title  - название окна
      */
     public void openWindow(String fxml, int width, int Height, String title) {
         try {
@@ -604,16 +641,17 @@ public class Controller_NewCalculation {
     }
 
     @FXML
-    public void saveAndGoingBack(){
+    public void saveAndGoingBack() {
         save();
         stage.setScene(StartGeoApplication.getScenes().get(SceneName.MAIN_GB2));
     }
 
     @FXML
-    public void saveAndExit(){
+    public void saveAndExit() {
         save();
         stage.close();
     }
+
     @FXML
     void save() {
         try {
@@ -628,6 +666,8 @@ public class Controller_NewCalculation {
         try {
             this.ribs = this.deserializeData();
             this.tableRib.setItems(this.ribs);
+
+            generatelistRs();
 
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();

@@ -268,7 +268,7 @@ public class Controller_uploadDataToDatabase {
      * @param event
      */
     @FXML
-    public void goingBack(ActionEvent event) {
+    public void goingBackToNewCal(ActionEvent event) {
         stage.setScene(StartGeoApplication.getScenes().get(SceneName.MAIN_GB2));
     }
 

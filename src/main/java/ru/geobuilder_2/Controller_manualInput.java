@@ -18,13 +18,13 @@ import java.util.ArrayList;
 
 public class Controller_manualInput {
 
-    private ArrayList<ArrayList<String>> inputData = new ArrayList<>();
+    private ArrayList<String> inputData = new ArrayList<>();
 
-    public ArrayList<ArrayList<String>> getInputData() {
+    public ArrayList<String> getInputData() {
         return inputData;
     }
 
-    public void setInputData(ArrayList<ArrayList<String>> inputData) {
+    public void setInputData(ArrayList<String> inputData) {
         this.inputData = inputData;
     }
 
@@ -87,23 +87,19 @@ public class Controller_manualInput {
     private void generateData() {
 
         for (int i = 0; i < pointsData.size(); i++) {
-            ArrayList<String> data = new ArrayList<>();
-            data.add(pointsData.get(i).getNamePoint());
-            data.add(pointsData.get(i).getDistancePoint());
-            data.add(pointsData.get(i).getVAnglePoint());
-            data.add(pointsData.get(i).getHAnglePoint());
+            inputData.add(pointsData.get(i).getNamePoint());
+            inputData.add(pointsData.get(i).getDistancePoint());
+            inputData.add(pointsData.get(i).getVAnglePoint());
+            inputData.add(pointsData.get(i).getHAnglePoint());
             for (int k = 0; k < obsListsAngles.get(i).size(); k++) {
-                data.add(obsListsAngles.get(i).get(k).getVAngle());
-                data.add(obsListsAngles.get(i).get(k).getHAngle());
+                inputData.add(obsListsAngles.get(i).get(k).getVAngle());
+                inputData.add(obsListsAngles.get(i).get(k).getHAngle());
             }
-            this.inputData.add(data);
         }
     }
 
     @FXML
-    private void initialize() {
-
-
+    private void initialize() throws IOException, ClassNotFoundException {
 
         //loadPointAndAngle();
 
