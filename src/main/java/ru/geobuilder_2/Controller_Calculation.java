@@ -5,9 +5,9 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
-import java.awt.*;
+
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class Controller_Calculation {
 
@@ -16,10 +16,11 @@ public class Controller_Calculation {
 
     private ArrayList<String> listRs;
 
-    private ArrayList<Double> listRibs = adapterForListRibs(this.listRs);
+    private ArrayList<Double> lr = adapterForListRibs(this.listRs);
 
     private ArrayList<Double> adapterForListRibs(ArrayList<String> lRibs){
         ArrayList<Double> listRibs = new ArrayList<>();
+
         for (String val : lRibs){
             listRibs.add(Double.valueOf(val));
         }
@@ -51,7 +52,7 @@ public class Controller_Calculation {
             Text text = new Text(in + "\n");
             mesField.getChildren().add(text);
         }
-        for (Double val : this.listRibs){
+        for (Double val : this.lr){
             Text text = new Text(val + "\n");
             mesField.getChildren().add(text);
         }

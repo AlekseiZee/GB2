@@ -328,7 +328,7 @@ public class Controller_uploadDataToDatabase {
 
     @FXML
     public void addRibBD() {
-        Rib rib = new Rib(this.tableRibBD.getItems().size() + 1, 0);
+        Rib rib = new Rib(this.tableRibBD.getItems().size() + 1, "");
         tableRibBD.getItems().add(rib);
     }
 

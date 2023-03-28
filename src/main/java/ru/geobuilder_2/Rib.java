@@ -21,22 +21,22 @@ public class Rib implements Serializable {
 
 	// transient fields are excluded from serialization
     private transient IntegerProperty tier;
-    private transient IntegerProperty ribLength;
+    private transient StringProperty ribLength;
 
-    public Rib(int tier, int ribLength) {
+    public Rib(int tier, String ribLength) {
         this.tier = new SimpleIntegerProperty(tier);
-        this.ribLength = new SimpleIntegerProperty(ribLength);
+        this.ribLength = new SimpleStringProperty(ribLength);
     }
 
     public final int getTier() {
         return this.tier.get();
     }
 
-    public final int getRibLength() {
+    public final String getRibLength() {
         return this.ribLength.get();
     }
 
-    public final void setRibLength(Integer ribLength) {
+    public final void setRibLength(String ribLength) {
         this.ribLength.set(ribLength);
     }
 
@@ -48,7 +48,7 @@ public class Rib implements Serializable {
     	return this.tier;
     }
 
-    public final IntegerProperty ribLengthProperty() {
+    public final StringProperty ribLengthProperty() {
     	return this.ribLength;
     }
 
@@ -86,11 +86,11 @@ public class Rib implements Serializable {
     private void writeObject(ObjectOutputStream s) throws IOException {
         s.defaultWriteObject();
         s.writeInt(getTier());
-        s.writeInt(getRibLength());
+        s.writeUTF(getRibLength());
     }
 
     private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
     	tier = new SimpleIntegerProperty(s.readInt());
-        ribLength = new SimpleIntegerProperty(s.readInt());
+        ribLength = new SimpleStringProperty(s.readUTF());
     }
 }

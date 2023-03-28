@@ -102,7 +102,7 @@ public class Controller_manualInput {
     @FXML
     private void initialize() throws IOException, ClassNotFoundException {
 
-        loadPointAndAngle();
+        //loadPointAndAngle();
 
         // Таблица Points
         idPCol.setCellValueFactory(new PropertyValueFactory<Point, Integer>("idPoint"));
@@ -965,54 +965,6 @@ public class Controller_manualInput {
         }
         return anglesDataS;
     }
-
-    /**
-     * Нажимаем сохранить Point и Angl
-     */
-    @FXML
-    void savePointAndAngle() {
-        try {
-            this.serializePoint(this.pointsData);
-            this.serializeAngles(obsListsAngles);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-//    @FXML
-//    private void loadPointAndAngle() {
-//        try {
-//            this.pointsData = this.deserializePoint();
-//            this.pointTable.setItems(this.pointsData);
-//
-//            if (pointsData.get(0) != null) {
-//                this.anglesData = FXCollections.observableArrayList(anglesDataS.get(0));
-//                if (pointsData.get(1) != null) {
-//                    this.anglesData1 = FXCollections.observableArrayList(anglesDataS.get(1));
-//                    if (pointsData.get(2) != null) {
-//                        this.anglesData2 = FXCollections.observableArrayList(anglesDataS.get(2));
-//                        if (pointsData.get(3) != null) {
-//                            this.anglesData3 = FXCollections.observableArrayList(anglesDataS.get(3));
-//                            if (pointsData.get(4) != null) {
-//                                this.anglesData4 = FXCollections.observableArrayList(anglesDataS.get(4));
-//                                if (pointsData.get(5) != null) {
-//                                    this.anglesData5 = FXCollections.observableArrayList(anglesDataS.get(5));
-//                                    if (pointsData.get(6) != null) {
-//                                        this.anglesData6 = FXCollections.observableArrayList(anglesDataS.get(6));
-//                                        if (pointsData.get(7) != null) {
-//                                            this.anglesData7 = FXCollections.observableArrayList(anglesDataS.get(7));
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        } catch (ClassNotFoundException | IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     /**
      * Нажимаем для десериализации Point и Angle
