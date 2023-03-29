@@ -8,33 +8,19 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TableColumn;
@@ -42,22 +28,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import javafx.scene.text.TextFlow;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Stage;
 import javafx.util.Duration;
-import javafx.util.Pair;
 import ru.geobuilder_2.model.SceneName;
-import ru.geobuilder_2.persistence.repository.AngleJpaRepository;
 
 public class Controller_NewCalculation {
 
@@ -87,11 +66,12 @@ public class Controller_NewCalculation {
 
     private ObservableList<Rib> ribs = FXCollections.observableArrayList();
 
-    private ArrayList<String> lisRs = new ArrayList<>();
+    private ArrayList<String> listRs = new ArrayList<>();
 
     private void generatelistRs(){
-    for (int i = 1; i < this.ribs.size(); i += 1){
-        this.lisRs.add(ribs.get(i).getRibLength());
+        listRs.clear();
+    for (int i = 0; i < ribs.size(); i ++){
+        listRs.add(ribs.get(i).getRibLength());
         }
     }
 
@@ -177,7 +157,7 @@ public class Controller_NewCalculation {
         ribLengthColumn.setCellFactory((TextFieldTableCell.forTableColumn()));
 
 //        // Добавляем слушателя для автоматического отслеживания изменений в листе
-//        ribs.addListener((ListChangeListener<Rib>) c -> updateCountLabel());
+//        ribs.addListener((ListChangeListener<Rib>) c -> openCalculation());
 //
 //        updateCountLabel();
 
@@ -536,7 +516,8 @@ public class Controller_NewCalculation {
     }
 
     @FXML
-    private void openCalculation(){
+    private void openCalculation() {
+        generatelistRs();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Controller_NewCalculation.class.getResource("calculation-view.fxml"));
             Stage stage = new Stage();
@@ -548,8 +529,12 @@ public class Controller_NewCalculation {
             stage.setTitle("Расчет");
             stage.setScene(scene);
             Controller_Calculation controller = fxmlLoader.getController();
-            controller.setInputData(inputData);
-            controller.setListRs(lisRs);
+            if (downloadFromFileBut.isSelected()) {
+                //controller.
+            } else {
+                controller.setInputData(inputData);
+                controller.setListRibs(listRs);
+            }
             //controller.setStage(stage);
             stage.show();
         } catch (IOException e) {
@@ -649,7 +634,7 @@ public class Controller_NewCalculation {
     @FXML
     public void saveAndExit() {
         save();
-        stage.close();
+        //stage.close();
     }
 
     @FXML
@@ -666,9 +651,7 @@ public class Controller_NewCalculation {
         try {
             this.ribs = this.deserializeData();
             this.tableRib.setItems(this.ribs);
-
             generatelistRs();
-
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
@@ -679,6 +662,7 @@ public class Controller_NewCalculation {
         try (FileOutputStream fos = new FileOutputStream(f); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             ArrayList<Rib> al = new ArrayList<Rib>(ribs);
             oos.writeObject(new ArrayList<Rib>(al));
+            generatelistRs();
         }
     }
 

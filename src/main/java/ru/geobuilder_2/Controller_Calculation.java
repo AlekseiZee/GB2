@@ -11,32 +11,33 @@ import java.util.ArrayList;
 
 public class Controller_Calculation {
 
+    /**
+     * Переменная, которая указывает, какой вид входных данных
+     * Либо из файла, включая индексы 100.., 200.., 300..
+     * Либо из введенных вручную, без дополнительных индексов 100, 200, 300.
+     */
+    Boolean fromFailData = true;
+
+
+    private ArrayList<String> inputData;
+
+    private ArrayList<Double> listRibs;
+
+
+
     @FXML
     private TextFlow mesField;
 
-    private ArrayList<String> listRs;
-
-    private ArrayList<Double> lr = adapterForListRibs(this.listRs);
-
-    private ArrayList<Double> adapterForListRibs(ArrayList<String> lRibs){
-        ArrayList<Double> listRibs = new ArrayList<>();
+    public void setListRibs(ArrayList<String> lRibs){
+        ArrayList<Double> lr = new ArrayList<>();
 
         for (String val : lRibs){
-            listRibs.add(Double.valueOf(val));
+            lr.add(Double.valueOf(val));
         }
-        return listRibs;
+        listRibs = lr;
     }
 
-    public void setListRs(ArrayList<String> listRs) {
-        this.listRs = listRs;
-    }
-
-    private ArrayList<String> inputData;
     private Stage stage;
-
-//    public void setStage(Stage stage) {
-//        this.stage = stage;
-//    }
 
     public ArrayList<String> getInputData() {
         return inputData;
@@ -52,7 +53,7 @@ public class Controller_Calculation {
             Text text = new Text(in + "\n");
             mesField.getChildren().add(text);
         }
-        for (Double val : this.lr){
+        for (Double val : listRibs){
             Text text = new Text(val + "\n");
             mesField.getChildren().add(text);
         }

@@ -344,7 +344,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <Label fx:id="labelCount" layoutX="15.0" layoutY="460.0" prefHeight="17.0" prefWidth="109.0" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="630.0" AnchorPane.topAnchor="460.0" />
+            <Label fx:id="labelCount" layoutX="15.0" layoutY="475.0" prefHeight="25.0" prefWidth="112.0" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="630.0" AnchorPane.topAnchor="475.0" />
             <AnchorPane layoutX="179.0" layoutY="220.0" minHeight="0.0" minWidth="0.0" prefHeight="241.0" prefWidth="564.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="179.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="220.0">
                <children>
                   <ScrollPane prefHeight="241.0" prefWidth="566.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
