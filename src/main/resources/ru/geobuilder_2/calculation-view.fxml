@@ -25,7 +25,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_Calculation">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="741.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_Calculation">
+
    <children>
       <MenuBar prefHeight="44.0" prefWidth="1300.0" style="-fx-background-color: #494949;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -100,7 +101,7 @@
       </Label>
       <SplitPane layoutY="73.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="74.0">
         <items>
-          <AnchorPane>
+          <AnchorPane prefHeight="684.0" prefWidth="1198.0">
                <children>
                   <TabPane prefHeight="676.0" prefWidth="1104.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <tabs>
@@ -110,9 +111,9 @@
                                  <children>
                                     <ScrollPane prefHeight="688.0" prefWidth="930.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                       <content>
-                                        <AnchorPane prefHeight="634.0" prefWidth="654.0">
+                                        <AnchorPane prefHeight="537.0" prefWidth="644.0">
                                              <children>
-                                                <TableView layoutX="11.0" layoutY="13.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="592.0" prefWidth="627.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="13.0">
+                                                <TableView layoutX="14.0" layoutY="14.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="528.0" prefWidth="630.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                                                    <columns>
                                                       <TableColumn prefWidth="28.0" text="П. п" />
                                                       <TableColumn prefWidth="227.0" text="Стоянка А">
@@ -190,8 +191,7 @@
                                                                   <TableColumn prefWidth="75.0" text="Право">
                                                                      <graphic>
                                                                         <TextField alignment="CENTER" prefHeight="24.0" prefWidth="71.0" promptText="Верт." />
-                                                                     </graphic>
-                                                                  </TableColumn>
+                                                                     </graphic></TableColumn>
                                                                </columns>
                                                                <graphic>
                                                                   <TextField alignment="CENTER" promptText="Расстояние, м" />
@@ -515,7 +515,7 @@
                            <content>
                               <AnchorPane>
                                  <children>
-                                    <ScrollPane layoutX="5.0" layoutY="5.0" prefHeight="642.0" prefWidth="1278.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                    <ScrollPane layoutX="5.0" layoutY="5.0" prefHeight="688.0" prefWidth="1094.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                        <content>
                                           <AnchorPane prefHeight="637.0" prefWidth="721.0">
                                              <children>
@@ -608,7 +608,7 @@
                                                       </TableColumn>
                                                    </columns>
                                                 </TableView>
-                                                <AnchorPane layoutX="14.0" layoutY="105.0" prefHeight="532.0" prefWidth="624.0">
+                                                <AnchorPane layoutX="14.0" layoutY="105.0" prefHeight="507.0" prefWidth="629.0">
                                                    <children>
                                                       <HBox layoutY="-14.0" prefHeight="444.0" prefWidth="629.0">
                                                          <children>
