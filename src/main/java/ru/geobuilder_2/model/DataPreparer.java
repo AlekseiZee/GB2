@@ -65,6 +65,11 @@ public class DataPreparer {
     private int numberOfCharactersToDistanceOfPoint;
 
     /**
+     * Количество символов до первого вертикального угла без добавки (либо 5, либо 4)
+     */
+    private  int numberOfCharactersUpToFirstVerticalCorner;
+
+    /**
      * Количество символов до первого горизонтального угла после литеры
      */
     private int numberOfCharactersUpToFirstHorizontalCorner;
@@ -117,7 +122,7 @@ public class DataPreparer {
     /**
      * Коллекция, куда записываются наши данные из файла
      */
-    private List<String> inputData = new ArrayList<>();
+    private ArrayList<String> inputData = new ArrayList<>();
 
     /**
      * Конструктор
@@ -183,16 +188,6 @@ public class DataPreparer {
         return filePath;
     }
 
-    public void setFilePath(String filePath) {
-        Pattern pattern = Pattern.compile("([a-zA-Z]\\:)\\\\([\\w-]+\\\\)*\\w([\\w-.])+");
-        Matcher matcher = pattern.matcher(filePath);
-        if (matcher.matches()) {
-            this.filePath = filePath;
-        } else {
-            System.out.println("Вы ввели не верный путь к файлу");
-        }
-    }
-
     // Получение количества стоянок (2, 3 или 4)
     public int getQuantityOfPoints() {
         return quantityOfPoints;
@@ -240,11 +235,11 @@ public class DataPreparer {
     /**
      * Наш основной лист с данными, которые считались из файла
      */
-    public List<String> getInputData() {
+    public ArrayList<String> getInputData() {
         return inputData;
     }
 
-    public void setInputData(List<String> inputData) {
+    public void setInputData(ArrayList<String> inputData) {
         this.inputData = inputData;
     }
 
@@ -547,31 +542,51 @@ public class DataPreparer {
      */
     public List<List<Double>> getAverageAnglesForTwoPoints(String litPoint, String ang) throws DateIsNotReadyException {
 
+        if (fromFailData){
+            numberOfCharactersInCorners = 3;
+            numberOfCharactersUpToSecondAngleMeasurement = 3;
+            numberOfCharactersToNextPairOfCorners = 6;
+            numberOfCharactersUpToFirstVerticalCorner = 5;
+            numberOfCharactersUpToFirstHorizontalCorner = 6;
+            numberOfCharactersToDistanceOfPoint = 5;
+            numberOfCharactersUpToSecondHorizontalCorner = 9;
+        } else {
+            numberOfCharactersInCorners = 2;
+            numberOfCharactersUpToSecondAngleMeasurement = 2;
+            numberOfCharactersToNextPairOfCorners = 4;
+            numberOfCharactersUpToFirstVerticalCorner = 4;
+            numberOfCharactersUpToFirstHorizontalCorner = 5;
+            numberOfCharactersToDistanceOfPoint = 4;
+            numberOfCharactersUpToSecondHorizontalCorner = 7;
+        }
+
         List<List<String>> ListAnglesForTwoPoint = getListAnglesForTwoPoint(litPoint);
         List<String> list1 = ListAnglesForTwoPoint.get(0);
         List<String> list2 = ListAnglesForTwoPoint.get(1);
 
-        int sizeOneList = (list1.size() - 4) / 3 / 2; // Количество измерений в первом
-        int sizeTwoList = (list2.size() - 4) / 3 / 2; // Количество измерений во втором
+        int sizeOneList = (list1.size() - NUMBER_OF_VALUES_IN_POINT) /
+                numberOfCharactersInCorners / NUMBER_OF_MEASUREMENTS_PER_FLANGE; // Количество измерений в первом
+        int sizeTwoList = (list2.size() - NUMBER_OF_VALUES_IN_POINT) /
+                numberOfCharactersInCorners / NUMBER_OF_MEASUREMENTS_PER_FLANGE; // Количество измерений во втором
         List<Double> listAverageAnglesForTwoPoints1 = new ArrayList<>();
         List<Double> listAverageAnglesForTwoPoints2 = new ArrayList<>();
 
         if (ang == "v") {
             // вертикальный угол
-            int j = 5;
+            int j = numberOfCharactersUpToFirstVerticalCorner;
             // Первый элемент листа, не зависящий от знака расстояния
             listAverageAnglesForTwoPoints1.add(Math.toRadians(90 - Double.valueOf(list1.get(2))));
             for (int i = 0; i < sizeOneList; i += 1) {
                 listAverageAnglesForTwoPoints1.add(Math.toRadians(90 - (Double.parseDouble(list1.get(j)) +
-                        (Double.parseDouble(list1.get(j + 3)))) / 2));
-                j += 6;
+                        (Double.parseDouble(list1.get(j + numberOfCharactersUpToSecondAngleMeasurement)))) / 2));
+                j += numberOfCharactersToNextPairOfCorners;
             }
-            int j2 = 5;
+            int j2 = numberOfCharactersUpToFirstVerticalCorner;
             listAverageAnglesForTwoPoints2.add(Math.toRadians(90 - Double.valueOf(list2.get(2))));
             for (int i = 0; i < sizeTwoList; i += 1) {
                 listAverageAnglesForTwoPoints2.add(Math.toRadians(90 - (Double.parseDouble(list2.get(j2)) +
-                        (Double.parseDouble(list2.get(j2 + 3)))) / 2));
-                j2 += 6;
+                        (Double.parseDouble(list2.get(j2 + numberOfCharactersUpToSecondAngleMeasurement)))) / 2));
+                j2 += numberOfCharactersToNextPairOfCorners;
             }
             List<List<Double>> AverageAnglesForTwoPoints = new ArrayList<>();
             AverageAnglesForTwoPoints.add(listAverageAnglesForTwoPoints1);
@@ -580,45 +595,49 @@ public class DataPreparer {
         } else {
             // Горизонтальные углы для первой и второй стоянок
             // Угры для первой стоянки. Заполняем первый лист
-            int j3 = 6;
+            int j3 = numberOfCharactersUpToFirstHorizontalCorner;
             // Первый элемент листа, не зависящий от знака расстояния
-            double firstHorAngl1 = (Double.parseDouble(list1.get(j3)) + (Double.parseDouble(list1.get(j3 + 3)))) / 2;
+            double firstHorAngl1 = (Double.parseDouble(list1.get(j3)) + (Double.parseDouble(list1.get(j3 +
+                    numberOfCharactersUpToSecondAngleMeasurement)))) / 2;
             listAverageAnglesForTwoPoints1.add(firstHorAngl1);
             // Если расстояние отрицательное
-            if ((Double.parseDouble(list1.get(j3 - 5))) < 0) {
+            if ((Double.parseDouble(list1.get(j3 - numberOfCharactersToDistanceOfPoint))) < 0) {
                 for (int i = 1; i < sizeOneList; i += 1) {
                     listAverageAnglesForTwoPoints1.add(Math.toRadians(firstHorAngl1 -
-                            ((Double.parseDouble(list1.get(j3 + 6)) +
-                                    Double.parseDouble(list1.get(j3 + 9))) / 2)));
-                    j3 += 6;
+                            ((Double.parseDouble(list1.get(j3 + numberOfCharactersUpToFirstHorizontalCorner)) +
+                                    Double.parseDouble(list1.get(j3 + numberOfCharactersUpToSecondHorizontalCorner))) / 2)));
+                    j3 += numberOfCharactersToNextPairOfCorners;
                 }
             } else { // Если расстояние положительное
-                int j4 = 6;
+                int j4 = numberOfCharactersUpToFirstHorizontalCorner;
                 for (int i = 1; i < sizeOneList; i += 1) {
                     listAverageAnglesForTwoPoints1.add(Math.toRadians(
-                            ((Double.parseDouble(list1.get(j4 + 6)) +
-                                    Double.parseDouble(list1.get(j4 + 9))) / 2) - firstHorAngl1));
-                    j4 += 6;
+                            ((Double.parseDouble(list1.get(j4 + numberOfCharactersUpToFirstHorizontalCorner)) +
+                                    Double.parseDouble(list1.get(j4 + numberOfCharactersUpToSecondHorizontalCorner))) / 2) - firstHorAngl1));
+                    j4 += numberOfCharactersToNextPairOfCorners;
                 }
             }
             // Угры для второй стоянки. Заполняем второй лист
-            int j5 = 6;
+            int j5 = numberOfCharactersUpToFirstHorizontalCorner;
             // Первый элемент листа, не зависящий от знака расстояния
-            double firstHorAngl2 = (Double.parseDouble(list2.get(j5)) + (Double.parseDouble(list2.get(j5 + 3)))) / 2;
+            double firstHorAngl2 = (Double.parseDouble(list2.get(j5)) + (Double.parseDouble(
+                    list2.get(j5 + numberOfCharactersUpToSecondAngleMeasurement)))) / 2;
             listAverageAnglesForTwoPoints2.add(firstHorAngl2);
             // Если расстояние отрицательное
-            if ((Double.parseDouble(list2.get(j5 - 5))) < 0) {
+            if ((Double.parseDouble(list2.get(j5 - numberOfCharactersToDistanceOfPoint))) < 0) {
                 for (int i = 1; i < sizeTwoList; i += 1) {
                     listAverageAnglesForTwoPoints2.add(Math.toRadians(firstHorAngl2 -
-                            ((Double.parseDouble(list2.get(j5 + 6)) + Double.parseDouble(list2.get(j5 + 9))) / 2)));
-                    j5 += 6;
+                            ((Double.parseDouble(list2.get(j5 + numberOfCharactersUpToFirstHorizontalCorner)) +
+                                    Double.parseDouble(list2.get(j5 + numberOfCharactersUpToSecondHorizontalCorner))) / 2)));
+                    j5 += numberOfCharactersToNextPairOfCorners;
                 }
             } else { // Если расстояние положительное
-                int j6 = 6;
+                int j6 = numberOfCharactersUpToFirstHorizontalCorner;
                 for (int i = 1; i < sizeTwoList; i += 1) {
-                    listAverageAnglesForTwoPoints2.add(Math.toRadians(((Double.parseDouble(list2.get(j6 + 6)) +
-                                    Double.parseDouble(list2.get(j6 + 9))) / 2) - firstHorAngl2));
-                    j6 += 6;
+                    listAverageAnglesForTwoPoints2.add(Math.toRadians(((Double.parseDouble(
+                            list2.get(j6 + numberOfCharactersUpToFirstHorizontalCorner)) +
+                                    Double.parseDouble(list2.get(j6 + numberOfCharactersUpToSecondHorizontalCorner))) / 2) - firstHorAngl2));
+                    j6 += numberOfCharactersToNextPairOfCorners;
                 }
             }
             // Объединяем оба листа в одну коллекцию

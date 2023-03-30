@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
@@ -36,9 +37,31 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import ru.geobuilder_2.model.DataPreparer;
 import ru.geobuilder_2.model.SceneName;
 
 public class Controller_NewCalculation {
+
+    /**
+     * Количество стоянок (2, 3 или 4)
+     */
+    private int quantityOfPoints;
+
+    private void setQuantityOfPoints() {
+        this.quantityOfPoints = Integer.parseInt(totalPoints.getText());
+    }
+
+    private LinkedHashMap<String, Integer> mapQuantityPointsForEachDirection = new LinkedHashMap<>();
+
+    Boolean fromFailData = true;
+
+    public Boolean getFromFailData() {
+        return fromFailData;
+    }
+
+    public void setFromFailData(Boolean fromFailData) {
+        this.fromFailData = fromFailData;
+    }
 
     private ArrayList<String> inputData = new ArrayList<>();
 
@@ -68,11 +91,28 @@ public class Controller_NewCalculation {
 
     private ArrayList<String> listRs = new ArrayList<>();
 
+    private ArrayList<Double> listRibs = new ArrayList<>();
+
+    public ArrayList<Double> getListRibsDouble() {
+        setListRibsDouble(listRs);
+        return listRibs;
+    }
+
+    public void setListRibsDouble(ArrayList<String> lRibs) {
+        ArrayList<Double> lr = new ArrayList<>();
+
+        for (String val : lRibs){
+            lr.add(Double.valueOf(val));
+        }
+        listRibs = lr;
+    }
+
     private void generatelistRs(){
         listRs.clear();
     for (int i = 0; i < ribs.size(); i ++){
         listRs.add(ribs.get(i).getRibLength());
         }
+        getListRibsDouble();
     }
 
     @FXML
@@ -336,6 +376,7 @@ public class Controller_NewCalculation {
     @FXML
     private void downloadingFromFile(ActionEvent event) {
         if (downloadFromFileBut.isSelected()) {
+            this.fromFailData = true;
             addressFieldFile.setText("");
             openJOB.setText("Открыть");
             addressFieldFile.setDisable(false);
@@ -347,6 +388,7 @@ public class Controller_NewCalculation {
     @FXML
     private void downloadingFromBD(ActionEvent event) {
         if (downloadFromBDBut.isSelected()) {
+            this.fromFailData = false;
             addressFieldFile.setText("");
             addressFieldFile.setDisable(true);
             openJOB.setText("Загрузить из БД");
@@ -361,6 +403,7 @@ public class Controller_NewCalculation {
     @FXML
     private void enterValueManually(ActionEvent event) {
         if (manualInputBut.isSelected()) { // если выбрано
+            this.fromFailData = false;
             // adressFieldFile.setEditable(false); // запрет на ввод, но поле активно
             addressFieldFile.setDisable(true); // поле не активно
             openJOB.setText("Внести углы");
@@ -470,7 +513,7 @@ public class Controller_NewCalculation {
         if (downloadFromFileBut.isSelected()) {
             FileChooser fileChooserJob = new FileChooser();
 //            fileChooserJob.setInitialDirectory(new File("C:\\Users\\Home")); // Указываем какую папку открыть изначально
-            fileChooserJob.setInitialDirectory(new File("C:\\Users")); // Указываем какую папку открыть изначально
+            fileChooserJob.setInitialDirectory(new File("D:\\TestGB")); // Указываем какую папку открыть изначально
             fileChooserJob.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("txt Files", "*.txt")); // Задаем расширения для выбора конкретных файлов
             File selectedFile = fileChooserJob.showOpenDialog(null);
@@ -487,6 +530,7 @@ public class Controller_NewCalculation {
 //			}
         } else {
             if (manualInputBut.isSelected()) {
+                inputData.clear();
                 //Открываем окно для внесения углов вручную
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(Controller_NewCalculation.class.getResource("manualInput-view.fxml"));
@@ -516,8 +560,16 @@ public class Controller_NewCalculation {
     }
 
     @FXML
-    private void openCalculation() {
+    private void openCalculation() throws DataPreparer.DateIsNotReadyException, IOException {
         generatelistRs();
+        if (fromFailData) {
+            setQuantityOfPoints();
+            setQuantityPointsForEachDirection();
+            DataPreparer dataPreparer = new DataPreparer(addressFieldFile.getText(), quantityOfPoints,
+                    mapQuantityPointsForEachDirection, getListRibsDouble());
+            dataPreparer.buildInputData();
+            this.inputData = dataPreparer.getInputData();
+        }
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Controller_NewCalculation.class.getResource("calculation-view.fxml"));
             Stage stage = new Stage();
@@ -529,12 +581,9 @@ public class Controller_NewCalculation {
             stage.setTitle("Расчет");
             stage.setScene(scene);
             Controller_Calculation controller = fxmlLoader.getController();
-            if (downloadFromFileBut.isSelected()) {
-                //controller.
-            } else {
                 controller.setInputData(inputData);
-                controller.setListRibs(listRs);
-            }
+                controller.setListRibs(getListRibsDouble());
+                controller.setFromFailData(fromFailData);
             //controller.setStage(stage);
             stage.show();
         } catch (IOException e) {
@@ -1309,5 +1358,22 @@ public class Controller_NewCalculation {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    /**
+     * Заполняем мапу с направлениями и количеством стоянок
+     */
+    private void setQuantityPointsForEachDirection() {
+        // Отчищаем мапу
+        this.mapQuantityPointsForEachDirection.clear();
+        // Заполняем значениямми
+        this.mapQuantityPointsForEachDirection.put((directionOne.getText()), Integer.parseInt(pointOne.getText()));
+        this.mapQuantityPointsForEachDirection.put((directionTwo.getText()), Integer.parseInt(pointTwo.getText()));
+        if (Integer.parseInt(pointThree.getText()) != 0 && !pointThree.isDisable()) {
+            this.mapQuantityPointsForEachDirection.put((directionThree.getText()), Integer.parseInt(pointThree.getText()));
+            if (Integer.parseInt(pointFour.getText()) != 0 && !pointFour.isDisable()) {
+                this.mapQuantityPointsForEachDirection.put((directionFour.getText()), Integer.parseInt(pointFour.getText()));
+            }
+        }
     }
 }

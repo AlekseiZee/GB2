@@ -17,25 +17,29 @@ public class Controller_Calculation {
      * Либо из введенных вручную, без дополнительных индексов 100, 200, 300.
      */
     Boolean fromFailData = true;
-
-
     private ArrayList<String> inputData;
 
     private ArrayList<Double> listRibs;
 
+    public void setListRibs(ArrayList<Double> listRibs){
+        this.listRibs = listRibs;
+    }
 
+    public void setFromFailData(Boolean fromFailData) {
+        this.fromFailData = fromFailData;
+    }
 
     @FXML
     private TextFlow mesField;
 
-    public void setListRibs(ArrayList<String> lRibs){
-        ArrayList<Double> lr = new ArrayList<>();
-
-        for (String val : lRibs){
-            lr.add(Double.valueOf(val));
-        }
-        listRibs = lr;
-    }
+//    public void setListRibs(ArrayList<String> lRibs){
+//        ArrayList<Double> lr = new ArrayList<>();
+//
+//        for (String val : lRibs){
+//            lr.add(Double.valueOf(val));
+//        }
+//        listRibs = lr;
+//    }
 
     private Stage stage;
 
@@ -49,6 +53,7 @@ public class Controller_Calculation {
 
     @FXML
     private void pr(){
+        mesField.getChildren().clear();
         for (String in : this.inputData) {
             Text text = new Text(in + "\n");
             mesField.getChildren().add(text);
@@ -57,5 +62,7 @@ public class Controller_Calculation {
             Text text = new Text(val + "\n");
             mesField.getChildren().add(text);
         }
+        Text text = new Text( fromFailData + "\n");
+        mesField.getChildren().add(text);
     }
 }
