@@ -552,8 +552,25 @@ public class Controller_NewCalculation {
                 }
             } else {
                 if (downloadFromBDBut.isSelected()) {
+                    inputData.clear();
                     //Открываем окно для получение данных из БД
-                    openWindow("downloadFromBD-view.fxml", 1194, 854, "Database");
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(Controller_NewCalculation.class.getResource("downloadFromBD-view.fxml"));
+                        Stage stage = new Stage();
+                        Scene sceneBD = new Scene(fxmlLoader.load(), 1194, 854);
+                        stage.setMinWidth(1194);
+                        stage.setMinHeight(854);
+                        stage.setMaxWidth(1194);
+                        stage.setMaxHeight(854);
+                        stage.setTitle("Database");
+                        stage.setScene(sceneBD);
+                        Controller_DownloadFromBD controllerDownloadFromBD = fxmlLoader.getController();
+                        controllerDownloadFromBD.setStage(stage);
+                        controllerDownloadFromBD.setInputData(inputData);
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
