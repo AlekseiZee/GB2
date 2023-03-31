@@ -30,7 +30,9 @@ public class InstanceJpaRepository {
         }
     }
 
-    // Считываем объекты Instance
+    /**
+     * Считываем объекты Instance из БД
+      */
     public static List<Instance> readAllInstance() {
         EntityManager em = null;
         try {

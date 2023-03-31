@@ -41,7 +41,7 @@
       </AnchorPane>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="1195.0">
          <children>
-            <Button layoutX="270.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Все объекты" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="9.0" />
+            <Button layoutX="270.0" layoutY="9.0" mnemonicParsing="false" onAction="#loadObjectJFX" prefHeight="25.0" prefWidth="155.0" text="Получить все объекты" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="9.0" />
             <Text fill="#868686" layoutX="16.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Код объета:" textAlignment="RIGHT" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="13.5244140625">
                <font>
                   <Font name="Times New Roman" size="14.0" />
@@ -75,7 +75,7 @@
                </font>
             </Text>
             <CheckBox fx:id="operatorCheck" layoutX="16.0" layoutY="110.0" mnemonicParsing="false" onAction="#setOperatorCheck" prefHeight="16.0" prefWidth="17.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="110.0" />
-            <Button layoutX="400.0" layoutY="197.0" mnemonicParsing="false" onAction="#loadObjectJFX" prefHeight="22.0" prefWidth="155.0" text="Получить список объектов" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="706.0">
+            <Button layoutX="330.0" layoutY="146.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="155.0" text="Получить список объектов" AnchorPane.bottomAnchor="57.0" AnchorPane.rightAnchor="710.0">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font></Button>
@@ -117,7 +117,7 @@
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
-            <Button layoutX="1090.0" layoutY="197.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="162.0" text="Получить список состояний" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="16.0">
+            <Button layoutX="931.0" layoutY="155.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="162.0" text="Получить список состояний" AnchorPane.bottomAnchor="48.0" AnchorPane.rightAnchor="102.0">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>
@@ -155,7 +155,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </TableView>
-                  <Button mnemonicParsing="false" text="----&gt;">
+                  <Button mnemonicParsing="false" onAction="#loadInstanceJFX" text="----&gt;">
                      <HBox.margin>
                         <Insets left="20.0" top="150.0" />
                      </HBox.margin>
@@ -181,7 +181,7 @@
                   <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="&lt;" />
                   <TextField fx:id="objectСodeField1" prefHeight="25.0" prefWidth="29.0" visible="true" />
                   <Label prefHeight="22.0" prefWidth="17.0" text=" из" />
-                  <Label prefHeight="22.0" prefWidth="55.0" />
+                  <Label fx:id="quantityOfObjectLabel" prefHeight="22.0" prefWidth="55.0" />
                   <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="&gt;" />
                </children>
                <opaqueInsets>
@@ -191,9 +191,9 @@
             <HBox layoutX="804.0" layoutY="349.0" prefHeight="25.0" prefWidth="162.0" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="804.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="&lt;" />
-                  <TextField fx:id="objectСodeField11" prefHeight="25.0" prefWidth="29.0" visible="true" />
+                  <TextField prefHeight="25.0" prefWidth="29.0" visible="true" />
                   <Label prefHeight="22.0" prefWidth="17.0" text=" из" />
-                  <Label prefHeight="22.0" prefWidth="55.0" />
+                  <Label fx:id="quantityOfInstanceLabel" prefHeight="22.0" prefWidth="55.0" />
                   <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="&gt;" />
                </children>
                <opaqueInsets>

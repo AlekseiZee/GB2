@@ -1,8 +1,7 @@
 package ru.geobuilder_2;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,17 +10,24 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-import ru.geobuilder_2.model.SceneName;
 import ru.geobuilder_2.persistence.entity.Instance;
 import ru.geobuilder_2.persistence.entity.Object;
+import ru.geobuilder_2.persistence.repository.InstanceJpaRepository;
 import ru.geobuilder_2.persistence.repository.ObjectJpaRepository;
-import ru.geobuilder_2.persistence.tools.PersistenceManager;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Controller_DownloadFromBD {
+
+    @FXML
+    private Label quantityOfObjectLabel;
+
+    @FXML
+    private Label quantityOfInstanceLabel;
+
+    Long indObjectJFX, indInstanceJFX;
 
     @FXML
     private TextFlow messageF;
@@ -56,15 +62,15 @@ public class Controller_DownloadFromBD {
     private TableColumn<ObjectJFX, String> addressOColumn, operatorOColumn;
 
     @FXML
-    private TableView<Instance> instanceTable;
+    private TableView<InstanceJFX> instanceTable;
 
     @FXML
-    private TableColumn<Instance, Integer> idInstColumn;
+    private TableColumn<InstanceJFX, Integer> idInstColumn;
     @FXML
-    private TableColumn<Instance, String> typeOfWorkColumn, numberBasisOfWorkFieldColumn, authorColumn;
+    private TableColumn<InstanceJFX, String> typeOfWorkColumn, numberBasisOfWorkFieldColumn, authorColumn;
 
     @FXML
-    private TableColumn<Instance, Timestamp> photoDateColumn, DateColumn;
+    private TableColumn<InstanceJFX, Timestamp> photoDateColumn, DateColumn;
 
     @FXML
     private TextField objectСodeField;
@@ -97,11 +103,11 @@ public class Controller_DownloadFromBD {
     private Label numberOfObjects, numberOfInstance;
 
     private void updateNumberOfObjects() {
-        numberOfObjects.setText("Найдено объектов: " );
+        numberOfObjects.setText("Найдено объектов: " + objectsJFX.size());
     }
 
     private void updateNumberOfInstance() {
-        numberOfObjects.setText("Найдено состояний: " );
+        numberOfObjects.setText("Найдено состояний: " + instancesJFX.size());
     }
 
     @FXML
@@ -214,7 +220,7 @@ public class Controller_DownloadFromBD {
 //    }
 
     private ObservableList<ObjectJFX> objectsJFX = FXCollections.observableArrayList();
-    private ObservableList<Instance> instancesData = FXCollections.observableArrayList();
+    private ObservableList<InstanceJFX> instancesJFX = FXCollections.observableArrayList();
     private ObservableList<Rib> ribsBD = FXCollections.observableArrayList();
 
     @FXML
@@ -228,13 +234,52 @@ public class Controller_DownloadFromBD {
 
         objectTable.setItems(this.objectsJFX);
 
-        idInstColumn.setCellValueFactory(new PropertyValueFactory<Instance, Integer>("id"));
-        typeOfWorkColumn.setCellValueFactory(new PropertyValueFactory<Instance, String>("typeOfWork"));
-        numberBasisOfWorkFieldColumn.setCellValueFactory(new PropertyValueFactory<Instance, String>("typeOfWork"));
-        photoDateColumn.setCellValueFactory(new PropertyValueFactory<Instance, Timestamp>("photoDateColumn"));
-        DateColumn.setCellValueFactory(new PropertyValueFactory<Instance, Timestamp>("creationDate"));
+        //Таблица Instance
+        idInstColumn.setCellValueFactory(new PropertyValueFactory<InstanceJFX, Integer>("id"));
+        typeOfWorkColumn.setCellValueFactory(new PropertyValueFactory<InstanceJFX, String>("typeOfWork"));
+        numberBasisOfWorkFieldColumn.setCellValueFactory(new PropertyValueFactory<InstanceJFX, String>("typeOfWork"));
+        photoDateColumn.setCellValueFactory(new PropertyValueFactory<InstanceJFX, Timestamp>("photoDateColumn"));
+        DateColumn.setCellValueFactory(new PropertyValueFactory<InstanceJFX, Timestamp>("creationDate"));
 
-        instanceTable.setItems(this.instancesData);
+        instanceTable.setItems(this.instancesJFX);
+
+        //Берем из выделеной строки idObject
+        objectTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showIdObject(newValue));
+        //Берем из выделеной строки idInstance
+        instanceTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showIdInstance(newValue));
+
+        objectsJFX.addListener((ListChangeListener<ObjectJFX>) c ->
+                quantityOfObjectLabel.setText(String.valueOf(getQuantityOfObjects())));
+        instancesJFX.addListener((ListChangeListener<InstanceJFX>) c ->
+                quantityOfInstanceLabel.setText(String.valueOf(getQuantityOfInstance())));
+    }
+
+    private int getQuantityOfObjects() {
+        int quantityOfObject = objectsJFX.size();
+        return quantityOfObject;
+    }
+
+    private int getQuantityOfInstance() {
+        int quantityOfInstance = instancesJFX.size();
+        return quantityOfInstance;
+    }
+
+    /**
+     * Задаем значение idObject
+     * @param newValue
+     */
+    private void showIdObject(ObjectJFX newValue) {
+        indObjectJFX = Long.valueOf(newValue.getIdObjectJFX());
+    }
+
+    /**
+     * Задаем значение idInstance
+     * @param newValue
+     */
+    private void showIdInstance(InstanceJFX newValue) {
+        indInstanceJFX = Long.valueOf(newValue.getIdInstanceJFX());
     }
 
     /**
@@ -250,6 +295,23 @@ public class Controller_DownloadFromBD {
             this.objectTable.setItems(this.objectsJFX);
             outputMessage("Кол. объектов в БД: " + objectsJFX.size());
         }
+        updateNumberOfObjects();
+    }
+
+    /**
+     * При нажатии кнопки "Получить список состояний", выгружаем все состояния выделенного объекта
+     */
+    @FXML
+    private void loadInstanceJFX() {
+        this.instancesJFX = this.reedInstanceFromDB();
+        if (instancesJFX.isEmpty()) {
+            this.instanceTable.setItems(this.instancesJFX);
+            outputMessage("В БД пока нет объектов");
+        } else {
+            this.instanceTable.setItems(this.instancesJFX);
+            outputMessage("Кол. состояний в БД: " + instancesJFX.size());
+        }
+        updateNumberOfInstance();
     }
 
     /**
@@ -269,8 +331,24 @@ public class Controller_DownloadFromBD {
     }
 
     /**
+     * Метод получения списока состояний из базы с помошью метода readInstance() класса InstanceJpaRepository
+     */
+    private ObservableList<InstanceJFX> reedInstanceFromDB() {
+        ArrayList<InstanceJFX> instancesJFX = new ArrayList<InstanceJFX>();
+        List<Instance> instances = new ArrayList<Instance>();
+        InstanceJpaRepository instanceJpaRepository = new InstanceJpaRepository();
+        instances = (List<Instance>) instanceJpaRepository.readInstance(indObjectJFX);
+        for (Instance instance : instances) {
+            InstanceJFX instanceJFX = new InstanceJFX((int) instance.getId(), instance.getTypeOfWork(),
+                    instance.getNumberBasisOfWork(), instance.getAuthor(), instance.getPhotoDateColumn().toString(),
+                    instance.getCreationDate().toString());
+            instancesJFX.add(instanceJFX);
+        }
+        return FXCollections.observableArrayList(instancesJFX);
+    }
+
+    /**
      * Метод вывода сообщений
-     *
      * @param mess
      */
     public void outputMessage(String mess) {
