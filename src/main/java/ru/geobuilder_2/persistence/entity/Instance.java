@@ -39,13 +39,13 @@ public class Instance implements Serializable {
 
 
 	//bi-directional many-to-one association to Point
-	@OneToMany(mappedBy="instance", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy="instance", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	private List<Point> points = new ArrayList<>();
 
-	@OneToMany(mappedBy="instance", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy="instance", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	private List<Rib> ribs = new ArrayList<>();
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="Id_object")
 	private Object object;
 

@@ -6,13 +6,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 
 /**
@@ -35,7 +29,7 @@ public class Object implements Serializable {
 	private String address;
 
 	//bi-directional many-to-one association to Point
-	@OneToMany(mappedBy="object", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy="object", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	private List<Instance> instances = new ArrayList<>();
 
 	public List<Instance> getInstances() {

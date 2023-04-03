@@ -12,7 +12,6 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import ru.geobuilder_2.persistence.entity.Instance;
 import ru.geobuilder_2.persistence.entity.Object;
-import ru.geobuilder_2.persistence.repository.InstanceJpaRepository;
 import ru.geobuilder_2.persistence.repository.ObjectJpaRepository;
 
 import java.sql.Timestamp;
@@ -27,7 +26,7 @@ public class Controller_DownloadFromBD {
     @FXML
     private Label quantityOfInstanceLabel;
 
-    Long indObjectJFX, indInstanceJFX;
+    int indObjectJFX, indInstanceJFX;
 
     @FXML
     private TextFlow messageF;
@@ -111,8 +110,8 @@ public class Controller_DownloadFromBD {
     }
 
     @FXML
-    private void setAddressCheck(){
-        if (аddressCheck.isSelected()){
+    private void setAddressCheck() {
+        if (аddressCheck.isSelected()) {
             addressTextField.setDisable(false);
         } else {
             addressTextField.setDisable(true);
@@ -120,8 +119,8 @@ public class Controller_DownloadFromBD {
     }
 
     @FXML
-    private void setOperatorCheck(){
-        if (operatorCheck.isSelected()){
+    private void setOperatorCheck() {
+        if (operatorCheck.isSelected()) {
             operatorSplMenu.setDisable(false);
         } else {
             operatorSplMenu.setDisable(true);
@@ -129,37 +128,37 @@ public class Controller_DownloadFromBD {
     }
 
     @FXML
-    public void setMegafon(ActionEvent event){
+    public void setMegafon(ActionEvent event) {
         specifiedOperatorTextField.setDisable(true);
         operatorSplMenu.setText(megafon.getText());
     }
 
     @FXML
-    public void setMts(ActionEvent event){
+    public void setMts(ActionEvent event) {
         specifiedOperatorTextField.setDisable(true);
         operatorSplMenu.setText(mts.getText());
     }
 
     @FXML
-    public void setT2(ActionEvent event){
+    public void setT2(ActionEvent event) {
         specifiedOperatorTextField.setDisable(true);
         operatorSplMenu.setText(t2.getText());
     }
 
     @FXML
-    public void setVimpel(ActionEvent event){
+    public void setVimpel(ActionEvent event) {
         specifiedOperatorTextField.setDisable(true);
         operatorSplMenu.setText(vimpel.getText());
     }
 
     @FXML
-    public void setNon(ActionEvent event){
+    public void setNon(ActionEvent event) {
         specifiedOperatorTextField.setDisable(false);
         operatorSplMenu.setText(non.getText());
     }
 
     public void setTypeOfWork(ActionEvent event) {
-        if(typeOfWorkCheck.isSelected()){
+        if (typeOfWorkCheck.isSelected()) {
             typeOfWorkSplMenu.setDisable(false);
         } else {
             typeOfWorkSplMenu.setDisable(true);
@@ -167,7 +166,7 @@ public class Controller_DownloadFromBD {
     }
 
     public void setBasisOfWorks(ActionEvent event) {
-        if(basisOfWorksCheck.isSelected()){
+        if (basisOfWorksCheck.isSelected()) {
             basisOfWorksTextField.setDisable(false);
         } else {
             basisOfWorksTextField.setDisable(false);
@@ -175,7 +174,7 @@ public class Controller_DownloadFromBD {
     }
 
     public void setAuthor(ActionEvent event) {
-        if(authorCheck.isSelected()){
+        if (authorCheck.isSelected()) {
             authorTextField.setDisable(false);
         } else {
             authorTextField.setDisable(true);
@@ -183,9 +182,9 @@ public class Controller_DownloadFromBD {
     }
 
     public void setDateOfShooting(ActionEvent event) {
-       if(dateOfShootingCheck.isSelected()){
-           dateOfShootingDatePicker.setDisable(false);
-       }
+        if (dateOfShootingCheck.isSelected()) {
+            dateOfShootingDatePicker.setDisable(false);
+        }
     }
 
 
@@ -235,11 +234,12 @@ public class Controller_DownloadFromBD {
         objectTable.setItems(this.objectsJFX);
 
         //Таблица Instance
-        idInstColumn.setCellValueFactory(new PropertyValueFactory<InstanceJFX, Integer>("id"));
-        typeOfWorkColumn.setCellValueFactory(new PropertyValueFactory<InstanceJFX, String>("typeOfWork"));
-        numberBasisOfWorkFieldColumn.setCellValueFactory(new PropertyValueFactory<InstanceJFX, String>("typeOfWork"));
-        photoDateColumn.setCellValueFactory(new PropertyValueFactory<InstanceJFX, Timestamp>("photoDateColumn"));
-        DateColumn.setCellValueFactory(new PropertyValueFactory<InstanceJFX, Timestamp>("creationDate"));
+        idInstColumn.setCellValueFactory(new PropertyValueFactory<InstanceJFX, Integer>("idInstanceJFX"));
+        typeOfWorkColumn.setCellValueFactory(new PropertyValueFactory<InstanceJFX, String>("typeOfWorkInstanceJFX"));
+        numberBasisOfWorkFieldColumn.setCellValueFactory(new PropertyValueFactory<InstanceJFX, String>("numberBasisOfWorkInstanceJFX"));
+        authorColumn.setCellValueFactory(new PropertyValueFactory<InstanceJFX, String>("authorInstanceJFX"));
+        photoDateColumn.setCellValueFactory(new PropertyValueFactory<InstanceJFX, Timestamp>("photoDateColumnInstanceJFX"));
+        DateColumn.setCellValueFactory(new PropertyValueFactory<InstanceJFX, Timestamp>("creationDateInstanceJFX"));
 
         instanceTable.setItems(this.instancesJFX);
 
@@ -268,18 +268,20 @@ public class Controller_DownloadFromBD {
 
     /**
      * Задаем значение idObject
+     *
      * @param newValue
      */
     private void showIdObject(ObjectJFX newValue) {
-        indObjectJFX = Long.valueOf(newValue.getIdObjectJFX());
+        indObjectJFX = (newValue.getIdObjectJFX());
     }
 
     /**
      * Задаем значение idInstance
+     *
      * @param newValue
      */
     private void showIdInstance(InstanceJFX newValue) {
-        indInstanceJFX = Long.valueOf(newValue.getIdInstanceJFX());
+        indInstanceJFX = (newValue.getIdInstanceJFX());
     }
 
     /**
@@ -303,10 +305,10 @@ public class Controller_DownloadFromBD {
      */
     @FXML
     private void loadInstanceJFX() {
-        this.instancesJFX = this.reedInstanceFromDB();
+        this.instancesJFX = this.readInstanceFromObject(indObjectJFX);
         if (instancesJFX.isEmpty()) {
             this.instanceTable.setItems(this.instancesJFX);
-            outputMessage("В БД пока нет объектов");
+            outputMessage("В БД пока нет состояний");
         } else {
             this.instanceTable.setItems(this.instancesJFX);
             outputMessage("Кол. состояний в БД: " + instancesJFX.size());
@@ -323,32 +325,44 @@ public class Controller_DownloadFromBD {
         ObjectJpaRepository objectJpaRepository = new ObjectJpaRepository();
         objects = objectJpaRepository.readAllObject();
         for (Object object : objects) {
-            ObjectJFX objectJFX = new ObjectJFX((int) object.getId(), object.getNumber(),
-                    object.getOperator(), object.getAddress());
+            ObjectJFX objectJFX = new ObjectJFX(object);
             objectsJFX.add(objectJFX);
         }
         return FXCollections.observableArrayList(objectsJFX);
     }
 
     /**
-     * Метод получения списока состояний из базы с помошью метода readInstance() класса InstanceJpaRepository
+     * Метод получения списка состояний из списка объектов
      */
-    private ObservableList<InstanceJFX> reedInstanceFromDB() {
+    private ObservableList<InstanceJFX> readInstanceFromObject(int idObj) {
         ArrayList<InstanceJFX> instancesJFX = new ArrayList<InstanceJFX>();
-        List<Instance> instances = new ArrayList<Instance>();
-        InstanceJpaRepository instanceJpaRepository = new InstanceJpaRepository();
-        instances = (List<Instance>) instanceJpaRepository.readInstance(indObjectJFX);
-        for (Instance instance : instances) {
-            InstanceJFX instanceJFX = new InstanceJFX((int) instance.getId(), instance.getTypeOfWork(),
-                    instance.getNumberBasisOfWork(), instance.getAuthor(), instance.getPhotoDateColumn().toString(),
-                    instance.getCreationDate().toString());
-            instancesJFX.add(instanceJFX);
+        for (ObjectJFX objJFX : objectsJFX) {
+            if (objJFX.getIdObjectJFX() == idObj) {
+                for (Instance inst : objJFX.getObject().getInstances()) {
+                    instancesJFX.add(new InstanceJFX(inst));
+                }
+              break;
+            }
         }
         return FXCollections.observableArrayList(instancesJFX);
     }
+//    private ObservableList<InstanceJFX> reedInstanceFromDB() {
+//        ArrayList<InstanceJFX> instancesJFX = new ArrayList<InstanceJFX>();
+//        List<Instance> instances = new ArrayList<Instance>();
+//        InstanceJpaRepository instanceJpaRepository = new InstanceJpaRepository();
+//        instances = (List<Instance>) instanceJpaRepository.readInstance(indObjectJFX);
+//        for (Instance instance : instances) {
+//            InstanceJFX instanceJFX = new InstanceJFX((int) instance.getId(), instance.getTypeOfWork(),
+//                    instance.getNumberBasisOfWork(), instance.getAuthor(), instance.getPhotoDateColumn().toString(),
+//                    instance.getCreationDate().toString());
+//            instancesJFX.add(instanceJFX);
+//        }
+//        return FXCollections.observableArrayList(instancesJFX);
+//    }
 
     /**
      * Метод вывода сообщений
+     *
      * @param mess
      */
     public void outputMessage(String mess) {

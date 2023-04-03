@@ -28,7 +28,7 @@ public class Rib implements Serializable {
 
     private Integer ribLength;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="Id_instance")
     private Instance instance;
 

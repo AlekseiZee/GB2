@@ -16,9 +16,9 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="854.0" prefWidth="1194.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_uploadDataToDatabase">
+<VBox fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_uploadDataToDatabase">
    <children>
-      <AnchorPane prefHeight="34.0" prefWidth="757.0" style="-fx-background-color: #494949;">
+      <AnchorPane prefHeight="46.0" prefWidth="1196.0" style="-fx-background-color: #494949;">
          <children>
             <Label layoutX="651.0" layoutY="3.0" prefHeight="19.0" prefWidth="89.0" text="GeoBuilder" textFill="#f8f8f8" AnchorPane.rightAnchor="17.0">
                <font>
@@ -32,7 +32,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="28.0" prefWidth="757.0" style="-fx-background-color: #FF7100;">
+      <AnchorPane prefHeight="28.0" prefWidth="1196.0" style="-fx-background-color: #FF7100;">
          <children>
             <Label layoutX="14.0" layoutY="1.0" prefHeight="25.0" prefWidth="145.0" text="Заносим данные в БД" textFill="WHITE" />
          </children>

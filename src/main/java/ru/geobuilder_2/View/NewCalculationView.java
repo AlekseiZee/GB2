@@ -25,10 +25,10 @@ public class NewCalculationView implements ViewMaker {
             Parent root = fxmlLoaderNewCalculation.load();
             Controller_NewCalculation controller = fxmlLoaderNewCalculation.getController();
             controller.setStage(stage);
-            stage.setMinWidth(768);
-            stage.setMinHeight(700);
-            stage.setMaxWidth(768);
-            stage.setMaxHeight(700);
+//            stage.setMinWidth(768);
+//            stage.setMinHeight(700);
+//            stage.setMaxWidth(768);
+//            stage.setMaxHeight(700);
             Scene SCENE_NEW_CALCULATION = new Scene(root);
             return SCENE_NEW_CALCULATION;
         } catch (IOException e) {

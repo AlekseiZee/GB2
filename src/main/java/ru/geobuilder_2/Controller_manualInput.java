@@ -102,7 +102,7 @@ public class Controller_manualInput {
     @FXML
     private void initialize() throws IOException, ClassNotFoundException {
 
-        //loadPointAndAngle();
+        loadPointAndAngle();
 
         // Таблица Points
         idPCol.setCellValueFactory(new PropertyValueFactory<Point, Integer>("idPoint"));
@@ -988,56 +988,56 @@ public class Controller_manualInput {
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
-        if (pointsData.get(0) != null) {
+        if (!pointsData.isEmpty() && pointsData.get(0) != null) {
             this.anglesData = FXCollections.observableArrayList(
                     this.deserializeAngles().get(0)
             );
             this.angleTable.setItems(anglesData);
             scenarioOfManipulatorStates();
             updateNamePoint();
-            if (pointsData.get(1) != null) {
+            if (pointsData.size() > 1 && pointsData.get(1) != null) {
                 this.anglesData1 = FXCollections.observableArrayList(
                         this.deserializeAngles().get(1)
                 );
                 this.angleTable1.setItems(anglesData1);
                 scenarioOfManipulatorStates();
                 updateNamePoint();
-                if (pointsData.get(2) != null) {
+                if (pointsData.size() > 2 && pointsData.get(2) != null) {
                     this.anglesData2 = FXCollections.observableArrayList(
                             this.deserializeAngles().get(2)
                     );
                     this.angleTable2.setItems(anglesData2);
                     scenarioOfManipulatorStates();
                     updateNamePoint();
-                    if (pointsData.get(3) != null) {
+                    if (pointsData.size() > 3 && pointsData.get(3) != null) {
                         this.anglesData3 = FXCollections.observableArrayList(
                                 this.deserializeAngles().get(3)
                         );
                         this.angleTable3.setItems(anglesData3);
                         scenarioOfManipulatorStates();
                         updateNamePoint();
-                        if (pointsData.get(4) != null) {
+                        if (pointsData.size() > 4 && pointsData.get(4) != null) {
                             this.anglesData4 = FXCollections.observableArrayList(
                                     this.deserializeAngles().get(4)
                             );
                             this.angleTable4.setItems(anglesData4);
                             scenarioOfManipulatorStates();
                             updateNamePoint();
-                            if (pointsData.get(5) != null) {
+                            if (pointsData.size() > 5 && pointsData.get(5) != null) {
                                 this.anglesData5 = FXCollections.observableArrayList(
                                         this.deserializeAngles().get(5)
                                 );
                                 this.angleTable5.setItems(anglesData5);
                                 scenarioOfManipulatorStates();
                                 updateNamePoint();
-                                if (pointsData.get(6) != null) {
+                                if (pointsData.size() > 6 && pointsData.get(6) != null) {
                                     this.anglesData6 = FXCollections.observableArrayList(
                                             this.deserializeAngles().get(6)
                                     );
                                     this.angleTable6.setItems(anglesData6);
                                     scenarioOfManipulatorStates();
                                     updateNamePoint();
-                                    if (pointsData.get(7) != null) {
+                                    if (pointsData.size() > 7 && pointsData.get(7) != null) {
                                         this.anglesData7 = FXCollections.observableArrayList(
                                                 this.deserializeAngles().get(7)
                                         );

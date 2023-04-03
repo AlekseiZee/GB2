@@ -17,12 +17,18 @@ public class ObjectJFX implements Serializable {
     private transient StringProperty numberObjectJFX;
     private transient StringProperty operatorObjectJFX;
     private transient StringProperty addressObjectJFX;
+    private transient ru.geobuilder_2.persistence.entity.Object object;
 
     public ObjectJFX(Integer idObjectJFX, String numberObjectJFX, String operatorObjectJFX, String addressObjectJFX) {
         this.idObjectJFX = new SimpleIntegerProperty(idObjectJFX);
         this.numberObjectJFX = new SimpleStringProperty(numberObjectJFX);
         this.operatorObjectJFX = new SimpleStringProperty(operatorObjectJFX);
         this.addressObjectJFX = new SimpleStringProperty(addressObjectJFX);
+    }
+
+    public ObjectJFX (ru.geobuilder_2.persistence.entity.Object obj){
+        this((int) obj.getId(), obj.getNumber(), obj.getOperator(), obj.getAddress());
+        this.object = obj;
     }
 
     public final int getIdObjectJFX() {
@@ -55,6 +61,14 @@ public class ObjectJFX implements Serializable {
 
     public final void setAddressObjectJFX(String addressObjectJFX) {
         this.addressObjectJFX.set(addressObjectJFX);
+    }
+
+    public ru.geobuilder_2.persistence.entity.Object getObject() {
+        return object;
+    }
+
+    public void setObject(ru.geobuilder_2.persistence.entity.Object object) {
+        this.object = object;
     }
 
     @Override

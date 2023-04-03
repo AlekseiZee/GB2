@@ -4,6 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import ru.geobuilder_2.persistence.entity.Instance;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -18,6 +19,7 @@ public class InstanceJFX implements Serializable {
     private transient StringProperty authorInstanceJFX;
     private transient StringProperty photoDateColumnInstanceJFX;
     private transient StringProperty creationDateInstanceJFX;
+    private transient Instance instance;
 
     public InstanceJFX(Integer idInstanceJFX, String typeOfWorkInsanceJFX, String numberBasisOfWorkInstanceJFX,
                        String authorInstanceJFX, String photoDateColumnInstanceJFX, String creationDateInstanceJFX) {
@@ -27,6 +29,16 @@ public class InstanceJFX implements Serializable {
         this.authorInstanceJFX = new SimpleStringProperty(authorInstanceJFX);
         this.photoDateColumnInstanceJFX = new SimpleStringProperty(photoDateColumnInstanceJFX);
         this.creationDateInstanceJFX = new SimpleStringProperty(creationDateInstanceJFX);
+    }
+
+    public InstanceJFX(Instance instance){
+        this((int) instance.getId(),
+                instance.getTypeOfWork(),
+                instance.getNumberBasisOfWork(),
+                instance.getAuthor(),
+                instance.getPhotoDateColumn() == null ? "" : instance.getPhotoDateColumn().toString(),
+                instance.getCreationDate() == null ? "" : instance.getCreationDate().toString());
+        this.instance = instance;
     }
 
     public final int getIdInstanceJFX() {

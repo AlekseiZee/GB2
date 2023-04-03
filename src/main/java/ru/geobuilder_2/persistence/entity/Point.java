@@ -5,15 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 
 /**
@@ -38,11 +30,11 @@ public class Point implements Serializable {
 	private double hAngle;
 
 	//bi-directional many-to-one association to Anglepair
-	@OneToMany(mappedBy="point", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy="point", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	private List<Anglepair> anglepairs = new ArrayList<>();
 
 	//bi-directional many-to-one association to Instance
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="Id_instance")
 	private Instance instance;
 

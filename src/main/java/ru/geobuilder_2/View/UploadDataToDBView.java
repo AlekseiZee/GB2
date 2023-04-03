@@ -25,10 +25,10 @@ public class UploadDataToDBView implements ViewMaker {
             Parent root = fxmlLoaderUploadToDB.load();
             Controller_uploadDataToDatabase controller = fxmlLoaderUploadToDB.getController();
             controller.setStage(stage);
-            stage.setMinHeight(890);
-            stage.setMaxWidth(1210);
-            stage.setMaxHeight(890);
-            stage.setMaxWidth(1210);
+//            stage.setMinHeight(890);
+//            stage.setMinWidth(1210);
+//            stage.setMaxHeight(890);
+//            stage.setMaxWidth(1210);
             Scene SCENE_UPLOAD_DATA_BD = new Scene(root);
             return SCENE_UPLOAD_DATA_BD;
         } catch (IOException e) {
