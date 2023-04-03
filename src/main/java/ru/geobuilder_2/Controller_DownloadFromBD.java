@@ -250,21 +250,19 @@ public class Controller_DownloadFromBD {
         instanceTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showIdInstance(newValue));
 
-        objectsJFX.addListener((ListChangeListener<ObjectJFX>) c ->
-                quantityOfObjectLabel.setText(String.valueOf(getQuantityOfObjects())));
-        instancesJFX.addListener((ListChangeListener<InstanceJFX>) c ->
-                quantityOfInstanceLabel.setText(String.valueOf(getQuantityOfInstance())));
+//        objectsJFX.addListener((ListChangeListener<ObjectJFX>) c ->
+//                getQuantityOfObjects());
+//        instancesJFX.addListener((ListChangeListener<InstanceJFX>) c ->
+//                getQuantityOfInstance());
     }
 
-    private int getQuantityOfObjects() {
-        int quantityOfObject = objectsJFX.size();
-        return quantityOfObject;
-    }
-
-    private int getQuantityOfInstance() {
-        int quantityOfInstance = instancesJFX.size();
-        return quantityOfInstance;
-    }
+//    private void getQuantityOfObjects() {
+//        quantityOfObjectLabel.setText(String.valueOf(objectsJFX.size()));
+//    }
+//
+//    private void getQuantityOfInstance() {
+//        quantityOfInstanceLabel.setText(String.valueOf(instancesJFX.size()));
+//    }
 
     /**
      * Задаем значение idObject
@@ -273,6 +271,8 @@ public class Controller_DownloadFromBD {
      */
     private void showIdObject(ObjectJFX newValue) {
         indObjectJFX = (newValue.getIdObjectJFX());
+        quantityOfObjectLabel.setText(String.valueOf(objectsJFX.size()));
+        quantityOfInstanceLabel.setText(String.valueOf(instancesJFX.size()));
     }
 
     /**
