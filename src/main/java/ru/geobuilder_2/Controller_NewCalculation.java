@@ -13,7 +13,6 @@ import java.util.LinkedHashMap;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,10 +41,27 @@ import ru.geobuilder_2.model.SceneName;
 
 public class Controller_NewCalculation {
 
+    /**Допуск
+     *
+     */
+    private int border;
+
+    public int getBorder() {
+        return border;
+    }
+
+    public void setBorder(int border) {
+        this.border = border;
+    }
+
     /**
      * Количество стоянок (2, 3 или 4)
      */
     private int quantityOfPoints;
+
+    public int getQuantityOfPoints() {
+        return quantityOfPoints;
+    }
 
     private void setQuantityOfPoints() {
         this.quantityOfPoints = Integer.parseInt(totalPoints.getText());
@@ -79,15 +95,15 @@ public class Controller_NewCalculation {
     private Button saveCloseButton;
 
     @FXML
-    private TableView<Rib> tableRib;
+    private TableView<RibJFX> tableRib;
 
     @FXML
-    private TableColumn<Rib, Integer> tierColumn;
+    private TableColumn<RibJFX, Integer> tierColumn;
 
     @FXML
-    private TableColumn<Rib, String> ribLengthColumn;
+    private TableColumn<RibJFX, String> ribLengthColumn;
 
-    private ObservableList<Rib> ribs = FXCollections.observableArrayList();
+    private ObservableList<RibJFX> ribsJFX = FXCollections.observableArrayList();
 
     private ArrayList<String> listRs = new ArrayList<>();
 
@@ -109,8 +125,8 @@ public class Controller_NewCalculation {
 
     private void generatelistRs(){
         listRs.clear();
-    for (int i = 0; i < ribs.size(); i ++){
-        listRs.add(ribs.get(i).getRibLength());
+    for (int i = 0; i < ribsJFX.size(); i ++){
+        listRs.add(ribsJFX.get(i).getRibLength());
         }
         getListRibsDouble();
     }
@@ -169,8 +185,8 @@ public class Controller_NewCalculation {
     public void print() {
 
         messageField.getChildren().clear();
-        for (Rib rib : ribs) {
-            Text text = new Text("ярус: " + rib.getTier() + "    " + "грань:  " + rib.getRibLength() + "\n");
+        for (RibJFX ribJFX : ribsJFX) {
+            Text text = new Text("ярус: " + ribJFX.getTier() + "    " + "грань:  " + ribJFX.getRibLength() + "\n");
             messageField.getChildren().add(text);
         }
             for (String in : inputData) {
@@ -184,11 +200,11 @@ public class Controller_NewCalculation {
 
         loadRibs();
 
-        tierColumn.setCellValueFactory(new PropertyValueFactory<Rib, Integer>("tier"));
-        ribLengthColumn.setCellValueFactory(new PropertyValueFactory<Rib, String>("ribLength"));
+        tierColumn.setCellValueFactory(new PropertyValueFactory<RibJFX, Integer>("tier"));
+        ribLengthColumn.setCellValueFactory(new PropertyValueFactory<RibJFX, String>("ribLength"));
 
         // указываем, что хотим использовать этот набор данных из коллекции ribs
-        tableRib.setItems(this.ribs);
+        tableRib.setItems(this.ribsJFX);
 
         // Разрешаем изменения в таблице
         tableRib.setEditable(true);
@@ -217,8 +233,8 @@ public class Controller_NewCalculation {
     @FXML
     public void addRib(ActionEvent event) {
 
-        Rib rib = new Rib(this.tableRib.getItems().size() + 1, "");
-        tableRib.getItems().add(rib);
+        RibJFX ribJFX = new RibJFX(this.tableRib.getItems().size() + 1, "");
+        tableRib.getItems().add(ribJFX);
     }
 
     /**
@@ -227,7 +243,7 @@ public class Controller_NewCalculation {
     @FXML
     private void removeRib() {
 
-        tableRib.getItems().remove(ribs.size() - 1);
+        tableRib.getItems().remove(ribsJFX.size() - 1);
         // если надо удалить выделенную строку, то - tableRib.getItems().remove(selectedIndex);
     }
 
@@ -246,9 +262,9 @@ public class Controller_NewCalculation {
 //    }
 
     // Нужно для инициализации измененных значений в ячейках. Без него данные не воспринимаются
-    public void onEditChanger(TableColumn.CellEditEvent<Rib, String> ribStringCellEditEvent) {
-        Rib rib = tableRib.getSelectionModel().getSelectedItem();
-        rib.setRibLength(ribStringCellEditEvent.getNewValue());
+    public void onEditChanger(TableColumn.CellEditEvent<RibJFX, String> ribStringCellEditEvent) {
+        RibJFX ribJFX = tableRib.getSelectionModel().getSelectedItem();
+        ribJFX.setRibLength(ribStringCellEditEvent.getNewValue());
     }
 
     @FXML
@@ -259,7 +275,7 @@ public class Controller_NewCalculation {
 
 
     private void updateCountLabel() {
-        labelCount.setText("Кол-во ярусов: " + ribs.size());
+        labelCount.setText("Кол-во ярусов: " + ribsJFX.size());
     }
 
     @FXML
@@ -416,11 +432,6 @@ public class Controller_NewCalculation {
         }
     }
 
-    /**
-     * Граница допуска поумолчанию
-     */
-    private int border = 1000;
-
     @FXML
     private RadioButton towerBorder, mastBorder, metalPoleBorder, reinforcedPoleBorder, ourBorder;
 
@@ -444,7 +455,7 @@ public class Controller_NewCalculation {
             mm.setVisible(true);
             borderField.setText("1000");
             borderField.setDisable(true);
-            border = Integer.parseInt(borderField.getText());
+            setBorder(Integer.parseInt(borderField.getText()));
         } else if (mastBorder.isSelected()) {
             totalTwo.setVisible(true);
             totalThree.setVisible(true);
@@ -452,13 +463,13 @@ public class Controller_NewCalculation {
             mm.setVisible(true);
             borderField.setText("1500");
             borderField.setDisable(true);
-            border = Integer.parseInt(borderField.getText());
+            setBorder(Integer.parseInt(borderField.getText()));
         } else if (reinforcedPoleBorder.isSelected()) {
             borderField.setVisible(true);
             mm.setVisible(true);
             borderField.setText("600");
             borderField.setDisable(true);
-            border = Integer.parseInt(borderField.getText());
+            setBorder(Integer.parseInt(borderField.getText()));
         } else if (ourBorder.isSelected()) {
             totalTwo.setVisible(true);
             totalThree.setVisible(true);
@@ -466,7 +477,7 @@ public class Controller_NewCalculation {
             mm.setVisible(true);
             borderField.setDisable(false);
             borderField.clear();
-            border = Integer.parseInt(borderField.getText());
+            setBorder(Integer.parseInt(borderField.getText()));
         }
         if (metalPoleBorder.isSelected() || reinforcedPoleBorder.isSelected()) {
             totalTwo.setVisible(false);
@@ -599,8 +610,11 @@ public class Controller_NewCalculation {
             stage.setScene(scene);
             Controller_Calculation controller = fxmlLoader.getController();
                 controller.setInputData(inputData);
+                controller.setQuantityOfPoints(quantityOfPoints);
+                controller.setMapQuantityPointsForEachDirection(mapQuantityPointsForEachDirection);
                 controller.setListRibs(getListRibsDouble());
                 controller.setFromFailData(fromFailData);
+                controller.setBorder(border);
             //controller.setStage(stage);
             stage.show();
         } catch (IOException e) {
@@ -706,7 +720,7 @@ public class Controller_NewCalculation {
     @FXML
     void save() {
         try {
-            this.serializeData(this.ribs);
+            this.serializeData(this.ribsJFX);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -715,30 +729,30 @@ public class Controller_NewCalculation {
     @FXML
     private void loadRibs() {
         try {
-            this.ribs = this.deserializeData();
-            this.tableRib.setItems(this.ribs);
+            this.ribsJFX = this.deserializeData();
+            this.tableRib.setItems(this.ribsJFX);
             generatelistRs();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void serializeData(ObservableList<Rib> ribs) throws FileNotFoundException, IOException {
+    private void serializeData(ObservableList<RibJFX> ribsJFX) throws FileNotFoundException, IOException {
         File f = new File("D:\\TestGB\\cache\\ribs.txt");
         try (FileOutputStream fos = new FileOutputStream(f); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-            ArrayList<Rib> al = new ArrayList<Rib>(ribs);
-            oos.writeObject(new ArrayList<Rib>(al));
+            ArrayList<RibJFX> al = new ArrayList<RibJFX>(ribsJFX);
+            oos.writeObject(new ArrayList<RibJFX>(al));
             generatelistRs();
         }
     }
 
-    private ObservableList<Rib> deserializeData() throws FileNotFoundException, IOException, ClassNotFoundException {
-        ArrayList<Rib> ribs = new ArrayList<Rib>();
+    private ObservableList<RibJFX> deserializeData() throws FileNotFoundException, IOException, ClassNotFoundException {
+        ArrayList<RibJFX> ribsJFX = new ArrayList<RibJFX>();
         File f = new File("D:\\TestGB\\cache\\ribs.txt");
         try (FileInputStream fis = new FileInputStream(f); ObjectInputStream ois = new ObjectInputStream(fis)) {
-            ribs = (ArrayList<Rib>) ois.readObject();
+            ribsJFX = (ArrayList<RibJFX>) ois.readObject();
         }
-        return FXCollections.observableArrayList(ribs);
+        return FXCollections.observableArrayList(ribsJFX);
     }
 
     @FXML

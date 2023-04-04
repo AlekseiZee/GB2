@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
+import ru.geobuilder_2.PointJFX;
 
 
 /**
@@ -38,7 +39,7 @@ public class Point implements Serializable {
 	@JoinColumn(name="Id_instance")
 	private Instance instance;
 
-	public Point(ru.geobuilder_2.Point jfxP) {
+	public Point(PointJFX jfxP) {
 		this.code = jfxP.getNamePoint();
 		this.distance = Double.parseDouble(jfxP.getDistancePoint());
 		this.vAngle = Double.parseDouble(jfxP.getVAnglePoint());

@@ -1,7 +1,6 @@
 package ru.geobuilder_2;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -220,7 +219,10 @@ public class Controller_DownloadFromBD {
 
     private ObservableList<ObjectJFX> objectsJFX = FXCollections.observableArrayList();
     private ObservableList<InstanceJFX> instancesJFX = FXCollections.observableArrayList();
-    private ObservableList<Rib> ribsBD = FXCollections.observableArrayList();
+
+    private ObservableList<AngleJFX> angleJFX = FXCollections.observableArrayList();
+
+    private ObservableList<RibJFX> ribsBD = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {

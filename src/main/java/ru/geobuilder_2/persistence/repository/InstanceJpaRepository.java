@@ -3,6 +3,7 @@ package ru.geobuilder_2.persistence.repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import javafx.collections.ObservableList;
+import ru.geobuilder_2.RibJFX;
 import ru.geobuilder_2.parser.InputData;
 import ru.geobuilder_2.persistence.entity.Instance;
 import ru.geobuilder_2.persistence.entity.Object;
@@ -10,7 +11,6 @@ import ru.geobuilder_2.persistence.entity.Rib;
 import ru.geobuilder_2.persistence.tools.PersistenceManager;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 public class InstanceJpaRepository {
@@ -94,7 +94,7 @@ public class InstanceJpaRepository {
      * @return
      */
     public static Instance createInstanceForObjectWithData(Long idObject, String typeOfWork, String numberBasisOfWork,
-                                                           String author, String path, int quantity, ObservableList<ru.geobuilder_2.Rib> ribss) {
+                                                           String author, String path, int quantity, ObservableList<RibJFX> ribsses) {
         EntityManager em = null;
         EntityTransaction transaction = null;
         try {
@@ -107,8 +107,8 @@ public class InstanceJpaRepository {
 
             for (int i=0; i<quantity; i++) {
                 Rib rib = new Rib();
-                rib.setTier((Integer) ribss.get(i).getTier());
-                rib.setRibLength(Integer.valueOf(ribss.get(i).getRibLength()));
+                rib.setTier((Integer) ribsses.get(i).getTier());
+                rib.setRibLength(Integer.valueOf(ribsses.get(i).getRibLength()));
                 instance.addRib(rib);
                 //em.persist(rib);
             }

@@ -45,9 +45,9 @@ public class ShootingOnTheBelts extends AMS {
      */
     private List<Double> averageHeights = new ArrayList<>();
 
-    public ShootingOnTheBelts(DataPreparer dataPreparer, TypeAMS nameType) {
+    public ShootingOnTheBelts(DataPreparer dataPreparer) {
 
-        super(dataPreparer, nameType);
+        super(dataPreparer);
     }
 
     /**

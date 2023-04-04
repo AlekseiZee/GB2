@@ -17,15 +17,22 @@ import javafx.beans.property.StringProperty;
  * @author A0707220
  *
  */
-public class Rib implements Serializable {
+public class RibJFX implements Serializable {
 
 	// transient fields are excluded from serialization
     private transient IntegerProperty tier;
     private transient StringProperty ribLength;
 
-    public Rib(int tier, String ribLength) {
+    private transient ru.geobuilder_2.persistence.entity.Rib rib;
+
+    public RibJFX(int tier, String ribLength) {
         this.tier = new SimpleIntegerProperty(tier);
         this.ribLength = new SimpleStringProperty(ribLength);
+    }
+
+    public RibJFX(ru.geobuilder_2.persistence.entity.Rib rib){
+        this(rib.getTier(), String.valueOf(rib.getRibLength()));
+        this.rib = rib;
     }
 
     public final int getTier() {
@@ -52,6 +59,14 @@ public class Rib implements Serializable {
     	return this.ribLength;
     }
 
+    public ru.geobuilder_2.persistence.entity.Rib getRib() {
+        return rib;
+    }
+
+    public void setRib(ru.geobuilder_2.persistence.entity.Rib rib) {
+        this.rib = rib;
+    }
+
 	@Override
 	public int hashCode() {
 		int hash = 7;
@@ -68,7 +83,7 @@ public class Rib implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final Rib other = (Rib) obj;
+		final RibJFX other = (RibJFX) obj;
         if (this.tier.get() != other.tier.get()) {
             return false;
         }
@@ -78,10 +93,14 @@ public class Rib implements Serializable {
         return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Rib [tier=" + this.tier.get() + ", ribLength=" + this.ribLength.get() + "]";
-	}
+    @Override
+    public String toString() {
+        return "RibJFX{" +
+                "tier=" + tier +
+                ", ribLength=" + ribLength +
+                ", rib=" + rib +
+                '}';
+    }
 
     private void writeObject(ObjectOutputStream s) throws IOException {
         s.defaultWriteObject();

@@ -153,8 +153,10 @@ public class DataPreparer {
         }
     }
 
-    public DataPreparer(int quantityOfPoints,
+    public DataPreparer(ArrayList<String> inputData, Boolean fromFailData, int quantityOfPoints,
                         LinkedHashMap<String, Integer> mapQuantityPointsForEachDirection, List<Double> listRibs) {
+        this.inputData = inputData;
+        this.fromFailData = fromFailData;
         this.quantityOfPoints = quantityOfPoints;
         this.mapQuantityPointsForEachDirection = mapQuantityPointsForEachDirection;
         if (!listRibs.isEmpty() & quantityOfPoints != 2) {
@@ -178,8 +180,10 @@ public class DataPreparer {
         this.mapQuantityPointsForEachDirection = mapQuantityPointsForEachDirection;
     }
 
-    public DataPreparer(int quantityOfPoints,
+    public DataPreparer(ArrayList<String> inputData, Boolean fromFailData, int quantityOfPoints,
                         LinkedHashMap<String, Integer> mapQuantityPointsForEachDirection) {
+        this.inputData = inputData;
+        this.fromFailData = fromFailData;
         this.quantityOfPoints = quantityOfPoints;
         this.mapQuantityPointsForEachDirection = mapQuantityPointsForEachDirection;
     }

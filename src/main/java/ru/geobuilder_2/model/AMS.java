@@ -11,7 +11,7 @@ public abstract class AMS implements VerticalityStraightnessBuildable {
     //int height;
 
 
-    public AMS(DataPreparer dataPreparer, /*Operator operator, String numberBS, String address,*/ TypeAMS type/*, int height*/) {
+    public AMS(DataPreparer dataPreparer /*Operator operator, String numberBS, String address,*/ /*, int height*/) {
         this.dataPreparer = dataPreparer;
         //this.nameOperator = operator;
         //this.numberBS = numberBS;

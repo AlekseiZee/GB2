@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
@@ -19,7 +18,6 @@ import ru.geobuilder_2.persistence.entity.Instance;
 import ru.geobuilder_2.persistence.entity.Object;
 import ru.geobuilder_2.persistence.repository.InstanceJpaRepository;
 import ru.geobuilder_2.persistence.repository.ObjectJpaRepository;
-import ru.geobuilder_2.persistence.repository.RibJpaRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,7 +46,7 @@ public class Controller_uploadDataToDatabase {
     private TextFlow messageF;
 
     @FXML
-    private TableView<Rib> tableRibBD;
+    private TableView<RibJFX> tableRibBD;
 
     @FXML
     private TableView<ObjectJFX> objectTable;
@@ -71,10 +69,10 @@ public class Controller_uploadDataToDatabase {
     private TableColumn<Instance, Timestamp> photoDateColumn, DateColumn;
 
     @FXML
-    private TableColumn<Rib, Integer> tierColumnBD;
+    private TableColumn<RibJFX, Integer> tierColumnBD;
 
     @FXML
-    private TableColumn<Rib, Integer> ribLengthColumnBD;
+    private TableColumn<RibJFX, Integer> ribLengthColumnBD;
 
     @FXML
     private Button commitInstanceButton;
@@ -287,7 +285,7 @@ public class Controller_uploadDataToDatabase {
 
     private ObservableList<ObjectJFX> objectsJFX = FXCollections.observableArrayList();
     private ObservableList<Instance> instancesData = FXCollections.observableArrayList();
-    private ObservableList<Rib> ribsBD = FXCollections.observableArrayList();
+    private ObservableList<RibJFX> ribsBD = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
@@ -308,8 +306,8 @@ public class Controller_uploadDataToDatabase {
 
         instanceTable.setItems(this.instancesData);
 
-        tierColumnBD.setCellValueFactory(new PropertyValueFactory<Rib, Integer>("tier"));
-        ribLengthColumnBD.setCellValueFactory(new PropertyValueFactory<Rib, Integer>("ribLength"));
+        tierColumnBD.setCellValueFactory(new PropertyValueFactory<RibJFX, Integer>("tier"));
+        ribLengthColumnBD.setCellValueFactory(new PropertyValueFactory<RibJFX, Integer>("ribLength"));
         // указываем, что хотим использовать этот набор данных из коллекции RibsList
         tableRibBD.setItems(ribsBD);
 
@@ -328,8 +326,8 @@ public class Controller_uploadDataToDatabase {
 
     @FXML
     public void addRibBD() {
-        Rib rib = new Rib(this.tableRibBD.getItems().size() + 1, "");
-        tableRibBD.getItems().add(rib);
+        RibJFX ribJFX = new RibJFX(this.tableRibBD.getItems().size() + 1, "");
+        tableRibBD.getItems().add(ribJFX);
     }
 
     /**

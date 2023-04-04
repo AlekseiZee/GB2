@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="854.0" prefWidth="1194.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_DownloadFromBD">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="1195.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geobuilder_2.Controller_DownloadFromBD">
    <children>
       <AnchorPane prefHeight="34.0" prefWidth="757.0" style="-fx-background-color: #494949;">
          <children>
@@ -39,7 +39,7 @@
             <Label layoutX="14.0" layoutY="1.0" prefHeight="25.0" prefWidth="145.0" text="Получение данных из БД" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="1195.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0" prefWidth="1195.0">
          <children>
             <Button layoutX="270.0" layoutY="9.0" mnemonicParsing="false" onAction="#loadObjectJFX" prefHeight="25.0" prefWidth="155.0" text="Получить все объекты" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="9.0" />
             <Text fill="#868686" layoutX="16.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Код объета:" textAlignment="RIGHT" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="13.5244140625">
@@ -75,7 +75,7 @@
                </font>
             </Text>
             <CheckBox fx:id="operatorCheck" layoutX="16.0" layoutY="110.0" mnemonicParsing="false" onAction="#setOperatorCheck" prefHeight="16.0" prefWidth="17.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="110.0" />
-            <Button layoutX="330.0" layoutY="146.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="155.0" text="Получить список объектов" AnchorPane.bottomAnchor="57.0" AnchorPane.rightAnchor="710.0">
+            <Button layoutX="329.0" layoutY="144.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="155.0" text="Получить список объектов" AnchorPane.bottomAnchor="43.0" AnchorPane.rightAnchor="711.0">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font></Button>
@@ -117,34 +117,34 @@
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Text>
-            <Button layoutX="931.0" layoutY="155.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="162.0" text="Получить список состояний" AnchorPane.bottomAnchor="48.0" AnchorPane.rightAnchor="102.0">
+            <Button layoutX="930.0" layoutY="153.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="162.0" text="Получить список состояний" AnchorPane.bottomAnchor="34.0" AnchorPane.rightAnchor="103.0">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="numberOfObjects" layoutX="15.0" layoutY="197.0" prefHeight="22.0" prefWidth="162.0" text="Найдено" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="15.0" />
-            <Label fx:id="numberOfInstance" layoutX="575.0" layoutY="200.0" prefHeight="22.0" prefWidth="186.0" text="Найдено" AnchorPane.bottomAnchor="3.0" />
+            <Label fx:id="numberOfObjects" layoutX="393.0" layoutY="179.0" prefHeight="22.0" prefWidth="90.0" text="Найдено" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="393.0" />
+            <Label fx:id="numberOfInstance" layoutX="1085.0" layoutY="179.0" prefHeight="22.0" prefWidth="90.0" text="Найдено" AnchorPane.bottomAnchor="8.0" />
             <TextField fx:id="specifiedOperatorTextField" disable="true" layoutX="278.0" layoutY="106.0" prefHeight="25.0" prefWidth="207.0" visible="true" />
          </children>
       </AnchorPane>
-      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="831.0" VBox.vgrow="ALWAYS">
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="429.0" prefWidth="1194.0" VBox.vgrow="NEVER">
          <children>
-            <Button layoutX="902.0" layoutY="510.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Выгрузить данные" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="902.0" />
-            <Button layoutX="1050.0" layoutY="510.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Выйти" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="1050.0" />
-            <Button fx:id="goBackButton" layoutX="751.0" layoutY="510.0" mnemonicParsing="false" onAction="#goingBackToNewCal" prefHeight="26.0" prefWidth="134.0" text="Вернуться назад" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="751.0" />
-            <ScrollPane layoutX="14.0" layoutY="405.0" prefHeight="136.0" prefWidth="480.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">
+            <Button layoutX="899.0" layoutY="379.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Выгрузить данные" />
+            <Button layoutX="1041.0" layoutY="379.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Выйти" />
+            <Button fx:id="goBackButton" layoutX="748.0" layoutY="379.0" mnemonicParsing="false" onAction="#goingBackToNewCal" prefHeight="26.0" prefWidth="134.0" text="Вернуться назад" />
+            <ScrollPane layoutX="14.0" layoutY="307.0" prefHeight="100.0" prefWidth="474.0" AnchorPane.leftAnchor="14.0">
                <content>
-                  <TextFlow fx:id="messageF" prefHeight="133.0" prefWidth="478.0" style="-fx-background-color: #ffffff;" />
+                  <TextFlow fx:id="messageF" prefHeight="98.0" prefWidth="472.0" style="-fx-background-color: #ffffff;" />
                </content>
             </ScrollPane>
-            <Text fill="#868686" layoutX="14.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Информационные сообщения:" wrappingWidth="186.00000000000006" AnchorPane.bottomAnchor="153.9716796875" AnchorPane.leftAnchor="14.0">
+            <Text fill="#868686" layoutX="14.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Информационные сообщения:" wrappingWidth="186.00000000000006" AnchorPane.leftAnchor="14.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <HBox prefHeight="341.0" prefWidth="1183.0" AnchorPane.bottomAnchor="214.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="0.0">
+            <HBox prefHeight="276.0" prefWidth="1176.0" AnchorPane.leftAnchor="0.0">
                <children>
-                  <TableView fx:id="objectTable" prefHeight="344.0" prefWidth="479.0">
+                  <TableView fx:id="objectTable" prefHeight="341.0" prefWidth="474.0">
                     <columns>
                       <TableColumn fx:id="idOColumn" prefWidth="32.0" text=" N&#10;п.п." />
                       <TableColumn fx:id="codOColumn" prefWidth="92.0" text="   Код&#10;объекта" />
@@ -157,10 +157,10 @@
                   </TableView>
                   <Button mnemonicParsing="false" onAction="#loadInstanceJFX" text="----&gt;">
                      <HBox.margin>
-                        <Insets left="20.0" top="150.0" />
+                        <Insets left="20.0" top="100.0" />
                      </HBox.margin>
                   </Button>
-                  <TableView fx:id="instanceTable" prefHeight="344.0" prefWidth="608.0">
+                  <TableView fx:id="instanceTable" prefHeight="252.0" prefWidth="608.0">
                     <columns>
                       <TableColumn fx:id="idInstColumn" prefWidth="38.0" text=" N&#10;п.п." />
                       <TableColumn fx:id="typeOfWorkColumn" prefWidth="85.0" text=" Вид&#10;работ" />
@@ -175,31 +175,7 @@
                   </TableView>
                </children>
             </HBox>
-            <Button layoutX="1045.0" layoutY="381.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Журнал угловых изм." AnchorPane.bottomAnchor="149.0" AnchorPane.leftAnchor="1045.0" />
-            <HBox layoutX="154.0" layoutY="349.0" prefHeight="25.0" prefWidth="162.0" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="154.0">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="&lt;" />
-                  <TextField fx:id="objectСodeField1" prefHeight="25.0" prefWidth="29.0" visible="true" />
-                  <Label prefHeight="22.0" prefWidth="17.0" text=" из" />
-                  <Label fx:id="quantityOfObjectLabel" prefHeight="22.0" prefWidth="55.0" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="&gt;" />
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
-            <HBox layoutX="804.0" layoutY="349.0" prefHeight="25.0" prefWidth="162.0" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="804.0">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="&lt;" />
-                  <TextField prefHeight="25.0" prefWidth="29.0" visible="true" />
-                  <Label prefHeight="22.0" prefWidth="17.0" text=" из" />
-                  <Label fx:id="quantityOfInstanceLabel" prefHeight="22.0" prefWidth="55.0" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="&gt;" />
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
+            <Button layoutX="1041.0" layoutY="293.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Журнал угловых изм." />
          </children>
          <VBox.margin>
             <Insets />

@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Point implements Serializable {
+public class PointJFX implements Serializable {
 
     private transient IntegerProperty idPoint;
     private transient StringProperty namePoint;
@@ -19,13 +19,21 @@ public class Point implements Serializable {
     private transient StringProperty vAnglePoint;
     private transient StringProperty hAnglePoint;
 
-    public Point(Integer idPoint, String namePoint, String distancePoint, String vAnglePoint, String hAnglePoint) {
+    private transient ru.geobuilder_2.persistence.entity.Point point;
+
+    public PointJFX(Integer idPoint, String namePoint, String distancePoint, String vAnglePoint, String hAnglePoint) {
         this.idPoint = new SimpleIntegerProperty(idPoint);
         this.namePoint = new SimpleStringProperty(namePoint);
         this.distancePoint = new SimpleStringProperty(distancePoint);
         this.vAnglePoint = new SimpleStringProperty(vAnglePoint);
         this.hAnglePoint = new SimpleStringProperty(hAnglePoint);
 
+    }
+
+    public PointJFX(ru.geobuilder_2.persistence.entity.Point point){
+        this((int) point.getId(), point.getCode(), String.valueOf(point.getDistance()),
+                String.valueOf(point.getVAngle()), String.valueOf(point.getHAngle()));
+        this.point = point;
     }
 
     public final int getIdPoint() {
@@ -68,6 +76,14 @@ public class Point implements Serializable {
         this.hAnglePoint.set(hAnglePoint);
     }
 
+    public ru.geobuilder_2.persistence.entity.Point getPoint() {
+        return point;
+    }
+
+    public void setPoint(ru.geobuilder_2.persistence.entity.Point point) {
+        this.point = point;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -87,7 +103,7 @@ public class Point implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        final Point other = (Point) obj;
+        final PointJFX other = (PointJFX) obj;
 
         if (this.idPoint.get() != other.idPoint.get()) {
             return false;

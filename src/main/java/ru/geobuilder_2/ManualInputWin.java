@@ -2,14 +2,13 @@ package ru.geobuilder_2;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ManualInputWin implements Serializable {
 
-    private transient ArrayList<Point> pointsManualInputWin = new ArrayList<Point> ();
-    private transient ArrayList<Angle> anglesManualInputWin = new ArrayList<Angle>();
+    private transient ArrayList<PointJFX> pointsManualInputWin = new ArrayList<PointJFX> ();
+    private transient ArrayList<AngleJFX> anglesManualInputWin = new ArrayList<AngleJFX>();
 
-    public ManualInputWin(ArrayList<Point> pointsManualInputWin, ArrayList<Angle> anglesManualInputWin){
+    public ManualInputWin(ArrayList<PointJFX> pointsManualInputWin, ArrayList<AngleJFX> anglesManualInputWin){
         this.pointsManualInputWin = new ArrayList<>(pointsManualInputWin);
         this.anglesManualInputWin = new ArrayList<>(anglesManualInputWin);
     }

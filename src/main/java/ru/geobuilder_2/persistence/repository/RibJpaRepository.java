@@ -4,13 +4,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
 import javafx.collections.ObservableList;
-import ru.geobuilder_2.Controller_DownloadFromBD;
-import ru.geobuilder_2.persistence.entity.Object;
-import ru.geobuilder_2.persistence.entity.Anglepair;
+import ru.geobuilder_2.RibJFX;
 import ru.geobuilder_2.persistence.entity.Rib;
 import ru.geobuilder_2.persistence.tools.PersistenceManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -113,7 +110,7 @@ public class RibJpaRepository {
     /** Создаем сразу партию значений Rib. Список значений типа <Rib>
  * @param quantity
  */
-	public static void createRibs(int quantity, ObservableList<ru.geobuilder_2.Rib> ribss) {
+	public static void createRibs(int quantity, ObservableList<RibJFX> ribsses) {
 		EntityManager em = null;
 		EntityTransaction transaction = null;
 		try {
@@ -122,8 +119,8 @@ public class RibJpaRepository {
 			transaction.begin();
 			for (int i=0; i<quantity; i++) {
 				Rib rib = new Rib();
-                rib.setTier((Integer) ribss.get(i).getTier());
-                rib.setRibLength(Integer.valueOf(ribss.get(i).getRibLength()));
+                rib.setTier((Integer) ribsses.get(i).getTier());
+                rib.setRibLength(Integer.valueOf(ribsses.get(i).getRibLength()));
 				em.persist(rib);
 			}
 			em.flush();
