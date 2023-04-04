@@ -16,6 +16,7 @@ import ru.geobuilder_2.model.DataPreparer;
 import ru.geobuilder_2.model.ShootingOnTheBelts;
 
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -24,13 +25,9 @@ import java.util.List;
 
 public class Controller_Calculation {
 
-
-
     @FXML
-    private TableColumn<ObservableList<Double>> listHeights;
+    private ListView<Double> listHeights;
 
-    @FXML
-    private TableColumn<Double> ;
     @FXML
     private ListView<Double> listVerticalityOnThe_X_Axis;
 
@@ -388,8 +385,8 @@ public class Controller_Calculation {
          * Заполняем таблицу во вкладке "СХЕМА ВЕРТИКАЛЬНОСТИ"
          */
         ObservableList<Double> nameHeights = FXCollections.observableArrayList(heights);
-        listHeights.setCellValueFactory(nameHeights);
-        //listHeights.getItems();
+        listHeights.setItems(nameHeights);
+        listHeights.getItems();
 
         ObservableList<Double> nameVerticalityOnThe_X_Axis = FXCollections.observableArrayList(verticalityX);
         listVerticalityOnThe_X_Axis.setItems(nameVerticalityOnThe_X_Axis);
@@ -411,51 +408,51 @@ public class Controller_Calculation {
         listAngleDisplacementVector.setItems(nameAngleDisplacementVector);
         listAngleDisplacementVector.getItems();
 
-        /**
-         * Заполняем таблицу во вкладке "СХЕМА ВЕРТ В ПЛАНЕ"
-         */
-        ObservableList<Double> nameHeightsTwo = FXCollections.observableArrayList(heights);
-        listHeightsTwo.setItems(nameHeightsTwo);
-        listHeightsTwo.getItems();
-
-        ObservableList<Double> nameVerticalityOnThe_X_AxisTwo = FXCollections.observableArrayList(verticalityX);
-        listVerticalityOnThe_X_AxisTwo.setItems(nameVerticalityOnThe_X_AxisTwo);
-        listVerticalityOnThe_X_AxisTwo.getItems();
-
-        ObservableList<Double> nameVerticalityOnThe_Y_AxisTwo = FXCollections.observableArrayList(verticalityY);
-        listverticalityOnThe_Y_AxisTwo.setItems(nameVerticalityOnThe_Y_AxisTwo);
-        listverticalityOnThe_Y_AxisTwo.getItems();
-
-        ObservableList<Double> nameCalculatedOffsetTwo = FXCollections.observableArrayList(calculatedOffset);
-        listCalculatedOffsetTwo.setItems(nameCalculatedOffsetTwo);
-        listCalculatedOffsetTwo.getItems();
-
-        ObservableList<Double> nameVerticalityBorderTwo = FXCollections.observableArrayList(verticalityBorder);
-        listVerticalityBorderTwo.setItems(nameVerticalityBorderTwo);
-        listVerticalityBorderTwo.getItems();
-
-        /**
-         * Заполняем таблицу на вкладке "Протокол прямолинейности"
-         */
-        ObservableList<Double> nameHieghtthree = FXCollections.observableArrayList(heights);
-        listHeightsThree.setItems(nameHieghtthree);
-        listHeightsThree.getItems();
-
-        ObservableList<Double> nameBeltA = FXCollections.observableArrayList(straightnessA);
-        listBeltA.setItems(nameBeltA);
-        listBeltA.getItems();
-
-        ObservableList<Double> nameBeltB = FXCollections.observableArrayList(straightnessB);
-        listBeltB.setItems(nameBeltB);
-        listBeltB.getItems();
-
-        ObservableList<Double> nameBeltC = FXCollections.observableArrayList(straightnessC);
-        listBeltC.setItems(nameBeltC);
-        listBeltC.getItems();
-
-        ObservableList<Double> nameStraightnessBorder = FXCollections.observableArrayList(straightnessBorder);
-        listStraightnessBorder.setItems(nameStraightnessBorder);
-        listStraightnessBorder.getItems();
+//        /**
+//         * Заполняем таблицу во вкладке "СХЕМА ВЕРТ В ПЛАНЕ"
+//         */
+//        ObservableList<Double> nameHeightsTwo = FXCollections.observableArrayList(heights);
+//        listHeightsTwo.setItems(nameHeightsTwo);
+//        listHeightsTwo.getItems();
+//
+//        ObservableList<Double> nameVerticalityOnThe_X_AxisTwo = FXCollections.observableArrayList(verticalityX);
+//        listVerticalityOnThe_X_AxisTwo.setItems(nameVerticalityOnThe_X_AxisTwo);
+//        listVerticalityOnThe_X_AxisTwo.getItems();
+//
+//        ObservableList<Double> nameVerticalityOnThe_Y_AxisTwo = FXCollections.observableArrayList(verticalityY);
+//        listverticalityOnThe_Y_AxisTwo.setItems(nameVerticalityOnThe_Y_AxisTwo);
+//        listverticalityOnThe_Y_AxisTwo.getItems();
+//
+//        ObservableList<Double> nameCalculatedOffsetTwo = FXCollections.observableArrayList(calculatedOffset);
+//        listCalculatedOffsetTwo.setItems(nameCalculatedOffsetTwo);
+//        listCalculatedOffsetTwo.getItems();
+//
+//        ObservableList<Double> nameVerticalityBorderTwo = FXCollections.observableArrayList(verticalityBorder);
+//        listVerticalityBorderTwo.setItems(nameVerticalityBorderTwo);
+//        listVerticalityBorderTwo.getItems();
+//
+//        /**
+//         * Заполняем таблицу на вкладке "Протокол прямолинейности"
+//         */
+//        ObservableList<Double> nameHieghtthree = FXCollections.observableArrayList(heights);
+//        listHeightsThree.setItems(nameHieghtthree);
+//        listHeightsThree.getItems();
+//
+//        ObservableList<Double> nameBeltA = FXCollections.observableArrayList(straightnessA);
+//        listBeltA.setItems(nameBeltA);
+//        listBeltA.getItems();
+//
+//        ObservableList<Double> nameBeltB = FXCollections.observableArrayList(straightnessB);
+//        listBeltB.setItems(nameBeltB);
+//        listBeltB.getItems();
+//
+//        ObservableList<Double> nameBeltC = FXCollections.observableArrayList(straightnessC);
+//        listBeltC.setItems(nameBeltC);
+//        listBeltC.getItems();
+//
+//        ObservableList<Double> nameStraightnessBorder = FXCollections.observableArrayList(straightnessBorder);
+//        listStraightnessBorder.setItems(nameStraightnessBorder);
+//        listStraightnessBorder.getItems();
 
         if (dataPreparer.getQuantityOfPoints() == 4) {
             List<Double> straightnessD = shootingOnBelt.getStraightness("D");

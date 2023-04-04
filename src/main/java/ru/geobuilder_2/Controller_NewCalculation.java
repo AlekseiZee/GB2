@@ -44,7 +44,7 @@ public class Controller_NewCalculation {
     /**Допуск
      *
      */
-    private int border;
+    private int border = 1000;
 
     public int getBorder() {
         return border;
@@ -197,6 +197,10 @@ public class Controller_NewCalculation {
 
     @FXML
     private void initialize() {
+
+        borderField.textProperty().addListener((observable, oldValue, newValue) -> {
+            setBorder(Integer.parseInt(newValue));
+        });
 
         loadRibs();
 
@@ -477,7 +481,6 @@ public class Controller_NewCalculation {
             mm.setVisible(true);
             borderField.setDisable(false);
             borderField.clear();
-            setBorder(Integer.parseInt(borderField.getText()));
         }
         if (metalPoleBorder.isSelected() || reinforcedPoleBorder.isSelected()) {
             totalTwo.setVisible(false);
