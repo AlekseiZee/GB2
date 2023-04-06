@@ -354,7 +354,7 @@
                   </ScrollPane>
                </children>
             </AnchorPane>
-            <TableView fx:id="tableRib" layoutX="14.0" layoutY="220.0" prefHeight="241.0" prefWidth="121.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="622.0" AnchorPane.topAnchor="220.0">
+            <TableView fx:id="tableRib" layoutX="14.0" layoutY="220.0" prefHeight="241.0" prefWidth="121.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="220.0">
                <columns>
                   <TableColumn fx:id="tierColumn" prefWidth="39.0" text="Ярус" />
                   <TableColumn fx:id="ribLengthColumn" onEditCommit="#onEditChanger" text="Грань" />

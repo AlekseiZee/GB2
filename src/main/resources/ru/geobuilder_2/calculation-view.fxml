@@ -10,7 +10,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
@@ -205,22 +204,6 @@
                                           </AnchorPane>
                                       </content>
                                     </ScrollPane>
-                                    <AnchorPane layoutX="662.0" layoutY="19.0" prefHeight="372.0" prefWidth="170.0">
-                                       <children>
-                                          <TextField alignment="CENTER" layoutX="2.0" layoutY="78.0" prefHeight="23.0" prefWidth="76.0" promptText="Гор." />
-                                          <TextField alignment="CENTER" layoutX="92.0" layoutY="78.0" prefHeight="23.0" prefWidth="76.0" promptText="Верт." />
-                                          <Button layoutX="4.0" layoutY="113.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="164.0" text="Добавить" />
-                                          <Button layoutX="4.0" layoutY="173.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="164.0" text="Удалить" />
-                                          <Button layoutX="5.0" layoutY="204.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="164.0" text="Удалить все" />
-                                          <Button layoutX="5.0" layoutY="285.0" mnemonicParsing="false" onAction="#pr" prefHeight="32.0" prefWidth="164.0" text="Применить" />
-                                          <Button layoutX="4.0" layoutY="251.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="164.0" text="Общие характеристики" />
-                                          <RadioButton layoutX="2.0" layoutY="6.0" mnemonicParsing="false" text="Стоянка А" />
-                                          <RadioButton layoutX="3.0" layoutY="28.0" mnemonicParsing="false" text="Стоянка B" />
-                                          <RadioButton layoutX="93.0" layoutY="6.0" mnemonicParsing="false" text="Стоянка C" />
-                                          <RadioButton layoutX="93.0" layoutY="28.0" mnemonicParsing="false" text="Стоянка D" />
-                                          <Button layoutX="4.0" layoutY="143.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="164.0" text="Изменить" />
-                                       </children>
-                                    </AnchorPane>
                                  </children>
                               </AnchorPane>
                         </content>
@@ -231,9 +214,9 @@
                                  <children>
                                     <ScrollPane prefHeight="677.0" prefWidth="1006.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                        <content>
-                                          <AnchorPane prefHeight="579.0" prefWidth="1088.0">
+                                          <AnchorPane prefHeight="559.0" prefWidth="1088.0">
                                              <children>
-                                                <LineChart fx:id="chartX" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="303.0" title="Ось X">
+                                                <LineChart fx:id="chartX" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="303.0" title="Ось X">
                                                    <xAxis>
                                                       <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
                                                    </xAxis>
@@ -247,7 +230,7 @@
                                                       <ColorAdjust />
                                                    </effect>
                                                 </LineChart>
-                                                <LineChart fx:id="chartY" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutX="303.0" layoutY="4.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="303.0" title="Ось Y">
+                                                <LineChart fx:id="chartY" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutX="303.0" layoutY="4.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="303.0" title="Ось Y">
                                                    <xAxis>
                                                       <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
                                                    </xAxis>
@@ -275,9 +258,9 @@
                                                       <TableColumn prefWidth="75.0" text="Угол разво-&#10;  рота, град" />
                                                    </columns>
                                                 </TableView>
-                                                <AnchorPane layoutX="622.0" layoutY="57.0" prefHeight="430.0" prefWidth="0.0">
+                                                <AnchorPane layoutX="622.0" layoutY="73.0" prefHeight="427.0" prefWidth="452.0">
                                                    <children>
-                                                      <HBox layoutY="18.0" prefHeight="425.0" prefWidth="452.0">
+                                                      <HBox prefHeight="425.0" prefWidth="452.0">
                                                          <children>
                                                             <ListView fx:id="listHeights" prefHeight="425.0" prefWidth="76.0" />
                                                             <ListView fx:id="listVerticalityOnThe_X_Axis" prefHeight="425.0" prefWidth="77.0" />
@@ -345,6 +328,15 @@
                                                       <TableColumn prefWidth="75.0" text="Допуск, мм" />
                                                    </columns>
                                                 </TableView>
+                                                <HBox layoutX="650.0" layoutY="81.0" prefHeight="425.0" prefWidth="377.0">
+                                                   <children>
+                                                      <ListView fx:id="listHeightsTwo" prefHeight="425.0" prefWidth="76.0" />
+                                                      <ListView fx:id="listVerticalityOnThe_X_AxisTwo" prefHeight="425.0" prefWidth="77.0" />
+                                                      <ListView fx:id="listverticalityOnThe_Y_AxisTwo" prefHeight="444.0" prefWidth="76.0" />
+                                                      <ListView fx:id="listCalculatedOffsetTwo" prefHeight="444.0" prefWidth="76.0" />
+                                                      <ListView fx:id="listVerticalityBorderTwo" prefHeight="444.0" prefWidth="75.0" />
+                                                   </children>
+                                                </HBox>
                                              </children></AnchorPane>
                                        </content>
                                     </ScrollPane>
@@ -429,9 +421,9 @@
                                  <children>
                                     <ScrollPane layoutY="-4.0" prefHeight="677.0" prefWidth="930.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                        <content>
-                                          <AnchorPane prefHeight="619.0" prefWidth="484.0">
+                                          <AnchorPane prefHeight="555.0" prefWidth="484.0">
                                              <children>
-                                                <TableView layoutX="14.0" layoutY="14.0" prefHeight="599.0" prefWidth="472.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="10.0">
+                                                <TableView layoutX="14.0" layoutY="14.0" prefHeight="62.0" prefWidth="449.0" AnchorPane.bottomAnchor="495.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="10.0">
                                                   <columns>
                                                     <TableColumn prefWidth="69.0" text="Высота, м" />
                                                     <TableColumn prefWidth="306.0" text="Отклонение поясов, мм ">
@@ -442,9 +434,19 @@
                                                             <TableColumn prefWidth="75.0" text="Пояс D" />
                                                          </columns>
                                                       </TableColumn>
-                                                      <TableColumn prefWidth="99.0" text="Допуск, мм" />
+                                                      <TableColumn prefWidth="77.0" text="Допуск, мм" />
                                                   </columns>
                                                 </TableView>
+                                                <HBox layoutX="10.0" layoutY="61.0" prefHeight="499.0" prefWidth="450.0">
+                                                   <children>
+                                                      <ListView fx:id="listHeightsThree" prefHeight="425.0" prefWidth="69.0" />
+                                                      <ListView fx:id="listBeltA" prefHeight="425.0" prefWidth="77.0" />
+                                                      <ListView fx:id="listBeltB" prefHeight="444.0" prefWidth="76.0" />
+                                                      <ListView fx:id="listBeltC" prefHeight="425.0" prefWidth="72.0" />
+                                                      <ListView fx:id="listBeltD" prefHeight="444.0" prefWidth="75.0" />
+                                                      <ListView fx:id="listStraightnessBorder" prefHeight="499.0" prefWidth="80.0" />
+                                                   </children>
+                                                </HBox>
                                              </children></AnchorPane>
                                        </content>
                                     </ScrollPane>
@@ -458,9 +460,9 @@
                                  <children>
                                     <ScrollPane prefHeight="688.0" prefWidth="1094.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                        <content>
-                                          <AnchorPane prefHeight="616.0" prefWidth="721.0">
+                                          <AnchorPane prefHeight="560.0" prefWidth="721.0">
                                              <children>
-                                                <TableView layoutX="14.0" layoutY="14.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="590.0" prefWidth="707.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                <TableView layoutX="14.0" layoutY="14.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="72.0" prefWidth="707.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
                                                    <columns>
                                                       <TableColumn prefWidth="105.0" text="Высота, мм" />
                                                       <TableColumn prefWidth="158.0" text="Стоянка А">

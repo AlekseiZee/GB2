@@ -1,12 +1,7 @@
 package ru.geobuilder_2;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -39,7 +34,20 @@ import javafx.util.Duration;
 import ru.geobuilder_2.model.DataPreparer;
 import ru.geobuilder_2.model.SceneName;
 
-public class Controller_NewCalculation {
+public class Controller_NewCalculation  implements Serializable {
+
+//    public Controller_NewCalculation(int border, int quantityOfPoints,
+//                                     LinkedHashMap<String, Integer> mapQuantityPointsForEachDirection,
+//                                     Boolean fromFailData, ArrayList<String> inputData){
+//        this.border = border;
+//        this.quantityOfPoints = quantityOfPoints;
+//        this.mapQuantityPointsForEachDirection = mapQuantityPointsForEachDirection;
+//        this.fromFailData = fromFailData;
+//        this.inputData = inputData;
+//    }
+
+    public Controller_NewCalculation(){
+    }
 
     /**Допуск
      *
@@ -69,7 +77,17 @@ public class Controller_NewCalculation {
 
     private LinkedHashMap<String, Integer> mapQuantityPointsForEachDirection = new LinkedHashMap<>();
 
+    public LinkedHashMap<String, Integer> getMapQuantityPointsForEachDirection() {
+        return mapQuantityPointsForEachDirection;
+    }
+
+    public void setMapQuantityPointsForEachDirection(LinkedHashMap<String, Integer> mapQuantityPointsForEachDirection) {
+        this.mapQuantityPointsForEachDirection = mapQuantityPointsForEachDirection;
+    }
+
     Boolean fromFailData = true;
+
+
 
     public Boolean getFromFailData() {
         return fromFailData;
@@ -105,6 +123,26 @@ public class Controller_NewCalculation {
 
     private ObservableList<RibJFX> ribsJFX = FXCollections.observableArrayList();
 
+    public void setQuantityOfPoints(int quantityOfPoints) {
+        this.quantityOfPoints = quantityOfPoints;
+    }
+
+    public ArrayList<String> getListRs() {
+        return listRs;
+    }
+
+    public void setListRs(ArrayList<String> listRs) {
+        this.listRs = listRs;
+    }
+
+    public ArrayList<Double> getListRibs() {
+        return listRibs;
+    }
+
+    public void setListRibs(ArrayList<Double> listRibs) {
+        this.listRibs = listRibs;
+    }
+
     private ArrayList<String> listRs = new ArrayList<>();
 
     private ArrayList<Double> listRibs = new ArrayList<>();
@@ -136,6 +174,14 @@ public class Controller_NewCalculation {
 
     @FXML
     private Label labelCount;
+
+    public Label getLabelCount() {
+        return labelCount;
+    }
+
+    public void setLabelCount(Label labelCount) {
+        this.labelCount = labelCount;
+    }
 
     @FXML
     private Button rotater;
@@ -236,9 +282,14 @@ public class Controller_NewCalculation {
      */
     @FXML
     public void addRib(ActionEvent event) {
-
-        RibJFX ribJFX = new RibJFX(this.tableRib.getItems().size() + 1, "");
+        if (ribsJFX.isEmpty()) {
+            RibJFX ribJFX = new RibJFX(this.tableRib.getItems().size() + 1, "");
+            tableRib.getItems().add(ribJFX);
+        } else {
+        RibJFX ribJFX = new RibJFX(this.tableRib.getItems().size() + 1,
+                (tableRib.getItems().get(tableRib.getItems().size() - 1)).getRibLength());
         tableRib.getItems().add(ribJFX);
+    }
     }
 
     /**
@@ -270,13 +321,6 @@ public class Controller_NewCalculation {
         RibJFX ribJFX = tableRib.getSelectionModel().getSelectedItem();
         ribJFX.setRibLength(ribStringCellEditEvent.getNewValue());
     }
-
-    @FXML
-    private Label valueTier;
-
-    @FXML
-    private Label valueRib;
-
 
     private void updateCountLabel() {
         labelCount.setText("Кол-во ярусов: " + ribsJFX.size());
@@ -337,6 +381,46 @@ public class Controller_NewCalculation {
 
     @FXML
     private Text pO, pT, pTrForAngl, pTrForSqr, pF;
+
+    public Text getpO() {
+        return pO;
+    }
+
+    public void setpO(Text pO) {
+        this.pO = pO;
+    }
+
+    public Text getpT() {
+        return pT;
+    }
+
+    public void setpT(Text pT) {
+        this.pT = pT;
+    }
+
+    public Text getpTrForAngl() {
+        return pTrForAngl;
+    }
+
+    public void setpTrForAngl(Text pTrForAngl) {
+        this.pTrForAngl = pTrForAngl;
+    }
+
+    public Text getpTrForSqr() {
+        return pTrForSqr;
+    }
+
+    public void setpTrForSqr(Text pTrForSqr) {
+        this.pTrForSqr = pTrForSqr;
+    }
+
+    public Text getpF() {
+        return pF;
+    }
+
+    public void setpF(Text pF) {
+        this.pF = pF;
+    }
 
     @FXML
     private Button inOrder;
@@ -723,11 +807,27 @@ public class Controller_NewCalculation {
     @FXML
     void save() {
         try {
+            this.serializeDataTwo();
+            //this.serializeDataCon(controller_newCalculation);
             this.serializeData(this.ribsJFX);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+//    @FXML
+//    private void loadCon() {
+//        try {
+//            this.border = deserializeDataCon().getBorder();
+//            this.quantityOfPoints = deserializeDataCon().getQuantityOfPoints();
+//            this.mapQuantityPointsForEachDirection = deserializeDataCon().getMapQuantityPointsForEachDirection();
+//            this.fromFailData = deserializeDataCon().getFromFailData();
+//            this.inputData = deserializeDataCon().getInputData();
+//            generatelistRs();
+//        } catch (ClassNotFoundException | IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @FXML
     private void loadRibs() {
@@ -735,10 +835,33 @@ public class Controller_NewCalculation {
             this.ribsJFX = this.deserializeData();
             this.tableRib.setItems(this.ribsJFX);
             generatelistRs();
+            this.addressFieldDirectory.setText(this.deserializeDataTwo().get(0));
+            this.addressFieldFile.setText(this.deserializeDataTwo().get(1));
+            this.totalPoints.setText(this.deserializeDataTwo().get(2));
+            this.directionOne.setText(this.deserializeDataTwo().get(3));
+            this.directionTwo.setText(this.deserializeDataTwo().get(4));
+            this.directionThree.setText(this.deserializeDataTwo().get(5));
+            this.directionFour.setText(this.deserializeDataTwo().get(6));
+            this.pointOne.setText(this.deserializeDataTwo().get(7));
+            this.pointTwo.setText(this.deserializeDataTwo().get(8));
+            this.pointThree.setText(this.deserializeDataTwo().get(9));
+            this.pointFour.setText(this.deserializeDataTwo().get(10));
+            //loadCon();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
     }
+
+//    Controller_NewCalculation controller_newCalculation = new Controller_NewCalculation(this.border,
+//            this.quantityOfPoints, this.mapQuantityPointsForEachDirection, this.fromFailData, this.inputData);
+
+//    private void serializeDataCon(Controller_NewCalculation controller_newCalculation) throws FileNotFoundException, IOException {
+//        File f = new File("D:\\TestGB\\cache\\Con.txt");
+//        try (FileOutputStream fos = new FileOutputStream(f); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+//            oos.writeObject(controller_newCalculation);
+//            generatelistRs();
+//        }
+//    }
 
     private void serializeData(ObservableList<RibJFX> ribsJFX) throws FileNotFoundException, IOException {
         File f = new File("D:\\TestGB\\cache\\ribs.txt");
@@ -748,6 +871,44 @@ public class Controller_NewCalculation {
             generatelistRs();
         }
     }
+    private ArrayList<String> serializeDataTwo() throws FileNotFoundException, IOException {
+        ArrayList<String> listData = new ArrayList<>();
+        listData.add(this.addressFieldDirectory.getText());
+        listData.add(this.addressFieldFile.getText());
+        listData.add(this.totalPoints.getText());
+        listData.add(this.directionOne.getText());
+        listData.add(this.directionTwo.getText());
+        listData.add(this.directionThree.getText());
+        listData.add(this.directionFour.getText());
+        listData.add(this.pointOne.getText());
+        listData.add(this.pointTwo.getText());
+        listData.add(this.pointThree.getText());
+        listData.add(this.pointFour.getText());
+        File f = new File("D:\\TestGB\\cache\\ld.txt");
+        try (FileOutputStream fos = new FileOutputStream(f); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeObject(new ArrayList<String>(listData));
+        }
+        return listData;
+    }
+
+//    private Controller_NewCalculation deserializeDataCon() throws FileNotFoundException, IOException, ClassNotFoundException {
+//        Controller_NewCalculation controller_newCalculation = new Controller_NewCalculation();
+//        File f = new File("D:\\TestGB\\cache\\Con.txt");
+//        try (FileInputStream fis = new FileInputStream(f); ObjectInputStream ois = new ObjectInputStream(fis)) {
+//            controller_newCalculation = (Controller_NewCalculation) ois.readObject();
+//        }
+//        return controller_newCalculation;
+//    }
+
+private ArrayList<String> deserializeDataTwo() throws FileNotFoundException, IOException, ClassNotFoundException {
+    ArrayList<String> listData = new ArrayList<>();
+    File f = new File("D:\\TestGB\\cache\\ld.txt");
+    try (FileInputStream fis = new FileInputStream(f); ObjectInputStream ois = new ObjectInputStream(fis)) {
+        listData = (ArrayList<String>) ois.readObject();
+    }
+    return listData;
+}
+
 
     private ObservableList<RibJFX> deserializeData() throws FileNotFoundException, IOException, ClassNotFoundException {
         ArrayList<RibJFX> ribsJFX = new ArrayList<RibJFX>();
