@@ -1632,9 +1632,9 @@ public class Controller_NewCalculation implements Serializable {
         // Заполняем значениямми
         this.mapQuantityPointsForEachDirection.put((directionOne.getText()), Integer.parseInt(pointOne.getText()));
         this.mapQuantityPointsForEachDirection.put((directionTwo.getText()), Integer.parseInt(pointTwo.getText()));
-        if (Integer.parseInt(pointThree.getText()) != 0 && !pointThree.isDisable()) {
+        if (!pointThree.isDisable() && Integer.parseInt(pointThree.getText()) != 0) {
             this.mapQuantityPointsForEachDirection.put((directionThree.getText()), Integer.parseInt(pointThree.getText()));
-            if (Integer.parseInt(pointFour.getText()) != 0 && !pointFour.isDisable()) {
+            if (!pointFour.isDisable() && Integer.parseInt(pointFour.getText()) != 0) {
                 this.mapQuantityPointsForEachDirection.put((directionFour.getText()), Integer.parseInt(pointFour.getText()));
             }
         }
