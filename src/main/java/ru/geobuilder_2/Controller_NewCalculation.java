@@ -1,13 +1,13 @@
 package ru.geobuilder_2;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,7 +34,7 @@ import javafx.util.Duration;
 import ru.geobuilder_2.model.DataPreparer;
 import ru.geobuilder_2.model.SceneName;
 
-public class Controller_NewCalculation  implements Serializable {
+public class Controller_NewCalculation implements Serializable {
 
 //    public Controller_NewCalculation(int border, int quantityOfPoints,
 //                                     LinkedHashMap<String, Integer> mapQuantityPointsForEachDirection,
@@ -46,11 +46,11 @@ public class Controller_NewCalculation  implements Serializable {
 //        this.inputData = inputData;
 //    }
 
-    public Controller_NewCalculation(){
+    public Controller_NewCalculation() {
     }
 
-    /**Допуск
-     *
+    /**
+     * Допуск
      */
     private int border = 1000;
 
@@ -86,7 +86,6 @@ public class Controller_NewCalculation  implements Serializable {
     }
 
     Boolean fromFailData = true;
-
 
 
     public Boolean getFromFailData() {
@@ -155,16 +154,19 @@ public class Controller_NewCalculation  implements Serializable {
     public void setListRibsDouble(ArrayList<String> lRibs) {
         ArrayList<Double> lr = new ArrayList<>();
 
-        for (String val : lRibs){
+        for (String val : lRibs) {
             lr.add(Double.valueOf(val));
         }
         listRibs = lr;
     }
 
-    private void generatelistRs(){
+    /**
+     * Формирует лист с ребрами в формате Double для расчета, используя ribsJFX
+     */
+    private void generatelistRs() {
         listRs.clear();
-    for (int i = 0; i < ribsJFX.size(); i ++){
-        listRs.add(ribsJFX.get(i).getRibLength());
+        for (int i = 0; i < ribsJFX.size(); i++) {
+            listRs.add(ribsJFX.get(i).getRibLength());
         }
         getListRibsDouble();
     }
@@ -235,10 +237,10 @@ public class Controller_NewCalculation  implements Serializable {
             Text text = new Text("ярус: " + ribJFX.getTier() + "    " + "грань:  " + ribJFX.getRibLength() + "\n");
             messageField.getChildren().add(text);
         }
-            for (String in : inputData) {
-                Text text = new Text(in + "\n");
-                messageField.getChildren().add(text);
-            }
+        for (String in : inputData) {
+            Text text = new Text(in + "\n");
+            messageField.getChildren().add(text);
+        }
     }
 
     @FXML
@@ -248,7 +250,7 @@ public class Controller_NewCalculation  implements Serializable {
             setBorder(Integer.parseInt(newValue));
         });
 
-        loadRibs();
+        //loadRibs();
 
         tierColumn.setCellValueFactory(new PropertyValueFactory<RibJFX, Integer>("tier"));
         ribLengthColumn.setCellValueFactory(new PropertyValueFactory<RibJFX, String>("ribLength"));
@@ -262,10 +264,9 @@ public class Controller_NewCalculation  implements Serializable {
         // Разрешаем вносить изменение в определенную колонку
         ribLengthColumn.setCellFactory((TextFieldTableCell.forTableColumn()));
 
-//        // Добавляем слушателя для автоматического отслеживания изменений в листе
-//        ribs.addListener((ListChangeListener<Rib>) c -> openCalculation());
-//
-//        updateCountLabel();
+        // Добавляем слушателя для автоматического отслеживания изменений в листе
+        ribsJFX.addListener((ListChangeListener<RibJFX>) c -> updateCountLabel());
+
 
 //        showRibsDetails(null);
 //         //Следим за выделеной строкой. То, что выделли, появляется в полях
@@ -286,10 +287,11 @@ public class Controller_NewCalculation  implements Serializable {
             RibJFX ribJFX = new RibJFX(this.tableRib.getItems().size() + 1, "");
             tableRib.getItems().add(ribJFX);
         } else {
-        RibJFX ribJFX = new RibJFX(this.tableRib.getItems().size() + 1,
-                (tableRib.getItems().get(tableRib.getItems().size() - 1)).getRibLength());
-        tableRib.getItems().add(ribJFX);
-    }
+            RibJFX ribJFX = new RibJFX(this.tableRib.getItems().size() + 1,
+                    (tableRib.getItems().get(tableRib.getItems().size() - 1)).getRibLength());
+            tableRib.getItems().add(ribJFX);
+        }
+        updateCountLabel();
     }
 
     /**
@@ -297,8 +299,11 @@ public class Controller_NewCalculation  implements Serializable {
      */
     @FXML
     private void removeRib() {
+        if (!ribsJFX.isEmpty()) {
+            tableRib.getItems().remove(ribsJFX.size() - 1);
+            updateCountLabel();
+        }
 
-        tableRib.getItems().remove(ribsJFX.size() - 1);
         // если надо удалить выделенную строку, то - tableRib.getItems().remove(selectedIndex);
     }
 
@@ -535,7 +540,7 @@ public class Controller_NewCalculation  implements Serializable {
      * @param event
      */
     @FXML
-    private void setBorder(ActionEvent event) {
+    private void setBorderAction(ActionEvent event) {
         if (towerBorder.isSelected() || metalPoleBorder.isSelected()) {
             totalTwo.setVisible(true);
             totalThree.setVisible(true);
@@ -564,7 +569,7 @@ public class Controller_NewCalculation  implements Serializable {
             borderField.setVisible(true);
             mm.setVisible(true);
             borderField.setDisable(false);
-            borderField.clear();
+            //borderField.clear();
         }
         if (metalPoleBorder.isSelected() || reinforcedPoleBorder.isSelected()) {
             totalTwo.setVisible(false);
@@ -572,6 +577,9 @@ public class Controller_NewCalculation  implements Serializable {
             setTextTotalOne(event);
         }
     }
+
+    @FXML
+    private TextField nameAllCalculationField;
 
     @FXML
     private TextField addressFieldFile;
@@ -696,12 +704,12 @@ public class Controller_NewCalculation  implements Serializable {
             stage.setTitle("Расчет");
             stage.setScene(scene);
             Controller_Calculation controller = fxmlLoader.getController();
-                controller.setInputData(inputData);
-                controller.setQuantityOfPoints(quantityOfPoints);
-                controller.setMapQuantityPointsForEachDirection(mapQuantityPointsForEachDirection);
-                controller.setListRibs(getListRibsDouble());
-                controller.setFromFailData(fromFailData);
-                controller.setBorder(border);
+            controller.setInputData(inputData);
+            controller.setQuantityOfPoints(quantityOfPoints);
+            controller.setMapQuantityPointsForEachDirection(mapQuantityPointsForEachDirection);
+            controller.setListRibs(getListRibsDouble());
+            controller.setFromFailData(fromFailData);
+            controller.setBorder(border);
             //controller.setStage(stage);
             stage.show();
         } catch (IOException e) {
@@ -830,22 +838,66 @@ public class Controller_NewCalculation  implements Serializable {
 //    }
 
     @FXML
-    private void loadRibs() {
+    private void loadData(ActionEvent event) {
         try {
             this.ribsJFX = this.deserializeData();
             this.tableRib.setItems(this.ribsJFX);
-            generatelistRs();
-            this.addressFieldDirectory.setText(this.deserializeDataTwo().get(0));
-            this.addressFieldFile.setText(this.deserializeDataTwo().get(1));
-            this.totalPoints.setText(this.deserializeDataTwo().get(2));
-            this.directionOne.setText(this.deserializeDataTwo().get(3));
-            this.directionTwo.setText(this.deserializeDataTwo().get(4));
-            this.directionThree.setText(this.deserializeDataTwo().get(5));
-            this.directionFour.setText(this.deserializeDataTwo().get(6));
-            this.pointOne.setText(this.deserializeDataTwo().get(7));
-            this.pointTwo.setText(this.deserializeDataTwo().get(8));
-            this.pointThree.setText(this.deserializeDataTwo().get(9));
-            this.pointFour.setText(this.deserializeDataTwo().get(10));
+            updateCountLabel(); //Обновляем счетчик под таблицей граней
+            generatelistRs(); //формируем лист граней в Double
+            ArrayList<String> dataNewCalWin = this.deserializeDataTwo();
+            this.nameAllCalculationField.setText(dataNewCalWin.get(0));
+            this.addressFieldDirectory.setText(dataNewCalWin.get(1));
+            this.addressFieldFile.setText(dataNewCalWin.get(2));
+            setBorder(Integer.parseInt(dataNewCalWin.get(3)));
+            if (border == 1000) {
+                if (dataNewCalWin.get(4).equals("2")) {
+                    metalPoleBorder.setSelected(true);
+                } else {
+                    towerBorder.setSelected(true);
+                }
+            } else {
+                if (border == 1500) {
+                    mastBorder.setSelected(true);
+                } else {
+                    if (border == 600) {
+                        reinforcedPoleBorder.setSelected(true);
+                    } else {
+                        ourBorder.setSelected(true);
+                        borderField.setText(String.valueOf(getBorder()));
+                    }
+                }
+            }
+            setBorderAction(event);
+            this.totalPoints.setText(dataNewCalWin.get(4));
+            if (totalPoints.getText().equals("2")) {
+                this.directionOne.setText(dataNewCalWin.get(5));
+                this.directionTwo.setText(dataNewCalWin.get(6));
+                this.pointOne.setText(dataNewCalWin.get(7));
+                this.pointTwo.setText(dataNewCalWin.get(8));
+                setTextTotalOne(event);
+            } else {
+                if (totalPoints.getText().equals("3")) {
+                    this.directionOne.setText(dataNewCalWin.get(5));
+                    this.directionTwo.setText(dataNewCalWin.get(6));
+                    this.pointOne.setText(dataNewCalWin.get(7));
+                    this.pointTwo.setText(dataNewCalWin.get(8));
+                    this.directionThree.setText(dataNewCalWin.get(9));
+                    this.pointThree.setText(dataNewCalWin.get(10));
+                    setTextTotalTwo(event);
+                } else {
+                    if (totalPoints.getText().equals("4")) {
+                        this.directionOne.setText(dataNewCalWin.get(5));
+                        this.directionTwo.setText(dataNewCalWin.get(6));
+                        this.directionThree.setText(dataNewCalWin.get(9));
+                        this.directionFour.setText(dataNewCalWin.get(11));
+                        this.pointOne.setText(dataNewCalWin.get(7));
+                        this.pointTwo.setText(dataNewCalWin.get(8));
+                        this.pointThree.setText(dataNewCalWin.get(10));
+                        this.pointFour.setText(dataNewCalWin.get(12));
+                        setTextTotalThree(event);
+                    }
+                }
+            }
             //loadCon();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
@@ -871,21 +923,35 @@ public class Controller_NewCalculation  implements Serializable {
             generatelistRs();
         }
     }
+
     private ArrayList<String> serializeDataTwo() throws FileNotFoundException, IOException {
         ArrayList<String> listData = new ArrayList<>();
+        listData.add(this.nameAllCalculationField.getText());
         listData.add(this.addressFieldDirectory.getText());
         listData.add(this.addressFieldFile.getText());
+        listData.add(String.valueOf(this.border));
         listData.add(this.totalPoints.getText());
         listData.add(this.directionOne.getText());
         listData.add(this.directionTwo.getText());
-        listData.add(this.directionThree.getText());
-        listData.add(this.directionFour.getText());
         listData.add(this.pointOne.getText());
         listData.add(this.pointTwo.getText());
-        listData.add(this.pointThree.getText());
-        listData.add(this.pointFour.getText());
-        File f = new File("D:\\TestGB\\cache\\ld.txt");
-        try (FileOutputStream fos = new FileOutputStream(f); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+        if (!directionThree.isDisable()) {
+            listData.add(this.directionThree.getText());
+            listData.add(this.pointThree.getText());
+            if (!directionFour.isDisable()) {
+                listData.add(this.directionFour.getText());
+                listData.add(this.pointFour.getText());
+            }
+        }
+        File file = new File("D:\\TestGB\\testPath\\ld.txt");
+
+//        if (addressFieldDirectory.getText().isEmpty()) {
+//            file = new File("D:\\TestGB\\cache\\ld.txt");
+//        } else {
+//            file = new File(addressFieldDirectory.getText() + "\\\\" + nameAllCalculationField.getText() + ".txt");
+//        }
+
+        try (FileOutputStream fos = new FileOutputStream(file); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(new ArrayList<String>(listData));
         }
         return listData;
@@ -900,17 +966,19 @@ public class Controller_NewCalculation  implements Serializable {
 //        return controller_newCalculation;
 //    }
 
-private ArrayList<String> deserializeDataTwo() throws FileNotFoundException, IOException, ClassNotFoundException {
-    ArrayList<String> listData = new ArrayList<>();
-    File f = new File("D:\\TestGB\\cache\\ld.txt");
-    try (FileInputStream fis = new FileInputStream(f); ObjectInputStream ois = new ObjectInputStream(fis)) {
-        listData = (ArrayList<String>) ois.readObject();
+    private ArrayList<String> deserializeDataTwo() throws
+            FileNotFoundException, IOException, ClassNotFoundException {
+        ArrayList<String> listData = new ArrayList<>();
+        File f = new File("D:\\TestGB\\testPath\\ld.txt");
+        try (FileInputStream fis = new FileInputStream(f); ObjectInputStream ois = new ObjectInputStream(fis)) {
+            listData = (ArrayList<String>) ois.readObject();
+        }
+        return listData;
     }
-    return listData;
-}
 
 
-    private ObservableList<RibJFX> deserializeData() throws FileNotFoundException, IOException, ClassNotFoundException {
+    private ObservableList<RibJFX> deserializeData() throws
+            FileNotFoundException, IOException, ClassNotFoundException {
         ArrayList<RibJFX> ribsJFX = new ArrayList<RibJFX>();
         File f = new File("D:\\TestGB\\cache\\ribs.txt");
         try (FileInputStream fis = new FileInputStream(f); ObjectInputStream ois = new ObjectInputStream(fis)) {

@@ -55,7 +55,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Text>
-            <TextField layoutX="143.0" layoutY="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="462.0" AnchorPane.topAnchor="6.0" />
+            <TextField fx:id="nameAllCalculationField" layoutX="143.0" layoutY="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="462.0" AnchorPane.topAnchor="6.0" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="40.0" prefWidth="757.0" VBox.vgrow="ALWAYS">
@@ -73,7 +73,7 @@
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="99.0" layoutX="14.0" layoutY="89.0" stroke="#868686" strokeType="INSIDE" width="728.0" />
             <Rectangle fx:id="typeOfConstBorder" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="52.0" layoutX="15.0" layoutY="33.0" stroke="#868686" strokeType="INSIDE" width="728.0" AnchorPane.bottomAnchor="436.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="33.0" />
-            <RadioButton fx:id="towerBorder" layoutX="25.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="89.0" selected="true" text="Башня" textFill="#868686" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="643.0" AnchorPane.topAnchor="41.0">
+            <RadioButton fx:id="towerBorder" layoutX="25.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorderAction" prefHeight="25.0" prefWidth="89.0" selected="true" text="Башня" textFill="#868686" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="643.0" AnchorPane.topAnchor="41.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -81,22 +81,22 @@
                   <ToggleGroup fx:id="typeBorder" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="mastBorder" layoutX="124.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="89.0" text="Мачта" textFill="#868686" toggleGroup="$typeBorder" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="124.0" AnchorPane.rightAnchor="544.0" AnchorPane.topAnchor="41.0">
+            <RadioButton fx:id="mastBorder" layoutX="124.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorderAction" prefHeight="25.0" prefWidth="89.0" text="Мачта" textFill="#868686" toggleGroup="$typeBorder" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="124.0" AnchorPane.rightAnchor="544.0" AnchorPane.topAnchor="41.0">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="metalPoleBorder" layoutX="243.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="99.0" text="Столб мет." textFill="#868686" toggleGroup="$typeBorder" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="243.0" AnchorPane.rightAnchor="415.0" AnchorPane.topAnchor="41.0">
+            <RadioButton fx:id="metalPoleBorder" layoutX="243.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorderAction" prefHeight="25.0" prefWidth="99.0" text="Столб мет." textFill="#868686" toggleGroup="$typeBorder" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="243.0" AnchorPane.rightAnchor="415.0" AnchorPane.topAnchor="41.0">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="reinforcedPoleBorder" layoutX="371.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="99.0" text="Столб ж/б" textFill="#868686" toggleGroup="$typeBorder" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="371.0" AnchorPane.rightAnchor="287.0" AnchorPane.topAnchor="41.0">
+            <RadioButton fx:id="reinforcedPoleBorder" layoutX="371.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorderAction" prefHeight="25.0" prefWidth="99.0" text="Столб ж/б" textFill="#868686" toggleGroup="$typeBorder" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="371.0" AnchorPane.rightAnchor="287.0" AnchorPane.topAnchor="41.0">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="ourBorder" layoutX="502.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorder" prefHeight="25.0" prefWidth="121.0" text="Задать допуск" textFill="#868686" toggleGroup="$typeBorder" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="502.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="41.0">
+            <RadioButton fx:id="ourBorder" layoutX="502.0" layoutY="41.0" mnemonicParsing="false" onAction="#setBorderAction" prefHeight="25.0" prefWidth="121.0" text="Задать допуск" textFill="#868686" toggleGroup="$typeBorder" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="502.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="41.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -407,7 +407,7 @@
                </children>
             </VBox>
             <Button fx:id="openJOB" layoutX="160.0" layoutY="-1.0" mnemonicParsing="false" onAction="#openFileJob" prefHeight="25.0" prefWidth="107.0" text="Открыть" AnchorPane.bottomAnchor="496.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="487.0" AnchorPane.topAnchor="-1.0" />
-            <Button layoutX="181.0" layoutY="478.0" mnemonicParsing="false" onAction="#loadRibs" text="Загрузить" />
+            <Button layoutX="181.0" layoutY="478.0" mnemonicParsing="false" onAction="#loadData" text="Загрузить" />
          </children>
          <VBox.margin>
             <Insets />
