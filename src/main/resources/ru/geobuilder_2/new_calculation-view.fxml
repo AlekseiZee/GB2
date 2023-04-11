@@ -406,7 +406,7 @@
                   </RadioButton>
                </children>
             </VBox>
-            <Button fx:id="openJOB" layoutX="160.0" layoutY="-1.0" mnemonicParsing="false" onAction="#openFileJob" prefHeight="25.0" prefWidth="107.0" text="Открыть" AnchorPane.bottomAnchor="496.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="487.0" AnchorPane.topAnchor="-1.0" />
+            <Button fx:id="openJOB" layoutX="160.0" layoutY="-1.0" mnemonicParsing="false" onAction="#openWinForDataEntry" prefHeight="25.0" prefWidth="107.0" text="Открыть" AnchorPane.bottomAnchor="496.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="487.0" AnchorPane.topAnchor="-1.0" />
             <Button layoutX="181.0" layoutY="478.0" mnemonicParsing="false" onAction="#loadData" text="Загрузить" />
          </children>
          <VBox.margin>

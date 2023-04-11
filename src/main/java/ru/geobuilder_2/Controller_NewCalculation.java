@@ -614,7 +614,7 @@ public class Controller_NewCalculation implements Serializable {
      * @param event
      */
     @FXML
-    public void openFileJob(ActionEvent event) throws IOException {
+    public void openWinForDataEntry(ActionEvent event) throws IOException {
 
         if (downloadFromFileBut.isSelected()) {
             FileChooser fileChooserJob = new FileChooser();
@@ -641,11 +641,11 @@ public class Controller_NewCalculation implements Serializable {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(Controller_NewCalculation.class.getResource("manualInput-view.fxml"));
                     Stage stage = new Stage();
-                    Scene sceneBD = new Scene(fxmlLoader.load(), 1300, 930);
-                    stage.setMinWidth(1300);
-                    stage.setMinHeight(930);
-                    stage.setMaxWidth(1300);
-                    stage.setMaxHeight(930);
+                    Scene sceneBD = new Scene(fxmlLoader.load());
+//                    stage.setMinWidth(1300);
+//                    stage.setMinHeight(930);
+//                    stage.setMaxWidth(1300);
+//                    stage.setMaxHeight(930);
                     stage.setTitle("Ввод данных вручную");
                     stage.setScene(sceneBD);
                     Controller_manualInput controllerManualInput = fxmlLoader.getController();
@@ -696,11 +696,11 @@ public class Controller_NewCalculation implements Serializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Controller_NewCalculation.class.getResource("calculation-view.fxml"));
             Stage stage = new Stage();
-            Scene scene = new Scene(fxmlLoader.load(), 1300, 930);
-            stage.setMinWidth(1300);
-            stage.setMinHeight(930);
-            stage.setMaxWidth(1300);
-            stage.setMaxHeight(930);
+            Scene scene = new Scene(fxmlLoader.load());
+//            stage.setMinWidth(1300);
+//            stage.setMinHeight(930);
+//            stage.setMaxWidth(1300);
+//            stage.setMaxHeight(930);
             stage.setTitle("Расчет");
             stage.setScene(scene);
             Controller_Calculation controller = fxmlLoader.getController();
@@ -775,30 +775,30 @@ public class Controller_NewCalculation implements Serializable {
 //                    System.out.println("Username=" + usernamePassword.getKey() + ", Password=" + usernamePassword.getValue());
 //                });
 
-    /**
-     * Метод для открытия окна с нужной сценой
-     *
-     * @param fxml   - fxml файл с интерфейсом окна
-     * @param width  - ширина окна
-     * @param Height - высота окна
-     * @param title  - название окна
-     */
-    public void openWindow(String fxml, int width, int Height, String title) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Controller_NewCalculation.class.getResource(fxml));
-            Stage stage = new Stage();
-            Scene sceneBD = new Scene(fxmlLoader.load(), width, Height);
-            stage.setMinWidth(1194);
-            stage.setMinHeight(854);
-            stage.setMaxWidth(1194);
-            stage.setMaxHeight(854);
-            stage.setTitle(title);
-            stage.setScene(sceneBD);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    /**
+//     * Метод для открытия окна с нужной сценой
+//     *
+//     * @param fxml   - fxml файл с интерфейсом окна
+//     * @param width  - ширина окна
+//     * @param Height - высота окна
+//     * @param title  - название окна
+//     */
+//    public void openWindow(String fxml, int width, int Height, String title) {
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader(Controller_NewCalculation.class.getResource(fxml));
+//            Stage stage = new Stage();
+//            Scene sceneBD = new Scene(fxmlLoader.load(), width, Height);
+//            stage.setMinWidth(1194);
+//            stage.setMinHeight(854);
+//            stage.setMaxWidth(1194);
+//            stage.setMaxHeight(854);
+//            stage.setTitle(title);
+//            stage.setScene(sceneBD);
+//            stage.show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @FXML
     public void saveAndGoingBack() {
