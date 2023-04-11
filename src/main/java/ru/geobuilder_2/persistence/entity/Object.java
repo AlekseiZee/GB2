@@ -14,7 +14,12 @@ import jakarta.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Object.findAll", query="SELECT o FROM Object o")
+@NamedQueries({
+		@NamedQuery(name="Object.findAll", query="SELECT o FROM Object o"),
+		@NamedQuery(name="Object.findByCode", query="SELECT o FROM Object o WHERE o.number LIKE  :code"),
+		@NamedQuery(name = "Object.deleteById", query = "DELETE FROM Object o WHERE o.id = :id"),
+		@NamedQuery(name="Object.findByOperator", query="SELECT o FROM Object o WHERE o.operator = :operator"),
+})
 public class Object implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -82,4 +87,14 @@ public class Object implements Serializable {
 		this.operator = operator;
 	}
 
+	@Override
+	public String toString() {
+		return "Object{" +
+				"id=" + id +
+				", number='" + number + '\'' +
+				", operator='" + operator + '\'' +
+				", address='" + address + '\'' +
+				", instances=" + instances +
+				'}';
+	}
 }

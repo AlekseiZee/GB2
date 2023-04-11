@@ -26,6 +26,7 @@ public class Rib implements Serializable {
 
     private Integer tier;
 
+    @Column(name="rib_Length")
     private Integer ribLength;
 
     @ManyToOne(fetch = FetchType.LAZY)

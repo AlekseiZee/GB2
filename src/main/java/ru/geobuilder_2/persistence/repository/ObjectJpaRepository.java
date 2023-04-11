@@ -37,6 +37,36 @@ public class ObjectJpaRepository {
 //		transaction.commit(); // em.flush()
 //		em.close();
 	}
+
+	public static List<Object> readByCode(String code) {
+		EntityManager em = null;
+		try {
+			em = PersistenceManager.INSTANCE.getEntityManager();
+			return em.createNamedQuery("Object.findByCode").setParameter("code" , "%" + code + "%").getResultList();
+		} catch (Exception e) {
+			e.printStackTrace(System.out);
+			return null;
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+
+	public static List<Object> readByOperator(String operator) {
+		EntityManager em = null;
+		try {
+			em = PersistenceManager.INSTANCE.getEntityManager();
+			return em.createNamedQuery("Object.findByOperator").setParameter("operator", operator).getResultList();
+		} catch (Exception e) {
+			e.printStackTrace(System.out);
+			return null;
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
 	
 	// Считываем объекты
 	public static List<Object> readAllObject() {
@@ -259,6 +289,11 @@ public class ObjectJpaRepository {
 				em.close();
 			}
 		}
+	}
+
+	public static void main(String[] args) {
+		System.out.println(ObjectJpaRepository.readByCode("55" + "\n"));
+		System.out.println(ObjectJpaRepository.readByOperator("ПАО МТС"));
 	}
 	
 }

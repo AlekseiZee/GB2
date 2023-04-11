@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
@@ -72,7 +73,7 @@ public class Controller_uploadDataToDatabase {
     private TableColumn<RibJFX, Integer> tierColumnBD;
 
     @FXML
-    private TableColumn<RibJFX, Integer> ribLengthColumnBD;
+    private TableColumn<RibJFX, String> ribLengthColumnBD;
 
     @FXML
     private Button commitInstanceButton;
@@ -307,7 +308,7 @@ public class Controller_uploadDataToDatabase {
         instanceTable.setItems(this.instancesData);
 
         tierColumnBD.setCellValueFactory(new PropertyValueFactory<RibJFX, Integer>("tier"));
-        ribLengthColumnBD.setCellValueFactory(new PropertyValueFactory<RibJFX, Integer>("ribLength"));
+        ribLengthColumnBD.setCellValueFactory(new PropertyValueFactory<RibJFX, String>("ribLength"));
         // указываем, что хотим использовать этот набор данных из коллекции RibsList
         tableRibBD.setItems(ribsBD);
 
@@ -315,7 +316,7 @@ public class Controller_uploadDataToDatabase {
         tableRibBD.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
-        //ribLengthColumnBD.setCellFactory(TextFieldTableCell.forTableColumn());
+        ribLengthColumnBD.setCellFactory(TextFieldTableCell.forTableColumn());
 
         //Запрет на сортировку столбцов
         tierColumnBD.setSortable(false);
