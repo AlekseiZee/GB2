@@ -42,7 +42,7 @@
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0" prefWidth="1195.0">
          <children>
             <Button layoutX="270.0" layoutY="9.0" mnemonicParsing="false" onAction="#loadObjectJFX" prefHeight="25.0" prefWidth="155.0" text="Получить все объекты" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="9.0" />
-            <Text fill="#868686" layoutX="16.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Код объета:" textAlignment="RIGHT" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="13.5244140625">
+            <Text fill="#868686" layoutX="16.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Код объекта:" textAlignment="RIGHT" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="13.5244140625">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
