@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class AngleJFX implements Serializable {
     private transient IntegerProperty idAngleJFX;
-    private transient StringProperty namePointFromTable;
+
     private transient StringProperty vAngleJFX;
     private transient StringProperty hAngleJFX;
 
@@ -22,26 +22,18 @@ public class AngleJFX implements Serializable {
 
     private transient ru.geobuilder_2.persistence.entity.Point point;
 
-    public AngleJFX(int idAngleJFX, String namePointFromTable, String vAngleJFX, String hAngleJFX) {
+    public AngleJFX(int idAngleJFX, String vAngleJFX, String hAngleJFX) {
         this.idAngleJFX = new SimpleIntegerProperty(idAngleJFX);
-        this.namePointFromTable = new SimpleStringProperty(namePointFromTable);
         this.vAngleJFX = new SimpleStringProperty(vAngleJFX);
         this.hAngleJFX = new SimpleStringProperty(hAngleJFX);
     }
 
     public AngleJFX(ru.geobuilder_2.persistence.entity.Angle angle, ru.geobuilder_2.persistence.entity.Point point){
-        this((int) angle.getId(), point.getCode(), String.valueOf(angle.getVangle()), String.valueOf(angle.getHangle()));
+        this((int) angle.getId(), String.valueOf(angle.getVangle()), String.valueOf(angle.getHangle()));
         this.angle = angle;
         this.point = point;
     }
 
-    public final String getNamePointFromTable() {
-        return this.namePointFromTable.get();
-    }
-
-    public final void  setNamePointFromTable(String namePointFromTable){
-        this.namePointFromTable.set(namePointFromTable);
-    }
     public final int getIdAngleJFX() {
         return this.idAngleJFX.get();
     }

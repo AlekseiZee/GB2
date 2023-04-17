@@ -100,7 +100,7 @@ public class Controller_manualInput {
     @FXML
     private void initialize() throws IOException, ClassNotFoundException {
 
-        loadPointAndAngle();
+        //loadPointAndAngle();
 
         // Таблица Points
         idPCol.setCellValueFactory(new PropertyValueFactory<PointJFX, Integer>("idPoint"));
@@ -614,11 +614,11 @@ public class Controller_manualInput {
     }
 
     // Добавление углов (Angles)
-    private void addLineAng(ObservableList anglesDataList, String namePointFromTable) {
+    private void addLineAng(ObservableList anglesDataList) {
 
         updateNamePoint();
 
-        AngleJFX angleJFX = new AngleJFX(anglesDataList.size() + 1, namePointFromTable, "", "");
+        AngleJFX angleJFX = new AngleJFX(anglesDataList.size() + 1, "", "");
         anglesDataList.add(angleJFX);
 //        obsListsAngles.add((ArrayList<Angle>) anglesDataList);
     }
@@ -630,7 +630,7 @@ public class Controller_manualInput {
 
     @FXML
     private void addLineAngles() {
-        addLineAng(anglesData, pointsData.get(0).getNamePoint());
+        addLineAng(anglesData);
     }
 
     @FXML
@@ -640,7 +640,7 @@ public class Controller_manualInput {
 
     @FXML
     private void addLineAngles1() {
-        addLineAng(anglesData1, pointsData.get(1).getNamePoint());
+        addLineAng(anglesData1);
     }
 
     @FXML
@@ -650,7 +650,7 @@ public class Controller_manualInput {
 
     @FXML
     private void addLineAngles2() {
-        addLineAng(anglesData2, pointsData.get(2).getNamePoint());
+        addLineAng(anglesData2);
     }
 
     @FXML
@@ -660,7 +660,7 @@ public class Controller_manualInput {
 
     @FXML
     private void addLineAngles3() {
-        addLineAng(anglesData3, pointsData.get(3).getNamePoint());
+        addLineAng(anglesData3);
     }
 
     @FXML
@@ -670,7 +670,7 @@ public class Controller_manualInput {
 
     @FXML
     private void addLineAngles4() {
-        addLineAng(anglesData4, pointsData.get(4).getNamePoint());
+        addLineAng(anglesData4);
     }
 
     @FXML
@@ -680,7 +680,7 @@ public class Controller_manualInput {
 
     @FXML
     private void addLineAngles5() {
-        addLineAng(anglesData5, pointsData.get(5).getNamePoint());
+        addLineAng(anglesData5);
     }
 
     @FXML
@@ -690,7 +690,7 @@ public class Controller_manualInput {
 
     @FXML
     private void addLineAngles6() {
-        addLineAng(anglesData6, pointsData.get(6).getNamePoint());
+        addLineAng(anglesData6);
     }
 
     @FXML
@@ -700,7 +700,7 @@ public class Controller_manualInput {
 
     @FXML
     private void addLineAngles7() {
-        addLineAng(anglesData7, pointsData.get(7).getNamePoint());
+        addLineAng(anglesData7);
     }
 
     @FXML
