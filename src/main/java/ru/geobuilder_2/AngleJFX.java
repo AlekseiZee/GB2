@@ -14,10 +14,8 @@ import java.util.Objects;
 
 public class AngleJFX implements Serializable {
     private transient IntegerProperty idAngleJFX;
-
     private transient StringProperty vAngleJFX;
     private transient StringProperty hAngleJFX;
-
     private transient ru.geobuilder_2.persistence.entity.Angle angle;
 
     private transient ru.geobuilder_2.persistence.entity.Point point;

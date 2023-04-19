@@ -18,7 +18,6 @@ public class PointJFX implements Serializable {
     private transient StringProperty distancePoint;
     private transient StringProperty vAnglePoint;
     private transient StringProperty hAnglePoint;
-
     private transient ru.geobuilder_2.persistence.entity.Point point;
 
     public PointJFX(Integer idPoint, String namePoint, String distancePoint, String vAnglePoint, String hAnglePoint) {
@@ -27,7 +26,6 @@ public class PointJFX implements Serializable {
         this.distancePoint = new SimpleStringProperty(distancePoint);
         this.vAnglePoint = new SimpleStringProperty(vAnglePoint);
         this.hAnglePoint = new SimpleStringProperty(hAnglePoint);
-
     }
 
     public PointJFX(ru.geobuilder_2.persistence.entity.Point point){

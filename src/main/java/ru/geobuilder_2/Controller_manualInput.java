@@ -40,59 +40,53 @@ public class Controller_manualInput {
     private Button goBackButton;
 
     @FXML
-    private TableView<PointJFX> pointTable;
+    private TableView<PointHeightJFX> pointTable;
 
     @FXML
     private TableColumn nameAnglePCol, nameAnglePCol1, nameAnglePCol2, nameAnglePCol3, nameAnglePCol4,
             nameAnglePCol5, nameAnglePCol6, nameAnglePCol7;
 
     @FXML
-    private TableColumn<PointJFX, Integer> idPCol;
+    private TableColumn<PointHeightJFX, Integer> idPCol;
 
     @FXML
-    private TableColumn<PointJFX, String> namePCol;
+    private TableColumn<PointHeightJFX, String> namePCol;
 
     @FXML
-    private TableColumn<PointJFX, String> distancePCol;
+    private TableColumn<PointHeightJFX, String> distancePCol;
 
     @FXML
-    private TableColumn<PointJFX, String> vAnglePCol;
+    private TableView<AngleHeightJFX> angleTable, angleTable1, angleTable2, angleTable3, angleTable4, angleTable5, angleTable6, angleTable7;
 
     @FXML
-    private TableColumn<PointJFX, String> hAnglePCol;
+    private TableColumn<AngleHeightJFX, Integer> idAngleCol, idAngleCol1, idAngleCol2, idAngleCol3, idAngleCol4, idAngleCol5, idAngleCol6, idAngleCol7;
 
     @FXML
-    private TableView<AngleJFX> angleTable, angleTable1, angleTable2, angleTable3, angleTable4, angleTable5, angleTable6, angleTable7;
+    private TableColumn<AngleHeightJFX, String> heightObjectCol, hAngleCol, heightObjectCol1, hAngleCol1, heightObjectCol2, hAngleCol2,
+            heightObjectCol3, hAngleCol3, heightObjectCol4, hAngleCol4, heightObjectCol5, hAngleCol5, heightObjectCol6, hAngleCol6, heightObjectCol7, hAngleCol7;
 
-    @FXML
-    private TableColumn<AngleJFX, Integer> idAngleCol, idAngleCol1, idAngleCol2, idAngleCol3, idAngleCol4, idAngleCol5, idAngleCol6, idAngleCol7;
+    ArrayList<ArrayList<AngleHeightJFX>> obsListsAngles = new ArrayList<>();
 
-    @FXML
-    private TableColumn<AngleJFX, String> vAngleCol, hAngleCol, vAngleCol1, hAngleCol1, vAngleCol2, hAngleCol2,
-            vAngleCol3, hAngleCol3, vAngleCol4, hAngleCol4, vAngleCol5, hAngleCol5, vAngleCol6, hAngleCol6, vAngleCol7, hAngleCol7;
-
-    ArrayList<ArrayList<AngleJFX>> obsListsAngles = new ArrayList<>();
-
-    private ObservableList<PointJFX> pointsData = FXCollections.observableArrayList();
-    private ObservableList<AngleJFX> anglesData = FXCollections.observableArrayList();
-    private ObservableList<AngleJFX> anglesData1 = FXCollections.observableArrayList();
-    private ObservableList<AngleJFX> anglesData2 = FXCollections.observableArrayList();
-    private ObservableList<AngleJFX> anglesData3 = FXCollections.observableArrayList();
-    private ObservableList<AngleJFX> anglesData4 = FXCollections.observableArrayList();
-    private ObservableList<AngleJFX> anglesData5 = FXCollections.observableArrayList();
-    private ObservableList<AngleJFX> anglesData6 = FXCollections.observableArrayList();
-    private ObservableList<AngleJFX> anglesData7 = FXCollections.observableArrayList();
+    private ObservableList<PointHeightJFX> pointsData = FXCollections.observableArrayList();
+    private ObservableList<AngleHeightJFX> anglesData = FXCollections.observableArrayList();
+    private ObservableList<AngleHeightJFX> anglesData1 = FXCollections.observableArrayList();
+    private ObservableList<AngleHeightJFX> anglesData2 = FXCollections.observableArrayList();
+    private ObservableList<AngleHeightJFX> anglesData3 = FXCollections.observableArrayList();
+    private ObservableList<AngleHeightJFX> anglesData4 = FXCollections.observableArrayList();
+    private ObservableList<AngleHeightJFX> anglesData5 = FXCollections.observableArrayList();
+    private ObservableList<AngleHeightJFX> anglesData6 = FXCollections.observableArrayList();
+    private ObservableList<AngleHeightJFX> anglesData7 = FXCollections.observableArrayList();
 
     private void generateData() {
 
         for (int i = 0; i < pointsData.size(); i++) {
-            inputData.add(pointsData.get(i).getNamePoint());
-            inputData.add(pointsData.get(i).getDistancePoint());
-            inputData.add(pointsData.get(i).getVAnglePoint());
-            inputData.add(pointsData.get(i).getHAnglePoint());
-            for (int k = 0; k < obsListsAngles.get(i).size(); k++) {
-                inputData.add(obsListsAngles.get(i).get(k).getVAngleJFX());
-                inputData.add(obsListsAngles.get(i).get(k).getHAngleJFX());
+            inputData.add(pointsData.get(i).getNamePointHeight());
+            inputData.add(pointsData.get(i).getDistancePointHeight());
+            if(!obsListsAngles.isEmpty()) {
+                for (int k = 0; k < obsListsAngles.get(i).size(); k++) {
+                    inputData.add(obsListsAngles.get(i).get(k).getHeightObjectJFX());
+                    inputData.add(obsListsAngles.get(i).get(k).getHAngleJFX());
+                }
             }
         }
     }
@@ -103,11 +97,9 @@ public class Controller_manualInput {
         //loadPointAndAngle();
 
         // Таблица Points
-        idPCol.setCellValueFactory(new PropertyValueFactory<PointJFX, Integer>("idPoint"));
-        namePCol.setCellValueFactory(new PropertyValueFactory<PointJFX, String>("namePoint"));
-        distancePCol.setCellValueFactory(new PropertyValueFactory<PointJFX, String>("distancePoint"));
-        vAnglePCol.setCellValueFactory(new PropertyValueFactory<PointJFX, String>("vAnglePoint"));
-        hAnglePCol.setCellValueFactory(new PropertyValueFactory<PointJFX, String>("hAnglePoint"));
+        idPCol.setCellValueFactory(new PropertyValueFactory<PointHeightJFX, Integer>("idPointHeight"));
+        namePCol.setCellValueFactory(new PropertyValueFactory<PointHeightJFX, String>("namePointHeight"));
+        distancePCol.setCellValueFactory(new PropertyValueFactory<PointHeightJFX, String>("distancePointHeight"));
 
         pointTable.setItems(this.pointsData);
 
@@ -116,113 +108,111 @@ public class Controller_manualInput {
         // Разрешаем вносить изменение в определенную колонку
         namePCol.setCellFactory(TextFieldTableCell.forTableColumn());
         distancePCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        vAnglePCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        hAnglePCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
         // Таблица Angles0
         // Инициализация таблицы адресатов с двумя столбцами.
-        idAngleCol.setCellValueFactory(new PropertyValueFactory<AngleJFX, Integer>("idAngleJFX"));
-        vAngleCol.setCellValueFactory(new PropertyValueFactory<AngleJFX, String>("vAngleJFX"));
-        hAngleCol.setCellValueFactory(new PropertyValueFactory<AngleJFX, String>("hAngleJFX"));
+        idAngleCol.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, Integer>("idAngleHeightJFX"));
+        heightObjectCol.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, String>("heightObjectJFX"));
+        hAngleCol.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, String>("hAngleHeightJFX"));
 
 
         angleTable.setItems(anglesData);
         angleTable.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
-        vAngleCol.setCellFactory(TextFieldTableCell.<AngleJFX>forTableColumn());
-        hAngleCol.setCellFactory(TextFieldTableCell.<AngleJFX>forTableColumn());
+        heightObjectCol.setCellFactory(TextFieldTableCell.<AngleHeightJFX>forTableColumn());
+        hAngleCol.setCellFactory(TextFieldTableCell.<AngleHeightJFX>forTableColumn());
 
         // Таблица Angles1
         // Инициализация таблицы адресатов с двумя столбцами.
-        idAngleCol1.setCellValueFactory(new PropertyValueFactory<AngleJFX, Integer>("idAngleJFX"));
-        vAngleCol1.setCellValueFactory(new PropertyValueFactory<AngleJFX, String>("vAngleJFX"));
-        hAngleCol1.setCellValueFactory(new PropertyValueFactory<AngleJFX, String>("hAngleJFX"));
+        idAngleCol1.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, Integer>("idAngleHeightJFX"));
+        heightObjectCol1.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, String>("heightObjectJFX"));
+        hAngleCol1.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, String>("hAngleHeightJFX"));
 
         angleTable1.setItems(anglesData1);
         angleTable1.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
-        vAngleCol1.setCellFactory(TextFieldTableCell.<AngleJFX>forTableColumn());
-        hAngleCol1.setCellFactory(TextFieldTableCell.<AngleJFX>forTableColumn());
+        heightObjectCol1.setCellFactory(TextFieldTableCell.<AngleHeightJFX>forTableColumn());
+        hAngleCol1.setCellFactory(TextFieldTableCell.<AngleHeightJFX>forTableColumn());
 
         // Таблица Angles2
         // Инициализация таблицы адресатов с двумя столбцами.
-        idAngleCol2.setCellValueFactory(new PropertyValueFactory<AngleJFX, Integer>("idAngleJFX"));
-        vAngleCol2.setCellValueFactory(new PropertyValueFactory<AngleJFX, String>("vAngleJFX"));
-        hAngleCol2.setCellValueFactory(new PropertyValueFactory<AngleJFX, String>("hAngleJFX"));
+        idAngleCol2.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, Integer>("idAngleHeightJFX"));
+        heightObjectCol2.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, String>("heightObjectJFX"));
+        hAngleCol2.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, String>("hAngleHeightJFX"));
 
         angleTable2.setItems(anglesData2);
         angleTable2.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
-        vAngleCol2.setCellFactory(TextFieldTableCell.<AngleJFX>forTableColumn());
-        hAngleCol2.setCellFactory(TextFieldTableCell.<AngleJFX>forTableColumn());
+        heightObjectCol2.setCellFactory(TextFieldTableCell.<AngleHeightJFX>forTableColumn());
+        hAngleCol2.setCellFactory(TextFieldTableCell.<AngleHeightJFX>forTableColumn());
 
         // Таблица Angles3
         // Инициализация таблицы адресатов с двумя столбцами.
-        idAngleCol3.setCellValueFactory(new PropertyValueFactory<AngleJFX, Integer>("idAngleJFX"));
-        vAngleCol3.setCellValueFactory(new PropertyValueFactory<AngleJFX, String>("vAngleJFX"));
-        hAngleCol3.setCellValueFactory(new PropertyValueFactory<AngleJFX, String>("hAngleJFX"));
+        idAngleCol3.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, Integer>("idAngleHeightJFX"));
+        heightObjectCol3.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, String>("heightObjectJFX"));
+        hAngleCol3.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, String>("hAngleHeightJFX"));
 
         angleTable3.setItems(anglesData3);
         angleTable3.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
-        vAngleCol3.setCellFactory(TextFieldTableCell.<AngleJFX>forTableColumn());
-        hAngleCol3.setCellFactory(TextFieldTableCell.<AngleJFX>forTableColumn());
+        heightObjectCol3.setCellFactory(TextFieldTableCell.<AngleHeightJFX>forTableColumn());
+        hAngleCol3.setCellFactory(TextFieldTableCell.<AngleHeightJFX>forTableColumn());
 
         // Таблица Angles4
         // Инициализация таблицы адресатов с двумя столбцами.
-        idAngleCol4.setCellValueFactory(new PropertyValueFactory<AngleJFX, Integer>("idAngleJFX"));
-        vAngleCol4.setCellValueFactory(new PropertyValueFactory<AngleJFX, String>("vAngleJFX"));
-        hAngleCol4.setCellValueFactory(new PropertyValueFactory<AngleJFX, String>("hAngleJFX"));
+        idAngleCol4.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, Integer>("idAngleHeightJFX"));
+        heightObjectCol4.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, String>("heightObjectJFX"));
+        hAngleCol4.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, String>("hAngleHeightJFX"));
 
         angleTable4.setItems(anglesData4);
         angleTable4.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
-        vAngleCol4.setCellFactory(TextFieldTableCell.<AngleJFX>forTableColumn());
-        hAngleCol4.setCellFactory(TextFieldTableCell.<AngleJFX>forTableColumn());
+        heightObjectCol4.setCellFactory(TextFieldTableCell.<AngleHeightJFX>forTableColumn());
+        hAngleCol4.setCellFactory(TextFieldTableCell.<AngleHeightJFX>forTableColumn());
 
         // Таблица Angles5
         // Инициализация таблицы адресатов с двумя столбцами.
-        idAngleCol5.setCellValueFactory(new PropertyValueFactory<AngleJFX, Integer>("idAngleJFX"));
-        vAngleCol5.setCellValueFactory(new PropertyValueFactory<AngleJFX, String>("vAngleJFX"));
-        hAngleCol5.setCellValueFactory(new PropertyValueFactory<AngleJFX, String>("hAngleJFX"));
+        idAngleCol5.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, Integer>("idAngleHeightJFX"));
+        heightObjectCol5.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, String>("heightObjectJFX"));
+        hAngleCol5.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, String>("hAngleHeightJFX"));
 
         angleTable5.setItems(anglesData5);
         angleTable5.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
-        vAngleCol5.setCellFactory(TextFieldTableCell.<AngleJFX>forTableColumn());
-        hAngleCol5.setCellFactory(TextFieldTableCell.<AngleJFX>forTableColumn());
+        heightObjectCol5.setCellFactory(TextFieldTableCell.<AngleHeightJFX>forTableColumn());
+        hAngleCol5.setCellFactory(TextFieldTableCell.<AngleHeightJFX>forTableColumn());
 
         // Таблица Angles6
         // Инициализация таблицы адресатов с двумя столбцами.
-        idAngleCol6.setCellValueFactory(new PropertyValueFactory<AngleJFX, Integer>("idAngleJFX"));
-        vAngleCol6.setCellValueFactory(new PropertyValueFactory<AngleJFX, String>("vAngleJFX"));
-        hAngleCol6.setCellValueFactory(new PropertyValueFactory<AngleJFX, String>("hAngleJFX"));
+        idAngleCol6.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, Integer>("idAngleHeightJFX"));
+        heightObjectCol6.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, String>("heightObjectJFX"));
+        hAngleCol6.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, String>("hAngleHeightJFX"));
 
         angleTable6.setItems(anglesData6);
         angleTable6.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
-        vAngleCol6.setCellFactory(TextFieldTableCell.<AngleJFX>forTableColumn());
-        hAngleCol6.setCellFactory(TextFieldTableCell.<AngleJFX>forTableColumn());
+        heightObjectCol6.setCellFactory(TextFieldTableCell.<AngleHeightJFX>forTableColumn());
+        hAngleCol6.setCellFactory(TextFieldTableCell.<AngleHeightJFX>forTableColumn());
 
         // Таблица Angles7
         // Инициализация таблицы адресатов с двумя столбцами.
-        idAngleCol7.setCellValueFactory(new PropertyValueFactory<AngleJFX, Integer>("idAngleJFX"));
-        vAngleCol7.setCellValueFactory(new PropertyValueFactory<AngleJFX, String>("vAngleJFX"));
-        hAngleCol7.setCellValueFactory(new PropertyValueFactory<AngleJFX, String>("hAngleJFX"));
+        idAngleCol7.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, Integer>("idAngleHeightJFX"));
+        heightObjectCol7.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, String>("heightObjectJFX"));
+        hAngleCol7.setCellValueFactory(new PropertyValueFactory<AngleHeightJFX, String>("hAngleHeightJFX"));
 
         angleTable7.setItems(anglesData7);
         angleTable7.setEditable(true);
 
         // Разрешаем вносить изменение в определенную колонку
-        vAngleCol7.setCellFactory(TextFieldTableCell.<AngleJFX>forTableColumn());
-        hAngleCol7.setCellFactory(TextFieldTableCell.<AngleJFX>forTableColumn());
+        heightObjectCol7.setCellFactory(TextFieldTableCell.<AngleHeightJFX>forTableColumn());
+        hAngleCol7.setCellFactory(TextFieldTableCell.<AngleHeightJFX>forTableColumn());
 
 //        // Добавляем слушателя для автоматического отслеживания изменений в листе
 //        pointsData.addListener((ListChangeListener<Point>) c -> updateNamePoint());
@@ -247,12 +237,24 @@ public class Controller_manualInput {
         idPCol.setSortable(false);
         namePCol.setSortable(false);
         distancePCol.setSortable(false);
-        vAnglePCol.setSortable(false);
-        hAnglePCol.setSortable(false);
 
         idAngleCol.setSortable(false);
-        vAngleCol.setSortable(false);
+        heightObjectCol.setSortable(false);
         hAngleCol.setSortable(false);
+        heightObjectCol1.setSortable(false);
+        hAngleCol1.setSortable(false);
+        heightObjectCol2.setSortable(false);
+        hAngleCol2.setSortable(false);
+        heightObjectCol3.setSortable(false);
+        hAngleCol3.setSortable(false);
+        heightObjectCol4.setSortable(false);
+        hAngleCol4.setSortable(false);
+        heightObjectCol5.setSortable(false);
+        hAngleCol5.setSortable(false);
+        heightObjectCol6.setSortable(false);
+        hAngleCol6.setSortable(false);
+        heightObjectCol7.setSortable(false);
+        hAngleCol7.setSortable(false);
     }
 
     /**
@@ -260,21 +262,21 @@ public class Controller_manualInput {
      */
     private void updateNamePoint() {
         if (!angleTable.isDisabled()) {
-            nameAnglePCol.setText(pointsData.get(0).getNamePoint());
+            nameAnglePCol.setText(pointsData.get(0).getNamePointHeight());
             if (!angleTable1.isDisabled()) {
-                nameAnglePCol1.setText(pointsData.get(1).getNamePoint());
+                nameAnglePCol1.setText(pointsData.get(1).getNamePointHeight());
                 if (!angleTable2.isDisabled()) {
-                    nameAnglePCol2.setText(pointsData.get(2).getNamePoint());
+                    nameAnglePCol2.setText(pointsData.get(2).getNamePointHeight());
                     if (!angleTable3.isDisabled()) {
-                        nameAnglePCol3.setText(pointsData.get(3).getNamePoint());
+                        nameAnglePCol3.setText(pointsData.get(3).getNamePointHeight());
                         if (!angleTable4.isDisabled()) {
-                            nameAnglePCol4.setText(pointsData.get(4).getNamePoint());
+                            nameAnglePCol4.setText(pointsData.get(4).getNamePointHeight());
                             if (!angleTable5.isDisabled()) {
-                                nameAnglePCol5.setText(pointsData.get(5).getNamePoint());
+                                nameAnglePCol5.setText(pointsData.get(5).getNamePointHeight());
                                 if (!angleTable6.isDisabled()) {
-                                    nameAnglePCol6.setText(pointsData.get(6).getNamePoint());
+                                    nameAnglePCol6.setText(pointsData.get(6).getNamePointHeight());
                                     if (!angleTable7.isDisabled()) {
-                                        nameAnglePCol7.setText(pointsData.get(7).getNamePoint());
+                                        nameAnglePCol7.setText(pointsData.get(7).getNamePointHeight());
                                     }
                                 }
                             }
@@ -325,9 +327,9 @@ public class Controller_manualInput {
     @FXML
     private void addLinePoint() {
         if (this.pointTable.getItems().size() < 8) {
-            PointJFX pointJFX = new PointJFX(this.pointTable.getItems().size() + 1, "",
-                    "", "", "");
-            pointsData.add(pointJFX);
+            PointHeightJFX pointHeightJFX = new PointHeightJFX(this.pointTable.getItems().size() + 1,
+                    "","");
+            pointsData.add(pointHeightJFX);
 
             scenarioOfManipulatorStates();
         }
@@ -618,14 +620,16 @@ public class Controller_manualInput {
 
         updateNamePoint();
 
-        AngleJFX angleJFX = new AngleJFX(anglesDataList.size() + 1, "", "");
-        anglesDataList.add(angleJFX);
+        AngleHeightJFX angleHeightJFX = new AngleHeightJFX(anglesDataList.size() + 1, "", "");
+        anglesDataList.add(angleHeightJFX);
 //        obsListsAngles.add((ArrayList<Angle>) anglesDataList);
     }
 
     // Удаление углов (Angles)
     private void removeLineAng(ObservableList anglesDataList, TableView angleTable) {
-        angleTable.getItems().remove(anglesDataList.size() - 1);
+        if (anglesDataList.size() > 0) {
+            angleTable.getItems().remove(anglesDataList.size() - 1);
+        }
     }
 
     @FXML
@@ -761,104 +765,93 @@ public class Controller_manualInput {
 
     // Нужно для инициализации измененных значений в ячейках. Без него данные не воспринимаются
     public void onEditChangerNamePoint(TableColumn.CellEditEvent<PointJFX, String> pointStringCellEditEvent) {
-        PointJFX pointJFX = pointTable.getSelectionModel().getSelectedItem();
-        pointJFX.setNamePoint(pointStringCellEditEvent.getNewValue());
+        PointHeightJFX pointHeightJFX = pointTable.getSelectionModel().getSelectedItem();
+        pointHeightJFX.setNamePointHeight(pointStringCellEditEvent.getNewValue());
     }
 
     public void onEditChangerDistancePoint(TableColumn.CellEditEvent<PointJFX, String> pointStringCellEditEvent) {
-        PointJFX pointJFX = pointTable.getSelectionModel().getSelectedItem();
-        pointJFX.setDistancePoint(pointStringCellEditEvent.getNewValue());
+        PointHeightJFX pointHeightJFX = pointTable.getSelectionModel().getSelectedItem();
+        pointHeightJFX.setDistancePointHeight(pointStringCellEditEvent.getNewValue());
     }
 
-    public void onEditChangerVAngPoint(TableColumn.CellEditEvent<PointJFX, String> pointStringCellEditEvent) {
-        PointJFX pointJFX = pointTable.getSelectionModel().getSelectedItem();
-        pointJFX.setVAnglePoint(pointStringCellEditEvent.getNewValue());
-    }
-
-    public void onEditChangerHAngPoint(TableColumn.CellEditEvent<PointJFX, String> pointStringCellEditEvent) {
-        PointJFX pointJFX = pointTable.getSelectionModel().getSelectedItem();
-        pointJFX.setHAnglePoint(pointStringCellEditEvent.getNewValue());
-    }
-
-
-    public void onEditChangerVAngle(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
-        AngleJFX angleJFX = angleTable.getSelectionModel().getSelectedItem();
-        angleJFX.setVAngleJFX(angleStringCellEditEvent.getNewValue());
+    public void onEditChangerHeight(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
+        AngleHeightJFX angleHeightJFX = angleTable.getSelectionModel().getSelectedItem();
+        angleHeightJFX.setHeightObjectJFX(angleStringCellEditEvent.getNewValue());
     }
 
     public void onEditChangerHAngle(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
-        AngleJFX angleJFX = angleTable.getSelectionModel().getSelectedItem();
-        angleJFX.setHAngleJFX(angleStringCellEditEvent.getNewValue());
+        AngleHeightJFX angleHeightJFX = angleTable.getSelectionModel().getSelectedItem();
+        angleHeightJFX.setHAngleJFX(angleStringCellEditEvent.getNewValue());
     }
 
-    public void onEditChangerVAngle1(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
-        AngleJFX angleJFX1 = angleTable1.getSelectionModel().getSelectedItem();
-        angleJFX1.setVAngleJFX(angleStringCellEditEvent.getNewValue());
+    public void onEditChangerHeight1(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
+        AngleHeightJFX angleHeightJFX1 = angleTable1.getSelectionModel().getSelectedItem();
+        angleHeightJFX1.setHeightObjectJFX(angleStringCellEditEvent.getNewValue());
     }
 
     public void onEditChangerHAngle1(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
-        AngleJFX angleJFX1 = angleTable1.getSelectionModel().getSelectedItem();
-        angleJFX1.setHAngleJFX(angleStringCellEditEvent.getNewValue());
+        AngleHeightJFX angleHeightJFX1 = angleTable1.getSelectionModel().getSelectedItem();
+        angleHeightJFX1.setHAngleJFX(angleStringCellEditEvent.getNewValue());
     }
 
-    public void onEditChangerVAngle2(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
-        AngleJFX angleJFX2 = angleTable2.getSelectionModel().getSelectedItem();
-        angleJFX2.setVAngleJFX(angleStringCellEditEvent.getNewValue());
+    public void onEditChangerHeight2(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
+        AngleHeightJFX angleHeightJFX2 = angleTable2.getSelectionModel().getSelectedItem();
+        angleHeightJFX2.setHeightObjectJFX(angleStringCellEditEvent.getNewValue());
     }
 
     public void onEditChangerHAngle2(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
-        AngleJFX angleJFX2 = angleTable2.getSelectionModel().getSelectedItem();
-        angleJFX2.setHAngleJFX(angleStringCellEditEvent.getNewValue());
+        AngleHeightJFX angleHeightJFX2 = angleTable2.getSelectionModel().getSelectedItem();
+        angleHeightJFX2.setHAngleJFX(angleStringCellEditEvent.getNewValue());
     }
 
-    public void onEditChangerVAngle3(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
-        AngleJFX angleJFX3 = angleTable3.getSelectionModel().getSelectedItem();
-        angleJFX3.setVAngleJFX(angleStringCellEditEvent.getNewValue());
+    public void onEditChangerHeight3(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
+        AngleHeightJFX angleHeightJFX3 = angleTable3.getSelectionModel().getSelectedItem();
+        angleHeightJFX3.setHeightObjectJFX(angleStringCellEditEvent.getNewValue());
     }
 
     public void onEditChangerHAngle3(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
-        AngleJFX angleJFX3 = angleTable3.getSelectionModel().getSelectedItem();
-        angleJFX3.setHAngleJFX(angleStringCellEditEvent.getNewValue());
+        AngleHeightJFX angleHeightJFX3 = angleTable3.getSelectionModel().getSelectedItem();
+        angleHeightJFX3.setHAngleJFX(angleStringCellEditEvent.getNewValue());
     }
 
-    public void onEditChangerVAngle4(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
-        AngleJFX angleJFX4 = angleTable4.getSelectionModel().getSelectedItem();
-        angleJFX4.setVAngleJFX(angleStringCellEditEvent.getNewValue());
+    public void onEditChangerHeight4(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
+        AngleHeightJFX angleHeightJFX4 = angleTable4.getSelectionModel().getSelectedItem();
+        angleHeightJFX4.setHeightObjectJFX(angleStringCellEditEvent.getNewValue());
     }
 
     public void onEditChangerHAngle4(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
-        AngleJFX angleJFX4 = angleTable4.getSelectionModel().getSelectedItem();
-        angleJFX4.setHAngleJFX(angleStringCellEditEvent.getNewValue());
+        AngleHeightJFX angleHeightJFX4 = angleTable4.getSelectionModel().getSelectedItem();
+        angleHeightJFX4.setHAngleJFX(angleStringCellEditEvent.getNewValue());
     }
 
-    public void onEditChangerVAngle5(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
-        AngleJFX angleJFX5 = angleTable5.getSelectionModel().getSelectedItem();
-        angleJFX5.setVAngleJFX(angleStringCellEditEvent.getNewValue());
+    public void onEditChangerHeight5(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
+        AngleHeightJFX angleHeightJFX5 = angleTable5.getSelectionModel().getSelectedItem();
+        angleHeightJFX5.setHeightObjectJFX(angleStringCellEditEvent.getNewValue());
     }
 
     public void onEditChangerHAngle5(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
-        AngleJFX angleJFX5 = angleTable5.getSelectionModel().getSelectedItem();
-        angleJFX5.setHAngleJFX(angleStringCellEditEvent.getNewValue());
+        AngleHeightJFX angleHeightJFX5 = angleTable5.getSelectionModel().getSelectedItem();
+        angleHeightJFX5.setHAngleJFX(angleStringCellEditEvent.getNewValue());
     }
 
-    public void onEditChangerVAngle6(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
-        AngleJFX angleJFX6 = angleTable6.getSelectionModel().getSelectedItem();
-        angleJFX6.setVAngleJFX(angleStringCellEditEvent.getNewValue());
+    public void onEditChangerHeight6(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
+        AngleHeightJFX angleHeightJFX6 = angleTable6.getSelectionModel().getSelectedItem();
+        angleHeightJFX6.setHeightObjectJFX(angleStringCellEditEvent.getNewValue());
     }
 
     public void onEditChangerHAngle6(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
-        AngleJFX angleJFX6 = angleTable6.getSelectionModel().getSelectedItem();
-        angleJFX6.setHAngleJFX(angleStringCellEditEvent.getNewValue());
+        AngleHeightJFX angleHeightJFX6 = angleTable6.getSelectionModel().getSelectedItem();
+        angleHeightJFX6.setHAngleJFX(angleStringCellEditEvent.getNewValue());
     }
 
-    public void onEditChangerVAngle7(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
-        AngleJFX angleJFX7 = angleTable7.getSelectionModel().getSelectedItem();
-        angleJFX7.setVAngleJFX(angleStringCellEditEvent.getNewValue());
+    public void onEditChangerHeight7(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
+        AngleHeightJFX angleHeightJFX7 = angleTable7.getSelectionModel().getSelectedItem();
+        angleHeightJFX7.setHeightObjectJFX(angleStringCellEditEvent.getNewValue());
     }
 
     public void onEditChangerHAngle7(TableColumn.CellEditEvent<AngleJFX, String> angleStringCellEditEvent) {
-        AngleJFX angleJFX7 = angleTable7.getSelectionModel().getSelectedItem();
-        angleJFX7.setHAngleJFX(angleStringCellEditEvent.getNewValue());
+        AngleHeightJFX angleHeightJFX7 = angleTable7.getSelectionModel().getSelectedItem();
+        angleHeightJFX7.setHAngleJFX(angleStringCellEditEvent.getNewValue());
     }
 
     private Stage stage;
@@ -866,8 +859,6 @@ public class Controller_manualInput {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
-
-
 
     /**
      * Возвращаемся в окно "Новый расчет"
@@ -888,11 +879,11 @@ public class Controller_manualInput {
      * @param pointsData
      * @throws IOException
      */
-    private void serializePoint(ObservableList<PointJFX> pointsData) throws IOException {
+    private void serializePointHeight(ObservableList<PointHeightJFX> pointsData) throws IOException {
         File fileFS = new File("D:\\TestGB\\cache\\point.txt");
         try (FileOutputStream fosManInpWin = new FileOutputStream(fileFS);
              ObjectOutputStream oosPoint = new ObjectOutputStream(fosManInpWin)) {
-            ArrayList<PointJFX> pointsManInpWin = new ArrayList<PointJFX>(pointsData);
+            ArrayList<PointHeightJFX> pointsManInpWin = new ArrayList<PointHeightJFX>(pointsData);
             oosPoint.writeObject(pointsManInpWin);
             //oosPoint.writeObject(new ArrayList<Point> (pointsManInpWin));
         }
@@ -906,11 +897,11 @@ public class Controller_manualInput {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    private ObservableList<PointJFX> deserializePoint() throws FileNotFoundException, IOException, ClassNotFoundException {
-        ArrayList<PointJFX> pointsData = new ArrayList<PointJFX>();
+    private ObservableList<PointHeightJFX> deserializePointHeight() throws FileNotFoundException, IOException, ClassNotFoundException {
+        ArrayList<PointHeightJFX> pointsData = new ArrayList<PointHeightJFX>();
         File fileFS = new File("D:\\TestGB\\cache\\point.txt");
         try (FileInputStream fisPoint = new FileInputStream(fileFS); ObjectInputStream oisPoint = new ObjectInputStream(fisPoint)) {
-            pointsData = (ArrayList<PointJFX>) oisPoint.readObject();
+            pointsData = (ArrayList<PointHeightJFX>) oisPoint.readObject();
         }
         return FXCollections.observableArrayList(pointsData);
     }
@@ -922,18 +913,18 @@ public class Controller_manualInput {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    private void serializeAngles(ArrayList<ArrayList<AngleJFX>> listsAngles) throws FileNotFoundException, IOException {
+    private void serializeAnglesHeight(ArrayList<ArrayList<AngleHeightJFX>> listsAngles) throws FileNotFoundException, IOException {
         File fileAng = new File("D:\\TestGB\\cache\\angles.txt");
         try (FileOutputStream fosManInpWinAng = new FileOutputStream(fileAng);
              ObjectOutputStream oosAngle = new ObjectOutputStream(fosManInpWinAng)) {
-            ArrayList<AngleJFX> anglesManInpWin = new ArrayList<AngleJFX>(this.anglesData);
-            ArrayList<AngleJFX> anglesManInpWin1 = new ArrayList<AngleJFX>(this.anglesData1);
-            ArrayList<AngleJFX> anglesManInpWin2 = new ArrayList<AngleJFX>(this.anglesData2);
-            ArrayList<AngleJFX> anglesManInpWin3 = new ArrayList<AngleJFX>(this.anglesData3);
-            ArrayList<AngleJFX> anglesManInpWin4 = new ArrayList<AngleJFX>(this.anglesData4);
-            ArrayList<AngleJFX> anglesManInpWin5 = new ArrayList<AngleJFX>(this.anglesData5);
-            ArrayList<AngleJFX> anglesManInpWin6 = new ArrayList<AngleJFX>(this.anglesData6);
-            ArrayList<AngleJFX> anglesManInpWin7 = new ArrayList<AngleJFX>(this.anglesData7);
+            ArrayList<AngleHeightJFX> anglesManInpWin = new ArrayList<AngleHeightJFX>(this.anglesData);
+            ArrayList<AngleHeightJFX> anglesManInpWin1 = new ArrayList<AngleHeightJFX>(this.anglesData1);
+            ArrayList<AngleHeightJFX> anglesManInpWin2 = new ArrayList<AngleHeightJFX>(this.anglesData2);
+            ArrayList<AngleHeightJFX> anglesManInpWin3 = new ArrayList<AngleHeightJFX>(this.anglesData3);
+            ArrayList<AngleHeightJFX> anglesManInpWin4 = new ArrayList<AngleHeightJFX>(this.anglesData4);
+            ArrayList<AngleHeightJFX> anglesManInpWin5 = new ArrayList<AngleHeightJFX>(this.anglesData5);
+            ArrayList<AngleHeightJFX> anglesManInpWin6 = new ArrayList<AngleHeightJFX>(this.anglesData6);
+            ArrayList<AngleHeightJFX> anglesManInpWin7 = new ArrayList<AngleHeightJFX>(this.anglesData7);
             listsAngles.add(anglesManInpWin);
             listsAngles.add(anglesManInpWin1);
             listsAngles.add(anglesManInpWin2);
@@ -954,24 +945,24 @@ public class Controller_manualInput {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    private ArrayList<ArrayList<AngleJFX>> deserializeAngles() throws FileNotFoundException, IOException, ClassNotFoundException {
-        ArrayList<ArrayList<AngleJFX>> anglesDataS = new ArrayList<>();
+    private ArrayList<ArrayList<AngleHeightJFX>> deserializeAnglesHeight() throws FileNotFoundException, IOException, ClassNotFoundException {
+        ArrayList<ArrayList<AngleHeightJFX>> anglesDataS = new ArrayList<>();
         File fileAng = new File("D:\\TestGB\\cache\\angles.txt");
         try (FileInputStream fisAngles = new FileInputStream(fileAng);
              ObjectInputStream oisAngles = new ObjectInputStream(fisAngles)) {
-            anglesDataS = (ArrayList<ArrayList<AngleJFX>>) oisAngles.readObject();
+            anglesDataS = (ArrayList<ArrayList<AngleHeightJFX>>) oisAngles.readObject();
         }
         return anglesDataS;
     }
 
     /**
-     * Нажимаем для десериализации Point и Angle
+     * Нажимаем для сериализации Point и Angle
      */
     @FXML
     void savePointAndAngle() {
         try {
-            this.serializePoint(this.pointsData);
-            this.serializeAngles(obsListsAngles);
+            this.serializePointHeight(this.pointsData);
+            this.serializeAnglesHeight(obsListsAngles);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -981,63 +972,63 @@ public class Controller_manualInput {
     @FXML
     private void loadPointAndAngle() throws IOException, ClassNotFoundException {
         try {
-            this.pointsData = this.deserializePoint();
+            this.pointsData = this.deserializePointHeight();
             this.pointTable.setItems(this.pointsData);
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
         if (pointsData.size() > 0 && pointsData.get(0) != null) {
             this.anglesData = FXCollections.observableArrayList(
-                    this.deserializeAngles().get(0)
+                    this.deserializeAnglesHeight().get(0)
             );
             this.angleTable.setItems(anglesData);
             scenarioOfManipulatorStates();
             updateNamePoint();
             if (pointsData.size() > 1 && pointsData.get(1) != null) {
                 this.anglesData1 = FXCollections.observableArrayList(
-                        this.deserializeAngles().get(1)
+                        this.deserializeAnglesHeight().get(1)
                 );
                 this.angleTable1.setItems(anglesData1);
                 scenarioOfManipulatorStates();
                 updateNamePoint();
                 if (pointsData.size() > 2 && pointsData.get(2) != null) {
                     this.anglesData2 = FXCollections.observableArrayList(
-                            this.deserializeAngles().get(2)
+                            this.deserializeAnglesHeight().get(2)
                     );
                     this.angleTable2.setItems(anglesData2);
                     scenarioOfManipulatorStates();
                     updateNamePoint();
                     if (pointsData.size() > 3 && pointsData.get(3) != null) {
                         this.anglesData3 = FXCollections.observableArrayList(
-                                this.deserializeAngles().get(3)
+                                this.deserializeAnglesHeight().get(3)
                         );
                         this.angleTable3.setItems(anglesData3);
                         scenarioOfManipulatorStates();
                         updateNamePoint();
                         if (pointsData.size() > 4 && pointsData.get(4) != null) {
                             this.anglesData4 = FXCollections.observableArrayList(
-                                    this.deserializeAngles().get(4)
+                                    this.deserializeAnglesHeight().get(4)
                             );
                             this.angleTable4.setItems(anglesData4);
                             scenarioOfManipulatorStates();
                             updateNamePoint();
                             if (pointsData.size() > 5 && pointsData.get(5) != null) {
                                 this.anglesData5 = FXCollections.observableArrayList(
-                                        this.deserializeAngles().get(5)
+                                        this.deserializeAnglesHeight().get(5)
                                 );
                                 this.angleTable5.setItems(anglesData5);
                                 scenarioOfManipulatorStates();
                                 updateNamePoint();
                                 if (pointsData.size() > 6 && pointsData.get(6) != null) {
                                     this.anglesData6 = FXCollections.observableArrayList(
-                                            this.deserializeAngles().get(6)
+                                            this.deserializeAnglesHeight().get(6)
                                     );
                                     this.angleTable6.setItems(anglesData6);
                                     scenarioOfManipulatorStates();
                                     updateNamePoint();
                                     if (pointsData.size() > 7 && pointsData.get(7) != null) {
                                         this.anglesData7 = FXCollections.observableArrayList(
-                                                this.deserializeAngles().get(7)
+                                                this.deserializeAnglesHeight().get(7)
                                         );
                                         this.angleTable7.setItems(anglesData7);
                                         scenarioOfManipulatorStates();
